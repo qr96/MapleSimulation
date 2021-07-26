@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="아이템의 잠재능력을 재설정합니다."
+            android:textSize="20sp"
+            tools:ignore="MissingConstraints" />
+        <ImageView
+            android:layout_width="300px"
+            android:layout_height="300px"
+            android:layout_margin="100px"
+            android:src="@drawable/mongbel"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="R 잠재옵션"
+            android:textSize="20sp"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="공격력 : 6%\n공격력 : 6%\n공격력 : 6%"
+            android:textSize="20sp"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="R 에디셔널 잠재옵션"
+            android:textSize="20sp"
+            android:layout_marginTop="40px"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="공격력 : 6%\n공격력 : 6%\n공격 시 20% 확률로 2레벨 슬로우..."
+            android:textSize="20sp"
+            tools:ignore="MissingConstraints" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:layout_margin="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:padding="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/cube_black"/>
+                <ImageButton
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:padding="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/cube_red"/>
+                <ImageButton
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:padding="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/cube_myungjang"/>
+                <ImageButton
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:padding="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/cube_jangin"/>
+                <ImageButton
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:padding="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/cube_susang"/>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:text="강화하기"
+            android:onClick="useCube"/>
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:text="뒤로가기"
+            android:onClick="goBack"/>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

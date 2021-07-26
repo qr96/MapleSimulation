@@ -7,14 +7,56 @@
     tools:context=".MainActivity">
 
 
-    <Button
-        android:id="@+id/button1"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#8CDC7A"
-        android:text="잠재능력"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="280dp" />
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:layout_width="300px"
+            android:layout_height="300px"
+            android:layout_margin="100px"
+            android:src="@drawable/mongbel"
+            tools:ignore="MissingConstraints"/>
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="600px"
+            android:layout_height="wrap_content"
+            android:background="#8CDC7A"
+            android:text="주문서"
+            android:layout_margin="20px"
+            tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="600px"
+            android:layout_height="wrap_content"
+            android:background="#8CDC7A"
+            android:text="추가옵션"
+            android:layout_margin="20px"
+            tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="600px"
+            android:layout_height="wrap_content"
+            android:background="#8CDC7A"
+            android:layout_margin="20px"
+            android:text="잠재옵션"
+            android:onClick="potential"
+            tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="600px"
+            android:layout_height="wrap_content"
+            android:background="#8CDC7A"
+            android:layout_margin="20px"
+            android:text="스타포스"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Maple Simulation.iml" filepath="$PROJECT_DIR$/Maple Simulation.iml" group="Maple Simulation" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Maple Simulation/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Maple_Simulation.iml" filepath="$PROJECT_DIR$/.idea/modules/Maple_Simulation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Maple_Simulation.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Maple_Simulation.app.iml" />
     </modules>
   </component>
 </project>
