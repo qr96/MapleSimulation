@@ -67,8 +67,8 @@ public class SearchActivity extends Activity {
     }
 
     //장비 선택 시 확인 다이얼로그
-    private void confirmDialog(int position) {
-        final String equipment = equipNameList.get(position);
+    private void confirmDialog(final int position) {
+        String equipment = equipNameList.get(position);
 
         AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(SearchActivity.this);
         myAlertBuilder.setTitle("장비 확인");
@@ -78,7 +78,7 @@ public class SearchActivity extends Activity {
         myAlertBuilder.setPositiveButton("Ok",new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog,int which){
                 Intent intent = new Intent();
-                intent.putExtra("equip", equipment);
+                intent.putExtra("equip", position);
                 setResult(0, intent);
                 finish();
             }

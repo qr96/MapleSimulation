@@ -3,6 +3,7 @@ package com.example.maplesimulation;
 public class Equipment {
     public String id;
     public String name;
+    public String Image;
     public String group;
     public int levReq;
     public int STR;
@@ -17,6 +18,8 @@ public class Equipment {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void setImage(String image) { this.Image = image;  }
 
     public void setGroup(String group) {
         this.group = group;

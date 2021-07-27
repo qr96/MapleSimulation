@@ -86,12 +86,13 @@ public class DataAdapter {
                     // TODO : Record 기술
                     // id, name, account, privateKey, secretKey, Comment
                     equip.setName(mCur.getString(0));
-                    equip.setGroup(mCur.getString(1));
-                    equip.setLevReq(mCur.getInt(2));
-                    equip.setSTR(mCur.getInt(3));
-                    equip.setDEX(mCur.getInt(4));
-                    equip.setINT(mCur.getInt(5));
-                    equip.setLUK(mCur.getInt(6));
+                    equip.setImage(mCur.getString(1));
+                    equip.setGroup(mCur.getString(2));
+                    equip.setLevReq(mCur.getInt(3));
+                    equip.setSTR(mCur.getInt(4));
+                    equip.setDEX(mCur.getInt(5));
+                    equip.setINT(mCur.getInt(6));
+                    //equip.setLUK(mCur.getInt(7));
 
                     // 리스트에 넣기
                     equipList.add(equip);
