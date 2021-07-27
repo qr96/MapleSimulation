@@ -63,10 +63,8 @@ public class DataAdapter {
         mDbHelper.close();
     }
 
-    public List getTableData()
-    {
-        try
-        {
+    public List getTableData()  {
+        try {
             // Table 이름 -> antpool_bitcoin 불러오기
             String sql ="SELECT * FROM " + TABLE_NAME;
 
