@@ -1,6 +1,6 @@
 package com.example.maplesimulation;
 
-public class Equipment {
+public class Equipment implements Cloneable{
     public String id;
     public String name;
     public String Image;
@@ -10,6 +10,11 @@ public class Equipment {
     public int DEX;
     public int INT;
     public int LUK;
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 
     public String getName() {
         return name;

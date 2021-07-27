@@ -17,18 +17,23 @@
             android:id="@+id/selected_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_margin="30dp"
+            android:layout_marginTop="100dp"
             android:src="@drawable/ui_button_search"
-            android:onClick="goSearch"
             tools:ignore="MissingConstraints"/>
-
+        <TextView
+            android:id="@+id/selected_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:text="장비를 추가해주세요."/>
         <Button
             android:id="@+id/button0"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="#8CDC7A"
-            android:text="장비선택"
+            android:text="장비추가"
             android:layout_margin="5dp"
+            android:onClick="goSearch"
             tools:ignore="MissingConstraints" />
         <Button
             android:id="@+id/button1"
@@ -37,6 +42,7 @@
             android:background="#8CDC7A"
             android:text="주문서"
             android:layout_margin="5dp"
+            android:onClick="goScroll"
             tools:ignore="MissingConstraints" />
         <Button
             android:id="@+id/button2"

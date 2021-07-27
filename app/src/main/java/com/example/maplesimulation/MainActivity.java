@@ -2,10 +2,14 @@ package com.example.maplesimulation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,15 +29,45 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void goPotential(View view) {
-        Intent intent = new Intent(this, PotentialActivity.class);
-        startActivity(intent);
-    }
-
     public void goSearch(View view) {
         Intent intent = new Intent(this, SearchActivity.class);
         intent.putExtra("equipList", equipNameList);
         startActivityForResult(intent, 0);
+    }
+
+    public void goScroll(View view) {
+        if(equipment == null) {
+            nothingDialog();
+            return;
+        }
+        Intent intent = new Intent(this, ScrollActivity.class);
+        //intent.putExtra("equipment", equipment);
+        startActivity(intent);
+    }
+
+    public void goPotential(View view) {
+        if(equipment == null) {
+            nothingDialog();
+            return;
+        }
+        Intent intent = new Intent(this, PotentialActivity.class);
+        startActivity(intent);
+    }
+    
+    //장비를 추가해주세요 다이얼로그
+    public void nothingDialog() {
+        AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(MainActivity.this);
+        myAlertBuilder.setTitle("장비 확인");
+        myAlertBuilder.setMessage("장비 추가 후에 시도해주세요.");
+
+        // 버튼 추가 (Ok 버튼)
+        myAlertBuilder.setPositiveButton("Ok",new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog,int which){
+                
+            }
+        });
+
+        myAlertBuilder.show();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -43,18 +77,26 @@ public class MainActivity extends AppCompatActivity {
                 if(data!=null) // 데이터가 빈값인지
                 {
                     int selected = data.getIntExtra("equip", -1);
-                    System.out.println(selected);
-                    convertImage(equipmentList.get(selected).Image);
+                    try {
+                        equipment = (Equipment) equipmentList.get(selected).clone();
+                    } catch (CloneNotSupportedException e) {
+                        e.printStackTrace();
+                    }
+                    convertImage(selected);
                 }
         }
     }
 
-    public void convertImage(String path) {
-        ImageView imageview = (ImageView)findViewById(R.id.selected_image);
+    //선택된 장비 이미지 표시, 이름 표시
+    public void convertImage(int idx) {
+        ImageView imageView = (ImageView)findViewById(R.id.selected_image);
+        TextView textView = (TextView)findViewById(R.id.selected_name);
 
-        int lid = this.getResources().getIdentifier(path, "drawable", this.getPackageName());
+        int lid = this.getResources().getIdentifier(equipmentList.get(idx).Image, "drawable", this.getPackageName());
 
-        imageview.setImageResource(lid);
+        imageView.setImageResource(lid);
+        textView.setText(equipmentList.get(idx).getName());
+
     }
 
     //DB 읽어서 List에 추가
