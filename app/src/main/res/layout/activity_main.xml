@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,43 +14,44 @@
         tools:ignore="MissingConstraints">
 
         <ImageView
-            android:layout_width="300px"
-            android:layout_height="300px"
-            android:layout_margin="100px"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="30dp"
             android:src="@drawable/mongbel"
+            android:onClick="goSearch"
             tools:ignore="MissingConstraints"/>
 
         <Button
             android:id="@+id/button1"
-            android:layout_width="600px"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:background="#8CDC7A"
             android:text="주문서"
-            android:layout_margin="20px"
+            android:layout_margin="5dp"
             tools:ignore="MissingConstraints" />
         <Button
             android:id="@+id/button2"
-            android:layout_width="600px"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:background="#8CDC7A"
             android:text="추가옵션"
-            android:layout_margin="20px"
+            android:layout_margin="5dp"
             tools:ignore="MissingConstraints" />
         <Button
             android:id="@+id/button3"
-            android:layout_width="600px"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:background="#8CDC7A"
-            android:layout_margin="20px"
+            android:layout_margin="5dp"
             android:text="잠재옵션"
-            android:onClick="potential"
+            android:onClick="goPotential"
             tools:ignore="MissingConstraints" />
         <Button
             android:id="@+id/button4"
-            android:layout_width="600px"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:background="#8CDC7A"
-            android:layout_margin="20px"
+            android:layout_margin="5dp"
             android:text="스타포스"
             tools:ignore="MissingConstraints" />
 

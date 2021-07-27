@@ -16,10 +16,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void potential(View view){
+    public void goPotential(View view) {
         Intent intent = new Intent(this, PotentialActivity.class);
         startActivity(intent);
     }
 
+    public void goSearch(View view) {
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
 
 }
