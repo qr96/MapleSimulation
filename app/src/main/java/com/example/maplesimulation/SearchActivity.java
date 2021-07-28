@@ -35,17 +35,6 @@ public class SearchActivity extends Activity {
         // 장비 이름 배열들을 리스트뷰에 추가
         listToView();
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(SearchActivity.this, query, Toast.LENGTH_SHORT).show();
-                return false;
-            }
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
     }
 
     //List를 뷰에 추가

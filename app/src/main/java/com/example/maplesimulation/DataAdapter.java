@@ -90,14 +90,15 @@ public class DataAdapter {
                     equip.setName(mCur.getString(0));
                     equip.setImage(mCur.getString(1));
                     equip.setGroup(mCur.getString(2));
-                    equip.setLevReq(mCur.getInt(3));
+                    equip.setJob(mCur.getString(3));
+                    equip.setLevReq(mCur.getInt(4));
 
-                    equip.setMaxUp(mCur.getInt(4));
-                    equip.setNowUp(mCur.getInt(5));
-                    equip.setMaxStar(mCur.getInt(6));
-                    equip.setStar(mCur.getInt(7));
+                    equip.setMaxUp(mCur.getInt(5));
+                    equip.setNowUp(mCur.getInt(6));
+                    equip.setMaxStar(mCur.getInt(7));
+                    equip.setStar(mCur.getInt(8));
 
-                    for(int i=8; i<25; i++) {
+                    for(int i=9; i<26; i++) {
                         equip.addStats(mCur.getInt(i));
                     }
 
@@ -115,3 +116,4 @@ public class DataAdapter {
         }
     }
 }
+

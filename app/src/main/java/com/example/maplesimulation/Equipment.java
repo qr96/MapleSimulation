@@ -8,6 +8,7 @@ public class Equipment implements Cloneable, Serializable {
     private String name;
     private String Image;
     private String group;
+    private String job;
     private int levReq;
 
     private int maxUp; //업가횟
@@ -29,6 +30,7 @@ public class Equipment implements Cloneable, Serializable {
     public Equipment() {
         stats = new ArrayList();
         enhance = new ArrayList();
+        additional = new ArrayList();
     }
 
     @Override
@@ -43,6 +45,8 @@ public class Equipment implements Cloneable, Serializable {
     public String getImage() { return Image; }
 
     public String getGroup() { return group; }
+
+    public String getJob() { return  job; }
 
     public int getLevReq() { return levReq; }
 
@@ -63,6 +67,8 @@ public class Equipment implements Cloneable, Serializable {
     public void setGroup(String group) {
         this.group = group;
     }
+
+    public void setJob(String job) { this.job = job; }
 
     public void setLevReq(int levReq) {
         this.levReq = levReq;
