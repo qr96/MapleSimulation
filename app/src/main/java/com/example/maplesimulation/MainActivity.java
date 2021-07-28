@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     
-    //장비를 추가해주세요 다이얼로그
+    //"장비를 추가해주세요" 다이얼로그
     public void nothingDialog() {
         AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(MainActivity.this);
         myAlertBuilder.setTitle("장비 확인");

@@ -24,7 +24,7 @@ public class Equipment implements Cloneable{
         this.name = name;
     }
 
-    public void setImage(String image) { this.Image = image;  }
+    public void setImage(String image) { this.Image = image; }
 
     public void setGroup(String group) {
         this.group = group;

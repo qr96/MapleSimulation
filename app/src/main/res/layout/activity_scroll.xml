@@ -16,9 +16,9 @@
             android:text="아이템을 강화합니다."
             android:textSize="20sp"/>
         <ImageView
-            android:layout_width="300px"
-            android:layout_height="300px"
-            android:layout_margin="100px"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
             android:src="@drawable/mongbel" />
         <TextView
             android:layout_width="wrap_content"
@@ -50,36 +50,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
-                <ImageButton
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:padding="20dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/cube_black"/>
-                <ImageButton
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:padding="20dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/cube_red"/>
-                <ImageButton
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:padding="20dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/cube_myungjang"/>
-                <ImageButton
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:padding="20dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/cube_jangin"/>
-                <ImageButton
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:padding="20dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/cube_susang"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageButton
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:padding="20dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/cube_black"/>
+                    <ImageView
+                        android:id="@+id/scroll0"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:padding="15dp"
+                        android:scaleType="fitCenter"
+                        android:visibility="invisible"
+                        android:src="@drawable/ui_checked"/>
+                </FrameLayout>
 
             </LinearLayout>
         </HorizontalScrollView>
