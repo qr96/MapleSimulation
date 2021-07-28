@@ -36,13 +36,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goScroll(View view) {
+        //장비 미선택 시
         if(equipment == null) {
             nothingDialog();
             return;
         }
+
         Intent intent = new Intent(this, ScrollActivity.class);
-        //intent.putExtra("equipment", equipment);
-        startActivity(intent);
+        intent.putExtra("equipment", equipment);
+        startActivityForResult(intent, 1);
+
     }
 
     public void goPotential(View view) {
@@ -53,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PotentialActivity.class);
         startActivity(intent);
     }
-    
+
+
     //"장비를 추가해주세요" 다이얼로그
     public void nothingDialog() {
         AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -70,20 +74,27 @@ public class MainActivity extends AppCompatActivity {
         myAlertBuilder.show();
     }
 
+    //intent 받는 부분
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode){
             case 0: //최초 장비 등록
-                if(data!=null) // 데이터가 빈값인지
-                {
-                    int selected = data.getIntExtra("equip", -1);
+                if(data!=null) {
+                    int selected = data.getIntExtra("equipment", -1);
                     try {
-                        equipment = (Equipment) equipmentList.get(selected).clone();
+                        this.equipment = (Equipment) equipmentList.get(selected).clone();
+                        convertImage(selected);
                     } catch (CloneNotSupportedException e) {
                         e.printStackTrace();
                     }
-                    convertImage(selected);
                 }
+                break;
+            case 1:
+                if(data != null) {
+                    Equipment equipment_scroll = (Equipment) data.getSerializableExtra("equipment");
+                    this.equipment = equipment_scroll;
+                }
+                break;
         }
     }
 

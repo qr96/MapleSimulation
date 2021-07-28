@@ -36,7 +36,6 @@
             android:onClick="goSearch"
             tools:ignore="MissingConstraints" />
         <Button
-            android:id="@+id/button1"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="#8CDC7A"

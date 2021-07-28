@@ -78,7 +78,7 @@ public class SearchActivity extends Activity {
         myAlertBuilder.setPositiveButton("Ok",new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog,int which){
                 Intent intent = new Intent();
-                intent.putExtra("equip", position);
+                intent.putExtra("equipment", position);
                 setResult(0, intent);
                 finish();
             }

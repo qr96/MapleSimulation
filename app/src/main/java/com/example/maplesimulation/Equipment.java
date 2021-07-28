@@ -1,6 +1,8 @@
 package com.example.maplesimulation;
 
-public class Equipment implements Cloneable{
+import java.io.Serializable;
+
+public class Equipment implements Cloneable, Serializable {
     public String id;
     public String name;
     public String Image;
