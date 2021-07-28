@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageView = (ImageView)findViewById(R.id.selected_image);
         TextView textView = (TextView)findViewById(R.id.selected_name);
 
-        int lid = this.getResources().getIdentifier(equipmentList.get(idx).Image, "drawable", this.getPackageName());
+        int lid = this.getResources().getIdentifier(equipmentList.get(idx).getImage(), "drawable", this.getPackageName());
 
         imageView.setImageResource(lid);
         textView.setText(equipmentList.get(idx).getName());

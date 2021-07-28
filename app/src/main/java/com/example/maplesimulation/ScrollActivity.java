@@ -5,6 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 public class ScrollActivity extends Activity {
     public int selected_button_id = -1; //선택된 아이템의 id
@@ -19,15 +24,42 @@ public class ScrollActivity extends Activity {
         Intent intent = getIntent();
         this.equipment = (Equipment) intent.getSerializableExtra("equipment");
 
-        setImage();
+        thumnail();
+        setText();
+    }
+    
+    //맨 위의 썸네일 설정
+    public void thumnail() {
+        if(equipment == null) return;
+
+        ImageView imageView = findViewById(R.id.equipment_image);
+        int imageRID = this.getResources().getIdentifier(equipment.getImage(), "drawable", this.getPackageName());
+        imageView.setImageResource(imageRID);
+
+        TextView textView = findViewById(R.id.equipment_name);
+        textView.setText(equipment.getName());
     }
 
-    public void setImage() {
+    public void setText() {
         if(equipment == null) return;
-        ImageView imageView = findViewById(R.id.equipment_image);
-        int imageRID = this.getResources().getIdentifier(equipment.Image, "drawable", this.getPackageName());
 
-        imageView.setImageResource(imageRID);
+        TextView textView = findViewById(R.id.info);
+        String equipInfo = "";
+        String[] table = {"STR", "DEX", "INT", "LUK", "최대HP", "최대MP", "착용레벨감소",
+                "방어력", "공격력", "마력", "이동속도", "점프력", "올스텟%", "최대HP%", "방무", "보공", "뎀지"};
+
+        ArrayList equipStats = equipment.getStats();
+        ArrayList equipEnhance = equipment.getEnhance();
+
+        int sum = 0;
+
+        for(int i=0; i<table.length; i++){
+            sum = (Integer) equipStats.get(i) + (Integer) equipEnhance.get(i);
+            if(sum == 0) continue;
+            equipInfo = equipInfo + table[i] + " : " + equipStats.get(i) + " +" + equipEnhance.get(i) +"\n";
+        }
+
+        textView.setText(equipInfo);
     }
 
     //뒤로가기

@@ -84,15 +84,22 @@ public class DataAdapter {
                     equip = new Equipment();
 
                     // TODO : Record 기술
-                    // id, name, account, privateKey, secretKey, Comment
+                    // 이름, 이미지 경로, 분류,
+                    // 레벨제한, 업가횟, 남은업가횟, 최대스타포스, 스타포스,
+                    // 기본 스텟, 강화 스텟, 추가옵션
                     equip.setName(mCur.getString(0));
                     equip.setImage(mCur.getString(1));
                     equip.setGroup(mCur.getString(2));
                     equip.setLevReq(mCur.getInt(3));
-                    equip.setSTR(mCur.getInt(4));
-                    equip.setDEX(mCur.getInt(5));
-                    equip.setINT(mCur.getInt(6));
-                    //equip.setLUK(mCur.getInt(7));
+
+                    equip.setMaxUp(mCur.getInt(4));
+                    equip.setNowUp(mCur.getInt(5));
+                    equip.setMaxStar(mCur.getInt(6));
+                    equip.setStar(mCur.getInt(7));
+
+                    for(int i=8; i<25; i++) {
+                        equip.addStats(mCur.getInt(i));
+                    }
 
                     // 리스트에 넣기
                     equipList.add(equip);

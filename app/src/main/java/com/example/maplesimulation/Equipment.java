@@ -1,17 +1,35 @@
 package com.example.maplesimulation;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Equipment implements Cloneable, Serializable {
-    public String id;
-    public String name;
-    public String Image;
-    public String group;
-    public int levReq;
-    public int STR;
-    public int DEX;
-    public int INT;
-    public int LUK;
+    //private String id;
+    private String name;
+    private String Image;
+    private String group;
+    private int levReq;
+
+    private int maxUp; //업가횟
+    private int nowUp; //남은 업가횟
+
+    private int maxStar; //최대 스타포스 수치
+    private int star; //스타포스 수치
+
+    //기본 능력치들
+    //STR, DEX, INT, LUK, 최대HP, 최대MP, 착용레벨감소, 방어력, 공격력, 마력, 이동속도, 점프력, 올스텟%, 최대HP%, 방무, 보공, 뎀지
+    private ArrayList stats;
+
+    //강화된 수치
+    private ArrayList enhance;
+
+    //추가 옵션
+    private ArrayList additional;
+
+    public Equipment() {
+        stats = new ArrayList();
+        enhance = new ArrayList();
+    }
 
     @Override
     public Object clone() throws CloneNotSupportedException {
@@ -20,6 +38,20 @@ public class Equipment implements Cloneable, Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public String getImage() { return Image; }
+
+    public String getGroup() { return group; }
+
+    public int getLevReq() { return levReq; }
+
+    public ArrayList getStats() {
+        return stats;
+    }
+
+    public ArrayList getEnhance() {
+        return enhance;
     }
 
     public void setName(String name) {
@@ -36,19 +68,18 @@ public class Equipment implements Cloneable, Serializable {
         this.levReq = levReq;
     }
 
-    public void setSTR(int STR) {
-        this.STR = STR;
+    public void setMaxUp(int maxUp) { this.maxUp = maxUp; }
+
+    public void setNowUp(int nowUp) { this.nowUp = nowUp; }
+
+    public void setMaxStar(int maxStar) { this.maxStar = maxStar; }
+
+    public void setStar(int star) { this.star = star; }
+
+    public void addStats(int stat) {
+        this.stats.add(stat);
+        this.enhance.add(0);
+        this.additional.add(0);
     }
 
-    public void setDEX(int DEX) {
-        this.DEX = DEX;
-    }
-
-    public void setINT(int INT) {
-        this.INT = INT;
-    }
-
-    public void setLUK(int LUK) {
-        this.LUK = LUK;
-    }
 }
