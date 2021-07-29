@@ -65,6 +65,7 @@ public class ScrollActivity extends Activity {
         int result = -2;
         int possibility = 0;
         String justat = "none";
+        
         //주문의 흔적
         if(selected_button_id == R.id.scroll_button_0) {
             //힘 100%
@@ -131,6 +132,10 @@ public class ScrollActivity extends Activity {
             }
             else if(weapons.contains(this.equipment.getType())) { //무기인 경우
                 result = this.equipment.doWeaponScroll2(possibility, justat);
+            }
+            else if(this.equipment.getType().equals("장갑")){ //장갑
+                if(justat == "STR") result = this.equipment.doGloveScroll2(possibility, "physic");
+                else if(justat == "DEX") result = this.equipment.doGloveScroll2(possibility, "magic");
             }
         }
         //순백의 주문서
@@ -226,7 +231,7 @@ public class ScrollActivity extends Activity {
         finish();
     }
 
-    //현재 선택된 N번 아이템에 표시
+    //N번 아이템 버튼 이벤트
     public void select(View view) {
 
         //이전에 선택된 항목의 체크 제거
@@ -252,15 +257,25 @@ public class ScrollActivity extends Activity {
 
             //주문서의 세부 옵션 선택 팝업
             Intent intent = new Intent(this, SelectBasicScollPopup.class);
-            
+            String scrollType = "";
             //방어구, 장신구인 경우
             if(armors.contains(equipment.getType()) || accessories.contains(equipment.getType())){
-                intent.putExtra("type", "armors");
-                intent.putExtra("scroll", 0);
-                startActivityForResult(intent, 0);
+                scrollType = "armors";
+            }
+            //무기인 경우
+            else if(weapons.contains(equipment.getType())){
+                scrollType = "weapons";
+            }
+            //장갑인 경우
+            else if(equipment.getType().equals("장갑")){
+                scrollType = "glove";
             }
 
+            intent.putExtra("type", scrollType);
+            intent.putExtra("scroll", 0);
+            startActivityForResult(intent, 0);
         }
+
         else if(view.getId() == R.id.scroll_button_1){
             //순백의 주문서
             ImageView new_select = (ImageView)findViewById(R.id.scroll_check_1);

@@ -44,7 +44,14 @@ public class SelectBasicScollPopup extends Activity {
                         "100% 운 주문서", "70% 운 주문서", "30% 운 주문서"};
             }
             else if(equipType.equals("weapons")){
-
+                scrollTable = new String[]{"100% 공격력(힘) 주문서", "70% 공격력(힘) 주문서", "30% 공격력(힘) 주문서",
+                        "100% 공격력(민첩) 주문서", "70% 공격력(민첩) 주문서", "30% 공격력(민첩) 주문서",
+                        "100% 마력(지력) 주문서", "70% 마력(지력) 주문서", "30% 마력(지력) 주문서",
+                        "100% 공격력(운) 주문서", "70% 공격력(운) 주문서", "30% 공격력(운) 주문서"};
+            }
+            else if(equipType.equals("glove")){
+                scrollTable = new String[]{"100% 공격력 주문서", "70% 공격력 주문서", "30% 공격력 주문서",
+                        "100% 마력 주문서", "70% 마력 주문서", "30% 마력 주문서"};
             }
             else {
                 scrollTable = new String[]{};
