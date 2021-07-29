@@ -17,14 +17,6 @@
             app:iconifiedByDefault="false"
             app:queryHint="아이템 검색"
             tools:ignore="MissingConstraints" />
-        <!-->
-        <ListView
-            android:id="@+id/listview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp">
-        </ListView>
-        <-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler1"
             android:scrollbars="vertical"

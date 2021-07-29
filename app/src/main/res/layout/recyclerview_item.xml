@@ -9,9 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
-        android:padding="10dp"
+        android:paddingVertical="20dp"
         android:id="@+id/recyclerText"
-        android:textSize="22sp"
+        android:textSize="20sp"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

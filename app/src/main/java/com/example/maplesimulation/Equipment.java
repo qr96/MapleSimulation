@@ -21,7 +21,7 @@ public class Equipment implements Cloneable, Serializable {
     private int goldHammer;
 
     //기본 능력치들
-    //STR, DEX, INT, LUK, 최대HP, 최대MP, 착용레벨감소, 방어력, 공격력, 마력, 이동속도, 점프력, 올스텟%, 최대HP%, 방무, 보공, 뎀지
+    //STR, DEX, INT, LUK, 최대HP, 최대MP, 방어력, 공격력, 마력, 이동속도, 점프력, 착용레벨감소, 올스텟%, 최대HP%, 방무, 보공, 뎀지
     private ArrayList stats;
 
     //강화된 수치
@@ -29,6 +29,9 @@ public class Equipment implements Cloneable, Serializable {
 
     //추가 옵션
     private ArrayList additional;
+    
+    //최근 혼돈의 주문서 적용된 수치
+    private ArrayList<Integer> recentChaos;
 
     public Equipment() {
         stats = new ArrayList();
@@ -40,7 +43,8 @@ public class Equipment implements Cloneable, Serializable {
     /*------- 강화 실행 함수 ------*/
     //장비 강화 120~200제   [-1:남은 횟수X, 0:실패 1:성공]
     public int doArmorScroll2(int possibility, String justat) {
-        if(nowUp+failUp == maxUp) return -1;
+        if(nowUp+failUp == maxUp) return -1; //업그레이드 가능횟수가 없는 경우
+        
         //강화 성공 시
         if(isSuccess(possibility)) {
             nowUp++;
@@ -340,8 +344,64 @@ public class Equipment implements Cloneable, Serializable {
         }
         return 0; //실패
     }
+    
+    //놀라운 긍정의 혼돈 주문서
+    public int useAwesomeChaos(int possible) {
+        if(nowUp+failUp==maxUp) return -1; //업그레이드 가능횟수가 없는 경우
 
+        recentChaos = new ArrayList<Integer>();
 
+        //주문서 사용 성공
+        if(isSuccess(possible)){
+            nowUp++;
+            double table[] = {5.93, 4.94, 13.87, 23.87, 33.01, 18.38};
+            int prev = 0; //이전 스텟
+            int random = 0; //랜덤으로 생성된 숫자
+            
+            for(int i=0; i<11; i++){
+                prev = (int) enhance.get(i);
+                if(i==4 || i==5) random = (tableRandom(table)*10); //Hp, Mp 는 10단위
+                else random = tableRandom(table);
+                enhance.set(i, prev+random);
+                recentChaos.add(random);
+            }
+            return 1;
+        }
+        failUp++;
+        return 0;
+    }
+
+    //리턴 스크롤 사용
+    public void useReturnScroll() {
+        System.out.println("리턴 스크롤을 사용합니다.");
+        int tmp = 0;
+        for(int i=0; i<recentChaos.size(); i++){
+            tmp = (int)enhance.get(i);
+            tmp -= recentChaos.get(i);
+            enhance.set(i, tmp);
+            recentChaos.set(i, 0);
+        }
+        nowUp--;
+    }
+    
+    // 테이블 확률대로 하나 반환
+    public int tableRandom(double[] table) {
+        // 번호 생성
+        double ran = Math.random() * 100;
+        double w = 0;
+
+        for (int i = 0; i < table.length; i++) {
+            w = w + table[i];
+
+            if (ran < w) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    
+    //정해진 확률에 따른 성공 여부
     public Boolean isSuccess(int possibility) {
         int random = (int)(Math.random()*100);
 
@@ -381,6 +441,9 @@ public class Equipment implements Cloneable, Serializable {
     }
 
     public int getGoldHammer() { return goldHammer; }
+
+    public ArrayList getRecentChaos() { return recentChaos; }
+
 
 
     public void setName(String name) {

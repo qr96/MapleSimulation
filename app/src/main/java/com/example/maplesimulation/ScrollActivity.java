@@ -1,8 +1,11 @@
 package com.example.maplesimulation;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,7 +44,7 @@ public class ScrollActivity extends Activity {
 
     public void initEquipType(){
         armors = new ArrayList<>(Arrays.asList("상의","하의","모자","망토","신발","한벌옷"));
-        accessories = new ArrayList<>(Arrays.asList("얼굴장식","눈장식","벨트","귀고리","견장","반지"));
+        accessories = new ArrayList<>(Arrays.asList("얼굴장식","눈장식","벨트","귀고리","견장","반지","목걸이"));
     }
 
     //성공 이펙트 실행
@@ -175,11 +178,40 @@ public class ScrollActivity extends Activity {
                 result = this.equipment.useInnocent((30));
             }
         }
+        //혼돈의 주문서
+        else if(selected_button_id == R.id.scroll_button_4) {
+            //100%
+            if(selected_detail_id == 0) {
+                result = equipment.useAwesomeChaos(100);
+            }
+            //70%
+            else if(selected_detail_id == 1) {
+                result = equipment.useAwesomeChaos(70);
+            }
+            //100% 리턴 스크롤 적용
+            else  if(selected_detail_id == 2) {
+                result = equipment.useAwesomeChaos(100);
+                returnScrollDialog();
+            }
+            //70% 리턴 스크롤 적용
+            else if(selected_detail_id == 3) {
+                result = equipment.useAwesomeChaos(70);
+                if(result == 1) returnScrollDialog();
+            }
+
+        }
 
         if(result==1) successEffect();
         else if(result==0) failEffect();
 
         updateText();
+        view.setEnabled(false);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                view.setEnabled(true);
+            }
+        }, 1200);
     }
     
     //맨 위의 썸네일 설정
@@ -194,11 +226,18 @@ public class ScrollActivity extends Activity {
         textView.setText(equipment.getName());
     }
     
-    //장비의 능력치 표시 부분
+    //장비의 능력치 표시 업데이트
     public void updateText() {
         if(this.equipment == null) return;
 
         TextView textView = findViewById(R.id.info);
+        String equipInfo = makeText();
+
+        textView.setText(equipInfo);
+    }
+
+    //장비의 정보 텍스트로 변환
+    public String makeText() {
         String equipInfo = "";
         String[] table = {"STR", "DEX", "INT", "LUK", "최대HP", "최대MP", "착용레벨감소",
                 "방어력", "공격력", "마력", "이동속도", "점프력", "올스텟%", "최대HP%", "방무", "보공", "뎀지"};
@@ -220,9 +259,49 @@ public class ScrollActivity extends Activity {
 
         if(equipment.getGoldHammer() == 1) equipInfo = equipInfo + "\n황금망치 제련 적용";
 
-        textView.setText(equipInfo);
+        return equipInfo;
     }
 
+    //리턴스크롤 다이얼로그
+    private void returnScrollDialog() {
+
+        AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(this);
+        myAlertBuilder.setTitle("리턴 스크롤");
+        myAlertBuilder.setMessage("주문서 사용에 성공했습니다. 아이템의 옵션을 되돌리시겠습니까?\n"+recentChoas());
+
+        // 버튼 추가
+        myAlertBuilder.setNegativeButton(" 예 ",new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog,int which){
+                equipment.useReturnScroll();
+                updateText();
+            }
+        });
+        myAlertBuilder.setPositiveButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        myAlertBuilder.show();
+    }
+
+    //혼돈의 주문서로 증가한 능력치 문자열
+    public String recentChoas(){
+        ArrayList<Integer> recent = this.equipment.getRecentChaos();
+        String info = "";
+        String[] table = {"STR", "DEX", "INT", "LUK", "최대HP", "최대MP", "착용레벨감소",
+                "방어력", "공격력", "마력", "이동속도", "점프력", "올스텟%", "최대HP%", "방무", "보공", "뎀지"};
+
+        for(int i=0; i<recent.size();i++){
+            if(recent.get(i)!=0){ //수치가 변했다면
+                info = info+table[i]+":+"+recent.get(i)+"  ";
+            }
+        }
+
+        return info;
+    }
+    
     //뒤로가기
     public void goBack(View view){
         Intent intent = new Intent();
@@ -316,6 +395,19 @@ public class ScrollActivity extends Activity {
             intent.putExtra("scroll", 3);
             startActivityForResult(intent, 0);
         }
+        else if(view.getId() == R.id.scroll_button_4){
+            //혼돈의 주문서
+            ImageView new_select = (ImageView)findViewById(R.id.scroll_check_4);
+            new_select.setVisibility(View.VISIBLE);
+
+            selected_button_id = view.getId();
+            selected_check_id = R.id.scroll_check_4;
+
+            //주문서의 세부 옵션 선택 팝업
+            Intent intent = new Intent(this, SelectBasicScollPopup.class);
+            intent.putExtra("scroll", 4);
+            startActivityForResult(intent, 0);
+        }
 
     }
 
@@ -339,3 +431,6 @@ public class ScrollActivity extends Activity {
     }
 
 }
+
+
+

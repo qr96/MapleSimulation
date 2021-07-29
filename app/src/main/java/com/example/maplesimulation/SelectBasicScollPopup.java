@@ -11,6 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -66,11 +69,13 @@ public class SelectBasicScollPopup extends Activity {
         else if(scrollType == 3) {
             scrollTable = new String[]{"이노센트 주문서 100%", "이노센트 주문서 50%", "이노센트 주문서 30%"};
         }
-        else {
-            finish();
+        else if(scrollType == 4) {
+            scrollTable = new String[]{"놀라운 긍정의 혼돈 주문서 100%", "놀라운 긍정의 혼돈 주문서 주문서 60%",
+                    "놀라운 긍정의 혼돈 주문서 100% (리턴 스크롤)", "놀라운 긍정의 혼돈 주문서 주문서 60% (리턴 스크롤)"};
         }
 
-        ListView listView = findViewById(R.id.listview);
+
+        ListView listView = findViewById(R.id.scroll_listview);
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_popup_select, scrollTable);
         listView.setAdapter(adapter);
 
@@ -83,6 +88,7 @@ public class SelectBasicScollPopup extends Activity {
                 finish();
             }
         });
+
     }
 
     //확인 버튼 클릭
