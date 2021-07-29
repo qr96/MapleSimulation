@@ -11,10 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class SelectBasicScollPopup extends Activity {
     TextView txtText;
     String scrollTable[];
+    String equipType = ""; //장비 부위
     int scrollType = -1; //0:주문의흔적, 1:순백의주문서
 
     @Override
@@ -27,14 +31,24 @@ public class SelectBasicScollPopup extends Activity {
         txtText = (TextView)findViewById(R.id.title);
         txtText.setText("주문서를 선택하세요.");
 
-        Intent secondIntent = getIntent();
-        scrollType = secondIntent.getIntExtra("scroll", 0);
+        Intent intent = getIntent();
+        equipType = intent.getStringExtra("type");
+        scrollType = intent.getIntExtra("scroll", 0);
 
         if(scrollType == 0) {
-            scrollTable = new String[]{"100% 힘 주문서", "70% 힘 주문서", "30% 힘 주문서",
-                    "100% 민첩 주문서", "70% 민첩 주문서", "30% 민첩 주문서",
-                    "100% 지력 주문서", "70% 지력 주문서", "30% 지력 주문서",
-                    "100% 운 주문서", "70% 운 주문서", "30% 운 주문서"};
+            System.out.println("0번 선택 !!!");
+            if(equipType.equals("armors")) {
+                scrollTable = new String[]{"100% 힘 주문서", "70% 힘 주문서", "30% 힘 주문서",
+                        "100% 민첩 주문서", "70% 민첩 주문서", "30% 민첩 주문서",
+                        "100% 지력 주문서", "70% 지력 주문서", "30% 지력 주문서",
+                        "100% 운 주문서", "70% 운 주문서", "30% 운 주문서"};
+            }
+            else if(equipType.equals("weapons")){
+
+            }
+            else {
+                scrollTable = new String[]{};
+            }
         }
         else if(scrollType == 1) {
             scrollTable = new String[]{"순백의 주문서 100%", "순백의 주문서 10%", "순백의 주문서 5%"};
@@ -57,7 +71,7 @@ public class SelectBasicScollPopup extends Activity {
             @Override public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Intent intent = new Intent();
                 intent.putExtra("scroll", position);
-                setResult(scrollType, intent);
+                setResult(0, intent);
 
                 finish();
             }

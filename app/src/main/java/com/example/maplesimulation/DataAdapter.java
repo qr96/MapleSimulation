@@ -90,7 +90,7 @@ public class DataAdapter {
                     // 기본 스텟, 강화 스텟, 추가옵션
                     equip.setName(mCur.getString(0));
                     equip.setImage(mCur.getString(1));
-                    equip.setGroup(mCur.getString(2));
+                    equip.setType(mCur.getString(2));
                     equip.setJob(mCur.getString(3));
 
                     equip.setLevReq(mCur.getInt(4));
