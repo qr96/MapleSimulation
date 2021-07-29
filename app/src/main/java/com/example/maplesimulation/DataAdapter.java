@@ -84,21 +84,24 @@ public class DataAdapter {
                     equip = new Equipment();
 
                     // TODO : Record 기술
-                    // 이름, 이미지 경로, 분류,
-                    // 레벨제한, 업가횟, 남은업가횟, 최대스타포스, 스타포스,
+                    // 이름, 이미지, 분류, 직업군
+                    // 레벨제한, 최대강화수, 현재강화수, 실패강화수,
+                    // 최대스타포스, 스타포스,
                     // 기본 스텟, 강화 스텟, 추가옵션
                     equip.setName(mCur.getString(0));
                     equip.setImage(mCur.getString(1));
                     equip.setGroup(mCur.getString(2));
                     equip.setJob(mCur.getString(3));
-                    equip.setLevReq(mCur.getInt(4));
 
+                    equip.setLevReq(mCur.getInt(4));
                     equip.setMaxUp(mCur.getInt(5));
                     equip.setNowUp(mCur.getInt(6));
-                    equip.setMaxStar(mCur.getInt(7));
-                    equip.setStar(mCur.getInt(8));
+                    equip.setFailUp(mCur.getInt(7));
 
-                    for(int i=9; i<26; i++) {
+                    equip.setMaxStar(mCur.getInt(8));
+                    equip.setStar(mCur.getInt(9));
+
+                    for(int i=10; i<27; i++) {
                         equip.addStats(mCur.getInt(i));
                     }
 

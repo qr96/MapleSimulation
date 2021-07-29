@@ -31,25 +31,31 @@ public class ScrollActivity extends Activity {
     
     //강화 실행
     public void runEnhance(View view) {
+
         //주문의 흔적
         if(selected_button_id == R.id.scroll_button_0) {
             //힘 100%
             if(selected_detail_id == 0) {
+                this.equipment.doScroll(100, "STR");
                 System.out.println("힘 100%");
             }
             //힘 70%
             else if(selected_detail_id == 1) {
-                System.out.println("힘 100%");
+                this.equipment.doScroll(70, "STR");
+                System.out.println("힘 70%");
             }
             //힘 30%
             else if(selected_detail_id == 2) {
-                System.out.println("힘 100%");
+                this.equipment.doScroll(30, "STR");
+                System.out.println("힘 30%");
             }
             //민첩 100%
             else if(selected_detail_id == 3) {
-                System.out.println("힘 100%");
+                System.out.println("민첩 100%");
             }
         }
+
+        updateText();
     }
     
     //맨 위의 썸네일 설정
@@ -63,17 +69,18 @@ public class ScrollActivity extends Activity {
         TextView textView = findViewById(R.id.equipment_name);
         textView.setText(equipment.getName());
     }
-
+    
+    //장비의 능력치 표시 부분
     public void updateText() {
-        if(equipment == null) return;
+        if(this.equipment == null) return;
 
         TextView textView = findViewById(R.id.info);
         String equipInfo = "";
         String[] table = {"STR", "DEX", "INT", "LUK", "최대HP", "최대MP", "착용레벨감소",
                 "방어력", "공격력", "마력", "이동속도", "점프력", "올스텟%", "최대HP%", "방무", "보공", "뎀지"};
 
-        ArrayList equipStats = equipment.getStats();
-        ArrayList equipEnhance = equipment.getEnhance();
+        ArrayList equipStats = this.equipment.getStats();
+        ArrayList equipEnhance = this.equipment.getEnhance();
 
         int sum = 0;
 
@@ -82,6 +89,10 @@ public class ScrollActivity extends Activity {
             if(sum == 0) continue;
             equipInfo = equipInfo + table[i] + " : " + equipStats.get(i) + " +" + equipEnhance.get(i) +"\n";
         }
+
+        equipInfo = equipInfo + "업그레이드 가능 횟수 : "
+                + (equipment.getMaxUp()-equipment.getNowUp()-equipment.getFailUp())
+                + "\n(복구 가능 횟수 : " + equipment.getFailUp() + ")";
 
         textView.setText(equipInfo);
     }
@@ -117,10 +128,11 @@ public class ScrollActivity extends Activity {
             selected_button_id = view.getId();
             selected_check_id = R.id.scroll_check_0;
 
+            //주문서의 세부 옵션 선택 팝업
             Intent intent = new Intent(this, SelectBasicScollPopup.class);
             startActivityForResult(intent, 0);
-        }
 
+        }
 
     }
 
@@ -132,6 +144,12 @@ public class ScrollActivity extends Activity {
                 if(data!=null) {
                     int selected = data.getIntExtra("scroll", -1);
                     this.selected_detail_id = selected;
+                }
+                else { //받은 데이터가 없는 경우
+                    ImageView new_select = (ImageView)findViewById(R.id.scroll_check_0);
+                    new_select.setVisibility(View.INVISIBLE);
+                    selected_button_id = -1;
+                    selected_check_id = -1;
                 }
                 break;
         }

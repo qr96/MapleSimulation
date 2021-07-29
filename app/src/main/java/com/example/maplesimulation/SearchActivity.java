@@ -12,17 +12,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchActivity extends Activity {
-    public ArrayList<String> equipNameList = new ArrayList<String>();
+    public ArrayList<String> equipNameList;
+    public int selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        equipNameList = new ArrayList<String>();
 
         // 장비 이름 배열에 값들 추가
         Intent intent = getIntent();
@@ -32,24 +37,23 @@ public class SearchActivity extends Activity {
         SearchView searchView;
         searchView = findViewById(R.id.searchView);
 
-        // 장비 이름 배열들을 리스트뷰에 추가
-        listToView();
+        // 장비 목록 recyclerview에 추가
+        initRecyclerView();
 
     }
 
-    //List를 뷰에 추가
-    private void listToView() {
-        ListView listView;
-        listView = findViewById(R.id.listview);
+    public void initRecyclerView() {
+        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+        RecyclerView recyclerView = findViewById(R.id.recycler1) ;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
 
-        //dp로 변환하기 위함
-        final int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, getResources().getDisplayMetrics());
+        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
+        TextAdapter adapter = new TextAdapter(equipNameList) ;
+        recyclerView.setAdapter(adapter) ;
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_selectable_list_item, equipNameList);
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        adapter.setOnItemClicklistener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(TextAdapter.ViewHolder viewHolder, View view, int position) {
                 confirmDialog(position);
             }
         });

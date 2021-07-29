@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.preference.PreferenceManager;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,6 +21,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private SQLiteDatabase mDataBase;
     private final Context mContext;
+
+    private static final int DATABASE_VERSION = 0; //db 버전, db 수정사항 있을 때마다 업그레이드
 
     public DataBaseHelper(Context context)
     {
@@ -60,6 +63,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     {
         File dbFile = new File(DB_PATH + DB_NAME);
         //Log.v("dbFile", dbFile + "   "+ dbFile.exists());
+
+        int DB_EXIST_VERSION = PreferenceManager
+                .getDefaultSharedPreferences(this.mContext).getInt(
+                        "DB_VERSION", 0);
+        if (DATABASE_VERSION != DB_EXIST_VERSION) { //db가 업데이트 되었는지 확인
+            return false;
+        }
+
         return dbFile.exists();
     }
 
@@ -78,6 +89,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         mOutput.flush();
         mOutput.close();
         mInput.close();
+
+        PreferenceManager.getDefaultSharedPreferences(this.mContext).edit()
+                .putInt("DB_VERSION", DATABASE_VERSION).commit();
     }
 
     //데이터베이스를 열어서 쿼리를 쓸수있게만든다.
