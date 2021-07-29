@@ -18,6 +18,7 @@ public class Equipment implements Cloneable, Serializable {
 
     private int maxStar; //최대 스타포스 수치
     private int star; //스타포스 수치
+    private int goldHammer;
 
     //기본 능력치들
     //STR, DEX, INT, LUK, 최대HP, 최대MP, 착용레벨감소, 방어력, 공격력, 마력, 이동속도, 점프력, 올스텟%, 최대HP%, 방무, 보공, 뎀지
@@ -33,6 +34,7 @@ public class Equipment implements Cloneable, Serializable {
         stats = new ArrayList();
         enhance = new ArrayList();
         additional = new ArrayList();
+        goldHammer = 0;
     }
 
     //장비 강화   [-1:남은 횟수X, 0:실패 1:성공]
@@ -75,12 +77,65 @@ public class Equipment implements Cloneable, Serializable {
                 enhance.set(4, new_hp);
                 enhance.set(7, new_def);
             }
+            else if(justat == "INT") {
+                new_justat += (int)enhance.get(1);
+                enhance.set(2, new_justat);
+                enhance.set(4, new_hp);
+                enhance.set(7, new_def);
+            }
+            else if(justat == "LUK") {
+                new_justat += (int)enhance.get(1);
+                enhance.set(3, new_justat);
+                enhance.set(4, new_hp);
+                enhance.set(7, new_def);
+            }
             return 1;
         }
 
         failUp++;
 
         return 0;
+    }
+
+    //순백의 주문서
+    public int doWhiteScroll(int possibility) {
+        if(failUp==0) return -1; //복구할 횟수가 없는 경우
+
+        if(isSuccess(possibility) == true) {
+            failUp--;
+            return 1;
+        }
+
+        return 0;
+    }
+
+    //황금망치
+    public int useGoldHammer(int possibility) {
+        if(goldHammer==1) return -1; //이미 사용한 경우
+
+        if(isSuccess(possibility) == true) {
+            goldHammer++;
+            maxUp++;
+            return 1; //성공
+        }
+        return 0; //실패
+    }
+
+    //이노센트 주문서
+    public int useInnocent(int possibility) {
+        if(nowUp==0 && failUp==0 && goldHammer==0) return -1; //사용할 필요가 없는 경우
+
+        if(isSuccess(possibility) == true) {
+            if(goldHammer>0) maxUp--;
+            nowUp=0;
+            goldHammer=0;
+            failUp=0;
+            for(int i=0; i<enhance.size(); i++){
+                enhance.set(i, 0);
+            }
+            return 1; //성공
+        }
+        return 0; //실패
     }
 
     public Boolean isSuccess(int possibility) {
@@ -120,6 +175,8 @@ public class Equipment implements Cloneable, Serializable {
     public ArrayList getEnhance() {
         return enhance;
     }
+
+    public int getGoldHammer() { return goldHammer; }
 
 
     public void setName(String name) {
