@@ -417,7 +417,7 @@ public class Equipment implements Cloneable, Serializable {
 
         int grade = -1; //추가 옵션의 등급
         int selected[]; // 선택된 추가옵션들
-        double table[] = {20, 30, 36, 14, 0}; //강환불 추옵 등급 확률 테이블
+        double table[] = {0, 29, 45, 25, 1}; //강환불 추옵 등급 확률 테이블
 
         selected = selectN(19, 4); //강환불은 4개의 추옵 상승
 
@@ -483,6 +483,113 @@ public class Equipment implements Cloneable, Serializable {
         }
 
     }
+
+    //무기 추옵 설정
+    public void flameUpWeaopn(int selected, int grade) {
+        Map<Integer, int[]> justat_table = new HashMap<>(); //주스텟
+        Map<Integer, int[]> mixstat_table = new HashMap<>(); //복합 스텟
+        Map<Integer, int[]> hpmp_table = new HashMap<>(); //HP, MP
+        Map<Integer, int[]> allstat_table = new HashMap<>(); //마,이,점, 올스텟,데미지
+        Map<Integer, int[]> def_table = new HashMap<>(); //방어력
+        Map<Integer, int[]> levdown_table = new HashMap<>(); //착용 레벨 감소
+        Map<Integer, int[]> bossdmg_table = new HashMap<>(); //보스 공격 데미지
+
+
+        //150제 추옵 테이블
+        justat_table.put(150, new int[] {24, 32, 40, 48, 56});
+        mixstat_table.put(150, new int[] {12, 16, 20, 24, 28});
+        hpmp_table.put(150, new int[] {1350, 1800, 2250, 2700, 3150});
+        allstat_table.put(150, new int[] {3, 4, 5, 6, 7});
+        def_table.put(150, new int[] {24, 32, 40, 48, 56});
+        levdown_table.put(150, new int[] {-15, -20, -25, -30, -35});
+        bossdmg_table.put(150, new int[] {6, 8, 10, 12, 14});
+
+        int tmp = 0;
+
+        if(selected < 4) { //주스텟
+            tmp = Objects.requireNonNull(justat_table.get(levReq))[grade];
+            additional.set(selected, tmp);
+        }
+        else if(selected < 10) { //복합스텟
+            int mixstats[][] = {{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 3}, {2, 3}}; //복합스텟 조합들
+            int stat1 = mixstats[selected-4][0];
+            int stat2 = mixstats[selected-4][1];
+            tmp = Objects.requireNonNull(mixstat_table.get(levReq))[grade];
+            additional.set(stat1, tmp);
+            tmp = Objects.requireNonNull(mixstat_table.get(levReq))[grade];
+            additional.set(stat2, tmp);
+        }
+        else if(selected < 12) { //HP, MP
+            tmp = Objects.requireNonNull(hpmp_table.get(levReq))[grade];
+            additional.set(selected-6, tmp);
+        }
+        else if(selected == 12) { //착용 레벨 감소
+            tmp = Objects.requireNonNull(levdown_table.get(levReq))[grade];
+            additional.set(6, tmp);
+        }
+        else if(selected == 13) { //방어력
+            tmp = Objects.requireNonNull(def_table.get(levReq))[grade];
+            additional.set(7, tmp);
+        }
+        else if(selected < 16) { //공격력, 마력
+            tmp = weaponTable.get(type+levReq)[grade];
+            additional.set(selected-6, tmp);
+        }
+        else if(selected == 16) { //보스 데미지
+            tmp = Objects.requireNonNull(bossdmg_table.get(levReq))[grade];
+            additional.set(19, tmp);
+        }
+        else if(selected == 17) { //데미지
+            tmp = Objects.requireNonNull(allstat_table.get(levReq))[grade];
+            additional.set(20, tmp);
+        }
+        else if(selected == 18) { //올스텟
+            tmp = Objects.requireNonNull(allstat_table.get(levReq))[grade];
+            additional.set(12, tmp);
+        }
+
+    }
+
+    
+    //무기 공격력 추옵 테이블
+    public Map<String, int[]> weaponTable = new HashMap<>();
+
+    public void initWeaponOptionTable() {
+        weaponTable.put("아대150", new int[] {11, 16, 21, 28, 36});
+        weaponTable.put("건150", new int[] {15, 22, 31, 40, 52});
+        weaponTable.put("건틀렛리볼버150", new int[] {16, 23, 31, 41, 53});
+        weaponTable.put("너클150", new int[] {16, 23, 31, 41, 53});
+        weaponTable.put("소울슈터150", new int[] {16, 23, 31, 41, 53});
+        weaponTable.put("에너지소드150", new int[] {16, 23, 31, 41, 53});
+        weaponTable.put("폴암150", new int[] {19, 27, 38, 49, 63});
+        weaponTable.put("단검150", new int[] {20, 29, 39, 52, 66});
+        weaponTable.put("듀얼보우건150", new int[] {20, 29, 39, 52, 66});
+        weaponTable.put("부채150", new int[] {20, 29, 39, 52, 66});
+        weaponTable.put("브레스슈터150", new int[] {20, 29, 39, 52, 66});
+        weaponTable.put("에이션트보우150", new int[] {20, 29, 39, 52, 66});
+        weaponTable.put("체인150", new int[] {20, 29, 39, 52, 66});
+        weaponTable.put("활150", new int[] {20, 29, 39, 52, 66});
+        weaponTable.put("석궁150", new int[] {20, 29, 40, 53, 68});
+        weaponTable.put("케인150", new int[] {20, 29, 40, 53, 68});
+        weaponTable.put("한손검150", new int[] {20, 29, 40, 53, 68});
+        weaponTable.put("한손도끼150", new int[] {20, 29, 40, 53, 68});
+        weaponTable.put("한손둔기150", new int[] {20, 29, 40, 53, 68});
+        weaponTable.put("데스페라도150", new int[] {21, 31, 42, 55, 71});
+        weaponTable.put("두손검150", new int[] {21, 31, 42, 55, 71});
+        weaponTable.put("두손도끼150", new int[] {21, 31, 42, 55, 71});
+        weaponTable.put("두손둔기150", new int[] {21, 31, 42, 55, 71});
+        weaponTable.put("창150", new int[] {21, 31, 42, 55, 71});
+        weaponTable.put("튜너150", new int[] {21, 31, 42, 55, 71});
+        weaponTable.put("핸드캐논150", new int[] {21, 31, 42, 55, 71});
+        weaponTable.put("매직건틀렛150", new int[] {25, 36, 49, 65, 83});
+        weaponTable.put("샤이닝로드150", new int[] {25, 36, 49, 65, 83});
+        weaponTable.put("완드150", new int[] {25, 36, 49, 65, 83});
+        weaponTable.put("ESP리미터150", new int[] {25, 36, 49, 65, 83});
+        weaponTable.put("스태프150", new int[] {25, 36, 50, 66, 84});
+        weaponTable.put("해방된카이세리움150", new int[] {16, 36, 59, 86, 118});
+
+    }
+
 
     
     // 테이블 확률대로 하나 반환

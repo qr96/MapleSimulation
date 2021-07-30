@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +28,36 @@ public class FlameActivity extends Activity {
 
         setThumnail();
         updateText();
+    }
+
+    public void sparkleEffect() {
+        TextView sparkle = findViewById(R.id.sparkle_effect);
+
+        Animation.AnimationListener listener = new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                sparkle.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                sparkle.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        };
+
+        Animation anim = new AlphaAnimation(0.0f, 0.8f);
+        anim.setDuration(400);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(1);
+
+        sparkle.startAnimation(anim);
+        anim.setAnimationListener(listener);
+
     }
 
     //맨 위의 썸네일 설정
@@ -157,6 +189,7 @@ public class FlameActivity extends Activity {
 
     //강화 실행 버튼
     public void runEnhance(View view) {
+        sparkleEffect();
 
         //0번 선택 : 영원한 환생의 불꽃
         if(selected_check_id == R.id.flame_check_0) {
@@ -179,8 +212,4 @@ public class FlameActivity extends Activity {
         }, 700);
     }
 }
-
-
-
-
 

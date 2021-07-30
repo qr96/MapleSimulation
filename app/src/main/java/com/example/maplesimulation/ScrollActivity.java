@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -52,7 +54,6 @@ public class ScrollActivity extends Activity {
         effect.setImageResource(R.drawable.effect_success);
         GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(effect, 1);
         Glide.with(this).load(R.drawable.effect_success).into(gifImage);
-
     }
     
     //실패 이펙트 실행
@@ -203,6 +204,7 @@ public class ScrollActivity extends Activity {
             public void run() {
                 view.setEnabled(true);
             }
+
 
         }, 1000);
     }
