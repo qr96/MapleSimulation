@@ -3,6 +3,7 @@ package com.example.maplesimulation;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
@@ -58,7 +59,8 @@ public class FlameActivity extends Activity {
     public String makeText() {
         String equipInfo = "";
         String[] table = {"STR", "DEX", "INT", "LUK", "최대HP", "최대MP", "착용레벨감소",
-                "방어력", "공격력", "마력", "이동속도", "점프력", "올스텟%", "최대HP%", "방무", "보공", "뎀지"};
+                "방어력", "공격력", "마력", "이동속도", "점프력", "올스텟%",
+                "보스데미지%", "데미지%", "최대HP%", "방어율무시%"};  //12~16 %붙음
 
         ArrayList equipStats = this.equipment.getStats();
         ArrayList equipEnhance = this.equipment.getEnhance();
@@ -68,24 +70,32 @@ public class FlameActivity extends Activity {
 
         for(int i=0; i<table.length; i++){
             sum = (Integer) equipStats.get(i) + (Integer)equipAdditional.get(i) + (Integer) equipEnhance.get(i);
-            if(sum == 0) continue;
+            if(sum == 0 || i==6) continue;
             equipInfo = equipInfo + table[i] + " : " + "+" + sum;
+
+            if(i>=12 && i<=16) equipInfo = equipInfo + "%"; //%붙은 스텟
 
             if(sum != (Integer) equipStats.get(i)){ //추가옵션이나 강화 수치가 있는 경우
                 equipInfo = equipInfo + " (" + equipStats.get(i);
+                if(i>=12 && i<=16) equipInfo = equipInfo + "%"; //%붙은 스텟
 
                 if((Integer)equipAdditional.get(i) > 0) { //추가 옵션
-                    equipInfo = equipInfo + "<font color=\"#66FF66\"> +" + equipAdditional.get(i) + "</font>";
+                    equipInfo = equipInfo + "<font color=\"#66FF66\"> +" + equipAdditional.get(i);
+                    if(i>=12 && i<=16) equipInfo = equipInfo + "%"; //%붙은 스텟
+                    equipInfo = equipInfo + "</font>";
                 }
 
                 if((Integer)equipEnhance.get(i) > 0) { //강화 수치
-                    equipInfo = equipInfo + "<font color=\"#99CCFF\"> +" + equipEnhance.get(i) + "</font>";
+                    equipInfo = equipInfo + "<font color=\"#99CCFF\"> +" + equipEnhance.get(i);
+                    equipInfo = equipInfo + "</font>";
                 }
                 equipInfo = equipInfo + ")";
             }
             equipInfo = equipInfo + "<br>";
         }
 
+        if((Integer) equipAdditional.get(6) !=0 )
+            equipInfo = equipInfo + "착용 레벨 감소 : <font color=\"#66FF66\">" + equipAdditional.get(6) + "</font><br>";
         equipInfo = equipInfo + "업그레이드 가능 횟수 : "
                 + (equipment.getMaxUp()-equipment.getNowUp()-equipment.getFailUp())
                 + "<br>(복구 가능 횟수 : " + equipment.getFailUp() + ")";
@@ -125,24 +135,52 @@ public class FlameActivity extends Activity {
 
         //선택한 번호의 아이템에 체크 표시
         if(view.getId() == R.id.flame_button_0){
-            //주문의 흔적
+            //영환불
             ImageView new_select = (ImageView)findViewById(R.id.flame_check_0);
             new_select.setVisibility(View.VISIBLE);
 
             selected_button_id = view.getId();
-            selected_check_id = R.id.scroll_check_0;
+            selected_check_id = R.id.flame_check_0;
+
         }
 
         else if(view.getId() == R.id.flame_button_1){
-            //순백의 주문서
+            //강환불
             ImageView new_select = (ImageView)findViewById(R.id.flame_check_1);
             new_select.setVisibility(View.VISIBLE);
 
             selected_button_id = view.getId();
-            selected_check_id = R.id.scroll_check_1;
+            selected_check_id = R.id.flame_check_1;
 
         }
     }
+
+    //강화 실행 버튼
+    public void runEnhance(View view) {
+
+        //0번 선택 : 영원한 환생의 불꽃
+        if(selected_check_id == R.id.flame_check_0) {
+            equipment.useEternalFlame();
+        }
+        else if(selected_check_id == R.id.flame_check_1) {
+            equipment.usePowerfulFlame();
+        }
+
+        updateText();
+        setEquipName();
+        view.setEnabled(false);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                view.setEnabled(true);
+            }
+
+        }, 700);
+    }
 }
+
+
+
 
 

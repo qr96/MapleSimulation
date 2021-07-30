@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
         Intent intent = new Intent(this, FlameActivity.class);
         intent.putExtra("equipment", equipment);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
     public void goPotential(View view) {
@@ -100,14 +100,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case 1:
-                System.out.println("데이터를 받았습니다.");
                 if(data != null) {
-                    Equipment equipment_scroll = (Equipment) data.getSerializableExtra("equip");
-                    this.equipment = equipment_scroll;
-                    System.out.println("현재 강화된 수치는 : "+this.equipment.getNowUp());
-                }
-                else {
-                    System.out.println("데이터가 없습니다.");
+                    System.out.println("데이터 받았다");
+                    Equipment equip = (Equipment) data.getSerializableExtra("equip");
+                    this.equipment = equip;
                 }
                 break;
         }

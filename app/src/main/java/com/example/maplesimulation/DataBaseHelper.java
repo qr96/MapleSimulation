@@ -91,7 +91,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         mInput.close();
 
         PreferenceManager.getDefaultSharedPreferences(this.mContext).edit()
-                .putInt("DB_VERSION", DATABASE_VERSION).commit();
+                .putInt("DB_VERSION", DATABASE_VERSION).apply();
     }
 
     //데이터베이스를 열어서 쿼리를 쓸수있게만든다.

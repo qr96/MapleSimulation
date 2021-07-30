@@ -2,12 +2,15 @@ package com.example.maplesimulation;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class Equipment implements Cloneable, Serializable {
     //private String id;
     private String name;
     private String Image;
-    private String type;
+    private String type; //장비 부위
     private String job;
 
     private int levReq;
@@ -20,8 +23,11 @@ public class Equipment implements Cloneable, Serializable {
     private int star; //스타포스 수치
     private int goldHammer;
 
+    // 능력치 순서 {"STR", "DEX", "INT", "LUK", "최대HP", "최대MP", "착용레벨감소",
+    //                "방어력", "공격력", "마력", "이동속도", "점프력", "올스텟%",
+    //                "보스데미지%", "데미지%", "최대HP%", "방어율무시%"};
+
     //기본 능력치들
-    //STR, DEX, INT, LUK, 최대HP, 최대MP, 방어력, 공격력, 마력, 이동속도, 점프력, 착용레벨감소, 올스텟%, 최대HP%, 방무, 보공, 뎀지
     private ArrayList stats;
 
     //강화된 수치
@@ -358,7 +364,11 @@ public class Equipment implements Cloneable, Serializable {
             int prev = 0; //이전 스텟
             int random = 0; //랜덤으로 생성된 숫자
             
-            for(int i=0; i<11; i++){
+            for(int i=0; i<12; i++){
+                if(i==6) {
+                    recentChaos.add(0);
+                    continue;
+                }
                 prev = (int) enhance.get(i);
                 random = tableRandom(table);
                 if(i==4 || i==5) random *= 10; //Hp, Mp 는 10단위이므로
@@ -376,13 +386,104 @@ public class Equipment implements Cloneable, Serializable {
         System.out.println("리턴 스크롤을 사용합니다.");
         int tmp = 0;
         for(int i=0; i<recentChaos.size(); i++){
-            tmp = (int)enhance.get(i);
-            tmp -= recentChaos.get(i);
+            tmp = (int)enhance.get(i) - recentChaos.get(i);
             enhance.set(i, tmp);
             recentChaos.set(i, 0);
         }
         nowUp--;
     }
+
+
+    /*------ 환생의 불꽃 -----*/
+    //강력한 환생의 불꽃
+    public int usePowerfulFlame() {
+
+        int grade = -1; //추가 옵션의 등급
+        int selected[]; // 선택된 추가옵션들
+        double table[] = {20, 30, 36, 14, 0}; //강환불 추옵 등급 확률 테이블
+
+        selected = selectN(19, 4); //강환불은 4개의 추옵 상승
+
+        for(int i=0; i<selected.length; i++){
+            grade = tableRandom(table);
+            flameUpArmor(selected[i], grade);
+        }
+
+        return 0;
+    }
+
+    //영원한 환생의 불꽃
+    public int useEternalFlame() {
+
+        int grade = -1; //추가 옵션의 등급
+        int selected[]; // 선택된 추가옵션들
+        double table[] = {20, 30, 36, 14, 0}; //강환불 추옵 등급 확률 테이블
+
+        selected = selectN(19, 4); //강환불은 4개의 추옵 상승
+
+        for(int i=0; i<selected.length; i++){
+            grade = tableRandom(table);
+            flameUpArmor(selected[i], grade);
+        }
+
+        return 0;
+    }
+
+    //방어구, 장신구 추옵 설정
+    public void flameUpArmor(int selected, int grade) {
+        Map<Integer, int[]> justat_table = new HashMap<>();
+        Map<Integer, int[]> mixstat_table = new HashMap<>();
+        Map<Integer, int[]> hpmp_table = new HashMap<>();
+        Map<Integer, int[]> allstat_table = new HashMap<>(); //공,마,이,점, 올
+        Map<Integer, int[]> def_table = new HashMap<>(); //방어력
+        Map<Integer, int[]> levdown_table = new HashMap<>();
+
+        //150제 추옵 테이블
+        justat_table.put(150, new int[] {24, 32, 40, 48, 56});
+        mixstat_table.put(150, new int[] {12, 16, 20, 24, 28});
+        hpmp_table.put(150, new int[] {1350, 1800, 2250, 2700, 3150});
+        allstat_table.put(150, new int[] {3, 4, 5, 6, 7});
+        def_table.put(150, new int[] {24, 32, 40, 48, 56});
+        levdown_table.put(150, new int[] {-15, -20, -25, -30, -35});
+
+        int tmp = 0;
+
+        if(selected < 4) { //주스텟
+            tmp = Objects.requireNonNull(justat_table.get(levReq))[grade];
+            additional.set(selected, tmp);
+        }
+        else if(selected < 10) { //복합스텟
+            int mixstats[][] = {{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 3}, {2, 3}}; //복합스텟 조합들
+            int stat1 = mixstats[selected-4][0];
+            int stat2 = mixstats[selected-4][1];
+            tmp = Objects.requireNonNull(mixstat_table.get(levReq))[grade];
+            additional.set(stat1, tmp);
+            tmp = Objects.requireNonNull(mixstat_table.get(levReq))[grade];
+            additional.set(stat2, tmp);
+        }
+        else if(selected < 12) { //HP, MP
+            tmp = Objects.requireNonNull(hpmp_table.get(levReq))[grade];
+            additional.set(selected-6, tmp);
+        }
+        else if(selected == 12) { //착용 레벨 감소
+            tmp = Objects.requireNonNull(levdown_table.get(levReq))[grade];
+            additional.set(6, tmp);
+        }
+        else if(selected == 13) { //방어력
+            tmp = Objects.requireNonNull(def_table.get(levReq))[grade];
+            additional.set(7, tmp);
+        }
+        else if(selected < 18) { //공격력, 마력, 이동속도, 점프력
+            tmp = Objects.requireNonNull(allstat_table.get(levReq))[grade];
+            additional.set(selected-6, tmp);
+        }
+        else if(selected == 18) { //올스텟
+            tmp = Objects.requireNonNull(allstat_table.get(levReq))[grade];
+            additional.set(12, tmp);
+        }
+
+    }
+
     
     // 테이블 확률대로 하나 반환
     public int tableRandom(double[] table) {
@@ -400,7 +501,6 @@ public class Equipment implements Cloneable, Serializable {
         return -1;
     }
     
-    
     //정해진 확률에 따른 성공 여부
     public Boolean isSuccess(int possibility) {
         int random = (int)(Math.random()*100);
@@ -408,6 +508,29 @@ public class Equipment implements Cloneable, Serializable {
         if(random < possibility) return true;
         return false;
     }
+
+    // n개중에 r개 중복 없이 랜덤으로 선택
+    public static int[] selectN(int n, int r) {
+        int result[] = new int[r];
+
+        // 번호 생성
+        for (int i = 0; i < r; i++) {
+            result[i] = (int) (Math.random() * n);
+
+            // 중복 존재하면 다시 생성
+            for (int j = 0; j < i; j++) {
+                if (result[i] == result[j]) {
+                    i--;
+                    break;
+                }
+            }
+        }
+
+        return result;
+    }
+
+
+
 
     @Override
     public Object clone() throws CloneNotSupportedException {
