@@ -59,6 +59,7 @@
             android:background="#8CDC7A"
             android:text="추가옵션"
             android:layout_margin="5dp"
+            android:onClick="goFlame"
             tools:ignore="MissingConstraints" />
         <Button
             android:id="@+id/button3"

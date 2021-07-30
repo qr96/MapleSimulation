@@ -354,14 +354,14 @@ public class Equipment implements Cloneable, Serializable {
         //주문서 사용 성공
         if(isSuccess(possible)){
             nowUp++;
-            double table[] = {5.93, 4.94, 13.87, 23.87, 33.01, 18.38};
+            double table[] = {18.38, 33.01, 23.87, 13.87, 4.94, 0.0, 5.93}; //{5.93, 4.94, 13.87, 23.87, 33.01, 18.38};
             int prev = 0; //이전 스텟
             int random = 0; //랜덤으로 생성된 숫자
             
             for(int i=0; i<11; i++){
                 prev = (int) enhance.get(i);
-                if(i==4 || i==5) random = (tableRandom(table)*10); //Hp, Mp 는 10단위
-                else random = tableRandom(table);
+                random = tableRandom(table);
+                if(i==4 || i==5) random *= 10; //Hp, Mp 는 10단위이므로
                 enhance.set(i, prev+random);
                 recentChaos.add(random);
             }
@@ -439,6 +439,8 @@ public class Equipment implements Cloneable, Serializable {
     public ArrayList getEnhance() {
         return enhance;
     }
+
+    public ArrayList getAdditional() { return additional; }
 
     public int getGoldHammer() { return goldHammer; }
 

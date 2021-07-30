@@ -39,7 +39,6 @@ public class SelectBasicScollPopup extends Activity {
         scrollType = intent.getIntExtra("scroll", 0);
 
         if(scrollType == 0) {
-            System.out.println("0번 선택 !!!");
             if(equipType.equals("armors")) {
                 scrollTable = new String[]{"100% 힘 주문서", "70% 힘 주문서", "30% 힘 주문서",
                         "100% 민첩 주문서", "70% 민첩 주문서", "30% 민첩 주문서",
@@ -47,10 +46,10 @@ public class SelectBasicScollPopup extends Activity {
                         "100% 운 주문서", "70% 운 주문서", "30% 운 주문서"};
             }
             else if(equipType.equals("weapons")){
-                scrollTable = new String[]{"100% 공격력(힘) 주문서", "70% 공격력(힘) 주문서", "30% 공격력(힘) 주문서",
-                        "100% 공격력(민첩) 주문서", "70% 공격력(민첩) 주문서", "30% 공격력(민첩) 주문서",
-                        "100% 마력(지력) 주문서", "70% 마력(지력) 주문서", "30% 마력(지력) 주문서",
-                        "100% 공격력(운) 주문서", "70% 공격력(운) 주문서", "30% 공격력(운) 주문서"};
+                scrollTable = new String[]{"100% 공격력(힘) 주문서", "70% 공격력(힘) 주문서", "30% 공격력(힘) 주문서", "15% 공격력(힘) 주문서",
+                        "100% 공격력(민첩) 주문서", "70% 공격력(민첩) 주문서", "30% 공격력(민첩) 주문서", "15% 공격력(민첩) 주문서",
+                        "100% 마력(지력) 주문서", "70% 마력(지력) 주문서", "30% 마력(지력) 주문서", "15% 마력(지력) 주문서",
+                        "100% 공격력(운) 주문서", "70% 공격력(운) 주문서", "30% 공격력(운) 주문서", "15% 공격력(운) 주문서"};
             }
             else if(equipType.equals("glove")){
                 scrollTable = new String[]{"100% 공격력 주문서", "70% 공격력 주문서", "30% 공격력 주문서",

@@ -6,14 +6,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,6 +52,7 @@ public class ScrollActivity extends Activity {
         effect.setImageResource(R.drawable.effect_success);
         GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(effect, 1);
         Glide.with(this).load(R.drawable.effect_success).into(gifImage);
+
     }
     
     //실패 이펙트 실행
@@ -71,61 +71,31 @@ public class ScrollActivity extends Activity {
         
         //주문의 흔적
         if(selected_button_id == R.id.scroll_button_0) {
-            //힘 100%
-            if(selected_detail_id == 0) {
-                possibility = 100;
-                justat = "STR";
-            }
-            //힘 70%
-            else if(selected_detail_id == 1) {
-                possibility = 70;
-                justat = "STR";
-            }
-            //힘 30%
-            else if(selected_detail_id == 2) {
-                possibility = 30;
-                justat = "STR";
-            }
-            else if(selected_detail_id == 3) {
-                possibility = 100;
-                justat = "DEX";
-            }
-            else if(selected_detail_id == 4) {
-                possibility = 70;
-                justat = "DEX";
-            }
-            else if(selected_detail_id == 5) {
-                possibility = 30;
-                justat = "DEX";
-            }
-            else if(selected_detail_id == 6) {
-                possibility = 100;
-                justat = "INT";
-            }
-            else if(selected_detail_id == 7) {
-                possibility = 70;
-                justat = "INT";
-            }
-            else if(selected_detail_id == 8) {
-                possibility = 30;
-                justat = "INT";
-            }
-            else if(selected_detail_id == 9) {
-                possibility = 100;
-                justat = "LUK";
-            }
-            else if(selected_detail_id == 10) {
-                possibility = 70;
-                justat = "LUK";
-            }
-            else if(selected_detail_id == 11) {
-                possibility = 30;
-                justat = "LUK";
-            }
+
             if(armors.contains(this.equipment.getType())) { //방어구인 경우
+                //힘,덱,인,럭  100, 70, 30
+                if(selected_detail_id%3 == 0) possibility = 100;
+                else if(selected_detail_id%3 == 1) possibility = 70;
+                else if(selected_detail_id%3 == 2) possibility = 30;
+
+                if(selected_detail_id/3 == 0) justat = "STR";
+                else if(selected_detail_id/3 == 1) justat = "DEX";
+                else if(selected_detail_id/3 == 2) justat = "INT";
+                else if(selected_detail_id/3 == 3) justat = "LUK";
+
                 result = this.equipment.doArmorScroll2(possibility, justat);
             }
             else if(accessories.contains(this.equipment.getType())) { //장신구인 경우
+                //힘,덱,인,럭  100, 70, 30
+                if(selected_detail_id%3 == 0) possibility = 100;
+                else if(selected_detail_id%3 == 1) possibility = 70;
+                else if(selected_detail_id%3 == 2) possibility = 30;
+
+                if(selected_detail_id/3 == 0) justat = "STR";
+                else if(selected_detail_id/3 == 1) justat = "DEX";
+                else if(selected_detail_id/3 == 2) justat = "INT";
+                else if(selected_detail_id/3 == 3) justat = "LUK";
+
                 if(this.equipment.getLevReq()>=120 && this.equipment.getLevReq()<=200){ //120~200
                     result = this.equipment.doAccessaryScroll2(possibility, justat);
                 }
@@ -133,12 +103,31 @@ public class ScrollActivity extends Activity {
                     result = this.equipment.doAccessaryScroll1(possibility, justat);
                 }
             }
-            else if(weapons.contains(this.equipment.getType())) { //무기인 경우
+            else if(this.equipment.getType().equals("무기")) { //무기인 경우
+                //힘,덱,인,럭  100, 70, 30, 15
+                if(selected_detail_id%4 == 0) possibility = 100;
+                else if(selected_detail_id%4 == 1) possibility = 70;
+                else if(selected_detail_id%4 == 2) possibility = 30;
+                else if(selected_detail_id%4 == 3) possibility = 15;
+
+                if(selected_detail_id/4 == 0) justat = "STR";
+                else if(selected_detail_id/4 == 1) justat = "DEX";
+                else if(selected_detail_id/4 == 2) justat = "INT";
+                else if(selected_detail_id/4 == 3) justat = "LUK";
+
                 result = this.equipment.doWeaponScroll2(possibility, justat);
             }
             else if(this.equipment.getType().equals("장갑")){ //장갑
-                if(justat == "STR") result = this.equipment.doGloveScroll2(possibility, "physic");
-                else if(justat == "DEX") result = this.equipment.doGloveScroll2(possibility, "magic");
+                //공,마  100, 70, 30
+                if(selected_detail_id%3 == 0) possibility = 100;
+                else if(selected_detail_id%3 == 1) possibility = 70;
+                else if(selected_detail_id%3 == 2) possibility = 30;
+
+                if(selected_detail_id/3 == 0) justat = "physic";
+                else if(selected_detail_id/3 == 1) justat = "magic";
+
+                result = this.equipment.doGloveScroll2(possibility, "physic");
+                result = this.equipment.doGloveScroll2(possibility, "magic");
             }
         }
         //순백의 주문서
@@ -203,17 +192,21 @@ public class ScrollActivity extends Activity {
 
         if(result==1) successEffect();
         else if(result==0) failEffect();
+        else return;
 
         updateText();
+        setEquipName();
         view.setEnabled(false);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 view.setEnabled(true);
             }
-        }, 1200);
+
+        }, 1000);
     }
-    
+
     //맨 위의 썸네일 설정
     public void setThumnail() {
         if(equipment == null) return;
@@ -222,8 +215,13 @@ public class ScrollActivity extends Activity {
         int imageRID = this.getResources().getIdentifier(equipment.getImage(), "drawable", this.getPackageName());
         imageView.setImageResource(imageRID);
 
+        setEquipName();
+    }
+
+    public void setEquipName() {
         TextView textView = findViewById(R.id.equipment_name);
-        textView.setText(equipment.getName());
+        if(equipment.getNowUp()>0) textView.setText(equipment.getName()+" (+"+equipment.getNowUp()+")");
+        else textView.setText(equipment.getName());
     }
     
     //장비의 능력치 표시 업데이트
@@ -233,7 +231,7 @@ public class ScrollActivity extends Activity {
         TextView textView = findViewById(R.id.info);
         String equipInfo = makeText();
 
-        textView.setText(equipInfo);
+        textView.setText(Html.fromHtml(equipInfo));
     }
 
     //장비의 정보 텍스트로 변환
@@ -244,18 +242,33 @@ public class ScrollActivity extends Activity {
 
         ArrayList equipStats = this.equipment.getStats();
         ArrayList equipEnhance = this.equipment.getEnhance();
+        ArrayList equipAdditional = this.equipment.getAdditional(); //추가옵션
 
         int sum = 0;
 
         for(int i=0; i<table.length; i++){
-            sum = (Integer) equipStats.get(i) + (Integer) equipEnhance.get(i);
+            sum = (Integer) equipStats.get(i) + (Integer)equipAdditional.get(i) + (Integer) equipEnhance.get(i);
             if(sum == 0) continue;
-            equipInfo = equipInfo + table[i] + " : " + equipStats.get(i) + " +" + equipEnhance.get(i) +"\n";
+            equipInfo = equipInfo + table[i] + " : " + "+" + sum;
+
+            if(sum != (Integer) equipStats.get(i)){ //추가옵션이나 강화 수치가 있는 경우
+                equipInfo = equipInfo + " (" + equipStats.get(i);
+
+                if((Integer)equipAdditional.get(i) > 0) { //추가 옵션
+                    equipInfo = equipInfo + "<font color=\"#66FF66\"> +" + equipAdditional.get(i) + "</font>";
+                }
+
+                if((Integer)equipEnhance.get(i) > 0) { //강화 수치
+                    equipInfo = equipInfo + "<font color=\"#99CCFF\"> +" + equipEnhance.get(i) + "</font>";
+                }
+                equipInfo = equipInfo + ")";
+            }
+            equipInfo = equipInfo + "<br>";
         }
 
         equipInfo = equipInfo + "업그레이드 가능 횟수 : "
                 + (equipment.getMaxUp()-equipment.getNowUp()-equipment.getFailUp())
-                + "\n(복구 가능 횟수 : " + equipment.getFailUp() + ")";
+                + "<br>(복구 가능 횟수 : " + equipment.getFailUp() + ")";
 
         if(equipment.getGoldHammer() == 1) equipInfo = equipInfo + "\n황금망치 제련 적용";
 
@@ -268,13 +281,15 @@ public class ScrollActivity extends Activity {
         AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(this);
         myAlertBuilder.setTitle("리턴 스크롤");
         myAlertBuilder.setMessage("주문서 사용에 성공했습니다. 아이템의 옵션을 되돌리시겠습니까?\n"+recentChoas());
+        myAlertBuilder.setCancelable(false);
 
         // 버튼 추가
-        myAlertBuilder.setNegativeButton(" 예 ",new DialogInterface.OnClickListener(){
+        myAlertBuilder.setNegativeButton("    예    ",new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog,int which){
                 equipment.useReturnScroll();
                 updateText();
+                setEquipName();
             }
         });
         myAlertBuilder.setPositiveButton("아니오", new DialogInterface.OnClickListener() {
@@ -283,10 +298,11 @@ public class ScrollActivity extends Activity {
             }
         });
 
+
         myAlertBuilder.show();
     }
 
-    //혼돈의 주문서로 증가한 능력치 문자열
+    //혼돈의 주문서로 증가한 능력치 문자열 반환
     public String recentChoas(){
         ArrayList<Integer> recent = this.equipment.getRecentChaos();
         String info = "";
@@ -301,13 +317,18 @@ public class ScrollActivity extends Activity {
 
         return info;
     }
-    
-    //뒤로가기
-    public void goBack(View view){
+
+    public void goBack(View view) {
+        onBackPressed();
+    }
+
+    @Override
+    public void onBackPressed() {
         Intent intent = new Intent();
-        intent.putExtra("equipment", this.equipment);
+        intent.putExtra("equip", this.equipment);
         setResult(1, intent);
         finish();
+        super.onBackPressed();
     }
 
     //N번 아이템 버튼 이벤트
@@ -342,7 +363,7 @@ public class ScrollActivity extends Activity {
                 scrollType = "armors";
             }
             //무기인 경우
-            else if(weapons.contains(equipment.getType())){
+            else if(equipment.getType().equals("무기")){
                 scrollType = "weapons";
             }
             //장갑인 경우
