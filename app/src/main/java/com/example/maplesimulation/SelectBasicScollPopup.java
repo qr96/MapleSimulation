@@ -43,13 +43,14 @@ public class SelectBasicScollPopup extends Activity {
                 scrollTable = new String[]{"100% 힘 주문서", "70% 힘 주문서", "30% 힘 주문서",
                         "100% 민첩 주문서", "70% 민첩 주문서", "30% 민첩 주문서",
                         "100% 지력 주문서", "70% 지력 주문서", "30% 지력 주문서",
-                        "100% 운 주문서", "70% 운 주문서", "30% 운 주문서"};
+                        "100% 운 주문서", "70% 운 주문서", "30% 운 주문서",
+                        "100% 체력 주문서", "70% 체력 주문서", "30% 체력 주문서"};
             }
             else if(equipType.equals("weapons")){
                 scrollTable = new String[]{"100% 공격력(힘) 주문서", "70% 공격력(힘) 주문서", "30% 공격력(힘) 주문서", "15% 공격력(힘) 주문서",
                         "100% 공격력(민첩) 주문서", "70% 공격력(민첩) 주문서", "30% 공격력(민첩) 주문서", "15% 공격력(민첩) 주문서",
                         "100% 마력(지력) 주문서", "70% 마력(지력) 주문서", "30% 마력(지력) 주문서", "15% 마력(지력) 주문서",
-                        "100% 공격력(운) 주문서", "70% 공격력(운) 주문서", "30% 공격력(운) 주문서", "15% 공격력(운) 주문서"};
+                        "100% 공격력(운) 주문서", "70% 공격력(운) 주문서", "30% 공격력(운) 주문서", "15% 공격력(운) 주문서",};
             }
             else if(equipType.equals("glove")){
                 scrollTable = new String[]{"100% 공격력 주문서", "70% 공격력 주문서", "30% 공격력 주문서",
@@ -72,7 +73,6 @@ public class SelectBasicScollPopup extends Activity {
             scrollTable = new String[]{"놀라운 긍정의 혼돈 주문서 100%", "놀라운 긍정의 혼돈 주문서 주문서 60%",
                     "놀라운 긍정의 혼돈 주문서 100% (리턴 스크롤)", "놀라운 긍정의 혼돈 주문서 주문서 60% (리턴 스크롤)"};
         }
-
 
         ListView listView = findViewById(R.id.scroll_listview);
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_popup_select, scrollTable);
