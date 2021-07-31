@@ -12,15 +12,6 @@ public class PotentialActivity extends Activity {
         setContentView(R.layout.activity_potential);
     }
 
-    public void useCube(View view){
-        Cube cube = new Cube();
-        cube.useCube();
-    }
-
-    //뒤로가기
-    public void goBack(View view){
-        onBackPressed();
-    }
 
 }
 
