@@ -186,7 +186,7 @@ public class FlameActivity extends Activity {
                 view.setEnabled(true);
             }
 
-        }, 700);
+        }, 500);
     }
 }
 

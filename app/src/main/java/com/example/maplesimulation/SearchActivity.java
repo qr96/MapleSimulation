@@ -68,18 +68,18 @@ public class SearchActivity extends Activity {
         myAlertBuilder.setMessage(equipment+"를 추가하시겠습니까?");
 
         // 버튼 추가 (Ok 버튼과 Cancle 버튼 )
-        myAlertBuilder.setPositiveButton("아니요",new DialogInterface.OnClickListener(){
+        myAlertBuilder.setPositiveButton("  예  ",new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog,int which){
-
-            }
-        });
-        myAlertBuilder.setNegativeButton("   예   ", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent();
                 intent.putExtra("equipment", position);
                 setResult(0, intent);
                 finish();
+            }
+        });
+        myAlertBuilder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
             }
         });
 

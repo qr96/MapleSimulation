@@ -9,6 +9,16 @@
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        
+        <item name="android:buttonStyle">@style/NexonFontButtonStyle</item>
+        <item name="android:textViewStyle">@style/NexonFontTextViewStyle</item>
+    </style>
+
+    <style name="NexonFontButtonStyle" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:fontFamily">@font/font</item>
+    </style>
+    <style name="NexonFontTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/font</item>
     </style>
 
 </resources>

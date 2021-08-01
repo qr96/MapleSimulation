@@ -127,12 +127,14 @@
 
             <Button
                 android:layout_width="200dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ui_button_basic"
                 android:onClick="runEnhance"
                 android:text="강화하기"/>
             <Button
                 android:layout_width="200dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ui_button_basic"
                 android:text="뒤로가기"
                 android:onClick="goBack"/>
         </LinearLayout>

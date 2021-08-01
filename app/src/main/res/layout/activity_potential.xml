@@ -189,14 +189,10 @@
 
             <Button
                 android:layout_width="200dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ui_button_basic"
                 android:onClick="useCube"
                 android:text="강화하기"/>
-            <Button
-                android:layout_width="200dp"
-                android:layout_height="60dp"
-                android:text="뒤로가기"
-                android:onClick="goBack"/>
         </LinearLayout>
         <TextView
             android:id="@+id/sparkle_effect"

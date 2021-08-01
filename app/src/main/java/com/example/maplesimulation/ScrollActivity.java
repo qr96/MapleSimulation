@@ -261,7 +261,7 @@ public class ScrollActivity extends Activity {
         myAlertBuilder.setCancelable(false);
 
         // 버튼 추가
-        myAlertBuilder.setNegativeButton("    예    ",new DialogInterface.OnClickListener(){
+        myAlertBuilder.setPositiveButton("    예    ",new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog,int which){
                 scroll.useReturnScroll();
@@ -269,7 +269,7 @@ public class ScrollActivity extends Activity {
                 setEquipName();
             }
         });
-        myAlertBuilder.setPositiveButton("아니오", new DialogInterface.OnClickListener() {
+        myAlertBuilder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
