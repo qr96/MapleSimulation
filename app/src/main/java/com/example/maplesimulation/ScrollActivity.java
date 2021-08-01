@@ -4,17 +4,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -22,7 +19,6 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ScrollActivity extends Activity {
     public int selected_button_id = -1; //선택된 아이템의 id
@@ -31,7 +27,10 @@ public class ScrollActivity extends Activity {
     public Equipment equipment;
     public Scroll scroll;
 
+    public AnimationDrawable resultAnimation;
+
     private AdView mAdView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +46,7 @@ public class ScrollActivity extends Activity {
 
         //광고 초기화
         initAd();
+
     }
 
     //광고 초기화
@@ -54,6 +54,7 @@ public class ScrollActivity extends Activity {
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
+
             }
         });
         mAdView = findViewById(R.id.adView);
@@ -63,18 +64,20 @@ public class ScrollActivity extends Activity {
 
     //성공 이펙트 실행
     public void successEffect() {
-        ImageView effect = (ImageView) findViewById(R.id.resultEffect);
-        effect.setImageResource(R.drawable.effect_success);
-        GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(effect, 1);
-        Glide.with(this).load(R.drawable.effect_success).into(gifImage);
+        ImageView resultImage = (ImageView) findViewById(R.id.resultEffect);
+        resultImage.setBackgroundResource(0);
+        resultImage.setBackgroundResource(R.drawable.ui_success_effect);
+        resultAnimation = (AnimationDrawable) resultImage.getBackground();
+        resultAnimation.start();
     }
     
     //실패 이펙트 실행
     public void failEffect() {
-        ImageView effect = (ImageView) findViewById(R.id.resultEffect);
-        effect.setImageResource(R.drawable.effect_failed);
-        GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(effect, 1);
-        Glide.with(this).load(R.drawable.effect_failed).into(gifImage);
+        ImageView resultImage = (ImageView) findViewById(R.id.resultEffect);
+        resultImage.setBackgroundResource(0);
+        resultImage.setBackgroundResource(R.drawable.ui_fail_effect);
+        resultAnimation = (AnimationDrawable) resultImage.getBackground();
+        resultAnimation.start();
     }
 
     //강화 실행 버튼
