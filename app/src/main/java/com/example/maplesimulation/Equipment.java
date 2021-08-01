@@ -11,6 +11,12 @@ public class Equipment implements Cloneable, Serializable {
     public ArrayList<String> accessories //장신구 종류
             = new ArrayList<>(Arrays.asList("얼굴장식","눈장식","벨트","귀고리","어깨장식","반지","펜던트"));
 
+    public ArrayList<String> weapons
+            = new ArrayList<>(Arrays.asList("한손검", "한손도끼", "한손둔기",  "두손검", "두손도끼",
+                "두손둔기", "창", "폴암", "데스브링어", "건틀렛리볼버", "튜너", "완드", "스태프", "샤이닝로드",
+                "ESP리미터", "매직건틀렛", "활", "석궁", "듀얼보우건", "에인션트보우", "브레스슈터", "단검",
+                "블레이드", "아대", "케인", "에너지소드", "체인", "부채", "건", "너클", "핸드캐논", "소울슈터"));
+
     //private String id;
     private String name;
     private String Image;
@@ -26,6 +32,12 @@ public class Equipment implements Cloneable, Serializable {
     private int maxStar; //최대 스타포스 수치
     private int star; //스타포스 수치
     private int goldHammer;
+
+    private String potential1[]; //윗잠재
+    private String potential2[]; //아랫잠재
+
+    int potentialGrade1; // 잠재 등급
+    int potentialGrade2; // 아랫잠재 등급
 
     // 능력치 순서 {"STR", "DEX", "INT", "LUK", "최대HP", "최대MP", "착용레벨감소",
     //                "방어력", "공격력", "마력", "이동속도", "점프력", "올스텟%",
@@ -47,6 +59,10 @@ public class Equipment implements Cloneable, Serializable {
         initEnhance();
         initAdditional();
         goldHammer = 0;
+        potential1 = new String[]{"잠재능력을 재설정 해주세요.", "", ""};
+        potential2 = new String[]{"잠재능력을 재설정 해주세요.", "", ""};
+        potentialGrade1 = 0;
+        potentialGrade2 = 0;
     }
 
     //강화 수치 증가
@@ -120,18 +136,11 @@ public class Equipment implements Cloneable, Serializable {
 
     //무기인지 여부
     public boolean isWeapon() {
-        return false;
-    }
-
-    //정해진 확률에 따른 성공 여부
-    public Boolean isSuccess(int possibility) {
-        int random = (int)(Math.random()*100);
-
-        if(random < possibility) return true;
+        if(weapons.contains(this.type)) return true;
         return false;
     }
     
-    //황금망치 사용 성공
+    //황금망치 사용
     public void useGoldhammer(){
         this.goldHammer = 1;
         this.maxUp++;
@@ -168,6 +177,13 @@ public class Equipment implements Cloneable, Serializable {
         return sum;
     }
 
+    public void potentialGradeUp1() {
+        potentialGrade1++;
+    }
+
+    public void potentialGradeUp2() {
+        potentialGrade2++;
+    }
 
     @Override
     public Object clone() throws CloneNotSupportedException {
@@ -204,6 +220,21 @@ public class Equipment implements Cloneable, Serializable {
 
     public int getGoldHammer() { return goldHammer; }
 
+    public String getPotentialGrade1() {
+        String table[] = {"레어", "에픽", "유니크", "레전드리"};
+        return table[potentialGrade1];
+    }
+
+    public String getPotentialGrade2() {
+        String table[] = {"레어", "에픽", "유니크", "레전더리"};
+        return table[potentialGrade2];
+    }
+
+    public String[] getPotential1() { return this.potential1; }
+
+    public String[] getPotential2() { return potential2; }
+
+
 
 
     public void setName(String name) {
@@ -236,4 +267,9 @@ public class Equipment implements Cloneable, Serializable {
         this.stats.add(stat);
     }
 
+    public void setPotential1(String[] potential) {
+        this.potential1[0] = potential[0];
+        this.potential1[1] = potential[1];
+        this.potential1[2] = potential[2];
+    }
 }

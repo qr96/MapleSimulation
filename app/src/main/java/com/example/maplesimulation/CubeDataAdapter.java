@@ -6,11 +6,12 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CubeDataAdapter extends DataAdapter {
+public class CubeDataAdapter {
     protected static final String TAG = "CubeDataAdapter";
 
     // TODO : TABLE 이름을 명시해야함
@@ -21,122 +22,95 @@ public class CubeDataAdapter extends DataAdapter {
     private DataBaseHelper mDbHelper;
 
     public CubeDataAdapter(Context context) {
-        super(context);
         this.mContext = context;
         mDbHelper = new DataBaseHelper(mContext);
     }
 
-    @Override
-    public List getTableData()  {
-        try {
-            String sql ="SELECT * FROM " + TABLE_NAME;
+    public CubeDataAdapter createDatabase() throws SQLException
+    {
+        try
+        {
+            mDbHelper.createDataBase();
+        }
+        catch (IOException mIOException)
+        {
+            Log.e(TAG, mIOException.toString() + "  UnableToCreateDatabase");
+            throw new Error("UnableToCreateDatabase");
+        }
+        return this;
+    }
 
-            // 모델 넣을 리스트 생성
-            List cubeTable = new ArrayList();
-
-
-            CubeTable blackCubeTable = new CubeTable();
-            String sqlBlckCubeWeaponRare = "SELECT 옵션,확률 FROM " + TABLE_NAME + " WHERE 큐브이름=블랙큐브 and 잠재등급=레어 and 줄=";
-            String type = "";
-
-            for(int i=1; i<=3; i++) {
-
-                Cursor mCur = mDb.rawQuery(sqlBlckCubeWeaponRare+i, null);
-                HashMap<String, String[]> table = new HashMap<>();
-                String option = "";
-
-                if(mCur!=null) {
-                    while(mCur.moveToNext()) {
-                        type = mCur.getString(1);
-                        option = 
-                    }
-                }
-            }
-
-
-            // TODO : 모델 선언
-
-
-            Cursor mCur = mDb.rawQuery(sql, null);
-            if (mCur!=null)
-            {
-                // 칼럼의 마지막까지
-                while( mCur.moveToNext() ) {
-
-                    // TODO : 커스텀 모델 생성
-                    equip = new Equipment();
-
-                    // TODO : Record 기술
-                    equip.setName(mCur.getString(0));
-                    equip.setImage(mCur.getString(1));
-                    equip.setType(mCur.getString(2));
-                    equip.setJob(mCur.getString(3));
-
-                    equip.setLevReq(mCur.getInt(4));
-                    equip.setMaxUp(mCur.getInt(5));
-                    equip.setNowUp(mCur.getInt(6));
-                    equip.setFailUp(mCur.getInt(7));
-
-                    equip.setMaxStar(mCur.getInt(8));
-                    equip.setStar(mCur.getInt(9));
-
-                    for(int i=10; i<27; i++) {
-                        equip.addStats(mCur.getInt(i));
-                    }
-
-                    // 리스트에 넣기
-                    equipList.add(equip);
-                }
-
-            }
-
-
-            // TODO : 모델 선언
-            Equipment equip = null;
-
-            Cursor mCur = mDb.rawQuery(sql, null);
-            if (mCur!=null)
-            {
-                // 칼럼의 마지막까지
-                while( mCur.moveToNext() ) {
-
-                    // TODO : 커스텀 모델 생성
-                    equip = new Equipment();
-
-                    // TODO : Record 기술
-                    // 이름, 이미지, 분류, 직업군
-                    // 레벨제한, 최대강화수, 현재강화수, 실패강화수,
-                    // 최대스타포스, 스타포스,
-                    // 기본 스텟, 강화 스텟, 추가옵션
-                    equip.setName(mCur.getString(0));
-                    equip.setImage(mCur.getString(1));
-                    equip.setType(mCur.getString(2));
-                    equip.setJob(mCur.getString(3));
-
-                    equip.setLevReq(mCur.getInt(4));
-                    equip.setMaxUp(mCur.getInt(5));
-                    equip.setNowUp(mCur.getInt(6));
-                    equip.setFailUp(mCur.getInt(7));
-
-                    equip.setMaxStar(mCur.getInt(8));
-                    equip.setStar(mCur.getInt(9));
-
-                    for(int i=10; i<27; i++) {
-                        equip.addStats(mCur.getInt(i));
-                    }
-
-                    // 리스트에 넣기
-                    equipList.add(equip);
-                }
-
-            }
-            return equipList;
+    public CubeDataAdapter open() throws SQLException
+    {
+        try
+        {
+            mDbHelper.openDataBase();
+            mDbHelper.close();
+            mDb = mDbHelper.getReadableDatabase();
         }
         catch (SQLException mSQLException)
         {
+            Log.e(TAG, "open >>"+ mSQLException.toString());
+            throw mSQLException;
+        }
+        return this;
+    }
+
+    public void close()
+    {
+        mDbHelper.close();
+    }
+
+    public List getTableData()  {
+        try {
+
+            List cubeTableList = new ArrayList();
+
+            String cubeTypes[] = {"'블랙큐브'"}; //, "'레드큐브'", "'에디셔널큐브'", "'명장의큐브'", "'장인의큐브'"};
+            String grades[] = {"레어", "에픽", "유니크", "레전더리"};
+            String types[] = {"무기", "엠블렘", "보조무기", "보조무기2", "방패"};
+            String lines[] = {"1", "2", "3"};
+
+            CubeTable cubeTable = new CubeTable();
+
+            String sql = "SELECT * FROM " + TABLE_NAME;
+            String key = "";
+
+            Cursor mCur = mDb.rawQuery(sql, null);
+            List list;
+
+            if(mCur!=null) {
+                while(mCur.moveToNext()) {
+                    key = mCur.getString(2) + mCur.getString(1) + mCur.getString(3);
+                    if(cubeTable.optaionTable.containsKey(key)) cubeTable.optaionTable.get(key).add(mCur.getString(4));
+                    else {
+                        list = new ArrayList();
+                        list.add(mCur.getString(4));
+                        cubeTable.optaionTable.put(key, list);
+                    }
+                    if(cubeTable.percentTable.containsKey(key))
+                        cubeTable.percentTable.get(key).add(convert(mCur.getString(5)));
+                    else {
+                        list = new ArrayList();
+                        list.add(convert(mCur.getString(5)));
+                        cubeTable.percentTable.put(key, list);
+                    }
+                }
+            }
+
+            cubeTableList.add(cubeTable);
+
+            return cubeTableList;
+        }
+        catch (SQLException mSQLException) {
             Log.e(TAG, "getTestData >>"+ mSQLException.toString());
             throw mSQLException;
         }
     }
-
+    
+    //문자열 %를 double 로 바꿔줌
+    public double convert(String percent){
+        percent = percent.substring(0, percent.length()-1);
+        return Double.parseDouble(percent);
+    }
 }

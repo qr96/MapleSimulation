@@ -52,4 +52,55 @@ public class EquipmentInfo {
 
         return equipInfo;
     }
+
+    public static String potential(Equipment equipment) {
+        String potential1[] = equipment.getPotential1();
+        String potential2[] = equipment.getPotential2();
+        String info = "";
+
+        switch (equipment.getPotentialGrade1()) {
+            case "레어":
+                info = info + "<font color=\"#00CCFF\">" +"R ";
+                break;
+            case "에픽":
+                info =  info + "<font color=\"#CC33CC\">" + "E ";
+                break;
+            case "유니크":
+                info = info + "<font color=\"#FFFF33\">" + "U ";
+                break;
+            case "레전드리":
+                info = info + "<font color=\"#33FF00\">" + "L ";
+                break;
+            default:
+                break;
+        }
+        info = info + "잠재옵션</font><br>";
+
+        for(int i=0; i<potential1.length; i++){
+            info = info + potential1[i] + "<br>";
+        }
+        info = info + "<br>";
+        switch (equipment.getPotentialGrade2()) {
+            case "레어":
+                info = info + "<font color=\"#00CCFF\">" +"R ";
+                break;
+            case "에픽":
+                info =  info + "<font color=\"#CC33CC\">" + "E ";
+                break;
+            case "유니크":
+                info = info + "<font color=\"#FFFF33\">" + "U ";
+                break;
+            case "레전드리":
+                info = info + "<font color=\"#33FF00\">" + "L ";
+                break;
+            default:
+                break;
+        }
+        info = info + "에디셔널 잠재옵션</font><br>";
+        for(int i=0; i<potential2.length; i++){
+            info = info + potential2[i] + "<br>";
+        }
+
+        return info;
+    }
 }

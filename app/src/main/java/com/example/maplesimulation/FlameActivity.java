@@ -76,7 +76,7 @@ public class FlameActivity extends Activity {
             }
         };
 
-        Animation anim = new AlphaAnimation(0.0f, 0.8f);
+        Animation anim = new AlphaAnimation(0.0f, 0.6f);
         anim.setDuration(400);
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(1);

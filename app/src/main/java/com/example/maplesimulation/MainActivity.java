@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         Intent intent = new Intent(this, PotentialActivity.class);
-        startActivity(intent);
+        intent.putExtra("equipment", equipment);
+        startActivityForResult(intent, 1);
     }
 
 
