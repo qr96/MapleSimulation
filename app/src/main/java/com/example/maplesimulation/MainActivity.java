@@ -108,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
         myAlertBuilder.show();
     }
 
+
+
+
     //intent 받는 부분
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -132,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
 
     //선택된 장비 이미지 표시, 이름 표시
     public void convertImage(int idx) {
