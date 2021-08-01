@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +29,7 @@ public class ScrollActivity extends Activity {
     public int selected_detail_id = -1; //선택된 아이템의 세부 옵션 id  ex) 70%, 30% 주문서
     public Equipment equipment;
     public Scroll scroll;
+    public Flame flame;
 
     public AnimationDrawable resultAnimation;
 
@@ -40,6 +44,7 @@ public class ScrollActivity extends Activity {
         Intent intent = getIntent();
         this.equipment = (Equipment) intent.getSerializableExtra("equipment");
         this.scroll = new Scroll(this.equipment);
+        this.flame = new Flame(this.equipment);
 
         setThumnail();
         updateText();
@@ -88,7 +93,6 @@ public class ScrollActivity extends Activity {
         
         //주문의 흔적
         if(selected_button_id == R.id.scroll_button_0) {
-
             if(this.equipment.getType().equals("장갑")){ //장갑
                 //공,마  100, 70, 30
                 if(selected_detail_id%3 == 0) possibility = 100;
@@ -98,10 +102,9 @@ public class ScrollActivity extends Activity {
                 if(selected_detail_id/3 == 0) justat = "physic";
                 else if(selected_detail_id/3 == 1) justat = "magic";
 
-                result = scroll.doGloveScroll2(possibility, "physic");
-                result = scroll.doGloveScroll2(possibility, "magic");
+                result = scroll.doGloveScroll2(possibility, justat);
             }
-            else if(equipment.armors.contains(this.equipment.getType())) { //방어구인 경우
+            else if(equipment.isArmor()) { //방어구인 경우
                 //힘,덱,인,럭  100, 70, 30
                 if(selected_detail_id%3 == 0) possibility = 100;
                 else if(selected_detail_id%3 == 1) possibility = 70;
@@ -115,7 +118,7 @@ public class ScrollActivity extends Activity {
 
                 result = scroll.doArmorScroll2(possibility, justat);
             }
-            else if(equipment.accessories.contains(this.equipment.getType())) { //장신구인 경우
+            else if(equipment.isAccessary()) { //장신구인 경우
                 //힘,덱,인,럭  100, 70, 30
                 if(selected_detail_id%3 == 0) possibility = 100;
                 else if(selected_detail_id%3 == 1) possibility = 70;
@@ -134,7 +137,7 @@ public class ScrollActivity extends Activity {
                     result = scroll.doAccessaryScroll1(possibility, justat);
                 }
             }
-            else { //무기인 경우
+            else if(equipment.isWeapon()){ //무기인 경우
                 //힘,덱,인,럭  100, 70, 30, 15
                 if(selected_detail_id%4 == 0) possibility = 100;
                 else if(selected_detail_id%4 == 1) possibility = 70;
@@ -148,7 +151,6 @@ public class ScrollActivity extends Activity {
 
                 result = scroll.doWeaponScroll2(possibility, justat);
             }
-
         }
         //순백의 주문서
         else if(selected_button_id == R.id.scroll_button_1) {
@@ -209,11 +211,20 @@ public class ScrollActivity extends Activity {
             }
 
         }
+        else if(selected_button_id == R.id.scroll_button_5) {
+            flame.useEternalFlame();
+            result = 1;
+        }
+        else if(selected_button_id == R.id.scroll_button_6) {
+            flame.usePowerfulFlame();
+            result = 1;
+        }
 
         if(result==1) successEffect();
         else if(result==0) failEffect();
         else return;
 
+        sparkleEffect();
         updateText();
         setEquipName();
         view.setEnabled(false);
@@ -225,7 +236,37 @@ public class ScrollActivity extends Activity {
             }
 
 
-        }, 1000);
+        }, 600);
+    }
+
+    public void sparkleEffect() {
+        TextView sparkle = findViewById(R.id.sparkle_effect);
+
+        Animation.AnimationListener listener = new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                sparkle.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                sparkle.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        };
+
+        Animation anim = new AlphaAnimation(0.0f, 0.6f);
+        anim.setDuration(400);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(1);
+
+        sparkle.startAnimation(anim);
+        anim.setAnimationListener(listener);
+
     }
 
     //맨 위의 썸네일 설정
@@ -327,13 +368,11 @@ public class ScrollActivity extends Activity {
             return;
         }
 
+        selected_button_id = view.getId();
+
         //선택한 번호의 아이템에 체크 표시
         if(view.getId() == R.id.scroll_button_0){
             //주문의 흔적
-            ImageView new_select = (ImageView)findViewById(R.id.scroll_check_0);
-            new_select.setVisibility(View.VISIBLE);
-
-            selected_button_id = view.getId();
             selected_check_id = R.id.scroll_check_0;
 
             //주문서의 세부 옵션 선택 팝업
@@ -356,13 +395,8 @@ public class ScrollActivity extends Activity {
             intent.putExtra("scroll", 0);
             startActivityForResult(intent, 0);
         }
-
         else if(view.getId() == R.id.scroll_button_1){
             //순백의 주문서
-            ImageView new_select = (ImageView)findViewById(R.id.scroll_check_1);
-            new_select.setVisibility(View.VISIBLE);
-
-            selected_button_id = view.getId();
             selected_check_id = R.id.scroll_check_1;
 
             //주문서의 세부 옵션 선택 팝업
@@ -373,10 +407,6 @@ public class ScrollActivity extends Activity {
         }
         else if(view.getId() == R.id.scroll_button_2){
             //황금 망치
-            ImageView new_select = (ImageView)findViewById(R.id.scroll_check_2);
-            new_select.setVisibility(View.VISIBLE);
-
-            selected_button_id = view.getId();
             selected_check_id = R.id.scroll_check_2;
 
             //주문서의 세부 옵션 선택 팝업
@@ -386,10 +416,6 @@ public class ScrollActivity extends Activity {
         }
         else if(view.getId() == R.id.scroll_button_3){
             //이노센트 주문서
-            ImageView new_select = (ImageView)findViewById(R.id.scroll_check_3);
-            new_select.setVisibility(View.VISIBLE);
-
-            selected_button_id = view.getId();
             selected_check_id = R.id.scroll_check_3;
 
             //주문서의 세부 옵션 선택 팝업
@@ -399,10 +425,6 @@ public class ScrollActivity extends Activity {
         }
         else if(view.getId() == R.id.scroll_button_4){
             //혼돈의 주문서
-            ImageView new_select = (ImageView)findViewById(R.id.scroll_check_4);
-            new_select.setVisibility(View.VISIBLE);
-
-            selected_button_id = view.getId();
             selected_check_id = R.id.scroll_check_4;
 
             //주문서의 세부 옵션 선택 팝업
@@ -410,7 +432,17 @@ public class ScrollActivity extends Activity {
             intent.putExtra("scroll", 4);
             startActivityForResult(intent, 0);
         }
+        else if(view.getId() == R.id.scroll_button_5){
+            //영환불
+            selected_check_id = R.id.scroll_check_5;
+        }
+        else if(view.getId() == R.id.scroll_button_6){
+            //강환불
+            selected_check_id = R.id.scroll_check_6;
+        }
 
+        ImageView new_select = (ImageView)findViewById(selected_check_id);
+        new_select.setVisibility(View.VISIBLE);
     }
 
     //주문서 세부사항 선택 후, 데이터 받는 부분
