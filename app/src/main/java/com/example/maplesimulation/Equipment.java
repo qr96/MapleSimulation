@@ -52,12 +52,18 @@ public class Equipment implements Cloneable, Serializable {
     //추가 옵션
     private ArrayList<Integer> additional;
 
+    //스타포스로 강화된 능력치
+    private ArrayList<Integer> starStat;
+
+
     public Equipment() {
         stats = new ArrayList();
         enhance = new ArrayList<>();
         additional = new ArrayList<>();
+        starStat = new ArrayList<>();
         initEnhance();
         initAdditional();
+        initStarStat();
         goldHammer = 0;
         potential1 = new String[]{"잠재능력을 재설정 해주세요.", "", ""};
         potential2 = new String[]{"잠재능력을 재설정 해주세요.", "", ""};
@@ -120,6 +126,13 @@ public class Equipment implements Cloneable, Serializable {
     public void initEnhance() {
         enhance.clear();
         for(int i=0; i<21; i++) enhance.add(0);
+    }
+
+    //스타포스 초기화
+    public void initStarStat() {
+        star = 0;
+        starStat.clear();
+        for(int i=0; i<21; i++) starStat.add(0);
     }
 
     //방어구인지 여부
@@ -234,6 +247,17 @@ public class Equipment implements Cloneable, Serializable {
 
     public String[] getPotential2() { return potential2; }
 
+    public int getMaxStar() { return maxStar; }
+
+    public int getStar() { return star; }
+
+    public void upStar() {this.star++; } //스타포스 수치 업
+
+    public void upgradeStarStat(int index, int num) { //스타포스 능력치 강화
+        int tmp = this.starStat.get(index);
+        tmp += num;
+        this.starStat.set(index, tmp);
+    }
 
 
 

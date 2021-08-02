@@ -128,6 +128,7 @@
 
             </LinearLayout>
             <TextView
+                android:id="@+id/needmoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="필요한 메소: 500,000"/>
@@ -136,7 +137,8 @@
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/ui_button_basic"
-                android:text="강화하기"/>
+                android:text="강화하기"
+                android:onClick="doStarforce"/>
         </LinearLayout>
         <ImageView
             android:id="@+id/resultEffect"

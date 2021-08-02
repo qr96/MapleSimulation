@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+    <item android:drawable="@drawable/ui_destroy_effect0" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect1" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect2" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect3" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect4" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect5" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect6" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect7" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect8" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect9" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect10" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect11" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect12" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect13" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect14" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect15" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect16" android:duration="60" />
+    <item android:drawable="@drawable/ui_destroy_effect17" android:duration="60" />
+
+</animation-list>
