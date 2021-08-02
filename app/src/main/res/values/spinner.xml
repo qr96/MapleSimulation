@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="mvp_list">
+        <item>브론즈</item>
+        <item>실버</item>
+        <item>골드</item>
+        <item>다이아</item>
+    </string-array>
+    <string-array name="event_list">
+        <item>이벤트 없음</item>
+        <item>10성 1+1</item>
+        <item>30% 할인</item>
+        <item>5,10,15성 100%</item>
+    </string-array>
+</resources>

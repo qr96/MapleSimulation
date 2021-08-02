@@ -32,8 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:layout_margin="10dp"
-            android:listSelector="#88C5CD"
-            />
+            android:listSelector="#A9CFD5" />
         <View
             android:background="#66bdbdbd"
             android:layout_width="match_parent"

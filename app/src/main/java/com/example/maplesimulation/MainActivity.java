@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -71,22 +70,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void goFlame(View view) {
-        if(equipment == null) {
-            nothingDialog();
-            return;
-        }
-        Intent intent = new Intent(this, FlameActivity.class);
-        intent.putExtra("equipment", equipment);
-        startActivityForResult(intent, 1);
-    }
-
     public void goPotential(View view) {
         if(equipment == null) {
             nothingDialog();
             return;
         }
         Intent intent = new Intent(this, PotentialActivity.class);
+        intent.putExtra("equipment", equipment);
+        startActivityForResult(intent, 1);
+    }
+
+    public void goStarforce(View view) {
+        if(equipment == null) {
+            nothingDialog();
+            return;
+        }
+        Intent intent = new Intent(this, StarforceActivity.class);
         intent.putExtra("equipment", equipment);
         startActivityForResult(intent, 1);
     }

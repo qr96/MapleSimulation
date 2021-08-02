@@ -15,12 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PotentialActivity"></activity>
-        <activity android:name=".SearchActivity"></activity>
-        <activity android:name=".ScrollActivity"></activity>
-        <activity android:name=".FlameActivity"></activity>
+        <activity android:name=".PotentialActivity" />
+        <activity android:name=".SearchActivity"/>
+        <activity android:name=".ScrollActivity"/>
+        <activity android:name=".FlameActivity"/>
+        <activity android:name=".StarforceActivity"/>
 
-        <activity android:name=".SelectBasicScollPopup" android:theme="@android:style/Theme.Dialog"></activity>
+        <activity android:name=".SelectBasicScollPopup" android:theme="@android:style/Theme.Dialog"/>
 
         <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data

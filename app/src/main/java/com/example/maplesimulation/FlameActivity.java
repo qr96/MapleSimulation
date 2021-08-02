@@ -41,7 +41,6 @@ public class FlameActivity extends Activity {
 
         //광고 초기화
         initAd();
-
     }
 
     //광고 초기화

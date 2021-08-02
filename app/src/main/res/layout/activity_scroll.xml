@@ -21,10 +21,11 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp">
+        android:layout_marginBottom="50dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
@@ -38,7 +39,9 @@
                 android:id="@+id/equipment_image"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="0dp"
+                android:padding="10dp"
+                android:background="@drawable/ui_empty_item"
+                android:scaleType="fitCenter"
                 android:src="@drawable/mongbel" />
             <TextView
                 android:id="@+id/equipment_name"

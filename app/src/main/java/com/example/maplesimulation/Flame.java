@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Flame {
     Equipment equipment;
-    AdditionalTable additionalTable;
+    FlameTable flameTable;
 
     //Constructor
     public Flame(Equipment equipment) {
-        this.additionalTable = new AdditionalTable();
+        this.flameTable = new FlameTable();
         this.equipment = equipment;
     }
 
@@ -98,36 +98,36 @@ public class Flame {
         int levReq = equipment.getLevReq();
 
         if(selected < 4) { //주스텟
-            tmp = Objects.requireNonNull(additionalTable.justat_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.justat_table.get(levReq))[grade];
             equipment.setAdditionStat(selected, tmp);
         }
         else if(selected < 10) { //복합스텟
             int mixstats[][] = {{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 3}, {2, 3}}; //복합스텟 조합들
             int stat1 = mixstats[selected-4][0];
             int stat2 = mixstats[selected-4][1];
-            tmp = Objects.requireNonNull(additionalTable.mixstat_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.mixstat_table.get(levReq))[grade];
             equipment.setAdditionStat(stat1, tmp);
-            tmp = Objects.requireNonNull(additionalTable.mixstat_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.mixstat_table.get(levReq))[grade];
             equipment.setAdditionStat(stat2, tmp);
         }
         else if(selected < 12) { //HP, MP
-            tmp = Objects.requireNonNull(additionalTable.hpmp_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.hpmp_table.get(levReq))[grade];
             equipment.setAdditionStat(selected-6, tmp);
         }
         else if(selected == 12) { //착용 레벨 감소
-            tmp = Objects.requireNonNull(additionalTable.levdown_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.levdown_table.get(levReq))[grade];
             equipment.setAdditionStat(6, tmp);
         }
         else if(selected == 13) { //방어력
-            tmp = Objects.requireNonNull(additionalTable.justat_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.justat_table.get(levReq))[grade];
             equipment.setAdditionStat(7, tmp);
         }
         else if(selected < 18) { //공격력, 마력, 이동속도, 점프력
-            tmp = Objects.requireNonNull(additionalTable.allstat_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.allstat_table.get(levReq))[grade];
             equipment.setAdditionStat(selected-6, tmp);
         }
         else if(selected == 18) { //올스텟
-            tmp = Objects.requireNonNull(additionalTable.allstat_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.allstat_table.get(levReq))[grade];
             equipment.setAdditionStat(12, tmp);
         }
 
@@ -140,44 +140,44 @@ public class Flame {
         String type = equipment.getType();
 
         if(selected < 4) { //주스텟
-            tmp = Objects.requireNonNull(additionalTable.justat_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.justat_table.get(levReq))[grade];
             equipment.setAdditionStat(selected, tmp);
         }
         else if(selected < 10) { //복합스텟
             int mixstats[][] = {{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 3}, {2, 3}}; //복합스텟 조합들
             int stat1 = mixstats[selected-4][0];
             int stat2 = mixstats[selected-4][1];
-            tmp = Objects.requireNonNull(additionalTable.mixstat_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.mixstat_table.get(levReq))[grade];
             equipment.setAdditionStat(stat1, tmp);
-            tmp = Objects.requireNonNull(additionalTable.mixstat_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.mixstat_table.get(levReq))[grade];
             equipment.setAdditionStat(stat2, tmp);
         }
         else if(selected < 12) { //HP, MP
-            tmp = Objects.requireNonNull(additionalTable.hpmp_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.hpmp_table.get(levReq))[grade];
             equipment.setAdditionStat(selected-6, tmp);
         }
         else if(selected == 12) { //착용 레벨 감소
-            tmp = Objects.requireNonNull(additionalTable.levdown_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.levdown_table.get(levReq))[grade];
             equipment.setAdditionStat(6, tmp);
         }
         else if(selected == 13) { //방어력
-            tmp = Objects.requireNonNull(additionalTable.justat_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.justat_table.get(levReq))[grade];
             equipment.setAdditionStat(7, tmp);
         }
         else if(selected < 16) { //공격력, 마력
-            tmp = additionalTable.weaponTable.get(type+levReq)[grade];
+            tmp = flameTable.weaponTable.get(type+levReq)[grade];
             equipment.setAdditionStat(selected-6, tmp);
         }
         else if(selected == 16) { //보스 데미지
-            tmp = Objects.requireNonNull(additionalTable.bossdmg_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.bossdmg_table.get(levReq))[grade];
             equipment.setAdditionStat(19, tmp);
         }
         else if(selected == 17) { //데미지
-            tmp = Objects.requireNonNull(additionalTable.allstat_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.allstat_table.get(levReq))[grade];
             equipment.setAdditionStat(20, tmp);
         }
         else if(selected == 18) { //올스텟
-            tmp = Objects.requireNonNull(additionalTable.allstat_table.get(levReq))[grade];
+            tmp = Objects.requireNonNull(flameTable.allstat_table.get(levReq))[grade];
             equipment.setAdditionStat(12, tmp);
         }
     }
