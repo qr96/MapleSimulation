@@ -80,20 +80,23 @@
                 android:layout_margin="10dp"
                 android:orientation="horizontal">
                 <CheckBox
+                    android:id="@+id/starcatch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="스타캐치"
-                    android:checked="true"/>
+                    android:checked="false"/>
                 <CheckBox
+                    android:id="@+id/preventdestroy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="파괴방지"
-                    android:checked="true"/>
+                    android:checked="false"/>
                 <CheckBox
+                    android:id="@+id/pcbang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="PC방할인"
-                    android:checked="true"/>
+                    android:checked="false"/>
             </LinearLayout>
             <GridLayout
                 android:layout_width="wrap_content"

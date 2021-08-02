@@ -4,6 +4,11 @@ import java.util.HashMap;
 
 public class Starforce {
     Equipment equipment;
+    int chanceStack; //찬스타임 스택
+    public String event = "이벤트없음";
+    public String mvp = "브론즈";
+    public boolean pcbang;
+    public boolean prevent;
 
     public double table_success[]; //성공 확률
     public double table_destroyed[]; //파괴 확률
@@ -11,11 +16,11 @@ public class Starforce {
     public HashMap<String, Integer> starStatTable; //방어구,공격력 증가 수치 테이블,
     // key:렙제+방어구+다음 스타포스 수치
 
-    //0~10 15, 20성 하락X
 
     public Starforce(Equipment equipment) {
         this.equipment = equipment;
         initTable();
+        chanceStack = 0;
     }
 
     //테이블 초기화
@@ -34,6 +39,23 @@ public class Starforce {
         initStarStatTable();
     }
 
+    //찬스타임인지 반환
+    public boolean isChanceTime(){
+        if(chanceStack == 2) return true;
+        return false;
+    }
+
+    //파괴방지 사용가능한지
+    public boolean canPrevent() {
+        if(equipment.getStar()<=17) return true;
+        return false;
+    }
+
+    public boolean canPcbang() {
+        if(event.equals("30%할인") || equipment.getStar()>17) return false;
+        return true;
+    }
+
     // 테이블 확률대로 하나 반환
     public int tableRandom(double[] table) {
         // 번호 생성
@@ -50,25 +72,38 @@ public class Starforce {
         return -1;
     }
 
-    public int doStarforce() {
+    //스타포스 실행 (스타캐치, 파괴방지)
+    public int doStarforce(boolean starCatch, String event) {
         int star = equipment.getStar();
         double success = this.table_success[star];
+        if(starCatch) success *= 1.05;
         double destroy = this.table_destroyed[star];
+        if(this.prevent) destroy = 0;
         double fail = 100.0 - success - destroy;
         int result = -1;
 
         if(equipment.getStar() >= equipment.getMaxStar()) return -1;
 
+        //찬스타임인경우
+        if(chanceStack==2) {
+            success = 100.0;
+            chanceStack = 0;
+        }
+
+        if(event.equals("5,10,15성100%") && star==5 || star==10 || star==15) success=100;
+
         result = tableRandom(new double[]{success, destroy, fail});
 
+
         if(result == 0) { //성공
-            upgradeStar();
+            if(event.equals("10성1+1") && star<=10) success();
+            success();
         }
         else if(result == 1) { //파괴
-            equipment.initStarStat();
+            destroyed();
         }
         else if(result == 2) { //실패
-
+            failed();
         }
 
         return result;
@@ -79,62 +114,146 @@ public class Starforce {
         int money = 0;
 
         if(step <= 9) {
-            money = 1000+(int)(Math.pow(reqlv, 3)*(step)/25)/100*100;
+            money = 1000+(int)Math.round((Math.pow(reqlv, 3)*(step)/25)/100.0)*100;
         }
         else if(step <= 14) {
-            money = 1000+(int)(Math.pow(reqlv, 3)*Math.pow(step, 2.7)/400)/100*100;
+            money = 1000+(int)Math.round((Math.pow(reqlv, 3)*Math.pow(step, 2.7)/400)/100.0)*100;
         }
         else {
-            money = 1000+(int)(Math.pow(reqlv, 3)*Math.pow(step, 2.7)/200)/100*100;
+            money = 1000+(int)Math.round((Math.pow(reqlv, 3)*Math.pow(step, 2.7)/200)/100.0)*100;
         }
+
+        if(event.equals("30%할인")) money = (int)(money*0.7);
+        
+        if(equipment.getStar()<=17){
+            double discount = 1.0;
+            if(mvp.equals("다이아")) discount-=0.1;
+            else if(mvp.equals("골드")) discount-=0.05;
+            else if(mvp.equals("실버")) discount-=0.03;
+
+            if(pcbang==true) discount-=0.05;
+
+            money = (int)(money*discount);
+        }
+        System.out.println("파방가능???");
+        if(canPrevent() && prevent) {
+            System.out.println("넵@@");
+            money=money*2;
+        }
+
 
         return money;
     }
 
-    public void upgradeStar() {
-        equipment.upStar(); //스타포스 수치 증가
+    public void success() {
+        equipment.upStar();
+        chanceStack=0;
+    }
+
+    public void destroyed() {
+        chanceStack=0;
+        equipment.initStarStat();
+        for(int i=0; i<12; i++) success();
+    }
+
+    //하락 가능성 있는지
+    public boolean canDown() {
+        if(equipment.getStar() <= 10 || equipment.getStar()==15 || equipment.getStar()==20){
+                return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public void failed() {
+        if(canDown()){
+            equipment.downStar();
+            chanceStack++;
+        }
+    }
+
+    //스타포스로 인해 증가할 수치 계산 [주스텟, 공격력, 마력] 반환
+    public int[] increment() {
+        int stats[] = {0, 0, 0}; //주스텟, 공격력, 마력
 
         //주스텟 상승, 무기 방어구 동일
         if(equipment.getStar() <= 5) {
             for(int i=0; i<4; i++){
-                equipment.upgradeStarStat(i, 2);
+                stats[0] = 2;
             }
         }
         else if(equipment.getStar() <= 15) {
             for(int i=0; i<4; i++){
-                equipment.upgradeStarStat(i, 3);
+                stats[0] = 3;
             }
         }
         else {
             if(equipment.getLevReq() == 130) {
                 for(int i=0; i<4; i++){
-                    equipment.upgradeStarStat(i, 7);
+                    stats[0] = 7;
                 }
             }
             else if(equipment.getLevReq() == 140) {
                 for(int i=0; i<4; i++){
-                    equipment.upgradeStarStat(i, 9);
+                    stats[0] = 9;
                 }
             }
             else if(equipment.getLevReq() == 150) {
                 for(int i=0; i<4; i++){
-                    equipment.upgradeStarStat(i, 11);
+                    stats[0] = 11;
                 }
             }
             else if(equipment.getLevReq() == 160) {
                 for(int i=0; i<4; i++){
-                    equipment.upgradeStarStat(i, 13);
+                    stats[0] = 13;
                 }
             }
             else if(equipment.getLevReq() == 200) {
                 for(int i=0; i<4; i++){
-                    equipment.upgradeStarStat(i, 15);
+                    stats[0] = 15;
                 }
             }
         }
-        
-        //공격력 상승 방어구, 무기 다름
-        
+
+        //15성 이하 공격력 상승 방어구, 무기 다름
+        if(equipment.getStar() < 15) { //0->1 ~ 14->15
+            if(equipment.isWeapon()) {
+                if((int)equipment.getStats().get(9) > 0) { //법사 직업
+                    stats[2] = (int)equipment.getStats().get(9)/50+1;
+                }
+                else{ //공격력 직업
+                    stats[1] = (int)equipment.getStats().get(8)/50+1;
+                }
+
+            }
+            else if(equipment.getType().equals("장갑")){
+                if(equipment.getStar()==4||equipment.getStar()==6||equipment.getStar()==8||equipment.getStar()==10
+                        ||equipment.getStar()==12||equipment.getStar()==13||equipment.getStar()==14){
+                    stats[1]++;
+                    stats[2]++;
+                }
+            }
+        }
+        else { //15성 초과
+            int levReq = equipment.getLevReq();
+            int step = equipment.getStar() + 1;
+
+            if(equipment.isWeapon()) {
+                if((int)equipment.getStats().get(9) > 0) { //법사 직업
+                    stats[2] = starStatTable.get(levReq+"무기"+step);
+                }
+                else{ //공격력 직업
+                    stats[1] = starStatTable.get(levReq+"무기"+step);
+                }
+            }
+            else {//방어구인 경우
+                stats[2] = starStatTable.get(levReq+"방어구"+step);
+                stats[1] = starStatTable.get(levReq+"방어구"+step);
+            }
+        }
+
+        return stats;
     }
 
     public void initStarStatTable(){

@@ -253,6 +253,8 @@ public class Equipment implements Cloneable, Serializable {
 
     public void upStar() {this.star++; } //스타포스 수치 업
 
+    public void downStar() {this.star--; }
+
     public void upgradeStarStat(int index, int num) { //스타포스 능력치 강화
         int tmp = this.starStat.get(index);
         tmp += num;
