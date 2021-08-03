@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         //광고 초기화
         initAd();
+
         
     }
 
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                     int selected = data.getIntExtra("equipment", -1);
                     try {
                         this.equipment = (Equipment) equipmentList.get(selected).clone();
-                        convertImage(selected);
+                        setThumnail();
                     } catch (CloneNotSupportedException e) {
                         e.printStackTrace();
                     }
@@ -127,10 +128,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 1:
                 if(data != null) {
-                    System.out.println("데이터 받았다");
                     Equipment equip = (Equipment) data.getSerializableExtra("equip");
                     this.equipment = equip;
-                    System.out.println(this.equipment.getStarStat());
+                    setThumnail();
                 }
                 break;
         }
@@ -138,15 +138,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     //선택된 장비 이미지 표시, 이름 표시
-    public void convertImage(int idx) {
+    public void setThumnail() {
         ImageView imageView = (ImageView)findViewById(R.id.selected_image);
         TextView textView = (TextView)findViewById(R.id.selected_name);
 
         int lid = this.getResources()
-                .getIdentifier(equipmentList.get(idx).getImage(), "drawable", this.getPackageName());
+                .getIdentifier(equipment.getImage(), "drawable", this.getPackageName());
 
         imageView.setImageResource(lid);
-        textView.setText(equipmentList.get(idx).getName());
+        textView.setText(equipment.getName());
 
     }
 

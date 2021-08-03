@@ -66,7 +66,7 @@ public class Equipment implements Cloneable, Serializable {
         initStarStat();
         goldHammer = 0;
         potential1 = new String[]{"잠재능력을 재설정 해주세요.", "", ""};
-        potential2 = new String[]{"잠재능력을 재설정 해주세요.", "", ""};
+        potential2 = new String[]{"에디셔널 잠재능력을 재설정 해주세요.", "", ""};
         potentialGrade1 = 0;
         potentialGrade2 = 0;
     }
@@ -300,5 +300,11 @@ public class Equipment implements Cloneable, Serializable {
         this.potential1[0] = potential[0];
         this.potential1[1] = potential[1];
         this.potential1[2] = potential[2];
+    }
+
+    public void setPotential2(String[] potential) {
+        this.potential2[0] = potential[0];
+        this.potential2[1] = potential[1];
+        this.potential2[2] = potential[2];
     }
 }

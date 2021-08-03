@@ -43,6 +43,7 @@
                 android:padding="10dp"
                 android:background="@drawable/ui_empty_item"
                 android:scaleType="fitCenter"
+                android:onClick="infoPopup"
                 android:src="@drawable/mongbel"
                 />
             <TextView

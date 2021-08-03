@@ -32,6 +32,11 @@ public class EquipmentPopup extends Activity {
         Typeface face = ResourcesCompat.getFont(this, R.font.nexon_low);
         String tmp = "";
 
+        TextView star = findViewById(R.id.star);
+        tmp = EquipmentInfo.starText(equipment);
+        star.setText(Html.fromHtml(tmp));
+        System.out.println(tmp);
+
         TextView name = findViewById(R.id.name);
         name.setText(equipment.getName());
         name.setTypeface(face);
@@ -60,6 +65,10 @@ public class EquipmentPopup extends Activity {
         tmp = EquipmentInfo.potential1(equipment);
         potential1.setText(Html.fromHtml(tmp));
         potential1.setTypeface(face);
-    }
 
+        TextView potential2 = findViewById(R.id.potential2);
+        tmp = EquipmentInfo.potential2(equipment);
+        potential2.setText(Html.fromHtml(tmp));
+        potential2.setTypeface(face);
+    }
 }

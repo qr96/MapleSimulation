@@ -66,11 +66,6 @@ public class CubeDataAdapter {
 
             List cubeTableList = new ArrayList();
 
-            String cubeTypes[] = {"'블랙큐브'"}; //, "'레드큐브'", "'에디셔널큐브'", "'명장의큐브'", "'장인의큐브'"};
-            String grades[] = {"레어", "에픽", "유니크", "레전더리"};
-            String types[] = {"무기", "엠블렘", "보조무기", "보조무기2", "방패"};
-            String lines[] = {"1", "2", "3"};
-
             CubeTable cubeTable = new CubeTable();
 
             String sql = "SELECT * FROM " + TABLE_NAME;
@@ -99,17 +94,85 @@ public class CubeDataAdapter {
             }
 
             cubeTableList.add(cubeTable);
+            cubeTableList.add(cubeTable("에디큐브테이블"));
 
             return cubeTableList;
+
         }
         catch (SQLException mSQLException) {
             Log.e(TAG, "getTestData >>"+ mSQLException.toString());
             throw mSQLException;
         }
     }
-    
+
+    public CubeTable cubeTable(String table_name) {
+        //에디셔널 큐브
+        CubeTable cubeTable = new CubeTable();
+
+        String sql = "SELECT * FROM " + table_name;
+        String key1 = "";
+        String key2 = "";
+        String key3 = "";
+
+        Cursor mCur = mDb.rawQuery(sql, null);
+        List list;
+
+        if(mCur!=null) {
+            while(mCur.moveToNext()) {
+                key1 = mCur.getString(1)+mCur.getString(0)+"1"; //ex)레어무기1
+                key2 = mCur.getString(1)+mCur.getString(0)+"2"; //ex)레어무기2
+                key3 = mCur.getString(1)+mCur.getString(0)+"3"; //ex)레어무기3
+
+                if(cubeTable.optaionTable.containsKey(key1)) cubeTable.optaionTable.get(key1).add(mCur.getString(2));
+                else {
+                    list = new ArrayList();
+                    list.add(mCur.getString(2));
+                    cubeTable.optaionTable.put(key1, list);
+                }
+                if(cubeTable.percentTable.containsKey(key1))
+                    cubeTable.percentTable.get(key1).add(convert(mCur.getString(3)));
+                else {
+                    list = new ArrayList();
+                    list.add(convert(mCur.getString(3)));
+                    cubeTable.percentTable.put(key1, list);
+                }
+
+                if(cubeTable.optaionTable.containsKey(key2)) cubeTable.optaionTable.get(key2).add(mCur.getString(4));
+                else {
+                    list = new ArrayList();
+                    list.add(mCur.getString(4));
+                    cubeTable.optaionTable.put(key2, list);
+                }
+                if(cubeTable.percentTable.containsKey(key2))
+                    cubeTable.percentTable.get(key1).add(convert(mCur.getString(5)));
+                else {
+                    list = new ArrayList();
+                    list.add(convert(mCur.getString(5)));
+                    cubeTable.percentTable.put(key2, list);
+                }
+
+                if(cubeTable.optaionTable.containsKey(key3)) cubeTable.optaionTable.get(key3).add(mCur.getString(6));
+                else {
+                    list = new ArrayList();
+                    list.add(mCur.getString(6));
+                    cubeTable.optaionTable.put(key3, list);
+                }
+                if(cubeTable.percentTable.containsKey(key3))
+                    cubeTable.percentTable.get(key3).add(convert(mCur.getString(7)));
+                else {
+                    list = new ArrayList();
+                    list.add(convert(mCur.getString(7)));
+                    cubeTable.percentTable.put(key3, list);
+                }
+            }
+        }
+
+        return cubeTable;
+    }
+
     //문자열 %를 double 로 바꿔줌
     public double convert(String percent){
+        if(percent == null) return 0.0;
         percent = percent.substring(0, percent.length()-1);
         return Double.parseDouble(percent);
     }

@@ -57,6 +57,12 @@ public class PotentialActivity extends Activity {
         else textView.setText(equipment.getName());
     }
 
+    public void infoPopup(View view){
+        Intent intent = new Intent(this, EquipmentPopup.class);
+        intent.putExtra("equipment", this.equipment);
+        startActivityForResult(intent, 1);
+    }
+
     public void updateText() {
         if(this.equipment == null) return;
 
@@ -70,6 +76,9 @@ public class PotentialActivity extends Activity {
 
         if(selected_button_id == R.id.button0){
             cube.useBlackCube();
+        }
+        else if(selected_button_id == R.id.button2){
+            cube.useAddiCube();
         }
         else return;
 

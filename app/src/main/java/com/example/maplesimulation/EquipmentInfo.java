@@ -57,6 +57,33 @@ public class EquipmentInfo {
         return equipInfo;
     }
 
+    public static String starText(Equipment equipment) {
+        int star = equipment.getStar();
+        int maxStar = equipment.getMaxStar();
+        String text = "";
+        int count = 0;
+        text = "<font color=\"#FFC107\">";
+        for(int i=0; i<star; i++){
+            if(count==15) text = text+"<br>";
+            else if(count%5==0) text = text+" ";
+            text = text+"★";
+            count++;
+        }
+        text = text+"</font>";
+
+        text = text+"<font color=\"#CCCCCC\">";
+        for(int i=0; i<maxStar-star; i++){
+            if(count==15) text = text+"<br>";
+            else if(count%5==0) text = text+" ";
+            text = text+"★";
+            count++;
+        }
+        text = text+"</font>";
+
+
+        return text;
+    }
+
     public static String potential(Equipment equipment) {
         String potential1[] = equipment.getPotential1();
         String potential2[] = equipment.getPotential2();

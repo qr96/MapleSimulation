@@ -23,10 +23,17 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/Equipment.db" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/Equipment.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/Cube.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/Cube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/CubeDataAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/CubeDataAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/Equipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/Equipment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/EquipmentInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/EquipmentInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/EquipmentPopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/EquipmentPopup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/PotentialActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/PotentialActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_scroll.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_scroll.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/StarforceActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/StarforceActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_potential.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_potential.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_starforce.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_starforce.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/popup_equipment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/popup_equipment.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +41,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@LMG710N0832e6ec]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\이규한\.android\avd\Pixel_2_API_29.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -73,7 +80,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$PROJECT_DIR$/../../Android/SDK" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/assets" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -84,10 +91,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Practice\MapleSimulation\app\src\main\assets" />
       <recent name="C:\Practice\MapleSimulation\app\src\main\res\drawable" />
       <recent name="C:\Practice\MapleSimulation\app\src\main\res\drawable-v24" />
       <recent name="C:\Practice\MapleSimulation\app\src\main\res\font" />
-      <recent name="C:\Practice\MapleSimulation\app\src\main\assets" />
       <recent name="C:\Practice\MapleSimulation\app\src\main\java\com\example\maplesimulation" />
     </key>
   </component>
@@ -217,22 +224,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="613" y="270" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1627828698279" />
-    <state width="1464" height="249" key="GridCell.Tab.0.bottom" timestamp="1627973998645">
+    <state width="1322" height="212" key="GridCell.Tab.0.bottom" timestamp="1627990393465">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1464" height="249" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1627973998645" />
-    <state width="1464" height="249" key="GridCell.Tab.0.center" timestamp="1627973998644">
+    <state width="1322" height="212" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1627990393465" />
+    <state width="1322" height="212" key="GridCell.Tab.0.center" timestamp="1627990393465">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1464" height="249" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1627973998644" />
-    <state width="1464" height="249" key="GridCell.Tab.0.left" timestamp="1627973998644">
+    <state width="1322" height="212" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1627990393465" />
+    <state width="1322" height="212" key="GridCell.Tab.0.left" timestamp="1627990393464">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1464" height="249" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1627973998644" />
-    <state width="1464" height="249" key="GridCell.Tab.0.right" timestamp="1627973998645">
+    <state width="1322" height="212" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1627990393464" />
+    <state width="1322" height="212" key="GridCell.Tab.0.right" timestamp="1627990393465">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1464" height="249" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1627973998645" />
+    <state width="1322" height="212" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1627990393465" />
     <state width="1366" height="319" key="GridCell.Tab.1.bottom" timestamp="1627740186808">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -269,9 +276,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="544" y="275" key="refactoring.ChangeSignatureDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1627565946769" />
-    <state x="438" y="258" width="672" height="678" key="search.everywhere.popup" timestamp="1627908790236">
+    <state x="438" y="258" width="672" height="678" key="search.everywhere.popup" timestamp="1627989487355">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="438" y="258" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1627908790236" />
+    <state x="438" y="258" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1627989487355" />
   </component>
 </project>

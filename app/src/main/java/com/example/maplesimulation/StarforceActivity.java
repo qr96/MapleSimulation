@@ -124,6 +124,12 @@ public class StarforceActivity extends Activity {
         });
     }
 
+    public void infoPopup(View view){
+        Intent intent = new Intent(this, EquipmentPopup.class);
+        intent.putExtra("equipment", this.equipment);
+        startActivityForResult(intent, 1);
+    }
+
     public void doStarforce(View view) {
         view.setEnabled(false);
 
