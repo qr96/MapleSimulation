@@ -21,7 +21,9 @@ public class PotentialActivity extends Activity {
 
     public List cubeTableList; //[블랙큐브, 레드큐브, 에디셔널큐브, 명장의큐브, 장인의큐브]
     public Equipment equipment;
-    public Cube cube;
+    public Cube blackCube;
+    public Cube redCube;
+    public Cube addiCube;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,9 @@ public class PotentialActivity extends Activity {
         updateText();
         setThumnail();
 
-        cube = new Cube(this.equipment, (CubeTable) cubeTableList.get(0));
+        blackCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(0));
+        redCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(1));
+        addiCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(2));
     }
 
     //맨 위의 썸네일 설정
@@ -75,10 +79,13 @@ public class PotentialActivity extends Activity {
     public void useCube(View view) {
 
         if(selected_button_id == R.id.button0){
-            cube.useBlackCube();
+            blackCube.useBlackCube();
+        }
+        else if(selected_button_id == R.id.button1){
+            redCube.useRedCube();
         }
         else if(selected_button_id == R.id.button2){
-            cube.useAddiCube();
+            addiCube.useAddiCube();
         }
         else return;
 

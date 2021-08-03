@@ -40,6 +40,58 @@ public class Cube {
         return -1;
     }
 
+    public void useRedCube() {
+        String[] option;
+        String type = equipment.getType();
+        ArrayList<String> subWeapon = new ArrayList<>(Arrays.asList("포스실드", "소울링", "방패"));
+        ArrayList<String> armor2 = new ArrayList<>(Arrays.asList("망토", "벨트", "어깨장식"));
+        ArrayList<String> accessary = new ArrayList<>(Arrays.asList("얼굴장식", "눈장식", "귀고리", "반지", "펜던트"));
+
+        //같은 테이블인 경우들 처리
+        if(equipment.isWeapon()) type = "무기";
+        else if(subWeapon.contains(type)) type="보조무기";
+        else if(type == "한벌옷") type="상의";
+        else if(armor2.contains(type)) type="망토";
+        else if(accessary.contains(type)) type="얼굴장식";
+
+
+        switch (equipment.getPotentialGrade1()) {
+            case "레어":
+                if(isSuccess(6.0)){ //등급업
+                    equipment.potentialGradeUp1();
+                    option = epic(type, 10.0, 1.0);
+                }
+                else {
+                    option = rare(type);
+                }
+                break;
+            case "에픽":
+                if(isSuccess(1.8)){ //등급업
+                    equipment.potentialGradeUp1();
+                    option = unique(type, 10.0, 1.0);
+                }
+                else {
+                    option = epic(type, 10.0, 1.0);
+                }
+                break;
+            case "유니크":
+                if(isSuccess(0.3)){ //등급업
+                    equipment.potentialGradeUp1();
+                    option = legendary(type, 10.0, 1.0);
+                }
+                else {
+                    option = unique(type, 10.0, 1.0);
+                }
+                break;
+            case "레전드리":
+                option = legendary(type, 10.0, 1.0);
+                break;
+            default:
+                option = new String[3];
+        }
+        this.equipment.setPotential1(option);
+    }
+
     public void useAddiCube() {
         String[] option;
         String type = equipment.getType();
@@ -211,6 +263,9 @@ public class Cube {
         List table = cubeTable.percentTable.get(key);
         if(table == null) return "Error : " + key;
         int random = tableRandom(table);
-        return (String) cubeTable.optaionTable.get(key).get(random);
+        System.out.println(cubeTable.percentTable.get(key));
+        System.out.println(cubeTable.optionTable.get(key));
+        System.out.println("선택된 숫자"+ random);
+        return (String) cubeTable.optionTable.get(key).get(random);
     }
 }

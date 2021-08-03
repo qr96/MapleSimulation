@@ -38,7 +38,9 @@ public class EquipmentPopup extends Activity {
         System.out.println(tmp);
 
         TextView name = findViewById(R.id.name);
-        name.setText(equipment.getName());
+        tmp = equipment.getName();
+        if(equipment.getNowUp()>0) tmp = tmp+"(+"+equipment.getNowUp()+")";
+        name.setText(tmp);
         name.setTypeface(face);
 
         TextView grade = findViewById(R.id.grade);

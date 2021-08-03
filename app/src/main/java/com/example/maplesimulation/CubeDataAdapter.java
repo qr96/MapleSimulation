@@ -77,11 +77,11 @@ public class CubeDataAdapter {
             if(mCur!=null) {
                 while(mCur.moveToNext()) {
                     key = mCur.getString(2) + mCur.getString(1) + mCur.getString(3);
-                    if(cubeTable.optaionTable.containsKey(key)) cubeTable.optaionTable.get(key).add(mCur.getString(4));
+                    if(cubeTable.optionTable.containsKey(key)) cubeTable.optionTable.get(key).add(mCur.getString(4));
                     else {
                         list = new ArrayList();
                         list.add(mCur.getString(4));
-                        cubeTable.optaionTable.put(key, list);
+                        cubeTable.optionTable.put(key, list);
                     }
                     if(cubeTable.percentTable.containsKey(key))
                         cubeTable.percentTable.get(key).add(convert(mCur.getString(5)));
@@ -94,6 +94,7 @@ public class CubeDataAdapter {
             }
 
             cubeTableList.add(cubeTable);
+            cubeTableList.add(cubeTable("레드큐브테이블"));
             cubeTableList.add(cubeTable("에디큐브테이블"));
 
             return cubeTableList;
@@ -123,11 +124,11 @@ public class CubeDataAdapter {
                 key2 = mCur.getString(1)+mCur.getString(0)+"2"; //ex)레어무기2
                 key3 = mCur.getString(1)+mCur.getString(0)+"3"; //ex)레어무기3
 
-                if(cubeTable.optaionTable.containsKey(key1)) cubeTable.optaionTable.get(key1).add(mCur.getString(2));
+                if(cubeTable.optionTable.containsKey(key1)) cubeTable.optionTable.get(key1).add(mCur.getString(2));
                 else {
                     list = new ArrayList();
                     list.add(mCur.getString(2));
-                    cubeTable.optaionTable.put(key1, list);
+                    cubeTable.optionTable.put(key1, list);
                 }
                 if(cubeTable.percentTable.containsKey(key1))
                     cubeTable.percentTable.get(key1).add(convert(mCur.getString(3)));
@@ -137,25 +138,25 @@ public class CubeDataAdapter {
                     cubeTable.percentTable.put(key1, list);
                 }
 
-                if(cubeTable.optaionTable.containsKey(key2)) cubeTable.optaionTable.get(key2).add(mCur.getString(4));
+                if(cubeTable.optionTable.containsKey(key2)) cubeTable.optionTable.get(key2).add(mCur.getString(4));
                 else {
                     list = new ArrayList();
                     list.add(mCur.getString(4));
-                    cubeTable.optaionTable.put(key2, list);
+                    cubeTable.optionTable.put(key2, list);
                 }
                 if(cubeTable.percentTable.containsKey(key2))
-                    cubeTable.percentTable.get(key1).add(convert(mCur.getString(5)));
+                    cubeTable.percentTable.get(key2).add(convert(mCur.getString(5)));
                 else {
                     list = new ArrayList();
                     list.add(convert(mCur.getString(5)));
                     cubeTable.percentTable.put(key2, list);
                 }
 
-                if(cubeTable.optaionTable.containsKey(key3)) cubeTable.optaionTable.get(key3).add(mCur.getString(6));
+                if(cubeTable.optionTable.containsKey(key3)) cubeTable.optionTable.get(key3).add(mCur.getString(6));
                 else {
                     list = new ArrayList();
                     list.add(mCur.getString(6));
-                    cubeTable.optaionTable.put(key3, list);
+                    cubeTable.optionTable.put(key3, list);
                 }
                 if(cubeTable.percentTable.containsKey(key3))
                     cubeTable.percentTable.get(key3).add(convert(mCur.getString(7)));

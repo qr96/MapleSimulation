@@ -193,11 +193,16 @@ public class StarforceActivity extends Activity {
         double destroy = starforce.table_destroyed[equipment.getStar()];
         double fail = 100.0 - success - destroy;
         int stats[] = starforce.increment();
+        String equipInfo = "";
 
         TextView textView = findViewById(R.id.info);
-        String equipInfo = equipment.getStar()+"성 > "+(equipment.getStar()+1)+"성\n\n";
+        if(starforce.event.equals("10성1+1")) equipInfo = equipment.getStar()+"성 > "+(equipment.getStar()+2)+"성\n\n";
+        else equipInfo = equipment.getStar()+"성 > "+(equipment.getStar()+1)+"성\n\n";
         if(starforce.isChanceTime()){
             equipInfo = "찬스타임!!!!\n\n성공확률:100%\n\n";
+        }
+        else if(starforce.can1516event()){
+            equipInfo = equipInfo+"성공확률: 100%\n\n";
         }
         else{
             equipInfo = equipInfo+"성공확률: "+success+"%\n"+"실패";
@@ -206,10 +211,9 @@ public class StarforceActivity extends Activity {
             equipInfo = equipInfo+"확률: "+fail+"\n"+
                     "파괴확률: "+destroy+"%\n\n";
         }
-         equipInfo = equipInfo+"주스텟: +"+stats[0]+"\n"+
+        equipInfo = equipInfo+"주스텟: +"+stats[0]+"\n"+
                 "공격력: +"+stats[1]+"\n"+
                 "마력: +"+stats[2]+"\n";
-
 
         textView.setText(equipInfo);
 

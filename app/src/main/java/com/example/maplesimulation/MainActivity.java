@@ -36,8 +36,13 @@ public class MainActivity extends AppCompatActivity {
 
         //광고 초기화
         initAd();
+    }
 
-        
+    public void infoPopup(View view) {
+        if(this.equipment == null) return;
+        Intent intent = new Intent(this, EquipmentPopup.class);
+        intent.putExtra("equipment", this.equipment);
+        startActivity(intent);
     }
 
     //광고 초기화
@@ -139,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
     //선택된 장비 이미지 표시, 이름 표시
     public void setThumnail() {
-        ImageView imageView = (ImageView)findViewById(R.id.selected_image);
+        ImageView imageView = (ImageView)findViewById(R.id.thumnail);
         TextView textView = (TextView)findViewById(R.id.selected_name);
 
         int lid = this.getResources()

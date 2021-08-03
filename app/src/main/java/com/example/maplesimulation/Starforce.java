@@ -71,6 +71,14 @@ public class Starforce {
         }
         return -1;
     }
+    
+    //1516이벤트 적용 가능한지
+    public boolean can1516event() {
+        int star = equipment.getStar();
+        if(event.equals("5,10,15성100%") && star==5 || star==10 || star==15)
+            return true;
+        return false;
+    }
 
     //스타포스 실행 (스타캐치, 파괴방지)
     public int doStarforce(boolean starCatch, String event) {
@@ -90,7 +98,7 @@ public class Starforce {
             chanceStack = 0;
         }
 
-        if(event.equals("5,10,15성100%") && star==5 || star==10 || star==15) success=100;
+        if(can1516event()) success=100;
 
         result = tableRandom(new double[]{success, destroy, fail});
 
