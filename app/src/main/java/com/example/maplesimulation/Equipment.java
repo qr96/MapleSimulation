@@ -166,6 +166,7 @@ public class Equipment implements Cloneable, Serializable {
         goldHammer=0;
         failUp=0;
         initEnhance();
+        initStarStat();
     }
 
     //추가옵션이 몇 급인지 반환
@@ -252,6 +253,8 @@ public class Equipment implements Cloneable, Serializable {
     public int getStar() { return star; }
 
     public void upStar() {this.star++; } //스타포스 수치 업
+
+    public ArrayList getStarStat() { return this.starStat; }
 
     public void downStar() {this.star--; }
 

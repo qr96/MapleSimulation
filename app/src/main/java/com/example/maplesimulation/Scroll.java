@@ -123,7 +123,7 @@ public class Scroll {
 
     /*------------------ 주흔작 -----------------*/
     /*------- 강화 실행 함수 ------*/
-    //장비 강화 120~200제   [-1:남은 횟수X, 0:실패 1:성공]
+    //방어구 강화 120~200제   [-1:남은 횟수X, 0:실패 1:성공]
     public int doArmorScroll2(int possibility, String justat) {
         if(equip.isFinishEnchant()) return -1; //업그레이드 가능횟수가 없는 경우
 
@@ -189,7 +189,7 @@ public class Scroll {
         return 0;
     }
 
-    /*------ 능력치만 올려주는 함수 ------*/
+    /*------ 능력치 올려주는 함수 ------*/
     //방어구 강화 120~200제
     private void armorScroll2(int possibility, String justat) {
         int new_justat = 0;

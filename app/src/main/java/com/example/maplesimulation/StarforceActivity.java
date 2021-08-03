@@ -170,6 +170,15 @@ public class StarforceActivity extends Activity {
         else textView.setText(equipment.getName());
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("equip", this.equipment);
+        setResult(1, intent);
+        finish();
+        super.onBackPressed();
+    }
+
     //장비 강화 상태창 업데이트
     public void updateText() {
         if(this.equipment == null) return;

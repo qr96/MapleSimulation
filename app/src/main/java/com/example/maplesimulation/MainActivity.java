@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("데이터 받았다");
                     Equipment equip = (Equipment) data.getSerializableExtra("equip");
                     this.equipment = equip;
+                    System.out.println(this.equipment.getStarStat());
                 }
                 break;
         }

@@ -368,11 +368,8 @@ public class ScrollActivity extends Activity {
             return;
         }
 
-        selected_button_id = view.getId();
-
         //선택한 번호의 아이템에 체크 표시
-        if(view.getId() == R.id.scroll_button_0){
-            //주문의 흔적
+        if(view.getId() == R.id.scroll_button_0){//주문의 흔적
             selected_check_id = R.id.scroll_check_0;
 
             //주문서의 세부 옵션 선택 팝업
@@ -395,8 +392,7 @@ public class ScrollActivity extends Activity {
             intent.putExtra("scroll", 0);
             startActivityForResult(intent, 0);
         }
-        else if(view.getId() == R.id.scroll_button_1){
-            //순백의 주문서
+        else if(view.getId() == R.id.scroll_button_1){//순백의 주문서
             selected_check_id = R.id.scroll_check_1;
 
             //주문서의 세부 옵션 선택 팝업
@@ -405,8 +401,7 @@ public class ScrollActivity extends Activity {
             startActivityForResult(intent, 0);
 
         }
-        else if(view.getId() == R.id.scroll_button_2){
-            //황금 망치
+        else if(view.getId() == R.id.scroll_button_2){//황금 망치
             selected_check_id = R.id.scroll_check_2;
 
             //주문서의 세부 옵션 선택 팝업
@@ -414,8 +409,7 @@ public class ScrollActivity extends Activity {
             intent.putExtra("scroll", 2);
             startActivityForResult(intent, 0);
         }
-        else if(view.getId() == R.id.scroll_button_3){
-            //이노센트 주문서
+        else if(view.getId() == R.id.scroll_button_3){//이노센트 주문서
             selected_check_id = R.id.scroll_check_3;
 
             //주문서의 세부 옵션 선택 팝업
@@ -423,8 +417,7 @@ public class ScrollActivity extends Activity {
             intent.putExtra("scroll", 3);
             startActivityForResult(intent, 0);
         }
-        else if(view.getId() == R.id.scroll_button_4){
-            //혼돈의 주문서
+        else if(view.getId() == R.id.scroll_button_4){//혼돈의 주문서
             selected_check_id = R.id.scroll_check_4;
 
             //주문서의 세부 옵션 선택 팝업
@@ -440,7 +433,11 @@ public class ScrollActivity extends Activity {
             //강환불
             selected_check_id = R.id.scroll_check_6;
         }
+        else{
+            return;
+        }
 
+        selected_button_id = view.getId();
         ImageView new_select = (ImageView)findViewById(selected_check_id);
         new_select.setVisibility(View.VISIBLE);
     }

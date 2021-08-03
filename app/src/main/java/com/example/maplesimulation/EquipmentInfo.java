@@ -13,11 +13,16 @@ public class EquipmentInfo {
         ArrayList equipStats = equipment.getStats();
         ArrayList equipEnhance = equipment.getEnhance();
         ArrayList equipAdditional = equipment.getAdditional(); //추가옵션
+        ArrayList starStat = equipment.getStarStat(); //스타포스 수치
 
         int sum = 0;
 
         for(int i=0; i<table.length; i++){
-            sum = (Integer) equipStats.get(i) + (Integer)equipAdditional.get(i) + (Integer) equipEnhance.get(i);
+            sum = (Integer) equipStats.get(i) + (Integer)equipAdditional.get(i) + (Integer) equipEnhance.get(i)
+                    +(Integer) starStat.get(i);
+
+
+
             if(sum == 0 || i==6) continue;
             equipInfo = equipInfo + table[i] + " : " + "+" + sum;
 
@@ -33,8 +38,8 @@ public class EquipmentInfo {
                     equipInfo = equipInfo + "</font>";
                 }
 
-                if((Integer)equipEnhance.get(i) > 0) { //강화 수치
-                    equipInfo = equipInfo + "<font color=\"#99CCFF\"> +" + equipEnhance.get(i);
+                if((Integer)equipEnhance.get(i)+(Integer) starStat.get(i) > 0) { //강화 수치
+                    equipInfo = equipInfo + "<font color=\"#99CCFF\"> +" + ((Integer)equipEnhance.get(i)+(Integer) starStat.get(i));
                     equipInfo = equipInfo + "</font>";
                 }
                 equipInfo = equipInfo + ")";

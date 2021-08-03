@@ -146,6 +146,13 @@ public class Starforce {
     }
 
     public void success() {
+        int list[] = increment(); //주스텟, 공격력, 마력
+        for(int i=0; i<4; i++){
+            equipment.upgradeStarStat(i, list[0]);
+        }
+        equipment.upgradeStarStat(8, list[1]);
+        equipment.upgradeStarStat(9, list[2]);
+
         equipment.upStar();
         chanceStack=0;
     }
@@ -179,40 +186,26 @@ public class Starforce {
 
         //주스텟 상승, 무기 방어구 동일
         if(equipment.getStar() <= 5) {
-            for(int i=0; i<4; i++){
-                stats[0] = 2;
-            }
+            stats[0] = 2;
         }
         else if(equipment.getStar() <= 15) {
-            for(int i=0; i<4; i++){
-                stats[0] = 3;
-            }
+            stats[0] = 3;
         }
         else {
             if(equipment.getLevReq() == 130) {
-                for(int i=0; i<4; i++){
-                    stats[0] = 7;
-                }
+                stats[0] = 7;
             }
             else if(equipment.getLevReq() == 140) {
-                for(int i=0; i<4; i++){
-                    stats[0] = 9;
-                }
+                stats[0] = 9;
             }
             else if(equipment.getLevReq() == 150) {
-                for(int i=0; i<4; i++){
-                    stats[0] = 11;
-                }
+                stats[0] = 11;
             }
             else if(equipment.getLevReq() == 160) {
-                for(int i=0; i<4; i++){
-                    stats[0] = 13;
-                }
+                stats[0] = 13;
             }
             else if(equipment.getLevReq() == 200) {
-                for(int i=0; i<4; i++){
-                    stats[0] = 15;
-                }
+                stats[0] = 15;
             }
         }
 

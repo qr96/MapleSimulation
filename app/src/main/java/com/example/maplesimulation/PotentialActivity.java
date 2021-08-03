@@ -3,6 +3,7 @@ package com.example.maplesimulation;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -66,9 +67,22 @@ public class PotentialActivity extends Activity {
     }
 
     public void useCube(View view) {
-        cube.useBlackCube();
+
+        if(selected_button_id == R.id.button0){
+            cube.useBlackCube();
+        }
+        else return;
+
         updateText();
         sparkleEffect();
+        view.setEnabled(false);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                view.setEnabled(true);
+            }
+        }, 600);
     }
 
     //반짝 효과
@@ -132,42 +146,29 @@ public class PotentialActivity extends Activity {
         }
 
         //선택한 번호의 아이템에 체크 표시
-        if(view.getId() == R.id.cube_button_0){
-            ImageView new_select = (ImageView)findViewById(R.id.cube_check_0);
-            new_select.setVisibility(View.VISIBLE);
-
-            selected_button_id = view.getId();
-            selected_check_id = R.id.cube_check_0;
+        if(view.getId() == R.id.button0){
+            selected_check_id = R.id.check0;
         }
 
-        else if(view.getId() == R.id.cube_button_0){
-            ImageView new_select = (ImageView)findViewById(R.id.cube_check_1);
-            new_select.setVisibility(View.VISIBLE);
-
-            selected_button_id = view.getId();
-            selected_check_id = R.id.cube_check_0;
+        else if(view.getId() == R.id.button1){
+            selected_check_id = R.id.check1;
         }
-        else if(view.getId() == R.id.cube_button_0){
-            ImageView new_select = (ImageView)findViewById(R.id.cube_check_2);
-            new_select.setVisibility(View.VISIBLE);
-
-            selected_button_id = view.getId();
-            selected_check_id = R.id.cube_check_0;
+        else if(view.getId() == R.id.button2){
+            selected_check_id = R.id.check2;
         }
-        else if(view.getId() == R.id.cube_button_0){
-            ImageView new_select = (ImageView)findViewById(R.id.cube_check_3);
-            new_select.setVisibility(View.VISIBLE);
-
-            selected_button_id = view.getId();
-            selected_check_id = R.id.cube_check_0;
+        else if(view.getId() == R.id.button3){
+            selected_check_id = R.id.check3;
         }
-        else if(view.getId() == R.id.cube_button_0){
-            ImageView new_select = (ImageView)findViewById(R.id.cube_check_4);
-            new_select.setVisibility(View.VISIBLE);
-
-            selected_button_id = view.getId();
-            selected_check_id = R.id.cube_check_0;
+        else if(view.getId() == R.id.button4){
+            selected_check_id = R.id.check4;
         }
+        else{
+            return;
+        }
+
+        selected_button_id = view.getId();
+        ImageView new_select = (ImageView)findViewById(selected_check_id);
+        new_select.setVisibility(View.VISIBLE);
 
     }
 
