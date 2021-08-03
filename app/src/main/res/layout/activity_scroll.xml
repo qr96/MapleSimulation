@@ -66,6 +66,7 @@
                         android:layout_height="wrap_content"
                         android:text="선택된 장비가 없습니다."
                         android:textSize="20sp"
+                        android:lineSpacingExtra="5dp"
                         android:textColor="#F1F1F1"/>
 
                 </ScrollView>

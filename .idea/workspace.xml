@@ -15,8 +15,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4a0412e-d4ba-439e-955a-a224d8a43432" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/EquipmentPopup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/popup_equipment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -25,12 +23,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/Scroll.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/Scroll.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/ScrollActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/ScrollActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_potential.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_potential.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/EquipmentInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/EquipmentInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/EquipmentPopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/EquipmentPopup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/PotentialActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/PotentialActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_scroll.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_scroll.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/popup_equipment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/popup_equipment.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,22 +217,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="613" y="270" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1627828698279" />
-    <state width="1345" height="249" key="GridCell.Tab.0.bottom" timestamp="1627968797295">
+    <state width="1464" height="249" key="GridCell.Tab.0.bottom" timestamp="1627973998645">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1345" height="249" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1627968797295" />
-    <state width="1345" height="249" key="GridCell.Tab.0.center" timestamp="1627968797295">
+    <state width="1464" height="249" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1627973998645" />
+    <state width="1464" height="249" key="GridCell.Tab.0.center" timestamp="1627973998644">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1345" height="249" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1627968797295" />
-    <state width="1345" height="249" key="GridCell.Tab.0.left" timestamp="1627968797294">
+    <state width="1464" height="249" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1627973998644" />
+    <state width="1464" height="249" key="GridCell.Tab.0.left" timestamp="1627973998644">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1345" height="249" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1627968797294" />
-    <state width="1345" height="249" key="GridCell.Tab.0.right" timestamp="1627968797295">
+    <state width="1464" height="249" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1627973998644" />
+    <state width="1464" height="249" key="GridCell.Tab.0.right" timestamp="1627973998645">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1345" height="249" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1627968797295" />
+    <state width="1464" height="249" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1627973998645" />
     <state width="1366" height="319" key="GridCell.Tab.1.bottom" timestamp="1627740186808">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

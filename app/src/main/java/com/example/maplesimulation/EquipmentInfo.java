@@ -22,7 +22,6 @@ public class EquipmentInfo {
                     +(Integer) starStat.get(i);
 
 
-
             if(sum == 0 || i==6) continue;
             equipInfo = equipInfo + table[i] + " : " + "+" + sum;
 
@@ -104,6 +103,66 @@ public class EquipmentInfo {
         info = info + "에디셔널 잠재옵션</font><br>";
         for(int i=0; i<potential2.length; i++){
             info = info + potential2[i] + "<br>";
+        }
+
+        return info;
+    }
+
+    public static String potential1(Equipment equipment) {
+        String potential1[] = equipment.getPotential1();
+        String info = "";
+
+        switch (equipment.getPotentialGrade1()) {
+            case "레어":
+                info = info + "<font color=\"#00CCFF\">" +"R ";
+                break;
+            case "에픽":
+                info =  info + "<font color=\"#CC33CC\">" + "E ";
+                break;
+            case "유니크":
+                info = info + "<font color=\"#FFFF33\">" + "U ";
+                break;
+            case "레전드리":
+                info = info + "<font color=\"#33FF00\">" + "L ";
+                break;
+            default:
+                break;
+        }
+        info = info + "잠재옵션</font><br>";
+
+        for(int i=0; i<potential1.length; i++){
+            info = info + potential1[i];
+            if(i+1<potential1.length) info = info + "<br>";
+        }
+
+        return info;
+    }
+
+    public static String potential2(Equipment equipment) {
+        String potential[] = equipment.getPotential2();
+        String info = "";
+
+        switch (equipment.getPotentialGrade2()) {
+            case "레어":
+                info = info + "<font color=\"#00CCFF\">" +"R ";
+                break;
+            case "에픽":
+                info =  info + "<font color=\"#CC33CC\">" + "E ";
+                break;
+            case "유니크":
+                info = info + "<font color=\"#FFFF33\">" + "U ";
+                break;
+            case "레전드리":
+                info = info + "<font color=\"#33FF00\">" + "L ";
+                break;
+            default:
+                break;
+        }
+        info = info + "잠재옵션</font><br>";
+
+        for(int i=0; i<potential.length; i++){
+            info = info + potential[i];
+            if(i+1<potential.length) info = info + "<br>";
         }
 
         return info;

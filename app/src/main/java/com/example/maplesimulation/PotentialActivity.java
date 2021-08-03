@@ -172,5 +172,14 @@ public class PotentialActivity extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("equip", this.equipment);
+        setResult(1, intent);
+        finish();
+        super.onBackPressed();
+    }
+
 }
 
