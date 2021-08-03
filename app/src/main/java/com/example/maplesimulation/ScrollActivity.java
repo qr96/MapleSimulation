@@ -51,7 +51,6 @@ public class ScrollActivity extends Activity {
 
         //광고 초기화
         initAd();
-
     }
 
     //광고 초기화
@@ -65,6 +64,12 @@ public class ScrollActivity extends Activity {
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+    }
+
+    public void infoPopup(View view){
+        Intent intent = new Intent(this, EquipmentPopup.class);
+        intent.putExtra("equipment", this.equipment);
+        startActivityForResult(intent, 1);
     }
 
     //성공 이펙트 실행

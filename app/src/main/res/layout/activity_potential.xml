@@ -43,7 +43,8 @@
                 android:padding="10dp"
                 android:background="@drawable/ui_empty_item"
                 android:scaleType="fitCenter"
-                android:src="@drawable/mongbel" />
+                android:src="@drawable/mongbel"
+                />
             <TextView
                 android:id="@+id/equipment_name"
                 android:layout_width="wrap_content"

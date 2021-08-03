@@ -22,6 +22,8 @@
         <activity android:name=".StarforceActivity"/>
 
         <activity android:name=".SelectBasicScollPopup" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".EquipmentPopup" android:theme="@android:style/Theme.Dialog"/>
+
 
         <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data

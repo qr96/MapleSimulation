@@ -71,7 +71,7 @@ public class Scroll {
 
     //이노센트 주문서
     public int useInnocent(int possibility) {
-        if(equip.getNowUp()==0 && equip.getFailUp()==0 && equip.getGoldHammer()==0)
+        if(equip.getNowUp()==0 && equip.getFailUp()==0 && equip.getGoldHammer()==0 && equip.getStar()==0)
             return -1; //사용할 필요가 없는 경우
 
         if(isSuccess(possibility) == true) {
