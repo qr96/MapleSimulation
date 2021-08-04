@@ -154,7 +154,7 @@ public class Starforce {
     }
 
     public void success() {
-        int list[] = increment(); //주스텟, 공격력, 마력
+        int list[] = increment(equipment.getStar()); //주스텟, 공격력, 마력
         for(int i=0; i<4; i++){
             equipment.upgradeStarStat(i, list[0]);
         }
@@ -184,19 +184,25 @@ public class Starforce {
     public void failed() {
         if(canDown()){
             equipment.downStar();
+            int list[] = increment(equipment.getStar()-1); //주스텟, 공격력, 마력
+            for(int i=0; i<4; i++){
+                equipment.downStarStat(i, list[0]);
+            }
+            equipment.downStarStat(8, list[1]);
+            equipment.downStarStat(9, list[2]);
             chanceStack++;
         }
     }
 
     //스타포스로 인해 증가할 수치 계산 [주스텟, 공격력, 마력] 반환
-    public int[] increment() {
+    public int[] increment(int star) {
         int stats[] = {0, 0, 0}; //주스텟, 공격력, 마력
 
         //주스텟 상승, 무기 방어구 동일
-        if(equipment.getStar() <= 5) {
+        if(star < 5) {
             stats[0] = 2;
         }
-        else if(equipment.getStar() <= 15) {
+        else if(star < 15) {
             stats[0] = 3;
         }
         else {
@@ -218,7 +224,7 @@ public class Starforce {
         }
 
         //15성 이하 공격력 상승 방어구, 무기 다름
-        if(equipment.getStar() < 15) { //0->1 ~ 14->15
+        if(star < 15) { //0->1 ~ 14->15
             if(equipment.isWeapon()) {
                 if((int)equipment.getStats().get(9) > 0) { //법사 직업
                     stats[2] = (int)equipment.getStats().get(9)/50+1;
@@ -229,8 +235,8 @@ public class Starforce {
 
             }
             else if(equipment.getType().equals("장갑")){
-                if(equipment.getStar()==4||equipment.getStar()==6||equipment.getStar()==8||equipment.getStar()==10
-                        ||equipment.getStar()==12||equipment.getStar()==13||equipment.getStar()==14){
+                if(star==4||star==6||star==8||star==10
+                        ||star==12||star==13||star==14){
                     stats[1]++;
                     stats[2]++;
                 }
@@ -238,7 +244,7 @@ public class Starforce {
         }
         else { //15성 초과
             int levReq = equipment.getLevReq();
-            int step = equipment.getStar() + 1;
+            int step = star + 1;
 
             if(equipment.isWeapon()) {
                 if((int)equipment.getStats().get(9) > 0) { //법사 직업

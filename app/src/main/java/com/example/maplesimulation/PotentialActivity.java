@@ -148,6 +148,11 @@ public class PotentialActivity extends Activity {
             cube = "red";
         }
         else if(selected_button_id == R.id.button2){
+            //오토모드
+            if(autoCheck.isChecked()) {
+                autoCube("additional", view);
+                return;
+            }
             cube = "additional";
         }
         else return;

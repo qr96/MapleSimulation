@@ -192,7 +192,7 @@ public class StarforceActivity extends Activity {
         double success = starforce.table_success[equipment.getStar()];
         double destroy = starforce.table_destroyed[equipment.getStar()];
         double fail = 100.0 - success - destroy;
-        int stats[] = starforce.increment();
+        int stats[] = starforce.increment(equipment.getStar());
         String equipInfo = "";
 
         TextView textView = findViewById(R.id.info);

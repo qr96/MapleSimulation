@@ -268,6 +268,12 @@ public class Equipment implements Cloneable, Serializable {
         this.starStat.set(index, tmp);
     }
 
+    public void downStarStat(int index, int num) {
+        int tmp = this.starStat.get(index);
+        tmp -= num;
+        this.starStat.set(index, tmp);
+    }
+
 
 
     public void setName(String name) {
