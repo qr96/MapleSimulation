@@ -8,6 +8,7 @@ import android.text.Html;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,8 @@ public class PotentialActivity extends Activity {
     public Cube blackCube;
     public Cube redCube;
     public Cube addiCube;
+
+    Animation autoAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,11 @@ public class PotentialActivity extends Activity {
         blackCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(0));
         redCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(1));
         addiCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(2));
+
+        autoAnim = new AlphaAnimation(0.4f, 1.0f);
+        autoAnim.setDuration(400);
+        autoAnim.setRepeatMode(Animation.REVERSE);
+        autoAnim.setRepeatCount(Animation.INFINITE);
     }
 
     //맨 위의 썸네일 설정
@@ -76,22 +84,36 @@ public class PotentialActivity extends Activity {
         textView.setText(Html.fromHtml(equipInfo));
     }
 
+    //auto모드 계속 돌릴지 여부
+    boolean keepGoing = false;
+
     public void useCube(View view) {
+        CheckBox autoCheck = findViewById(R.id.auto);
+        String cube = "";
 
         if(selected_button_id == R.id.button0){
-            blackCube.useBlackCube();
+            //오토모드
+            if(autoCheck.isChecked()) {
+                autoCube("black", view);
+                return;
+            }
+            cube = "black";
         }
         else if(selected_button_id == R.id.button1){
-            redCube.useRedCube();
+            //오토모드
+            if(autoCheck.isChecked()) {
+                autoCube("red", view);
+                return;
+            }
+            cube = "red";
         }
         else if(selected_button_id == R.id.button2){
-            addiCube.useAddiCube();
+            cube = "additional";
         }
         else return;
 
-        updateText();
-        sparkleEffect();
         view.setEnabled(false);
+        usingCube(cube);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -99,6 +121,51 @@ public class PotentialActivity extends Activity {
                 view.setEnabled(true);
             }
         }, 600);
+    }
+
+    public void autoCube(String cube, View view) {
+        CheckBox autoCheck = findViewById(R.id.auto);
+
+        if(keepGoing) keepGoing = false;
+        else keepGoing = true;
+        if(keepGoing==false){
+            view.getAnimation().cancel();
+            autoCheck.setEnabled(true);
+        }
+        else{
+            autoCheck.setEnabled(false);
+            view.startAnimation(autoAnim);
+        }
+
+        Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if(keepGoing) {
+                    usingCube(cube);
+                    handler.postDelayed(this, 400);  // 1 second delay
+                }
+            }
+        };
+        handler.post(runnable);
+    }
+
+    public void usingCube(String name) {
+        if(name.equals("black")) {
+            blackCube.useBlackCube();
+        }
+        else if(name.equals("red")) {
+            redCube.useRedCube();
+        }
+        else if(name.equals("additional")) {
+            addiCube.useAddiCube();
+        }
+        else {
+            return;
+        }
+
+        updateText();
+        sparkleEffect();
     }
 
     //반짝 효과

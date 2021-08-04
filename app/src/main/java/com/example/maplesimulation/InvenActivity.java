@@ -60,13 +60,6 @@ public class InvenActivity extends Activity {
                 }
             }
         });
-        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-                return true;
-            }
-        });
     }
 
     //광고 초기화
