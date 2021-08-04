@@ -12,4 +12,16 @@
         <item>30% 할인</item>
         <item>5,10,15성 100%</item>
     </string-array>
+    <string-array name="armor_potential_list">
+        <item>STR 3줄</item>
+        <item>DEX 3줄</item>
+        <item>INT 3줄</item>
+        <item>LUK 3줄</item>
+    </string-array>
+    <string-array name="weapon_potential_list">
+        <item>공격력 3줄</item>
+        <item>마력 3줄</item>
+        <item>공격력 2줄</item>
+        <item>마력 2줄</item>
+    </string-array>
 </resources>

@@ -222,12 +222,23 @@
                     </FrameLayout>
                 </LinearLayout>
             </HorizontalScrollView>
-            <CheckBox
-                android:id="@+id/auto"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="AUTO"/>
+                android:orientation="horizontal"
+                android:gravity="center">
+                <CheckBox
+                    android:id="@+id/auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="AUTO"/>
+                <Spinner
+                    android:id="@+id/option"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"/>
+            </LinearLayout>
             <Button
                 android:layout_width="200dp"
                 android:layout_height="60dp"

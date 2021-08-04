@@ -8,8 +8,11 @@ import android.text.Html;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.List;
@@ -28,6 +31,12 @@ public class PotentialActivity extends Activity {
 
     Animation autoAnim;
 
+    //auto모드 계속 돌릴지 여부
+    boolean keepGoing = false;
+    
+    //auto모드, 원하는 옵션 번호
+    int autoOption;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +51,48 @@ public class PotentialActivity extends Activity {
         updateText();
         setThumnail();
 
-        blackCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(0));
-        redCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(1));
-        addiCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(2));
-
+        initAutoAni();
+        initCube();
+        initSpinner();
+    }
+    public void initAutoAni() {
         autoAnim = new AlphaAnimation(0.4f, 1.0f);
         autoAnim.setDuration(400);
         autoAnim.setRepeatMode(Animation.REVERSE);
         autoAnim.setRepeatCount(Animation.INFINITE);
+    }
+
+    public void initCube() {
+        blackCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(0));
+        redCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(1));
+        addiCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(2));
+    }
+
+    public void initSpinner() {
+        Spinner event_spinner = (Spinner) findViewById(R.id.option);
+        ArrayAdapter<CharSequence> adapter;
+        if(equipment.isWeapon()){
+            adapter = ArrayAdapter.createFromResource(this,
+                    R.array.weapon_potential_list, android.R.layout.simple_spinner_item);
+        }
+        else {
+            adapter = ArrayAdapter.createFromResource(this,
+                    R.array.armor_potential_list, android.R.layout.simple_spinner_item);
+        }
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        event_spinner.setAdapter(adapter);
+        event_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                autoOption = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     //맨 위의 썸네일 설정
@@ -83,9 +126,6 @@ public class PotentialActivity extends Activity {
 
         textView.setText(Html.fromHtml(equipInfo));
     }
-
-    //auto모드 계속 돌릴지 여부
-    boolean keepGoing = false;
 
     public void useCube(View view) {
         CheckBox autoCheck = findViewById(R.id.auto);
@@ -142,12 +182,75 @@ public class PotentialActivity extends Activity {
             @Override
             public void run() {
                 if(keepGoing) {
-                    usingCube(cube);
-                    handler.postDelayed(this, 400);  // 1 second delay
+                    if(isAutoKeep(cube)){
+                        usingCube(cube);
+                        handler.postDelayed(this, 200);  // 1 second delay
+                    }
+
                 }
             }
         };
         handler.post(runnable);
+    }
+
+    //자동모드 계속할지 여부
+    public boolean isAutoKeep(String cube) {
+        String option[];
+        int attk = 0;
+        int magic = 0;
+        int str = 0;
+        int dex = 0;
+        int intel = 0;
+        int luk = 0;
+
+        if(cube.equals("additional")) option = equipment.getPotential2();
+        else option = equipment.getPotential1();
+
+        if(option==null || option.length<3) return true;
+
+        for(int i=0; i<3; i++){
+            System.out.println(option[i]);
+            if(option[i].length()<3) return true;
+            String tmp = option[i].substring(0, 3);
+            if(tmp.equals("공격력")) attk++;
+            else if(tmp.equals("마력")) magic++;
+            else if(tmp.equals("STR")) str++;
+            else if(tmp.equals("DEX")) dex++;
+            else if(tmp.equals("INT")) intel++;
+            else if(tmp.equals("LUK")) luk++;
+            else if(tmp.equals("올스텟")) {str++; dex++; intel++; luk++;}
+        }
+
+        if(equipment.isWeapon()){
+            if(autoOption==0 && attk==3){
+                return false;
+            }
+            else if(autoOption==1 && magic==3){
+                return false;
+            }
+            else if(autoOption==2 && attk>=2){
+                return false;
+            }
+            else if(autoOption==3 && magic>=2){
+                return false;
+            }
+        }
+        else {
+            if(autoOption==0 && str==3){
+                return false;
+            }
+            else if(autoOption==1 && dex==3){
+                return false;
+            }
+            else if(autoOption==2 && intel>=3){
+                return false;
+            }
+            else if(autoOption==3 && luk>=3){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void usingCube(String name) {
