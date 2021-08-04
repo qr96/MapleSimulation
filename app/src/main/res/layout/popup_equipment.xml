@@ -22,14 +22,16 @@
             android:layout_height="wrap_content"
             android:text="몽환의 벨트"
             android:textAlignment="center"
-            android:textSize="23sp" />
+            android:textSize="23sp"
+            android:textColor="#373737"/>
         <TextView
             android:id="@+id/grade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="(레전드리 아이템)"
             android:textAlignment="center"
-            android:textSize="17sp"/>
+            android:textSize="17sp"
+            android:textColor="#373737"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -59,7 +61,8 @@
                     android:layout_height="wrap_content"
                     android:text="공격력 증가량"
                     android:textSize="17sp"
-                    android:textAlignment="textEnd"/>
+                    android:textAlignment="textEnd"
+                    android:textColor="#373737"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -88,7 +91,8 @@
             android:layout_margin="10dp"
             android:text="장비 분류 : 벨트\nSTR: +14\nDEX: +14"
             android:lineSpacingExtra="5dp"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:textColor="#373737"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -101,7 +105,8 @@
             android:layout_marginLeft="10dp"
             android:text="R 잠재옵션\n잠재능력을 설정해주세요.\n\n"
             android:lineSpacingExtra="5dp"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:textColor="#373737"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -114,7 +119,8 @@
             android:layout_margin="10dp"
             android:text="R 에디셔널 잠재옵션\n에디셔널 잠재능력을 설정해주세요.\n\n"
             android:lineSpacingExtra="5dp"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:textColor="#373737"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

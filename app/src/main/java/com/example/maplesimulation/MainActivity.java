@@ -96,6 +96,12 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void goInven(View view) {
+        Intent intent = new Intent(this, InvenActivity.class);
+        intent.putExtra("invenList", this.equipment);
+        startActivity(intent);
+    }
+
 
     //"장비를 추가해주세요" 다이얼로그
     public void nothingDialog() {
@@ -112,9 +118,6 @@ public class MainActivity extends AppCompatActivity {
 
         myAlertBuilder.show();
     }
-
-
-
 
     //intent 받는 부분
     public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -140,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
 
     //선택된 장비 이미지 표시, 이름 표시
     public void setThumnail() {

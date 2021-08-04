@@ -68,7 +68,6 @@
                         android:textSize="20sp"
                         android:lineSpacingExtra="5dp"
                         android:textColor="#F1F1F1"/>
-
                 </ScrollView>
                 <TextView
                     android:id="@+id/sparkle_effect"

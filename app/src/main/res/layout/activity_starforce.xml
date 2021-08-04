@@ -65,6 +65,7 @@
                         android:layout_height="wrap_content"
                         android:text="17성 > 18성 \n\n성공확률: 30.0%\n실패(하락)확률: 60.0%\n파괴확률: 2%\n\n 마력: +10"
                         android:textSize="20sp"
+                        android:lineSpacingExtra="5dp"
                         android:textColor="#F1F1F1"/>
                 </ScrollView>
                 <TextView

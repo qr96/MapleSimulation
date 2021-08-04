@@ -23,7 +23,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
         <ImageView
@@ -92,6 +93,7 @@
             android:background="@drawable/ui_button_basic"
             android:layout_margin="5dp"
             android:text="인벤토리"
+            android:onClick="goInven"
             tools:ignore="MissingConstraints" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -57,6 +57,7 @@ public class Equipment implements Cloneable, Serializable {
 
 
     public Equipment() {
+        Image = "";
         stats = new ArrayList();
         enhance = new ArrayList<>();
         additional = new ArrayList<>();

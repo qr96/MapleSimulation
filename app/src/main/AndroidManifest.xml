@@ -20,6 +20,7 @@
         <activity android:name=".ScrollActivity"/>
         <activity android:name=".FlameActivity"/>
         <activity android:name=".StarforceActivity"/>
+        <activity android:name=".InvenActivity"/>
 
         <activity android:name=".SelectBasicScollPopup" android:theme="@android:style/Theme.Dialog"/>
         <activity android:name=".EquipmentPopup" android:theme="@android:style/Theme.Dialog"/>
