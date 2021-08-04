@@ -20,7 +20,6 @@ import java.util.List;
 
 public class SearchActivity extends Activity {
     public ArrayList<String> equipNameList;
-    public int selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +72,7 @@ public class SearchActivity extends Activity {
                 Intent intent = new Intent();
                 intent.putExtra("equipment", position);
                 setResult(0, intent);
+                Toast.makeText(SearchActivity.this, "아이템이 추가되었습니다.", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

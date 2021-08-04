@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     public List<Equipment> equipmentList ; //장비 객체 배열
     public ArrayList<String> equipNameList; //장비 이름 배열
     private Equipment equipment; //현재 장비
+    public ArrayList<Equipment> invenList; //인벤토리 배열
+    int nowEquip;
 
     private AdView mAdView;
 
@@ -36,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
 
         //광고 초기화
         initAd();
+
+        //인벤토리 배열 초기화
+        initInvenList();
+    }
+
+    //인벤토리 배열 초기화, DB에서 읽어올 예정
+    public void initInvenList() {
+        this.invenList = new ArrayList<Equipment>();
     }
 
     public void infoPopup(View view) {
@@ -98,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void goInven(View view) {
         Intent intent = new Intent(this, InvenActivity.class);
-        intent.putExtra("invenList", this.equipment);
-        startActivity(intent);
+        intent.putExtra("invenList", this.invenList);
+        startActivityForResult(intent, 1);
     }
 
 
@@ -127,7 +137,9 @@ public class MainActivity extends AppCompatActivity {
                 if(data!=null) {
                     int selected = data.getIntExtra("equipment", -1);
                     try {
-                        this.equipment = (Equipment) equipmentList.get(selected).clone();
+                        this.invenList.add((Equipment) equipmentList.get(selected).clone());
+                        this.nowEquip = invenList.size()-1;
+                        this.equipment = this.invenList.get(nowEquip);
                         setThumnail();
                     } catch (CloneNotSupportedException e) {
                         e.printStackTrace();
@@ -137,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 if(data != null) {
                     Equipment equip = (Equipment) data.getSerializableExtra("equip");
+                    this.invenList.set(nowEquip, equip);
                     this.equipment = equip;
                     setThumnail();
                 }

@@ -5,6 +5,7 @@ import android.app.LauncherActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -13,9 +14,11 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
+import java.util.ArrayList;
+
 public class InvenActivity extends Activity {
     private AdView mAdView;
-    private Equipment equipment;
+    private ArrayList<Equipment> invenList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +26,7 @@ public class InvenActivity extends Activity {
         setContentView(R.layout.activity_inven);
 
         Intent intent = getIntent();
-        this.equipment = (Equipment) intent.getSerializableExtra("equipment");
-
-
+        this.invenList = (ArrayList<Equipment>) intent.getSerializableExtra("invenList");
 
         //인벤토리 초기화
         initGridView();
@@ -39,12 +40,33 @@ public class InvenActivity extends Activity {
         GridView gridView = findViewById(R.id.gridView);
         GridListAdapter adapter = new GridListAdapter();
 
-        adapter.addItem(this.equipment);
-        for(int i=0; i<39; i++){
-            adapter.addItem(new Equipment());
+        for(int i=0; i<invenList.size(); i++){
+            adapter.addItem(invenList.get(i));
+        }
+        for(int i=0; i<40-invenList.size(); i++){
+            adapter.addItem(null);
         }
 
         gridView.setAdapter(adapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final Equipment equipment = (Equipment) adapter.getItem(position);
+                if(equipment != null) {
+                    Intent intent = new Intent(view.getContext(), EquipmentPopup.class);
+                    intent.putExtra("equipment", equipment);
+                    startActivity(intent);
+                }
+            }
+        });
+        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                return true;
+            }
+        });
     }
 
     //광고 초기화

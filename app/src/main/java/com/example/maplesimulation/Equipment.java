@@ -209,7 +209,10 @@ public class Equipment implements Cloneable, Serializable {
         return name;
     }
 
-    public String getImage() { return Image; }
+    public String getImage() {
+        if(Image == null) this.Image = "";
+        return Image;
+    }
 
     public String getType() { return type; }
 
