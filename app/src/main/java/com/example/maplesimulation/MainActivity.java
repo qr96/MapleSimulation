@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<String> equipNameList; //장비 이름 배열
     private Equipment equipment; //현재 장비
     public ArrayList<Equipment> invenList; //인벤토리 배열
+    public final int INVENTORY_SIZE = 40;
     int nowEquip;
 
     private AdView mAdView;
@@ -41,11 +42,19 @@ public class MainActivity extends AppCompatActivity {
 
         //인벤토리 배열 초기화
         initInvenList();
+
     }
 
     //인벤토리 배열 초기화, DB에서 읽어올 예정
     public void initInvenList() {
+        Equipment tmp;
         this.invenList = new ArrayList<Equipment>();
+        for(int i=0; i<INVENTORY_SIZE; i++) {
+            tmp = PreferenceManager.getEquipment(this, "equip"+i);
+            if(tmp != null) {
+                this.invenList.add(tmp);
+            }
+        }
     }
 
     public void infoPopup(View view) {
@@ -140,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
                         this.invenList.add((Equipment) equipmentList.get(selected).clone());
                         this.nowEquip = invenList.size()-1;
                         this.equipment = this.invenList.get(nowEquip);
+                        this.equipment.setId(this.invenList.size()-1);
                         setThumnail();
                     } catch (CloneNotSupportedException e) {
                         e.printStackTrace();

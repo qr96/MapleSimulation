@@ -17,10 +17,16 @@ public class EquipmentInfo {
 
         int sum = 0;
 
-        for(int i=0; i<table.length; i++){
-            sum = (Integer) equipStats.get(i) + (Integer)equipAdditional.get(i) + (Integer) equipEnhance.get(i)
-                    +(Integer) starStat.get(i);
+        System.out.println("stats type:"+equipStats.get(0).getClass());
+        System.out.println("add type:"+equipAdditional.get(0).getClass());
+        System.out.println("enhance type:"+equipEnhance.get(0).getClass());
+        System.out.println("star type:"+starStat.get(0).getClass());
 
+        for(int i=0; i<table.length; i++){
+            sum = 0; /*equipStats.get(i)
+                    + equipAdditional.get(i)
+                    + equipEnhance.get(i)
+                    + starStat.get(i);*/
 
             if(sum == 0 || i==6) continue;
             equipInfo = equipInfo + table[i] + " : " + "+" + sum;

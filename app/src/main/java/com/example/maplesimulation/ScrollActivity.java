@@ -385,7 +385,7 @@ public class ScrollActivity extends Activity {
                 scrollType = "glove";
             }
             //방어구, 장신구인 경우
-            else if(equipment.armors.contains(equipment.getType()) || equipment.accessories.contains(equipment.getType())){
+            else if(equipment.isArmor() || equipment.isAccessary()){
                 scrollType = "armors";
             }
             //무기인 경우

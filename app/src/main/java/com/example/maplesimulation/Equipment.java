@@ -5,19 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Equipment implements Cloneable, Serializable {
-    public ArrayList<String> armors //방어구 종류
-            = new ArrayList<>(Arrays.asList("상의","하의","모자","망토","신발","한벌옷","장갑","파워소스"));
-
-    public ArrayList<String> accessories //장신구 종류
-            = new ArrayList<>(Arrays.asList("얼굴장식","눈장식","벨트","귀고리","어깨장식","반지","펜던트"));
-
-    public ArrayList<String> weapons
-            = new ArrayList<>(Arrays.asList("한손검", "한손도끼", "한손둔기",  "두손검", "두손도끼",
-                "두손둔기", "창", "폴암", "데스브링어", "건틀렛리볼버", "튜너", "완드", "스태프", "샤이닝로드",
-                "ESP리미터", "매직건틀렛", "활", "석궁", "듀얼보우건", "에인션트보우", "브레스슈터", "단검",
-                "블레이드", "아대", "케인", "에너지소드", "체인", "부채", "건", "너클", "핸드캐논", "소울슈터"));
-
-    //private String id;
+    private String id;
     private String name;
     private String Image;
     private String type; //장비 부위
@@ -44,7 +32,7 @@ public class Equipment implements Cloneable, Serializable {
     //                "보스데미지%", "데미지%", "최대HP%", "방어율무시%"};
 
     //기본 능력치들
-    private ArrayList stats;
+    private ArrayList<Integer> stats;
 
     //강화된 수치
     private ArrayList<Integer> enhance;
@@ -57,11 +45,10 @@ public class Equipment implements Cloneable, Serializable {
 
 
     public Equipment() {
-        Image = "";
         stats = new ArrayList();
-        enhance = new ArrayList<>();
-        additional = new ArrayList<>();
-        starStat = new ArrayList<>();
+        enhance = new ArrayList<Integer>();
+        additional = new ArrayList<Integer>();
+        starStat = new ArrayList<Integer>();
         initEnhance();
         initAdditional();
         initStarStat();
@@ -70,7 +57,22 @@ public class Equipment implements Cloneable, Serializable {
         potential2 = new String[]{"에디셔널 잠재능력을 재설정 해주세요.", "", ""};
         potentialGrade1 = 0;
         potentialGrade2 = 0;
+        id = "equip";
+        name = "잘못된 이름";
+        Image = "";
+        type = "잘못된 장비";
+        levReq = 0;
+        maxUp = 0;
+        nowUp = 0;
+        failUp = 0;
+        maxStar = 0;
+        star = 0;
+        goldHammer = 0;
     }
+
+    public String getId() { return id; }
+
+    public void setId(int id) { this.id = "equip"+id; }
 
     //강화 수치 증가
     public void addEnhanceStat(int index, int num) {
@@ -138,20 +140,17 @@ public class Equipment implements Cloneable, Serializable {
 
     //방어구인지 여부
     public boolean isArmor() {
-        if(armors.contains(this.type)) return true;
-        else return false;
+        return EquipmentManager.isArmor(this.type);
     }
 
     //장신구인지 여부
     public boolean isAccessary() {
-        if(accessories.contains(this.type)) return true;
-        else return false;
+        return EquipmentManager.isAccessary(this.type);
     }
 
     //무기인지 여부
     public boolean isWeapon() {
-        if(weapons.contains(this.type)) return true;
-        return false;
+        return EquipmentManager.isWeapon(this.type);
     }
     
     //황금망치 사용
@@ -273,8 +272,6 @@ public class Equipment implements Cloneable, Serializable {
         tmp -= num;
         this.starStat.set(index, tmp);
     }
-
-
 
     public void setName(String name) {
         this.name = name;

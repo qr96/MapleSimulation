@@ -35,7 +35,6 @@ public class EquipmentPopup extends Activity {
         TextView star = findViewById(R.id.star);
         tmp = EquipmentInfo.starText(equipment);
         star.setText(Html.fromHtml(tmp));
-        System.out.println(tmp);
 
         TextView name = findViewById(R.id.name);
         tmp = equipment.getName();

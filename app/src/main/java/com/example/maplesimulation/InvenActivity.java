@@ -1,12 +1,15 @@
 package com.example.maplesimulation;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.LauncherActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -58,6 +61,35 @@ public class InvenActivity extends Activity {
                     intent.putExtra("equipment", equipment);
                     startActivity(intent);
                 }
+            }
+        });
+        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(InvenActivity.this);
+                myAlertBuilder.setMessage("장비를 삭제하시겠습니까?");
+
+                // 버튼 추가 (Ok 버튼과 Cancle 버튼 )
+                myAlertBuilder.setPositiveButton("  예  ",new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog,int which){
+                        PreferenceManager.removeKey(InvenActivity.this, invenList.get(position).getId());
+                        invenList.remove(position);
+                        for(int i=0; i<invenList.size(); i++) {
+                            invenList.get(i).setId(i);
+                        }
+                        initGridView();
+                        Toast.makeText(InvenActivity.this, "장비가 삭제되었습니다", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                myAlertBuilder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                myAlertBuilder.show();
+                return true;
             }
         });
     }

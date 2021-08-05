@@ -85,5 +85,4 @@ public class SearchActivity extends Activity {
 
         myAlertBuilder.show();
     }
-
 }

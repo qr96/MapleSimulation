@@ -27,7 +27,6 @@ import java.util.Set;
 public class PotentialActivity extends Activity {
     public int selected_button_id = -1; //선택된 아이템의 id
     public int selected_check_id = -1; //선택된 아이템의 체크 id
-    public int selected_detail_id = -1; //선택된 아이템의 세부 옵션 id  ex) 70%, 30% 주문서
 
     public List cubeTableList; //[블랙큐브, 레드큐브, 에디셔널큐브, 명장의큐브, 장인의큐브]
     public Equipment equipment;
