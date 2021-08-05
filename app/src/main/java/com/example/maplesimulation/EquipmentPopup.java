@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +27,13 @@ public class EquipmentPopup extends Activity {
         this.equipment = (Equipment) intent.getSerializableExtra("equipment");
 
         initInfo();
+    }
+
+    public void usedPopup(View view) {
+        if(this.equipment == null) return;
+        Intent intent = new Intent(this, UsedPopup.class);
+        intent.putExtra("equipment", this.equipment);
+        startActivity(intent);
     }
 
     public void initInfo() {

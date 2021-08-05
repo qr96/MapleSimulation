@@ -12,7 +12,6 @@ public class Equipment implements Cloneable, Serializable {
     private String job;
 
     private int levReq;
-
     private int maxUp; //최대 강화수
     private int nowUp; //현재 강화수
     private int failUp; //실패한 강화수
@@ -27,22 +26,27 @@ public class Equipment implements Cloneable, Serializable {
     int potentialGrade1; // 잠재 등급
     int potentialGrade2; // 아랫잠재 등급
 
-    // 능력치 순서 {"STR", "DEX", "INT", "LUK", "최대HP", "최대MP", "착용레벨감소",
-    //                "방어력", "공격력", "마력", "이동속도", "점프력", "올스텟%",
-    //                "보스데미지%", "데미지%", "최대HP%", "방어율무시%"};
+    // ["STR", "DEX", "INT", "LUK", "최대HP", "최대MP", "착용레벨감소",
+    //  "방어력", "공격력", "마력", "이동속도", "점프력", "올스텟%",
+    //  "보스데미지%", "데미지%", "최대HP%", "방어율무시%"]
 
-    //기본 능력치들
-    private ArrayList<Integer> stats;
+    private ArrayList<Integer> stats;//기본 능력치들
+    private ArrayList<Integer> enhance;//강화된 수치
+    private ArrayList<Integer> additional;//추가 옵션
+    private ArrayList<Integer> starStat;//스타포스로 강화된 능력치
 
-    //강화된 수치
-    private ArrayList<Integer> enhance;
-
-    //추가 옵션
-    private ArrayList<Integer> additional;
-
-    //스타포스로 강화된 능력치
-    private ArrayList<Integer> starStat;
-
+    public int used_juheun;
+    public int used_sunback;
+    public int used_goldhammer;
+    public int used_returnscroll;
+    public int used_innocent;
+    public int used_chaos;
+    public int used_eternal;
+    public int used_powerful;
+    public int used_blackcube;
+    public int used_redcube;
+    public int used_addicube;
+    public int used_meso;
 
     public Equipment() {
         stats = new ArrayList();
@@ -52,6 +56,7 @@ public class Equipment implements Cloneable, Serializable {
         initEnhance();
         initAdditional();
         initStarStat();
+        initUsed();
         goldHammer = 0;
         potential1 = new String[]{"잠재능력을 재설정 해주세요.", "", ""};
         potential2 = new String[]{"에디셔널 잠재능력을 재설정 해주세요.", "", ""};
@@ -136,6 +141,21 @@ public class Equipment implements Cloneable, Serializable {
         star = 0;
         starStat.clear();
         for(int i=0; i<21; i++) starStat.add(0);
+    }
+
+    public void initUsed() {
+        used_juheun = 0;
+        used_sunback = 0;
+        used_goldhammer = 0;
+        used_returnscroll = 0;
+        used_innocent = 0;
+        used_chaos = 0;
+        used_eternal =0 ;
+        used_powerful =0 ;
+        used_blackcube= 0;
+        used_redcube = 0;
+        used_addicube= 0;
+        used_meso = 0;
     }
 
     //방어구인지 여부

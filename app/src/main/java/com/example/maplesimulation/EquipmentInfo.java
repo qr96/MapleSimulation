@@ -10,23 +10,15 @@ public class EquipmentInfo {
                 "방어력", "공격력", "마력", "이동속도", "점프력", "올스텟%",
                 "보스데미지%", "데미지%", "최대HP%", "방어율무시%"};  //12~16 %붙음
 
-        ArrayList equipStats = equipment.getStats();
-        ArrayList equipEnhance = equipment.getEnhance();
-        ArrayList equipAdditional = equipment.getAdditional(); //추가옵션
-        ArrayList starStat = equipment.getStarStat(); //스타포스 수치
+        ArrayList<Integer> equipStats = equipment.getStats();
+        ArrayList<Integer> equipEnhance = equipment.getEnhance();
+        ArrayList<Integer> equipAdditional = equipment.getAdditional(); //추가옵션
+        ArrayList<Integer> starStat = equipment.getStarStat(); //스타포스 수치
 
         int sum = 0;
 
-        System.out.println("stats type:"+equipStats.get(0).getClass());
-        System.out.println("add type:"+equipAdditional.get(0).getClass());
-        System.out.println("enhance type:"+equipEnhance.get(0).getClass());
-        System.out.println("star type:"+starStat.get(0).getClass());
-
         for(int i=0; i<table.length; i++){
-            sum = 0; /*equipStats.get(i)
-                    + equipAdditional.get(i)
-                    + equipEnhance.get(i)
-                    + starStat.get(i);*/
+            sum = equipStats.get(i) + equipAdditional.get(i) + equipEnhance.get(i) + starStat.get(i);
 
             if(sum == 0 || i==6) continue;
             equipInfo = equipInfo + table[i] + " : " + "+" + sum;

@@ -45,19 +45,18 @@ public class Scroll {
     //순백의 주문서
     public int doWhiteScroll(int possibility) {
         if(equip.getFailUp()==0) return -1; //복구할 횟수가 없는 경우
-
+        equip.used_sunback++;
         if(isSuccess(possibility) == true) {
             equip.recoveryFailed();
             return 1;
         }
-
         return 0;
     }
 
     //황금망치
     public int useGoldHammer(int possibility) {
         if(equip.getGoldHammer() == 1) return -1; //이미 사용한 경우
-
+        equip.used_goldhammer++;
         if(isSuccess(possibility) == true) {
             equip.useGoldhammer();
             return 1; //성공
@@ -73,7 +72,7 @@ public class Scroll {
     public int useInnocent(int possibility) {
         if(equip.getNowUp()==0 && equip.getFailUp()==0 && equip.getGoldHammer()==0 && equip.getStar()==0)
             return -1; //사용할 필요가 없는 경우
-
+        equip.used_innocent++;
         if(isSuccess(possibility) == true) {
             equip.useInnocent();
             return 1; //성공
@@ -84,7 +83,7 @@ public class Scroll {
     //놀라운 긍정의 혼돈 주문서
     public int useAwesomeChaos(int possible) {
         if(equip.isFinishEnchant()) return -1; //업그레이드 가능횟수가 없는 경우
-
+        equip.used_chaos++;
         recentChaos = new ArrayList<Integer>();
 
         //주문서 사용 성공
@@ -112,16 +111,13 @@ public class Scroll {
 
     //리턴 스크롤 사용
     public void useReturnScroll() {
-        System.out.println("리턴 스크롤을 사용합니다.");
-        int tmp = 0;
+        equip.used_returnscroll++;
         for(int i=0; i<recentChaos.size(); i++){
             equip.subEnhanceStat(i, recentChaos.get(i));
             recentChaos.set(i, 0);
         }
         equip.recoverySuccess();
     }
-
-
 
     /*------------------ 주흔작 -----------------*/
     /*------- 강화 실행 함수 ------*/

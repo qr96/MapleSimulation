@@ -108,7 +108,7 @@ public class StarforceActivity extends Activity {
         CheckBox starcatch = findViewById(R.id.starcatch);
         CheckBox prevent = findViewById(R.id.preventdestroy);
 
-        int result = starforce.doStarforce(starcatch.isChecked(), starforce.event);
+        int result = starforce.doStarforce(starcatch.isChecked());
 
         if(result == 0){
             successEffect();

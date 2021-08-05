@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:layout_margin="10dp"
+    android:background="#FFFFFF"
+    android:gravity="center"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="영수증"
+        android:fontFamily="@font/nexon_low"
+        android:textSize="20sp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="#cccc"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:background="#FFFFFF">
+        <TextView
+            android:id="@+id/used"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:lineSpacingExtra="5dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/nexon_low"
+            android:text="순백의 주문서 : 10개\n이노센트 주문서 : 10개"/>
+    </ScrollView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="#cccc"/>
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:background="@drawable/ui_button_basic"
+        android:onClick="goBack"
+        android:text="확인"/>
+</LinearLayout>

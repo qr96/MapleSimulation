@@ -41,6 +41,7 @@ public class Cube {
     }
 
     public void useRedCube() {
+        equipment.used_redcube++;
         String[] option;
         String type = equipment.getType();
         ArrayList<String> subWeapon = new ArrayList<>(Arrays.asList("포스실드", "소울링", "방패"));
@@ -93,6 +94,7 @@ public class Cube {
     }
 
     public void useAddiCube() {
+        equipment.used_addicube++;
         String[] option;
         String type = equipment.getType();
         ArrayList<String> armors = new ArrayList<>(Arrays.asList("한벌옷", "하의", "신발", "망토", "벨트", "어깨장식", "얼굴장식", "눈장식", "귀고리", "반지", "펜던트"));
@@ -180,6 +182,7 @@ public class Cube {
     }
 
     public void useBlackCube() {
+        equipment.used_blackcube++;
         String[] option;
         String type = equipment.getType();
         if(equipment.isWeapon()) type = "무기";

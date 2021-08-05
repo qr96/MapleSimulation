@@ -50,7 +50,7 @@ public class Flame {
 
     //강력한 환생의 불꽃
     public int usePowerfulFlame() {
-
+        equipment.used_powerful++;
         int grade = -1; //추가 옵션의 등급
         int selected[]; // 선택된 추가옵션들
         double table[] = {20, 30, 36, 14, 0}; //강환불 추옵 등급 확률 테이블
@@ -72,7 +72,7 @@ public class Flame {
 
     //영원한 환생의 불꽃
     public int useEternalFlame() {
-
+        equipment.used_eternal++;
         int grade = -1; //추가 옵션의 등급
         int selected[]; // 선택된 추가옵션들
         double table[] = {0, 29, 45, 25, 1}; //강환불 추옵 등급 확률 테이블
