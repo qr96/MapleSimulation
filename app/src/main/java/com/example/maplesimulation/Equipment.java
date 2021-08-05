@@ -48,6 +48,9 @@ public class Equipment implements Cloneable, Serializable {
     public int used_addicube;
     public int used_meso;
 
+    public boolean isNoljang; //놀장 인지 여부
+    public boolean isStarforce; //스타포스 작인지 여부
+
     public Equipment() {
         stats = new ArrayList();
         enhance = new ArrayList<Integer>();
@@ -73,6 +76,8 @@ public class Equipment implements Cloneable, Serializable {
         maxStar = 0;
         star = 0;
         goldHammer = 0;
+        isNoljang = false;
+        isStarforce = false;
     }
 
     public int getId() { return id; }

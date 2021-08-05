@@ -15,24 +15,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4a0412e-d4ba-439e-955a-a224d8a43432" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/Noljang.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/SearchActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/SearchActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/TextAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/TextAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/Equipment.db" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/Equipment.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/DataAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/DataAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/Equipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/Equipment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-v24/pants_karut_wonder.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/pants_karut_wonder.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@LMG710N0832e6ec]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\이규한\.android\avd\Pixel_2_API_29.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -105,8 +110,8 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Practice\MapleSimulation\app\src\main\assets" />
-      <recent name="C:\Practice\MapleSimulation\app\src\main\res\drawable" />
       <recent name="C:\Practice\MapleSimulation\app\src\main\res\drawable-v24" />
+      <recent name="C:\Practice\MapleSimulation\app\src\main\res\drawable" />
       <recent name="C:\Practice\MapleSimulation\app\src\main\res\font" />
       <recent name="C:\Practice\MapleSimulation\app\src\main\java\com\example\maplesimulation" />
     </key>
@@ -241,46 +246,46 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="613" y="270" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1627828698279" />
-    <state width="1402" height="277" key="GridCell.Tab.0.bottom" timestamp="1628164912153">
+    <state width="1402" height="277" key="GridCell.Tab.0.bottom" timestamp="1628172092843">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1402" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1628164912153" />
-    <state width="1402" height="277" key="GridCell.Tab.0.center" timestamp="1628164912153">
+    <state width="1402" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1628172092843" />
+    <state width="1402" height="277" key="GridCell.Tab.0.center" timestamp="1628172092843">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1402" height="277" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1628164912153" />
-    <state width="1402" height="277" key="GridCell.Tab.0.left" timestamp="1628164912153">
+    <state width="1402" height="277" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1628172092843" />
+    <state width="1402" height="277" key="GridCell.Tab.0.left" timestamp="1628172092842">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1402" height="277" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1628164912153" />
-    <state width="1402" height="277" key="GridCell.Tab.0.right" timestamp="1628164912153">
+    <state width="1402" height="277" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1628172092842" />
+    <state width="1402" height="277" key="GridCell.Tab.0.right" timestamp="1628172092843">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1402" height="277" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1628164912153" />
-    <state width="1402" height="277" key="GridCell.Tab.1.bottom" timestamp="1628164912153">
+    <state width="1402" height="277" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1628172092843" />
+    <state width="1402" height="277" key="GridCell.Tab.1.bottom" timestamp="1628172092843">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1402" height="277" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1628164912153" />
-    <state width="1402" height="277" key="GridCell.Tab.1.center" timestamp="1628164912153">
+    <state width="1402" height="277" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1628172092843" />
+    <state width="1402" height="277" key="GridCell.Tab.1.center" timestamp="1628172092843">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1402" height="277" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1628164912153" />
-    <state width="1402" height="277" key="GridCell.Tab.1.left" timestamp="1628164912153">
+    <state width="1402" height="277" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1628172092843" />
+    <state width="1402" height="277" key="GridCell.Tab.1.left" timestamp="1628172092843">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1402" height="277" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1628164912153" />
-    <state width="1402" height="277" key="GridCell.Tab.1.right" timestamp="1628164912153">
+    <state width="1402" height="277" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1628172092843" />
+    <state width="1402" height="277" key="GridCell.Tab.1.right" timestamp="1628172092843">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1402" height="277" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1628164912153" />
+    <state width="1402" height="277" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1628172092843" />
     <state x="191" y="166" key="SettingsEditor" timestamp="1627367820987">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="191" y="166" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1627367820987" />
-    <state x="494" y="299" key="chooseDestDirectoryDialog" timestamp="1627808077601">
+    <state x="494" y="299" key="chooseDestDirectoryDialog" timestamp="1628171962228">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="494" y="299" key="chooseDestDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1627808077601" />
+    <state x="494" y="299" key="chooseDestDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1628171962228" />
     <state x="977" y="426" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1627525438131">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
