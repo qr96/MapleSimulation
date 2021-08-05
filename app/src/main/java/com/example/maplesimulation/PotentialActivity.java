@@ -15,6 +15,12 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import java.util.List;
 import java.util.Set;
 
@@ -28,6 +34,8 @@ public class PotentialActivity extends Activity {
     public Cube blackCube;
     public Cube redCube;
     public Cube addiCube;
+
+    private AdView mAdView;
 
     Animation autoAnim;
 
@@ -54,7 +62,24 @@ public class PotentialActivity extends Activity {
         initAutoAni();
         initCube();
         initSpinner();
+
+        //광고 초기화
+        initAd();
     }
+
+    //광고 초기화
+    public void initAd(){
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+            }
+        });
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+
     public void initAutoAni() {
         autoAnim = new AlphaAnimation(0.4f, 1.0f);
         autoAnim.setDuration(400);
@@ -170,15 +195,18 @@ public class PotentialActivity extends Activity {
 
     public void autoCube(String cube, View view) {
         CheckBox autoCheck = findViewById(R.id.auto);
+        Spinner optionSpinner = findViewById(R.id.option);
 
-        if(keepGoing) keepGoing = false;
-        else keepGoing = true;
-        if(keepGoing==false){
-            view.getAnimation().cancel();
+        if(keepGoing){
+            keepGoing = false;
+            if(view.getAnimation() != null) view.getAnimation().cancel();
             autoCheck.setEnabled(true);
+            optionSpinner.setEnabled(true);
         }
         else{
+            keepGoing = true;
             autoCheck.setEnabled(false);
+            optionSpinner.setEnabled(false);
             view.startAnimation(autoAnim);
         }
 
@@ -191,7 +219,12 @@ public class PotentialActivity extends Activity {
                         usingCube(cube);
                         handler.postDelayed(this, 200);  // 1 second delay
                     }
-
+                    else{
+                        keepGoing = false;
+                        view.getAnimation().cancel();
+                        autoCheck.setEnabled(true);
+                        optionSpinner.setEnabled(true);
+                    }
                 }
             }
         };
@@ -219,10 +252,10 @@ public class PotentialActivity extends Activity {
             String tmp = option[i].substring(0, 3);
             if(tmp.equals("공격력")) attk++;
             else if(tmp.equals("마력")) magic++;
-            else if(tmp.equals("STR")) str++;
-            else if(tmp.equals("DEX")) dex++;
-            else if(tmp.equals("INT")) intel++;
-            else if(tmp.equals("LUK")) luk++;
+            else if(tmp.equals("STR") || option[i].equals("캐릭터 기준 10레벨 당 STR : +2") || option[i].equals("캐릭터 기준 10레벨 당 STR : +1")) str++;
+            else if(tmp.equals("DEX") || option[i].equals("캐릭터 기준 10레벨 당 DEX : +2") || option[i].equals("캐릭터 기준 10레벨 당 DEX : +1")) dex++;
+            else if(tmp.equals("INT") || option[i].equals("캐릭터 기준 10레벨 당 INT : +2") || option[i].equals("캐릭터 기준 10레벨 당 INT : +1")) intel++;
+            else if(tmp.equals("LUK") || option[i].equals("캐릭터 기준 10레벨 당 LUK : +2") || option[i].equals("캐릭터 기준 10레벨 당 LUK : +1")) luk++;
             else if(tmp.equals("올스텟")) {str++; dex++; intel++; luk++;}
         }
 

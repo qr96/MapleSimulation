@@ -5,9 +5,7 @@ import java.util.HashMap;
 public class Starforce {
     Equipment equipment;
     int chanceStack; //찬스타임 스택
-    public String event = "이벤트없음";
-    public String mvp = "브론즈";
-    public boolean pcbang;
+    public String event;
     public boolean prevent;
 
     public double table_success[]; //성공 확률
@@ -19,6 +17,7 @@ public class Starforce {
 
     public Starforce(Equipment equipment) {
         this.equipment = equipment;
+        this.event="이벤트 없음";
         initTable();
         chanceStack = 0;
     }
@@ -47,13 +46,8 @@ public class Starforce {
 
     //파괴방지 사용가능한지
     public boolean canPrevent() {
-        if(equipment.getStar()<=17) return true;
+        if(equipment.getStar()<=17 && equipment.getStar()>=12) return true;
         return false;
-    }
-
-    public boolean canPcbang() {
-        if(event.equals("30%할인") || equipment.getStar()>17) return false;
-        return true;
     }
 
     // 테이블 확률대로 하나 반환
@@ -75,8 +69,15 @@ public class Starforce {
     //1516이벤트 적용 가능한지
     public boolean can1516event() {
         int star = equipment.getStar();
-        if(event.equals("5,10,15성100%") && star==5 || star==10 || star==15)
+        if(event.equals("5,10,15성100%") && (star==5 || star==10 || star==15))
             return true;
+        return false;
+    }
+
+    //10성 이하 2배 이벤트 가능한지
+    public boolean canDouble() {
+        int star = equipment.getStar();
+        if(event.equals("10성1+1") && star<=10) return true;
         return false;
     }
 
@@ -104,7 +105,7 @@ public class Starforce {
 
 
         if(result == 0) { //성공
-            if(event.equals("10성1+1") && star<=10) success();
+            if(canDouble()) success();
             success();
         }
         else if(result == 1) { //파괴
@@ -132,22 +133,7 @@ public class Starforce {
         }
 
         if(event.equals("30%할인")) money = (int)(money*0.7);
-        
-        if(equipment.getStar()<=17){
-            double discount = 1.0;
-            if(mvp.equals("다이아")) discount-=0.1;
-            else if(mvp.equals("골드")) discount-=0.05;
-            else if(mvp.equals("실버")) discount-=0.03;
-
-            if(pcbang==true) discount-=0.05;
-
-            money = (int)(money*discount);
-        }
-        System.out.println("파방가능???");
-        if(canPrevent() && prevent) {
-            System.out.println("넵@@");
-            money=money*2;
-        }
+        if(prevent) money*=2;
 
 
         return money;
@@ -156,10 +142,10 @@ public class Starforce {
     public void success() {
         int list[] = increment(equipment.getStar()); //주스텟, 공격력, 마력
         for(int i=0; i<4; i++){
-            equipment.upgradeStarStat(i, list[0]);
+            if((int)equipment.getStats().get(i) > 0) equipment.upgradeStarStat(i, list[0]);
         }
-        equipment.upgradeStarStat(8, list[1]);
-        equipment.upgradeStarStat(9, list[2]);
+        if((int)equipment.getStats().get(8) > 0) equipment.upgradeStarStat(8, list[1]);
+        if((int)equipment.getStats().get(9) > 0) equipment.upgradeStarStat(9, list[2]);
 
         equipment.upStar();
         chanceStack=0;
@@ -184,14 +170,15 @@ public class Starforce {
     public void failed() {
         if(canDown()){
             equipment.downStar();
-            int list[] = increment(equipment.getStar()-1); //주스텟, 공격력, 마력
+            int list[] = increment(equipment.getStar()); //주스텟, 공격력, 마력
             for(int i=0; i<4; i++){
-                equipment.downStarStat(i, list[0]);
+                if((int)equipment.getStats().get(i) > 0) equipment.downStarStat(i, list[0]);
             }
-            equipment.downStarStat(8, list[1]);
-            equipment.downStarStat(9, list[2]);
+            if((int)equipment.getStats().get(8) > 0) equipment.downStarStat(8, list[1]);
+            if((int)equipment.getStats().get(9) > 0) equipment.downStarStat(9, list[2]);
             chanceStack++;
         }
+        else chanceStack=0;
     }
 
     //스타포스로 인해 증가할 수치 계산 [주스텟, 공격력, 마력] 반환
@@ -242,7 +229,7 @@ public class Starforce {
                 }
             }
         }
-        else { //15성 초과
+        else { //15성 이상
             int levReq = equipment.getLevReq();
             int step = star + 1;
 

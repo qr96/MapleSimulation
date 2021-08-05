@@ -96,8 +96,9 @@ public class Cube {
         String[] option;
         String type = equipment.getType();
         ArrayList<String> armors = new ArrayList<>(Arrays.asList("한벌옷", "하의", "신발", "망토", "벨트", "어깨장식", "얼굴장식", "눈장식", "귀고리", "반지", "펜던트"));
+        ArrayList<String> subWeapon = new ArrayList<>(Arrays.asList("포스실드", "소울링", "방패"));
         if(equipment.isWeapon()) type = "무기";
-        else if(type.equals("포스실드") || type.equals("소울링") || type.equals("방패")) type="보조무기";
+        else if(subWeapon.contains(type)) type="보조무기";
         else if(armors.contains(type)) type="상의"; //armors 들은 상의와 에디 옵션 테이블이 같기 때문
 
         switch (equipment.getPotentialGrade2()) {
@@ -260,12 +261,11 @@ public class Cube {
 
     //테이블에서 key값에 맞는 옵션 랜덤하게 선택
     private String select(String key){
+        System.out.println("Cube key : "+key);
         List table = cubeTable.percentTable.get(key);
+        System.out.println("percent table : "+cubeTable.percentTable.get(key));
         if(table == null) return "Error : " + key;
         int random = tableRandom(table);
-        System.out.println(cubeTable.percentTable.get(key));
-        System.out.println(cubeTable.optionTable.get(key));
-        System.out.println("선택된 숫자"+ random);
         return (String) cubeTable.optionTable.get(key).get(random);
     }
 }

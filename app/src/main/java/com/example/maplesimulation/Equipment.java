@@ -244,7 +244,7 @@ public class Equipment implements Cloneable, Serializable {
     }
 
     public String getPotentialGrade2() {
-        String table[] = {"레어", "에픽", "유니크", "레전더리"};
+        String table[] = {"레어", "에픽", "유니크", "레전드리"};
         return table[potentialGrade2];
     }
 

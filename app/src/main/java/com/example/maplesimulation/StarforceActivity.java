@@ -33,7 +33,6 @@ public class StarforceActivity extends Activity {
     public Starforce starforce;
 
     public String events[] = {"이벤트없음", "10성1+1", "30%할인", "5,10,15성100%"};
-    public String mvps[] = {"브론즈", "실버", "골드", "다이아"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,37 +82,10 @@ public class StarforceActivity extends Activity {
 
             }
         });
-
-        Spinner spinner = (Spinner) findViewById(R.id.mvp_spinner);
-        adapter = ArrayAdapter.createFromResource(this,
-                R.array.mvp_list, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                starforce.mvp = mvps[position];
-                updateText();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     //체크박스 초기화
     public void initCheckBox() {
-        CheckBox pcbang = findViewById(R.id.pcbang);
-        pcbang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                starforce.pcbang = pcbang.isChecked();
-                updateText();
-            }
-        });
-
         CheckBox prevent = findViewById(R.id.preventdestroy);
         prevent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,13 +168,13 @@ public class StarforceActivity extends Activity {
         String equipInfo = "";
 
         TextView textView = findViewById(R.id.info);
-        if(starforce.event.equals("10성1+1")) equipInfo = equipment.getStar()+"성 > "+(equipment.getStar()+2)+"성\n\n";
+        if(starforce.canDouble()) equipInfo = equipment.getStar()+"성 > "+(equipment.getStar()+2)+"성\n\n";
         else equipInfo = equipment.getStar()+"성 > "+(equipment.getStar()+1)+"성\n\n";
         if(starforce.isChanceTime()){
             equipInfo = "찬스타임!!!!\n\n성공확률:100%\n\n";
         }
         else if(starforce.can1516event()){
-            equipInfo = equipInfo+"성공확률: 100%\n\n";
+            equipInfo = equipInfo+"성공확률: 100%\n(5,10,15성 100% event)\n\n";
         }
         else{
             equipInfo = equipInfo+"성공확률: "+success+"%\n"+"실패";
@@ -232,6 +204,7 @@ public class StarforceActivity extends Activity {
         else{
             if(prevent.isChecked()) prevent.toggle();
             prevent.setEnabled(false);
+            starforce.prevent = false;
         }
     }
 
