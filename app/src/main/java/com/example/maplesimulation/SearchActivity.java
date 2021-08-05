@@ -6,7 +6,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -19,7 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchActivity extends Activity {
-    public ArrayList<String> equipNameList;
+    private ArrayList<String> equipNameList;
+    private TextAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +37,28 @@ public class SearchActivity extends Activity {
         Intent intent = getIntent();
         equipNameList = (ArrayList<String>) intent.getSerializableExtra("equipList");
 
-        // 검색창
-        SearchView searchView;
-        searchView = findViewById(R.id.searchView);
-
         // 장비 목록 recyclerview에 추가
         initRecyclerView();
 
+        //검색창 초기화
+        initSearchView();
+    }
+
+    public void initSearchView() {
+        SearchView searchView = (SearchView) findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+
+        });
     }
 
     public void initRecyclerView() {
@@ -47,7 +67,7 @@ public class SearchActivity extends Activity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        TextAdapter adapter = new TextAdapter(equipNameList) ;
+        adapter = new TextAdapter(equipNameList) ;
         recyclerView.setAdapter(adapter) ;
 
         adapter.setOnItemClicklistener(new OnItemClickListener() {

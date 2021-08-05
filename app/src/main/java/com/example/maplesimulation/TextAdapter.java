@@ -5,17 +5,23 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 //참고:https://recipes4dev.tistory.com/154
+// https://www.youtube.com/watch?v=sJ-Z9G0SDhc
 public class TextAdapter extends RecyclerView.Adapter<TextAdapter.ViewHolder>
-implements OnItemClickListener{
+implements OnItemClickListener, Filterable {
 
     private ArrayList<String> mData = null ;
+    private ArrayList<String> mDatafull;
     private OnItemClickListener mListener;
 
     @Override
@@ -28,6 +34,7 @@ implements OnItemClickListener{
     public void setOnItemClicklistener(OnItemClickListener listener){
         this.mListener = listener;
     }
+
 
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -54,7 +61,8 @@ implements OnItemClickListener{
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
     TextAdapter(ArrayList<String> list) {
-        mData = list;
+        this.mData = list;
+        mDatafull = new ArrayList<>(list);
     }
 
     // onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.
@@ -81,4 +89,42 @@ implements OnItemClickListener{
     public int getItemCount() {
         return mData.size() ;
     }
+
+
+    @Override
+    public Filter getFilter() {
+        return mFilter;
+    }
+
+    private Filter mFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<String> filteredList = new ArrayList<>();
+
+            if(constraint == null || constraint.length() ==0 ){
+                filteredList.addAll(mDatafull);
+            }
+            else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for(String item : mDatafull) {
+                    if(item.toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mData.clear();
+            mData.addAll((Collection<? extends String>) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
