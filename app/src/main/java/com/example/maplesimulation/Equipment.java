@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Equipment implements Cloneable, Serializable {
-    private String id;
+    private int id; //id가 -1이면 더미 객체
     private String name;
     private String Image;
     private String type; //장비 부위
@@ -62,7 +62,7 @@ public class Equipment implements Cloneable, Serializable {
         potential2 = new String[]{"에디셔널 잠재능력을 재설정 해주세요.", "", ""};
         potentialGrade1 = 0;
         potentialGrade2 = 0;
-        id = "equip";
+        id = -1; //더미 객체
         name = "잘못된 이름";
         Image = "";
         type = "잘못된 장비";
@@ -75,9 +75,9 @@ public class Equipment implements Cloneable, Serializable {
         goldHammer = 0;
     }
 
-    public String getId() { return id; }
+    public int getId() { return id; }
 
-    public void setId(int id) { this.id = "equip"+id; }
+    public void setId(int id) { this.id = id; }
 
     //강화 수치 증가
     public void addEnhanceStat(int index, int num) {

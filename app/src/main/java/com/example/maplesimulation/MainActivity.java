@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         this.invenList = new ArrayList<Equipment>();
         for(int i=0; i<INVENTORY_SIZE; i++) {
             tmp = PreferenceManager.getEquipment(this, "equip"+i);
-            if(tmp != null) {
+            if(tmp != null && tmp.getId() != -1) {
                 this.invenList.add(tmp);
             }
         }
@@ -118,7 +119,8 @@ public class MainActivity extends AppCompatActivity {
     public void goInven(View view) {
         Intent intent = new Intent(this, InvenActivity.class);
         intent.putExtra("invenList", this.invenList);
-        startActivityForResult(intent, 1);
+        intent.putExtra("Equipment", this.equipment);
+        startActivityForResult(intent, 2);
     }
 
 
@@ -142,14 +144,14 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode){
-            case 0: //최초 장비 등록
+            case 0: //장비 등록
                 if(data!=null) {
                     int selected = data.getIntExtra("equipment", -1);
                     try {
-                        this.invenList.add((Equipment) equipmentList.get(selected).clone());
-                        this.nowEquip = invenList.size()-1;
-                        this.equipment = this.invenList.get(nowEquip);
-                        this.equipment.setId(this.invenList.size()-1);
+                        Equipment newEquipment = (Equipment) equipmentList.get(selected).clone();
+                        newEquipment.setId(invenList.size());
+                        invenList.add(newEquipment);
+                        this.equipment = invenList.get(invenList.size()-1);
                         setThumnail();
                     } catch (CloneNotSupportedException e) {
                         e.printStackTrace();
@@ -159,11 +161,16 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 if(data != null) {
                     Equipment equip = (Equipment) data.getSerializableExtra("equip");
-                    this.invenList.set(nowEquip, equip);
                     this.equipment = equip;
                     setThumnail();
                 }
                 break;
+            case 2: //from inventory
+                if(data != null) {
+                    this.invenList = (ArrayList<Equipment>) data.getSerializableExtra("invenList");
+                    this.equipment = (Equipment) data.getSerializableExtra("Equipment");
+                    setThumnail();
+                }
         }
     }
 
@@ -171,6 +178,13 @@ public class MainActivity extends AppCompatActivity {
     public void setThumnail() {
         ImageView imageView = (ImageView)findViewById(R.id.thumnail);
         TextView textView = (TextView)findViewById(R.id.selected_name);
+
+        if(this.equipment == null || this.equipment.getId() == -1) {
+            Toast.makeText(this, "새로운 장비를 추가해 주세요", Toast.LENGTH_SHORT).show();
+            textView.setText("장비를 추가해 주세요");
+            imageView.setImageResource(R.drawable.ui_request_equipment);
+            return;
+        }
 
         int lid = this.getResources()
                 .getIdentifier(equipment.getImage(), "drawable", this.getPackageName());

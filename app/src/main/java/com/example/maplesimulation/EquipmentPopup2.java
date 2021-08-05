@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.res.ResourcesCompat;
 
-public class EquipmentPopup extends Activity {
+public class EquipmentPopup2 extends Activity {
     Equipment equipment;
 
     @Override
@@ -25,6 +27,9 @@ public class EquipmentPopup extends Activity {
         //데이터 가져오기
         Intent intent = getIntent();
         this.equipment = (Equipment) intent.getSerializableExtra("equipment");
+
+        Button button = findViewById(R.id.enhance);
+        button.setVisibility(View.VISIBLE);
 
         initInfo();
     }
@@ -41,6 +46,7 @@ public class EquipmentPopup extends Activity {
         Intent intent = getIntent();
         intent.putExtra("equipment", this.equipment);
         setResult(0, intent);
+        Toast.makeText(this, "강화를 시작합니다.", Toast.LENGTH_SHORT).show();
         finish();
     }
 

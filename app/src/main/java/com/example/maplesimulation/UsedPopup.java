@@ -3,6 +3,7 @@ package com.example.maplesimulation;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
@@ -56,7 +57,7 @@ public class UsedPopup extends Activity {
         usedView.setText(usedList);
     }
 
-    public void goBack(){
+    public void goBack(View view){
         finish();
     }
 }

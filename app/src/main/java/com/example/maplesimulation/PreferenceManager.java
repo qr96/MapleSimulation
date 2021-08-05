@@ -4,30 +4,13 @@ package com.example.maplesimulation;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import androidx.work.Data;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
-import com.google.gson.LongSerializationPolicy;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import static com.google.gson.internal.UnsafeAllocator.create;
 
 public class PreferenceManager {
 
     public static final String PREFERENCES_NAME = "rebuild_preference";
-
+    private static final int DEFAULT_VALUE_INT = -1;
     private static final String DEFAULT_VALUE_STRING = "";
     private Equipment equipment = new Equipment();
 
@@ -50,8 +33,10 @@ public class PreferenceManager {
         SharedPreferences prefs = getPreferences(context);
         String value = prefs.getString(key, DEFAULT_VALUE_STRING);
         Gson gson = new Gson();
+        Equipment equipment;
 
-        Equipment equipment = gson.fromJson(value, Equipment.class);
+        if(value == "") equipment = new Equipment();
+        else equipment = gson.fromJson(value, Equipment.class);
 
         return equipment;
     }
@@ -66,6 +51,19 @@ public class PreferenceManager {
     public static String getString(Context context, String key) {
         SharedPreferences prefs = getPreferences(context);
         String value = prefs.getString(key, DEFAULT_VALUE_STRING);
+        return value;
+    }
+
+    public static void setInt(Context context, String key, int value) {
+        SharedPreferences prefs = getPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(key, value);
+        editor.commit();
+    }
+
+    public static int getInt(Context context, String key) {
+        SharedPreferences prefs = getPreferences(context);
+        int value = prefs.getInt(key, DEFAULT_VALUE_INT);
         return value;
     }
 

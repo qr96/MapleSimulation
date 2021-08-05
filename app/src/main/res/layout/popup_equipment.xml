@@ -127,14 +127,30 @@
             android:layout_height="1dp"
             android:layout_margin="10dp"
             android:background="#cccc"/>
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/ui_button_basic"
-            android:fontFamily="@font/nexon_low"
-            android:onClick="usedPopup"
-            android:text="영수증"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/enhance"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ui_button_basic"
+                android:fontFamily="@font/nexon_low"
+                android:onClick="goMain"
+                android:text="강화"
+                android:visibility="gone"/>
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ui_button_basic"
+                android:fontFamily="@font/nexon_low"
+                android:onClick="usedPopup"
+                android:text="영수증"/>
+        </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

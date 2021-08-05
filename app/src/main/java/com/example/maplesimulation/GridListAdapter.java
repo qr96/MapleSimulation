@@ -43,10 +43,13 @@ public class GridListAdapter extends BaseAdapter {
 
         if(equipment != null){
             ImageView imageView = convertView.findViewById(R.id.thumnail);
+
             int imageRID = convertView.getResources().getIdentifier(equipment.getImage(), "drawable",
                     context.getPackageName());
+
             imageView.setImageResource(imageRID);
         }
+
 
 
         return convertView;

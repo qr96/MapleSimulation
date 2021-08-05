@@ -24,6 +24,7 @@
 
         <activity android:name=".SelectBasicScollPopup" android:theme="@android:style/Theme.Dialog"/>
         <activity android:name=".EquipmentPopup" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".EquipmentPopup2" android:theme="@android:style/Theme.Dialog"/>
         <activity android:name=".UsedPopup" android:theme="@style/Theme.AppCompat.Light.Dialog"/>
 
 
