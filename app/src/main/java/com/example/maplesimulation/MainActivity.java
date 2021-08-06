@@ -111,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
             nothingDialog();
             return;
         }
+        if(equipment.isNoljang){
+            Toast.makeText(this, "스타포스를 할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Intent intent = new Intent(this, StarforceActivity.class);
         intent.putExtra("equipment", equipment);
         startActivityForResult(intent, 1);

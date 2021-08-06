@@ -7,9 +7,12 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 public class UsedPopup extends Activity {
     private Equipment equipment;
-
+    
+    //재화 사용량 기록 클래스
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,7 @@ public class UsedPopup extends Activity {
     public void updateUsed(){
         TextView usedView = findViewById(R.id.used);
         String usedList = "";
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
         if(equipment.used_sunback > 0)
             usedList = usedList + "순백의 주문서 : " + equipment.used_sunback + "\n";
@@ -54,8 +58,10 @@ public class UsedPopup extends Activity {
         if(equipment.used_addicube > 0)
             usedList = usedList + "에디셔널 큐브 : " + equipment.used_addicube + "\n";
 
+        if(equipment.used_destroy > 0)
+            usedList = usedList + "파괴된 횟수 : " + equipment.used_destroy + "\n";
         if(equipment.used_meso > 0)
-            usedList = usedList + "사용한 메소(스타포스) : " + equipment.used_meso + "\n";
+            usedList = usedList + "사용한 메소(스타포스) : " + decimalFormat.format(equipment.used_meso) + "\n";
 
         if(usedList.equals("")) usedList = "사용한 내역이 없습니다.";
 

@@ -451,6 +451,10 @@ public class ScrollActivity extends Activity {
         }
         else if(view.getId() == R.id.scroll_button_7) {
             //놀장
+            if(equipment.getName().contains("타일런트") || equipment.getLevReq()>160 || equipment.isStarforce){
+                Toast.makeText(this, "사용할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
+                return;
+            }
             selected_check_id = R.id.scroll_check_7;
         }
         else{

@@ -41,13 +41,20 @@ public class StarforceActivity extends Activity {
 
         Intent intent = getIntent();
         this.equipment = (Equipment) intent.getSerializableExtra("equipment");
-        starforce = new Starforce(this.equipment);
+
+        if(equipment.getName().contains("타일런트")){
+            starforce = new StarforceSuperior(this.equipment);
+            initForSuperior();
+        }
+        else{
+            starforce = new Starforce(this.equipment);
+            initSpinner();
+            initCheckBox();
+        }
 
         setThumnail();
         updateText();
         initAd();
-        initSpinner();
-        initCheckBox();
     }
 
     //광고 초기화
@@ -55,12 +62,20 @@ public class StarforceActivity extends Activity {
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
-
             }
         });
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+    }
+
+    //슈페리얼 장비용 초기화
+    public void initForSuperior() {
+        Spinner event_spinner = (Spinner) findViewById(R.id.event_spinner);
+        event_spinner.setEnabled(false);
+
+        CheckBox checkBox = findViewById(R.id.preventdestroy);
+        checkBox.setEnabled(false);
     }
 
     //스피너 초기화 (이벤트, MVP 설정)
@@ -171,7 +186,7 @@ public class StarforceActivity extends Activity {
         if(starforce.canDouble()) equipInfo = equipment.getStar()+"성 > "+(equipment.getStar()+2)+"성\n\n";
         else equipInfo = equipment.getStar()+"성 > "+(equipment.getStar()+1)+"성\n\n";
         if(starforce.isChanceTime()){
-            equipInfo = "찬스타임!!!!\n\n성공확률:100%\n\n";
+            equipInfo = equipInfo + "찬스타임!!!!\n성공확률:100%\n\n";
         }
         else if(starforce.can1516event()){
             equipInfo = equipInfo+"성공확률: 100%\n(5,10,15성 100% event)\n\n";

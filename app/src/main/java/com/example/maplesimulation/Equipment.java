@@ -49,6 +49,7 @@ public class Equipment implements Cloneable, Serializable {
     public int used_redcube;
     public int used_addicube;
     public int used_meso;
+    public int used_destroy;
 
     public boolean isNoljang; //놀장 인지 여부
     public boolean isStarforce; //스타포스 작인지 여부
@@ -164,6 +165,7 @@ public class Equipment implements Cloneable, Serializable {
         used_addicube= 0;
         used_meso = 0;
         used_noljang = 0;
+        used_destroy = 0;
     }
 
     //방어구인지 여부

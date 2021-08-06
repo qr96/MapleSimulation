@@ -154,6 +154,7 @@ public class Starforce {
     }
 
     public void destroyed() {
+        equipment.used_destroy++;
         chanceStack=0;
         equipment.initStarStat();
         for(int i=0; i<12; i++) success();
@@ -187,7 +188,7 @@ public class Starforce {
     public int[] increment(int star) {
         int stats[] = {0, 0, 0}; //주스텟, 공격력, 마력
 
-        //주스텟 상승, 무기 방어구 동일
+        //주스텟 상승, 무기 방어구, 장신구 동일
         if(star < 5) {
             stats[0] = 2;
         }
@@ -243,7 +244,7 @@ public class Starforce {
                     stats[1] = starStatTable.get(levReq+"무기"+step);
                 }
             }
-            else {//방어구인 경우
+            else {//방어구, 장신구인 경우
                 stats[2] = starStatTable.get(levReq+"방어구"+step);
                 stats[1] = starStatTable.get(levReq+"방어구"+step);
             }
