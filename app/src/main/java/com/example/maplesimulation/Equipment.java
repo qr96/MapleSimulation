@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Equipment implements Cloneable, Serializable {
-    private int id; //id가 -1이면 더미 객체
     private String name;
     private String Image;
     private String type; //장비 부위
@@ -51,6 +50,7 @@ public class Equipment implements Cloneable, Serializable {
     public int used_meso;
     public int used_destroy;
 
+    public int tmpMaxStar;
     public boolean isNoljang; //놀장 인지 여부
     public boolean isStarforce; //스타포스 작인지 여부
 
@@ -68,7 +68,6 @@ public class Equipment implements Cloneable, Serializable {
         potential2 = new String[]{"에디셔널 잠재능력을 재설정 해주세요.", "", ""};
         potentialGrade1 = 0;
         potentialGrade2 = 0;
-        id = -1; //더미 객체
         name = "잘못된 이름";
         Image = "";
         type = "잘못된 장비";
@@ -82,10 +81,6 @@ public class Equipment implements Cloneable, Serializable {
         isNoljang = false;
         isStarforce = false;
     }
-
-    public int getId() { return id; }
-
-    public void setId(int id) { this.id = id; }
 
     //강화 수치 증가
     public void addEnhanceStat(int index, int num) {
@@ -209,6 +204,10 @@ public class Equipment implements Cloneable, Serializable {
     //이노센트 주문서 사용
     public void useInnocent() {
         if(goldHammer>0) maxUp--;
+        if(isNoljang) {
+            maxStar = tmpMaxStar;
+            isNoljang = false;
+        }
         nowUp=0;
         goldHammer=0;
         failUp=0;

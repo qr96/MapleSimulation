@@ -28,7 +28,11 @@ public class ScrollActivity extends Activity {
     public int selected_button_id = -1; //선택된 아이템의 id
     public int selected_check_id = -1; //선택된 아이템의 체크 id
     public int selected_detail_id = -1; //선택된 아이템의 세부 옵션 id  ex) 70%, 30% 주문서
-    public Equipment equipment;
+
+    private ArrayList<Equipment> inventory; //인벤토리 배열
+    private Equipment equipment;
+    private int now; //현재 강화중인 장비의 인덱스
+
     public Scroll scroll;
     public Flame flame;
     public Noljang noljang;
@@ -44,10 +48,13 @@ public class ScrollActivity extends Activity {
         setContentView(R.layout.activity_scroll);
 
         Intent intent = getIntent();
-        this.equipment = (Equipment) intent.getSerializableExtra("equipment");
-        this.scroll = new Scroll(this.equipment);
-        this.flame = new Flame(this.equipment);
-        this.noljang = new Noljang(this.equipment);
+        inventory = (ArrayList<Equipment>) intent.getSerializableExtra("inventory");
+        now = (int) intent.getSerializableExtra("now");
+        equipment = inventory.get(now);
+
+        this.scroll = new Scroll(equipment);
+        this.flame = new Flame(equipment);
+        this.noljang = new Noljang(equipment);
 
         setThumnail();
         updateText();
@@ -71,7 +78,7 @@ public class ScrollActivity extends Activity {
 
     public void infoPopup(View view){
         Intent intent = new Intent(this, EquipmentPopup.class);
-        intent.putExtra("equipment", this.equipment);
+        intent.putExtra("equipment", equipment);
         startActivityForResult(intent, 1);
     }
 
@@ -101,7 +108,7 @@ public class ScrollActivity extends Activity {
         
         //주문의 흔적
         if(selected_button_id == R.id.scroll_button_0) {
-            if(this.equipment.getType().equals("장갑")){ //장갑
+            if(equipment.getType().equals("장갑")){ //장갑
                 //공,마  100, 70, 30
                 if(selected_detail_id%3 == 0) possibility = 100;
                 else if(selected_detail_id%3 == 1) possibility = 70;
@@ -138,10 +145,10 @@ public class ScrollActivity extends Activity {
                 else if(selected_detail_id/3 == 3) justat = "LUK";
                 else if(selected_detail_id/3 == 4) justat = "HP";
 
-                if(this.equipment.getLevReq()>=120 && this.equipment.getLevReq()<=200){ //120~200
+                if(equipment.getLevReq()>=120 && equipment.getLevReq()<=200){ //120~200
                     result = scroll.doAccessaryScroll2(possibility, justat);
                 }
-                else if(this.equipment.getLevReq()>=75 && this.equipment.getLevReq()<=120) { //75~110
+                else if(equipment.getLevReq()>=75 && equipment.getLevReq()<=120) { //75~110
                     result = scroll.doAccessaryScroll1(possibility, justat);
                 }
             }
@@ -244,7 +251,7 @@ public class ScrollActivity extends Activity {
         updateText();
         setEquipName();
         view.setEnabled(false);
-        PreferenceManager.setEquipment(this, "equip"+equipment.getId(), this.equipment);
+        PreferenceManager.setInventory(this, inventory);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -299,16 +306,17 @@ public class ScrollActivity extends Activity {
 
     public void setEquipName() {
         TextView textView = findViewById(R.id.equipment_name);
-        if(equipment.getNowUp()>0) textView.setText(equipment.getName()+" (+"+equipment.getNowUp()+")");
+        if(equipment.getNowUp()>0)
+            textView.setText(equipment.getName()+" (+"+equipment.getNowUp()+")");
         else textView.setText(equipment.getName());
     }
     
     //장비의 능력치 표시 업데이트
     public void updateText() {
-        if(this.equipment == null) return;
+        if(equipment == null) return;
 
         TextView textView = findViewById(R.id.info);
-        String equipInfo = EquipmentInfo.makeText(this.equipment);
+        String equipInfo = EquipmentInfo.makeText(equipment);
 
         textView.setText(Html.fromHtml(equipInfo));
     }
@@ -356,7 +364,8 @@ public class ScrollActivity extends Activity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();
-        intent.putExtra("equip", this.equipment);
+        intent.putExtra("inventory", inventory);
+        intent.putExtra("now", now);
         setResult(1, intent);
         finish();
         super.onBackPressed();
@@ -449,6 +458,21 @@ public class ScrollActivity extends Activity {
                 selected_button_id = -1;
                 return;
             }
+
+            CustomDialog customDialog = new CustomDialog(view.getContext(), new CustomDialogClickListener() {
+                @Override
+                public void onPositiveClick() {
+                }
+                @Override
+                public void onNegativeClick() {
+                    return;
+                }
+            });
+            customDialog.show();
+            customDialog.setMessage("놀라운 장비강화 주문서입니다. 사용 시 스타포스 강화가 불가능하며 최대 15성으로 제한됩니다.\n" +
+                    "[성공확률]\n" +
+                    "1성:60% 2성:55% 3성:50% 4성:40% 5성:30% 6성:20% 7성:19% 8성:18% 9성:17% 10성:16% 11성:14% 12성:12% 13성 이상10%");
+
             selected_check_id = R.id.scroll_check_7;
         }
         else{

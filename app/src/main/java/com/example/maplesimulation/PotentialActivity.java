@@ -24,6 +24,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -32,7 +33,11 @@ public class PotentialActivity extends Activity {
     public int selected_check_id = -1; //선택된 아이템의 체크 id
 
     public List cubeTableList; //[블랙큐브, 레드큐브, 에디셔널큐브, 명장의큐브, 장인의큐브]
-    public Equipment equipment;
+
+    private ArrayList<Equipment> inventory;
+    private Equipment equipment; //현재 강화중인 장비
+    private int now;
+
     public Cube blackCube;
     public Cube redCube;
     public Cube addiCube;
@@ -53,7 +58,9 @@ public class PotentialActivity extends Activity {
         setContentView(R.layout.activity_potential);
 
         Intent intent = getIntent();
-        this.equipment = (Equipment) intent.getSerializableExtra("equipment");
+        inventory = (ArrayList<Equipment>) intent.getSerializableExtra("inventory");
+        now = (int) intent.getSerializableExtra("now");
+        equipment = inventory.get(now);
 
         //큐브 DB 초기화
         initLoadCubeDB();
@@ -90,9 +97,9 @@ public class PotentialActivity extends Activity {
     }
 
     public void initCube() {
-        blackCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(0));
-        redCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(1));
-        addiCube = new Cube(this.equipment, (CubeTable) cubeTableList.get(2));
+        blackCube = new Cube(equipment, (CubeTable) cubeTableList.get(0));
+        redCube = new Cube(equipment, (CubeTable) cubeTableList.get(1));
+        addiCube = new Cube(equipment, (CubeTable) cubeTableList.get(2));
     }
 
     public void initSpinner() {
@@ -127,7 +134,8 @@ public class PotentialActivity extends Activity {
         if(equipment == null) return;
 
         ImageView imageView = findViewById(R.id.equipment_image);
-        int imageRID = this.getResources().getIdentifier(equipment.getImage(), "drawable", this.getPackageName());
+        int imageRID = this.getResources().getIdentifier(equipment.getImage(),
+                "drawable", this.getPackageName());
         imageView.setImageResource(imageRID);
 
         setEquipName();
@@ -135,21 +143,22 @@ public class PotentialActivity extends Activity {
 
     public void setEquipName() {
         TextView textView = findViewById(R.id.equipment_name);
-        if(equipment.getNowUp()>0) textView.setText(equipment.getName()+" (+"+equipment.getNowUp()+")");
+        if(equipment.getNowUp()>0)
+            textView.setText(equipment.getName()+" (+"+equipment.getNowUp()+")");
         else textView.setText(equipment.getName());
     }
 
     public void infoPopup(View view){
         Intent intent = new Intent(this, EquipmentPopup.class);
-        intent.putExtra("equipment", this.equipment);
+        intent.putExtra("equipment", equipment);
         startActivityForResult(intent, 1);
     }
 
     public void updateText() {
-        if(this.equipment == null) return;
+        if(equipment == null) return;
 
         TextView textView = findViewById(R.id.info);
-        String equipInfo = EquipmentInfo.potential(this.equipment);
+        String equipInfo = EquipmentInfo.potential(equipment);
 
         textView.setText(Html.fromHtml(equipInfo));
     }
@@ -195,7 +204,7 @@ public class PotentialActivity extends Activity {
         }, 600);
     }
 
-    //주문서들 클릭 방지
+    //큐브들 오토 중 클릭 방지
     public void toggleButtonsEnable() {
         LinearLayout panel = findViewById(R.id.buttonPanel);
         for(int i=0; i<panel.getChildCount(); i++){
@@ -324,7 +333,7 @@ public class PotentialActivity extends Activity {
 
         updateText();
         sparkleEffect();
-        PreferenceManager.setEquipment(this, "equip"+equipment.getId(), this.equipment);
+        PreferenceManager.setInventory(this, inventory);
     }
 
     //반짝 효과
@@ -417,11 +426,11 @@ public class PotentialActivity extends Activity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();
-        intent.putExtra("equip", this.equipment);
+        intent.putExtra("inventory", inventory);
+        intent.putExtra("now", now);
         setResult(1, intent);
         finish();
         super.onBackPressed();
     }
-
 }
 

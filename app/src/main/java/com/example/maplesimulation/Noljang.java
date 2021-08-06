@@ -1,6 +1,5 @@
 package com.example.maplesimulation;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Noljang {
@@ -17,6 +16,12 @@ public class Noljang {
     public int useNoljang() {
         if(equipment.isStarforce || equipment.getStar()==equipment.getMaxStar()) return -1; //이미 스타포스 작이 되어있는 경우
         int star = equipment.getStar();
+
+        if(equipment.getMaxStar()>15){
+            equipment.tmpMaxStar = equipment.getMaxStar();
+            equipment.setMaxStar(15);
+        }
+
         equipment.isNoljang = true;
         equipment.used_noljang++;
 

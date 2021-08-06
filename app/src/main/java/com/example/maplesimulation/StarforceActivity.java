@@ -31,9 +31,13 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class StarforceActivity extends Activity {
+    private ArrayList<Equipment> inventory;
     private Equipment equipment;
+    private int now;
+
     private AdView mAdView;
     private InterstitialAd mInterstitialAd;
 
@@ -48,14 +52,16 @@ public class StarforceActivity extends Activity {
         setContentView(R.layout.activity_starforce);
 
         Intent intent = getIntent();
-        this.equipment = (Equipment) intent.getSerializableExtra("equipment");
+        inventory = (ArrayList<Equipment>) intent.getSerializableExtra("inventory");
+        now = (int) intent.getSerializableExtra("now");
+        equipment = inventory.get(now);
 
         if(equipment.getName().contains("타일런트")){
-            starforce = new StarforceSuperior(this.equipment);
+            starforce = new StarforceSuperior(equipment);
             initForSuperior();
         }
         else{
-            starforce = new Starforce(this.equipment);
+            starforce = new Starforce(equipment);
             initSpinner();
             initCheckBox();
         }
@@ -122,7 +128,7 @@ public class StarforceActivity extends Activity {
 
     public void infoPopup(View view){
         Intent intent = new Intent(this, EquipmentPopup.class);
-        intent.putExtra("equipment", this.equipment);
+        intent.putExtra("equipment", equipment);
         startActivityForResult(intent, 1);
     }
 
@@ -146,7 +152,7 @@ public class StarforceActivity extends Activity {
 
         sparkleEffect();
         updateText();
-        PreferenceManager.setEquipment(this, "equip"+equipment.getId(), this.equipment);
+        PreferenceManager.setInventory(this, inventory);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -162,7 +168,8 @@ public class StarforceActivity extends Activity {
         if(equipment == null) return;
 
         ImageView imageView = findViewById(R.id.equipment_image);
-        int imageRID = this.getResources().getIdentifier(equipment.getImage(), "drawable", this.getPackageName());
+        int imageRID = this.getResources().getIdentifier(equipment.getImage(),
+                "drawable", this.getPackageName());
         imageView.setImageResource(imageRID);
 
         setEquipName();
@@ -170,14 +177,16 @@ public class StarforceActivity extends Activity {
 
     public void setEquipName() {
         TextView textView = findViewById(R.id.equipment_name);
-        if(equipment.getNowUp()>0) textView.setText(equipment.getName()+" (+"+equipment.getNowUp()+")");
+        if(equipment.getNowUp()>0)
+            textView.setText(equipment.getName()+" (+"+equipment.getNowUp()+")");
         else textView.setText(equipment.getName());
     }
 
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();
-        intent.putExtra("equip", this.equipment);
+        intent.putExtra("inventory", inventory);
+        intent.putExtra("now", now);
         setResult(1, intent);
         finish();
         super.onBackPressed();
@@ -185,7 +194,7 @@ public class StarforceActivity extends Activity {
 
     //장비 강화 상태창 업데이트
     public void updateText() {
-        if(this.equipment == null) return;
+        if(equipment == null) return;
 
         double success = starforce.table_success[equipment.getStar()];
         double destroy = starforce.table_destroyed[equipment.getStar()];

@@ -22,8 +22,9 @@ import java.util.ArrayList;
 
 public class InvenActivity extends Activity {
     private AdView mAdView;
-    private ArrayList<Equipment> invenList;
-    private Equipment equipment;
+    private ArrayList<Equipment> inventory;
+    private ArrayList<Equipment> inventoryForGrid;
+    private int now;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,8 @@ public class InvenActivity extends Activity {
         setContentView(R.layout.activity_inven);
 
         Intent intent = getIntent();
-        this.invenList = (ArrayList<Equipment>) intent.getSerializableExtra("invenList");
-        this.equipment = (Equipment) intent.getSerializableExtra("Equipment");
+        inventory = (ArrayList<Equipment>) intent.getSerializableExtra("inventory");
+        now = (int) intent.getSerializableExtra("now");
 
         //인벤토리 초기화
         initGridView();
@@ -46,29 +47,25 @@ public class InvenActivity extends Activity {
         GridView gridView = findViewById(R.id.gridView);
         GridListAdapter adapter = new GridListAdapter();
 
-        for(int i=0; i<invenList.size(); i++){
-            adapter.addItem(invenList.get(i));
-        }
-        for(int i=0; i<40-invenList.size(); i++){
-            adapter.addItem(new Equipment());
+        inventoryForGrid = new ArrayList<Equipment>();
+
+        inventoryForGrid.addAll(inventory);
+        while(inventoryForGrid.size()<40) inventoryForGrid.add(new Equipment());
+
+        for(int i=0; i<inventoryForGrid.size(); i++){
+            adapter.addItem(inventoryForGrid.get(i));
         }
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final Equipment equipment = (Equipment) adapter.getItem(position);
-                if(equipment != null && equipment.getId() != -1) {
-                    infoPopup(view.getContext(), equipment);
-                }
+                if(position<inventory.size()) infoPopup(view.getContext(), inventory.get(position));
             }
         });
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final Equipment equipment = (Equipment) adapter.getItem(position);
-                if(equipment != null && equipment.getId()!=-1) {
-                    removeItemDialog(position);
-                }
+                if(position<inventory.size()) removeItemDialog(position);
                 return true;
             }
         });
@@ -80,13 +77,9 @@ public class InvenActivity extends Activity {
         CustomDialog customDialog = new CustomDialog(this, new CustomDialogClickListener() {
             @Override
             public void onPositiveClick() {
-                invenList.remove(position);
-                if(invenList.size()>0) equipment = invenList.get(invenList.size()-1);
-
-                for(int i=position; i<invenList.size(); i++){
-                    PreferenceManager.setEquipment(InvenActivity.this, "equip"+i, invenList.get(i));
-                }
-                PreferenceManager.removeKey(InvenActivity.this, "equip"+invenList.size());
+                inventory.remove(position);
+                if(position == now) now = -1; //현재 강화중인 아이템 삭제한 경우
+                PreferenceManager.setInventory(InvenActivity.this, inventory);
                 initGridView();
                 Toast.makeText(InvenActivity.this, "장비가 삭제되었습니다", Toast.LENGTH_SHORT).show();
             }
@@ -110,8 +103,6 @@ public class InvenActivity extends Activity {
         switch(requestCode){
             case 0: //강화를 눌렀다는 것
                 if(data!=null) {
-                    Equipment equipment = (Equipment) data.getSerializableExtra("equipment");
-                    this.equipment = equipment;
                     onBackPressed();
                 }
                 break;
@@ -133,9 +124,9 @@ public class InvenActivity extends Activity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();
-        intent.putExtra("invenList", this.invenList);
-        intent.putExtra("Equipment", this.equipment);
-        setResult(2, intent);
+        intent.putExtra("inventory", inventory);
+        intent.putExtra("now", now);
+        setResult(1, intent);
         finish();
         super.onBackPressed();
     }

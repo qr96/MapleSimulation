@@ -18,11 +18,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public ArrayList<Equipment> equipmentList ; //장비 객체 배열
-    public ArrayList<String> equipNameList; //장비 이름 배열
-    private Equipment equipment; //현재 장비
-    public ArrayList<Equipment> invenList; //인벤토리 배열
-    public final int INVENTORY_SIZE = 40;
-
+    public ArrayList<Equipment> inventory; //인벤토리 배열
+    public int now; //현재 강화중인 장비의 인덱스
 
     private AdView mAdView;
 
@@ -40,24 +37,19 @@ public class MainActivity extends AppCompatActivity {
         //인벤토리 배열 초기화
         initInvenList();
 
+        now = -1; //현재 선택된 장비 없음
+
     }
 
     //인벤토리 배열 초기화, DB에서 읽어올 예정
     public void initInvenList() {
-        Equipment tmp;
-        this.invenList = new ArrayList<Equipment>();
-        for(int i=0; i<INVENTORY_SIZE; i++) {
-            tmp = PreferenceManager.getEquipment(this, "equip"+i);
-            if(tmp != null && tmp.getId() != -1) {
-                this.invenList.add(tmp);
-            }
-        }
+        inventory = PreferenceManager.getInventory(this, "inventory");
     }
 
     public void infoPopup(View view) {
-        if(this.equipment == null) return;
+        if(inventory.get(now) == null) return;
         Intent intent = new Intent(this, EquipmentPopup.class);
-        intent.putExtra("equipment", this.equipment);
+        intent.putExtra("equipment", inventory.get(now));
         startActivity(intent);
     }
 
@@ -81,54 +73,56 @@ public class MainActivity extends AppCompatActivity {
 
     public void goScroll(View view) {
         //장비 미선택 시
-        if(equipment == null) {
+        if(now == -1) {
             nothingDialog();
             return;
         }
-        if(equipment.getType().equals("엠블렘") || equipment.getType().equals("뱃지")){
+        if(inventory.get(now).getType().equals("엠블렘") || inventory.get(now).getType().equals("뱃지")){
             Toast.makeText(this, "주문서 사용이 불가능한 장비입니다.", Toast.LENGTH_SHORT).show();
             return;
         }
 
         Intent intent = new Intent(this, ScrollActivity.class);
-        intent.putExtra("equipment", equipment);
+        intent.putExtra("inventory", inventory);
+        intent.putExtra("now", now);
         startActivityForResult(intent, 1);
-
     }
 
     public void goPotential(View view) {
-        if(equipment == null) {
+        if(inventory.get(now) == null) {
             nothingDialog();
             return;
         }
-        if(equipment.getType().equals("뱃지")){
+        if(inventory.get(now).getType().equals("뱃지")){
             Toast.makeText(this, "잠재능력 재설정이 불가능한 장비입니다.", Toast.LENGTH_SHORT).show();
             return;
         }
         Intent intent = new Intent(this, PotentialActivity.class);
-        intent.putExtra("equipment", equipment);
+        intent.putExtra("inventory", inventory);
+        intent.putExtra("now", now);
         startActivityForResult(intent, 1);
     }
 
     public void goStarforce(View view) {
-        if(equipment == null) {
+        if(inventory.get(now) == null) {
             nothingDialog();
             return;
         }
-        if(equipment.isNoljang || equipment.getType().equals("뱃지") || equipment.getType().equals("엠블렘")){
+        if(inventory.get(now).isNoljang || inventory.get(now).getType().equals("뱃지") ||
+                inventory.get(now).getType().equals("엠블렘")){
             Toast.makeText(this, "스타포스를 할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
             return;
         }
         Intent intent = new Intent(this, StarforceActivity.class);
-        intent.putExtra("equipment", equipment);
+        intent.putExtra("equipment", inventory.get(now));
         startActivityForResult(intent, 1);
     }
 
     public void goInven(View view) {
         Intent intent = new Intent(this, InvenActivity.class);
-        intent.putExtra("invenList", this.invenList);
-        intent.putExtra("Equipment", this.equipment);
-        startActivityForResult(intent, 2);
+        intent.putExtra("inventory", inventory);
+        intent.putExtra("now", now);
+        startActivityForResult(intent, 1);
     }
 
     //"장비를 추가해주세요" 다이얼로그
@@ -154,9 +148,9 @@ public class MainActivity extends AppCompatActivity {
                     Equipment equipment = (Equipment) data.getSerializableExtra("equipment");
                     try {
                         Equipment newEquipment = (Equipment) equipment.clone();
-                        newEquipment.setId(invenList.size());
-                        invenList.add(newEquipment);
-                        this.equipment = invenList.get(invenList.size()-1);
+                        inventory.add(newEquipment);
+                        PreferenceManager.setInventory(this, inventory);
+                        now = inventory.size()-1;
                         setThumnail();
                     } catch (CloneNotSupportedException e) {
                         e.printStackTrace();
@@ -165,18 +159,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 1:
                 if(data != null) {
-                    Equipment equip = (Equipment) data.getSerializableExtra("equip");
-                    this.equipment = equip;
-                    invenList.set(this.equipment.getId(), this.equipment);
+                    inventory = (ArrayList<Equipment>) data.getSerializableExtra("inventory");
+                    now = (int) data.getSerializableExtra("now");
                     setThumnail();
                 }
                 break;
-            case 2: //from inventory
-                if(data != null) {
-                    this.invenList = (ArrayList<Equipment>) data.getSerializableExtra("invenList");
-                    this.equipment = (Equipment) data.getSerializableExtra("Equipment");
-                    setThumnail();
-                }
         }
     }
 
@@ -185,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageView = (ImageView)findViewById(R.id.thumnail);
         TextView textView = (TextView)findViewById(R.id.selected_name);
 
-        if(this.equipment == null || this.equipment.getId() == -1) {
+        if(now == -1 || inventory.size() == 0) {
             Toast.makeText(this, "새로운 장비를 추가해 주세요", Toast.LENGTH_SHORT).show();
             textView.setText("장비를 추가해 주세요");
             imageView.setImageResource(R.drawable.ui_request_equipment);
@@ -193,10 +180,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         int lid = this.getResources()
-                .getIdentifier(equipment.getImage(), "drawable", this.getPackageName());
+                .getIdentifier(inventory.get(now).getImage(), "drawable", this.getPackageName());
 
         imageView.setImageResource(lid);
-        textView.setText(equipment.getName());
+        textView.setText(inventory.get(now).getName());
 
     }
 
@@ -209,13 +196,6 @@ public class MainActivity extends AppCompatActivity {
         // db에 있는 값들을 model을 적용해서 넣는다.
         equipmentList = mDbHelper.getTableData();
         System.out.println("init DB");
-
-        equipNameList = new ArrayList<String>();
-
-        // 이름은 배열에 따로 저장
-        for(Equipment equipment : equipmentList) {
-            equipNameList.add(equipment.getName());
-        }
 
         // db 닫기
         mDbHelper.close();

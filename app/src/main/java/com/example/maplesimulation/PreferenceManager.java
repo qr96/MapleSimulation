@@ -6,18 +6,49 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class PreferenceManager {
 
     public static final String PREFERENCES_NAME = "rebuild_preference";
     private static final int DEFAULT_VALUE_INT = -1;
     private static final String DEFAULT_VALUE_STRING = "";
-    private Equipment equipment = new Equipment();
 
     private static SharedPreferences getPreferences(Context context) {
         return context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
     }
 
+    public static void setInventory(Context context, ArrayList<Equipment> inventory) {
+        SharedPreferences prefs = getPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        Gson gson = new GsonBuilder().create();
+        Type arrayType = new TypeToken<ArrayList<Equipment>>() {}.getType();
+        String json = gson.toJson(inventory, arrayType);
+
+        editor.putString("inventory", json);
+        editor.commit();
+    }
+
+    public static ArrayList<Equipment> getInventory(Context context, String key) {
+        SharedPreferences prefs = getPreferences(context);
+        String value = prefs.getString(key, DEFAULT_VALUE_STRING);
+
+        Type arrayType = new TypeToken<ArrayList<Equipment>>() {}.getType();
+        Gson gson = new Gson();
+        ArrayList<Equipment> inventory;
+
+        if(value == "") inventory = new ArrayList<Equipment>();
+        else inventory = gson.fromJson(value, arrayType);
+
+        return inventory;
+    }
+
+    /*
     public static void setEquipment(Context context, String key, Equipment equipment) {
         SharedPreferences prefs = getPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
@@ -40,6 +71,7 @@ public class PreferenceManager {
 
         return equipment;
     }
+     */
 
     public static void setString(Context context, String key, String value) {
         SharedPreferences prefs = getPreferences(context);
