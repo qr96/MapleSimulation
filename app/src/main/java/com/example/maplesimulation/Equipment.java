@@ -182,6 +182,23 @@ public class Equipment implements Cloneable, Serializable {
     public boolean isWeapon() {
         return EquipmentManager.isWeapon(this.type);
     }
+
+    int adStack = 0;
+
+    //전면 광고 띄울지 여부
+    public boolean isFullAd() {
+        if(adStack>10) {
+            if(isNoljang && star == 13){
+                adStack = 0;
+                return true;
+            }
+            else if(isStarforce && star == 23) {
+                adStack = 0;
+                return true;
+            }
+        }
+        return false;
+    }
     
     //황금망치 사용
     public void useGoldhammer(){

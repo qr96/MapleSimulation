@@ -60,6 +60,7 @@ public class EquipmentInfo {
         int maxStar = equipment.getMaxStar();
         String text = "";
         int count = 0;
+
         if(equipment.isNoljang) { //놀장 바른 경우
             text = "<font color=\"#33CCFF\">";
             for(int i=0; i<star; i++){
@@ -89,7 +90,6 @@ public class EquipmentInfo {
             count++;
         }
         text = text+"</font>";
-
 
         return text;
     }

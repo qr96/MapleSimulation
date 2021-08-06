@@ -84,16 +84,13 @@ public class InvenActivity extends Activity {
         myAlertBuilder.setPositiveButton("  예  ",new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog,int which){
                 int id = invenList.get(position).getId();
-                if(id == equipment.getId()){
-                    equipment = new Equipment();
-                }
                 invenList.remove(position);
+                equipment = invenList.get(invenList.size()-1);
 
                 for(int i=position; i<invenList.size(); i++){
                     PreferenceManager.setEquipment(InvenActivity.this, "equip"+i, invenList.get(i));
                 }
                 PreferenceManager.removeKey(InvenActivity.this, "equip"+invenList.size());
-
                 initGridView();
                 Toast.makeText(InvenActivity.this, "장비가 삭제되었습니다", Toast.LENGTH_SHORT).show();
             }

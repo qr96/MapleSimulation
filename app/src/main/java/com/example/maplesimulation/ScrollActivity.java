@@ -244,6 +244,7 @@ public class ScrollActivity extends Activity {
         updateText();
         setEquipName();
         view.setEnabled(false);
+        PreferenceManager.setEquipment(this, "equip"+equipment.getId(), this.equipment);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -453,6 +454,7 @@ public class ScrollActivity extends Activity {
             //놀장
             if(equipment.getName().contains("타일런트") || equipment.getLevReq()>160 || equipment.isStarforce){
                 Toast.makeText(this, "사용할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
+                selected_button_id = -1;
                 return;
             }
             selected_check_id = R.id.scroll_check_7;

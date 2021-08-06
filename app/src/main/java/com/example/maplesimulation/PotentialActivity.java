@@ -324,6 +324,7 @@ public class PotentialActivity extends Activity {
 
         updateText();
         sparkleEffect();
+        PreferenceManager.setEquipment(this, "equip"+equipment.getId(), this.equipment);
     }
 
     //반짝 효과

@@ -6,6 +6,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -16,11 +17,16 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import org.w3c.dom.Text;
 
@@ -29,6 +35,8 @@ import java.text.DecimalFormat;
 public class StarforceActivity extends Activity {
     private Equipment equipment;
     private AdView mAdView;
+    private InterstitialAd mInterstitialAd;
+
     public AnimationDrawable resultAnimation;
     public Starforce starforce;
 
@@ -55,6 +63,7 @@ public class StarforceActivity extends Activity {
         setThumnail();
         updateText();
         initAd();
+        initFullAd();
     }
 
     //광고 초기화
@@ -137,11 +146,13 @@ public class StarforceActivity extends Activity {
 
         sparkleEffect();
         updateText();
+        PreferenceManager.setEquipment(this, "equip"+equipment.getId(), this.equipment);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 view.setEnabled(true);
+                if(equipment.isFullAd()) startFullAd();
             }
         }, 600);
     }
@@ -279,5 +290,32 @@ public class StarforceActivity extends Activity {
         sparkle.startAnimation(anim);
         anim.setAnimationListener(listener);
 
+    }
+
+    //전면 광고 시작
+    public void startFullAd() {
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show(this);
+        } else {
+            Log.d("TAG", "The interstitial ad wasn't ready yet.");
+        }
+    }
+
+    //전면 광고 초기화
+    public void initFullAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        mInterstitialAd = interstitialAd;
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        mInterstitialAd = null;
+                    }
+                });
     }
 }

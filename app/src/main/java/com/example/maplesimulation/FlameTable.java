@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-//추가옵션 테이블
+// 추가옵션 테이블
+// 공식이 있는 것이었다... 추후에 테이블이 아닌 공식으로 수정할 예정...
 public class FlameTable implements Serializable {
     public Map<String, int[]> weaponTable = new HashMap<>(); //무기 공격력 추옵 테이블  키:부위+레벨 ex)부채150
 
@@ -28,6 +29,54 @@ public class FlameTable implements Serializable {
         allstat_table.put(100, new int[] {3, 4, 5, 6, 7});
         levdown_table.put(100, new int[] {-15, -20, -25, -30, -35});
         bossdmg_table.put(100, new int[] {6, 8, 10, 12, 14});
+
+        //110제 추옵 테이블
+        justat_table.put(110, new int[] {18, 24, 30, 36, 42});
+        mixstat_table.put(110, new int[] {9, 12, 15, 18, 21});
+        hpmp_table.put(110, new int[] {990, 1320, 1650, 1980, 2310});
+        allstat_table.put(110, new int[] {3, 4, 5, 6, 7});
+        levdown_table.put(110, new int[] {-15, -20, -25, -30, -35});
+        bossdmg_table.put(110, new int[] {6, 8, 10, 12, 14});
+
+        //120제 추옵 테이블
+        justat_table.put(120, new int[] {21, 28, 35, 42, 49});
+        mixstat_table.put(120, new int[] {12, 16, 20, 24, 28});
+        hpmp_table.put(120, new int[] {1080, 1440, 1800, 2160, 2520});
+        allstat_table.put(120, new int[] {3, 4, 5, 6, 7});
+        levdown_table.put(120, new int[] {-15, -20, -25, -30, -35});
+        bossdmg_table.put(120, new int[] {6, 8, 10, 12, 14});
+
+        //130제 추옵 테이블
+        justat_table.put(130, new int[] {21, 28, 35, 42, 49});
+        mixstat_table.put(130, new int[] {12, 16, 20, 24, 28});
+        hpmp_table.put(130, new int[] {1170, 1560, 1950, 2340, 2730});
+        allstat_table.put(130, new int[] {3, 4, 5, 6, 7});
+        levdown_table.put(130, new int[] {-15, -20, -25, -30, -35});
+        bossdmg_table.put(130, new int[] {6, 8, 10, 12, 14});
+
+        //135제 추옵 테이블
+        justat_table.put(135, new int[] {21, 28, 35, 42, 49});
+        mixstat_table.put(135, new int[] {12, 16, 20, 24, 28});
+        hpmp_table.put(135, new int[] {1170, 1560, 1950, 2340, 2730});
+        allstat_table.put(135, new int[] {3, 4, 5, 6, 7});
+        levdown_table.put(135, new int[] {-15, -20, -25, -30, -35});
+        bossdmg_table.put(135, new int[] {6, 8, 10, 12, 14});
+
+        //140제 추옵 테이블
+        justat_table.put(140, new int[] {24, 32, 40, 48, 56});
+        mixstat_table.put(140, new int[] {12, 16, 20, 24, 28});
+        hpmp_table.put(140, new int[] {1260, 1680, 2100, 2520, 2940});
+        allstat_table.put(140, new int[] {3, 4, 5, 6, 7});
+        levdown_table.put(140, new int[] {-15, -20, -25, -30, -35});
+        bossdmg_table.put(140, new int[] {6, 8, 10, 12, 14});
+
+        //145제 추옵 테이블
+        justat_table.put(145, new int[] {24, 32, 40, 48, 56});
+        mixstat_table.put(145, new int[] {12, 16, 20, 24, 28});
+        hpmp_table.put(145, new int[] {1260, 1680, 2100, 2520, 2940});
+        allstat_table.put(145, new int[] {3, 4, 5, 6, 7});
+        levdown_table.put(145, new int[] {-15, -20, -25, -30, -35});
+        bossdmg_table.put(145, new int[] {6, 8, 10, 12, 14});
 
         //150제 추옵 테이블
         justat_table.put(150, new int[] {24, 32, 40, 48, 56});
@@ -153,6 +202,42 @@ public class FlameTable implements Serializable {
         weaponTable.put("ESP리미터200", new int[] {63, 92, 126, 167, 214});
         weaponTable.put("매직 건틀렛200", new int[] {63, 92, 126, 167, 214});
         weaponTable.put("스태프200", new int[] {64, 94, 129, 170, 218});
+
+        //제네 무기
+        weaponTable.put("아대제네시스", new int[] {31, 46, 63, 83, 106});
+        weaponTable.put("건제네시스", new int[] {45, 66, 91, 120, 154});
+        weaponTable.put("에너지소드제네시스", new int[] {46, 68, 93, 123, 157});
+        weaponTable.put("너클제네시스", new int[] {46, 68, 93, 123, 157});
+        weaponTable.put("건틀렛리볼버제네시스", new int[] {46, 68, 93, 123, 157});
+        weaponTable.put("소울슈터제네시스", new int[] {46, 68, 93, 123, 157});
+        weaponTable.put("폴암제네시스", new int[] {55, 81, 111, 146, 187});
+        weaponTable.put("에인션트보우제네시스", new int[] {58, 84, 116, 153, 196});
+        weaponTable.put("부채제네시스", new int[] {58, 84, 116, 153, 196});
+        weaponTable.put("활제네시스", new int[] {58, 84, 116, 153, 196});
+        weaponTable.put("브레스슈터제네시스", new int[] {58, 84, 116, 153, 196});
+        weaponTable.put("듀얼보우건제네시스", new int[] {58, 84, 116, 153, 196});
+        weaponTable.put("단검제네시스", new int[] {58, 84, 116, 153, 196});
+        weaponTable.put("블레이드제네시스", new int[] {0, 0, 0, 0, 0});
+        weaponTable.put("체인제네시스", new int[] {58, 84, 116, 153, 196});
+        weaponTable.put("한손검제네시스", new int[] {59, 87, 119, 157, 201});
+        weaponTable.put("한손도끼제네시스", new int[] {59, 87, 119, 157, 201});
+        weaponTable.put("한손둔기제네시스", new int[] {59, 87, 119, 157, 201});
+        weaponTable.put("케인제네시스", new int[] {59, 87, 119, 157, 201});
+        weaponTable.put("석궁제네시스", new int[] {59, 87, 119, 157, 201});
+        weaponTable.put("대검제네시스", new int[] {21, 46, 75, 110, 151});
+        weaponTable.put("태도제네시스", new int[] {21, 46, 75, 110, 151});
+        weaponTable.put("튜너제네시스", new int[] {62, 90, 124, 164, 210});
+        weaponTable.put("창제네시스", new int[] {62, 90, 124, 164, 210});
+        weaponTable.put("두손검제네시스", new int[] {62, 90, 124, 164, 210});
+        weaponTable.put("두손도끼제네시스", new int[] {62, 90, 124, 164, 210});
+        weaponTable.put("두손둔기제네시스", new int[] {62, 90, 124, 164, 210});
+        weaponTable.put("데스페라도제네시스", new int[] {62, 90, 124, 164, 210});
+        weaponTable.put("핸드캐논제네시스", new int[] {63, 92, 127, 167, 215});
+        weaponTable.put("완드제네시스", new int[] {72, 106, 146, 192, 246});
+        weaponTable.put("샤이닝로드제네시스", new int[] {72, 106, 146, 192, 246});
+        weaponTable.put("ESP리미터제네시스", new int[] {72, 106, 146, 192, 246});
+        weaponTable.put("매직건틀렛제네시스", new int[] {72, 106, 146, 192, 246});
+        weaponTable.put("스태프제네시스", new int[] {74, 108, 148, 195, 250});
 
     }
 }

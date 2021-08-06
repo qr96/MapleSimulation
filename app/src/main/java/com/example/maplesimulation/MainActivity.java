@@ -1,21 +1,34 @@
 package com.example.maplesimulation;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
             nothingDialog();
             return;
         }
+        if(equipment.getType().equals("엠블렘") || equipment.getType().equals("뱃지")){
+            Toast.makeText(this, "주문서 사용이 불가능한 장비입니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Intent intent = new Intent(this, ScrollActivity.class);
         intent.putExtra("equipment", equipment);
@@ -101,6 +118,10 @@ public class MainActivity extends AppCompatActivity {
             nothingDialog();
             return;
         }
+        if(equipment.getType().equals("뱃지")){
+            Toast.makeText(this, "잠재능력 재설정이 불가능한 장비입니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Intent intent = new Intent(this, PotentialActivity.class);
         intent.putExtra("equipment", equipment);
         startActivityForResult(intent, 1);
@@ -111,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             nothingDialog();
             return;
         }
-        if(equipment.isNoljang){
+        if(equipment.isNoljang || equipment.getType().equals("뱃지") || equipment.getType().equals("엠블렘")){
             Toast.makeText(this, "스타포스를 할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
             return;
         }

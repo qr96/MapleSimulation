@@ -76,10 +76,11 @@ public class EquipmentPopup2 extends Activity {
         attack.setTypeface(face);
 
         TextView reqlev = findViewById(R.id.reqlev);
+        reqlev.setText("REQ LEV : "+equipment.getLevReq());
         reqlev.setTypeface(face);
 
         TextView info = findViewById(R.id.info);
-        tmp = "장비분류 : " + equipment.getName() + "<br>";
+        tmp = "장비분류 : " + equipment.getType() + "<br>";
         tmp = tmp + EquipmentInfo.makeText(equipment);
         info.setText(Html.fromHtml(tmp));
         info.setTypeface(face);

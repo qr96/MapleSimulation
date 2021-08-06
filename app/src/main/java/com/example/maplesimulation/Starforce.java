@@ -149,6 +149,7 @@ public class Starforce {
         if((int)equipment.getStats().get(8) > 0) equipment.upgradeStarStat(8, list[1]);
         if((int)equipment.getStats().get(9) > 0) equipment.upgradeStarStat(9, list[2]);
 
+        equipment.adStack++;
         equipment.upStar();
         chanceStack=0;
     }

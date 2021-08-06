@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="350dp"
-    android:layout_height="650dp"
+    android:layout_height="640dp"
     android:background="#FFFFFF">
     <LinearLayout
+        android:id="@+id/equipInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -23,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="몽환의 벨트"
             android:textAlignment="center"
-            android:textSize="23sp"
+            android:textSize="21sp"
             android:textColor="#555555"/>
         <TextView
             android:id="@+id/grade"
@@ -31,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="(레전드리 아이템)"
             android:textAlignment="center"
-            android:textSize="17sp"
+            android:textSize="16sp"
             android:textColor="#555555"/>
         <View
             android:layout_width="match_parent"
@@ -75,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="bottom"
-                    android:text="REQ LEV : 150"
+                    android:text="REQ LEV : -"
                     android:textSize="15sp"/>
             </LinearLayout>
 
@@ -92,7 +93,7 @@
             android:layout_margin="10dp"
             android:text="장비 분류 : 벨트\nSTR: +14\nDEX: +14"
             android:lineSpacingExtra="5dp"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:textColor="#555555"/>
         <View
             android:layout_width="match_parent"
@@ -106,7 +107,7 @@
             android:layout_marginLeft="10dp"
             android:text="R 잠재옵션\n잠재능력을 설정해주세요.\n\n"
             android:lineSpacingExtra="5dp"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:textColor="#555555"/>
         <View
             android:layout_width="match_parent"
@@ -120,7 +121,7 @@
             android:layout_margin="10dp"
             android:text="R 에디셔널 잠재옵션\n에디셔널 잠재능력을 설정해주세요.\n\n"
             android:lineSpacingExtra="5dp"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:textColor="#555555"/>
         <View
             android:layout_width="match_parent"
@@ -149,11 +150,16 @@
                 android:fontFamily="@font/nexon_low"
                 android:onClick="usedPopup"
                 android:text="영수증"/>
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:onClick="saveImage"
+                android:background="@drawable/ui_button_basic"/>
         </LinearLayout>
-
-        <TextView
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"/>
+            android:layout_height="15dp"/>
+
     </LinearLayout>
 </ScrollView>

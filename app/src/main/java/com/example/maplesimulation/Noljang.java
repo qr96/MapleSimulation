@@ -15,7 +15,7 @@ public class Noljang {
     }
 
     public int useNoljang() {
-        if(equipment.isStarforce) return -1; //이미 스타포스 작이 되어있는 경우
+        if(equipment.isStarforce || equipment.getStar()==equipment.getMaxStar()) return -1; //이미 스타포스 작이 되어있는 경우
         int star = equipment.getStar();
         equipment.isNoljang = true;
         equipment.used_noljang++;

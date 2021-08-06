@@ -1,16 +1,30 @@
 package com.example.maplesimulation;
 
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore;
 import android.text.Html;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.res.ResourcesCompat;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class EquipmentPopup extends Activity {
     Equipment equipment;
@@ -51,6 +65,7 @@ public class EquipmentPopup extends Activity {
         TextView star = findViewById(R.id.star);
         tmp = EquipmentInfo.starText(equipment);
         star.setText(Html.fromHtml(tmp));
+        if(equipment.getMaxStar()==0) star.setVisibility(View.GONE);
 
         TextView name = findViewById(R.id.name);
         tmp = equipment.getName();
@@ -70,10 +85,11 @@ public class EquipmentPopup extends Activity {
         attack.setTypeface(face);
 
         TextView reqlev = findViewById(R.id.reqlev);
+        reqlev.setText("REQ LEV : "+equipment.getLevReq());
         reqlev.setTypeface(face);
 
         TextView info = findViewById(R.id.info);
-        tmp = "장비분류 : " + equipment.getName() + "<br>";
+        tmp = "장비분류 : " + equipment.getType() + "<br>";
         tmp = tmp + EquipmentInfo.makeText(equipment);
         info.setText(Html.fromHtml(tmp));
         info.setTypeface(face);

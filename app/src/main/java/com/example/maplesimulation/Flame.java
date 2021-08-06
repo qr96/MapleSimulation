@@ -165,7 +165,8 @@ public class Flame {
             equipment.setAdditionStat(7, tmp);
         }
         else if(selected < 16) { //공격력, 마력
-            tmp = flameTable.weaponTable.get(type+levReq)[grade];
+            if(equipment.getName().contains("제네시스")) tmp = flameTable.weaponTable.get(type+"제네시스")[grade];
+            else tmp = flameTable.weaponTable.get(type+levReq)[grade];
             equipment.setAdditionStat(selected-6, tmp);
         }
         else if(selected == 16) { //보스 데미지
