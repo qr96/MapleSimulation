@@ -1,5 +1,6 @@
 package com.example.maplesimulation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Noljang {
@@ -8,15 +9,16 @@ public class Noljang {
     Equipment equipment;
 
     //놀장, 슈페리얼 테이블
-    public void Noljang(Equipment equipment) {
+    public Noljang(Equipment equipment) {
         this.equipment = equipment;
         initTable();
     }
 
     public int useNoljang() {
-        int star = equipment.getStar();
         if(equipment.isStarforce) return -1; //이미 스타포스 작이 되어있는 경우
+        int star = equipment.getStar();
         equipment.isNoljang = true;
+        equipment.used_noljang++;
 
         if(star < 12) {
             if(isSuccess(percent[star])){ //성공
@@ -25,6 +27,7 @@ public class Noljang {
                 return 1;
             }
             else{
+                equipment.used_protect_shield++;
                 return 0;
             }
         }
@@ -35,15 +38,30 @@ public class Noljang {
                 return 1;
             }
             else{
+                equipment.used_protect_shield++;
                 return 0;
             }
         }
     }
 
     public void upStat(){
-        String key = equipment.getLevReq()+equipment.getType()+equipment.getStar();
+        String key = "";
+        if(equipment.isArmor() || equipment.isAccessary()) {
+            key = equipment.getLevReq()+"방어구"+equipment.getStar();
+            if(equipment.getStar()>12) key = equipment.getLevReq()+"방어구12"; //12성 이상부터 확률 동일
+
+        }
+        else return;
+
+        int bonus = 0; //증가치
+
+        //120제 이상 장신구 보너스 스텟
+        if(equipment.isAccessary()){
+            if(equipment.getLevReq()>=120) bonus = 2;
+            else bonus=1;
+        }
         for(int i=0; i<4; i++){
-            equipment.addEnhanceStat(i, table.get(key)[0]); //스텟 증가
+            equipment.addEnhanceStat(i, table.get(key)[0]+bonus); //스텟 증가
         }
         equipment.addEnhanceStat(8, table.get(key)[1]); //공격력
         equipment.addEnhanceStat(9, table.get(key)[1]); //마력
@@ -58,6 +76,7 @@ public class Noljang {
     }
 
     public void initTable() {
+        table = new HashMap<>();
 
         table.put("150방어구1", new Integer[]{19, 0});
         table.put("150방어구2", new Integer[]{20, 0});
@@ -72,6 +91,19 @@ public class Noljang {
         table.put("150방어구11", new Integer[]{0, 14});
         table.put("150방어구12", new Integer[]{0, 16});
 
+        table.put("145방어구1", new Integer[]{18, 0});
+        table.put("145방어구2", new Integer[]{19, 0});
+        table.put("145방어구3", new Integer[]{21, 0});
+        table.put("145방어구4", new Integer[]{24, 0});
+        table.put("145방어구5", new Integer[]{28, 0});
+        table.put("145방어구6", new Integer[]{0, 8});
+        table.put("145방어구7", new Integer[]{0, 9});
+        table.put("145방어구8", new Integer[]{0, 10});
+        table.put("145방어구9", new Integer[]{0, 11});
+        table.put("145방어구10", new Integer[]{0, 12});
+        table.put("145방어구11", new Integer[]{0, 13});
+        table.put("145방어구12", new Integer[]{0, 15});
+
         table.put("140방어구1", new Integer[]{17, 0});
         table.put("140방어구2", new Integer[]{18, 0});
         table.put("140방어구3", new Integer[]{20, 0});
@@ -84,6 +116,19 @@ public class Noljang {
         table.put("140방어구10", new Integer[]{0, 12});
         table.put("140방어구11", new Integer[]{0, 13});
         table.put("140방어구12", new Integer[]{0, 15});
+
+        table.put("135방어구1", new Integer[]{15, 0});
+        table.put("135방어구2", new Integer[]{16, 0});
+        table.put("135방어구3", new Integer[]{18, 0});
+        table.put("135방어구4", new Integer[]{21, 0});
+        table.put("135방어구5", new Integer[]{25, 0});
+        table.put("135방어구6", new Integer[]{0, 7});
+        table.put("135방어구7", new Integer[]{0, 8});
+        table.put("135방어구8", new Integer[]{0, 9});
+        table.put("135방어구9", new Integer[]{0, 10});
+        table.put("135방어구10", new Integer[]{0, 11});
+        table.put("135방어구11", new Integer[]{0, 12});
+        table.put("135방어구12", new Integer[]{0, 14});
 
         table.put("130방어구1", new Integer[]{14, 0});
         table.put("130방어구2", new Integer[]{15, 0});

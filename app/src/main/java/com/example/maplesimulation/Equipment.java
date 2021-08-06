@@ -43,6 +43,8 @@ public class Equipment implements Cloneable, Serializable {
     public int used_chaos;
     public int used_eternal;
     public int used_powerful;
+    public int used_noljang;
+    public int used_protect_shield;
     public int used_blackcube;
     public int used_redcube;
     public int used_addicube;
@@ -161,6 +163,7 @@ public class Equipment implements Cloneable, Serializable {
         used_redcube = 0;
         used_addicube= 0;
         used_meso = 0;
+        used_noljang = 0;
     }
 
     //방어구인지 여부

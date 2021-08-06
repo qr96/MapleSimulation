@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    public List<Equipment> equipmentList ; //장비 객체 배열
+    public ArrayList<Equipment> equipmentList ; //장비 객체 배열
     public ArrayList<String> equipNameList; //장비 이름 배열
     private Equipment equipment; //현재 장비
     public ArrayList<Equipment> invenList; //인벤토리 배열
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goSearch(View view) {
         Intent intent = new Intent(this, SearchActivity.class);
-        intent.putExtra("equipList", equipNameList);
+        intent.putExtra("equipList", this.equipmentList);
         startActivityForResult(intent, 0);
     }
 
@@ -146,9 +146,9 @@ public class MainActivity extends AppCompatActivity {
         switch(requestCode){
             case 0: //장비 등록
                 if(data!=null) {
-                    int selected = data.getIntExtra("equipment", -1);
+                    Equipment equipment = (Equipment) data.getSerializableExtra("equipment");
                     try {
-                        Equipment newEquipment = (Equipment) equipmentList.get(selected).clone();
+                        Equipment newEquipment = (Equipment) equipment.clone();
                         newEquipment.setId(invenList.size());
                         invenList.add(newEquipment);
                         this.equipment = invenList.get(invenList.size()-1);
@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 if(data != null) {
                     Equipment equip = (Equipment) data.getSerializableExtra("equip");
                     this.equipment = equip;
+                    invenList.set(this.equipment.getId(), this.equipment);
                     setThumnail();
                 }
                 break;

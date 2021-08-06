@@ -240,6 +240,28 @@
                             android:visibility="invisible"
                             android:src="@drawable/ui_checked"/>
                     </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageButton
+                            android:id="@+id/scroll_button_7"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_margin="2dp"
+                            android:padding="15dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="select"
+                            android:background="@drawable/ui_empty_item"
+                            android:src="@drawable/scroll_noljang"/>
+                        <ImageView
+                            android:id="@+id/scroll_check_7"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:visibility="invisible"
+                            android:src="@drawable/ui_checked"/>
+                    </FrameLayout>
                 </LinearLayout>
             </HorizontalScrollView>
             <Button

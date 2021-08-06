@@ -51,7 +51,7 @@ public class Cube {
         //같은 테이블인 경우들 처리
         if(equipment.isWeapon()) type = "무기";
         else if(subWeapon.contains(type)) type="보조무기";
-        else if(type == "한벌옷") type="상의";
+        else if(type.equals("한벌옷")) type="상의";
         else if(armor2.contains(type)) type="망토";
         else if(accessary.contains(type)) type="얼굴장식";
 
@@ -185,7 +185,16 @@ public class Cube {
         equipment.used_blackcube++;
         String[] option;
         String type = equipment.getType();
+        ArrayList<String> subWeapon = new ArrayList<>(Arrays.asList("포스실드", "소울링", "방패"));
+        ArrayList<String> armor2 = new ArrayList<>(Arrays.asList("망토", "벨트", "어깨장식"));
+        ArrayList<String> accessary = new ArrayList<>(Arrays.asList("얼굴장식", "눈장식", "귀고리", "반지", "펜던트"));
+
+        //같은 테이블인 경우들 처리
         if(equipment.isWeapon()) type = "무기";
+        else if(subWeapon.contains(type)) type="보조무기";
+        else if(type.equals("한벌옷")) type="상의";
+        else if(armor2.contains(type)) type="망토";
+        else if(accessary.contains(type)) type="얼굴장식";
 
         switch(equipment.getPotentialGrade1()) {
             case "레어":

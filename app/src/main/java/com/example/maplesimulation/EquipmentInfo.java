@@ -60,14 +60,26 @@ public class EquipmentInfo {
         int maxStar = equipment.getMaxStar();
         String text = "";
         int count = 0;
-        text = "<font color=\"#FFC107\">";
-        for(int i=0; i<star; i++){
-            if(count==15) text = text+"<br>";
-            else if(count%5==0) text = text+" ";
-            text = text+"★";
-            count++;
+        if(equipment.isNoljang) { //놀장 바른 경우
+            text = "<font color=\"#33CCFF\">";
+            for(int i=0; i<star; i++){
+                if(count==15) text = text+"<br>";
+                else if(count%5==0) text = text+" ";
+                text = text+"★";
+                count++;
+            }
+            text = text+"</font>";
         }
-        text = text+"</font>";
+        else {
+            text = "<font color=\"#FFC107\">";
+            for(int i=0; i<star; i++){
+                if(count==15) text = text+"<br>";
+                else if(count%5==0) text = text+" ";
+                text = text+"★";
+                count++;
+            }
+            text = text+"</font>";
+        }
 
         text = text+"<font color=\"#CCCCCC\">";
         for(int i=0; i<maxStar-star; i++){

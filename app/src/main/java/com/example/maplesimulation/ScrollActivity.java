@@ -14,6 +14,7 @@ import android.view.animation.Animation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -30,6 +31,7 @@ public class ScrollActivity extends Activity {
     public Equipment equipment;
     public Scroll scroll;
     public Flame flame;
+    public Noljang noljang;
 
     public AnimationDrawable resultAnimation;
 
@@ -45,6 +47,7 @@ public class ScrollActivity extends Activity {
         this.equipment = (Equipment) intent.getSerializableExtra("equipment");
         this.scroll = new Scroll(this.equipment);
         this.flame = new Flame(this.equipment);
+        this.noljang = new Noljang(this.equipment);
 
         setThumnail();
         updateText();
@@ -223,6 +226,14 @@ public class ScrollActivity extends Activity {
         else if(selected_button_id == R.id.scroll_button_6) {
             flame.usePowerfulFlame();
             result = 1;
+        }
+        else if(selected_button_id == R.id.scroll_button_7) {
+            if(equipment.getLevReq()>150 || equipment.isStarforce || equipment.getStar()==15){
+                Toast.makeText(this, "주문서를 사용할 수 없는 아이템 입니다", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            result = noljang.useNoljang();
+            if(result == 0) Toast.makeText(this, "프로텍트 실드가 사용되었습니다", Toast.LENGTH_SHORT).show();
         }
 
         if(result==1) successEffect();
@@ -438,6 +449,10 @@ public class ScrollActivity extends Activity {
             //강환불
             selected_check_id = R.id.scroll_check_6;
         }
+        else if(view.getId() == R.id.scroll_button_7) {
+            //놀장
+            selected_check_id = R.id.scroll_check_7;
+        }
         else{
             return;
         }
@@ -467,6 +482,4 @@ public class ScrollActivity extends Activity {
     }
 
 }
-
-
 

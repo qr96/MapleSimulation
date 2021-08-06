@@ -42,6 +42,11 @@ public class UsedPopup extends Activity {
         if(equipment.used_powerful > 0)
             usedList = usedList + "강력한 환생의 불꽃 : " + equipment.used_powerful + "\n";
 
+        if(equipment.used_noljang > 0)
+            usedList = usedList + "놀라운 장비강화 주문서 : " + equipment.used_noljang + "\n";
+        if(equipment.used_protect_shield > 0)
+            usedList = usedList + "프로텍트 쉴드 : " + equipment.used_protect_shield + "\n";
+
         if(equipment.used_blackcube > 0)
             usedList = usedList + "블랙 큐브 : " + equipment.used_blackcube + "\n";
         if(equipment.used_redcube > 0)

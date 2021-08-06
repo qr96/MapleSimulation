@@ -20,8 +20,8 @@ import java.util.List;
 public class TextAdapter extends RecyclerView.Adapter<TextAdapter.ViewHolder>
 implements OnItemClickListener, Filterable {
 
-    private ArrayList<String> mData = null ;
-    private ArrayList<String> mDatafull;
+    private ArrayList<Equipment> mData = null ;
+    private ArrayList<Equipment> mDatafull;
     private OnItemClickListener mListener;
 
     @Override
@@ -44,7 +44,7 @@ implements OnItemClickListener, Filterable {
             super(itemView) ;
 
             // 뷰 객체에 대한 참조. (hold strong reference)
-            textView = itemView.findViewById(R.id.recyclerText) ;
+            textView = itemView.findViewById(R.id.recyclerText) ;;
 
             // 이벤트리스너 추가
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +60,7 @@ implements OnItemClickListener, Filterable {
     }
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    TextAdapter(ArrayList<String> list) {
+    TextAdapter(ArrayList<Equipment> list) {
         this.mData = list;
         mDatafull = new ArrayList<>(list);
     }
@@ -80,7 +80,7 @@ implements OnItemClickListener, Filterable {
     // onBindViewHolder() - position에 해당하는 데이터를 뷰홀더의 아이템뷰에 표시.
     @Override
     public void onBindViewHolder(TextAdapter.ViewHolder holder, int position) {
-        String text = mData.get(position) ;
+        String text = mData.get(position).getName() ;
         holder.textView.setText(text) ;
     }
 
@@ -99,7 +99,7 @@ implements OnItemClickListener, Filterable {
     private Filter mFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<String> filteredList = new ArrayList<>();
+            List<Equipment> filteredList = new ArrayList<>();
 
             if(constraint == null || constraint.length() ==0 ){
                 filteredList.addAll(mDatafull);
@@ -107,8 +107,8 @@ implements OnItemClickListener, Filterable {
             else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for(String item : mDatafull) {
-                    if(item.toLowerCase().contains(filterPattern)) {
+                for(Equipment item : mDatafull) {
+                    if(item.getName().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item);
                     }
                 }
@@ -123,7 +123,7 @@ implements OnItemClickListener, Filterable {
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             mData.clear();
-            mData.addAll((Collection<? extends String>) results.values);
+            mData.addAll((Collection<? extends Equipment>) results.values);
             notifyDataSetChanged();
         }
     };

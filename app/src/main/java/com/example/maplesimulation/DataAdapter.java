@@ -63,13 +63,13 @@ public class DataAdapter {
         mDbHelper.close();
     }
 
-    public List getTableData()  {
+    public ArrayList getTableData()  {
         try {
             // Table 이름 -> antpool_bitcoin 불러오기
             String sql ="SELECT * FROM " + TABLE_NAME+" order by \"이름\"";
 
             // 모델 넣을 리스트 생성
-            List equipList = new ArrayList();
+            ArrayList equipList = new ArrayList();
 
             // TODO : 모델 선언
             Equipment equip = null;

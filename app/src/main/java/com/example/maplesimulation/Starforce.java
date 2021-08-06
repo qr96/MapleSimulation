@@ -83,6 +83,7 @@ public class Starforce {
 
     //스타포스 실행 (스타캐치, 파괴방지)
     public int doStarforce(boolean starCatch) {
+        equipment.isStarforce=true;
         int star = equipment.getStar();
         equipment.used_meso+=howMuch(equipment.getLevReq(), star);
         double success = this.table_success[star];

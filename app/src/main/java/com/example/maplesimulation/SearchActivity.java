@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchActivity extends Activity {
-    private ArrayList<String> equipNameList;
+    private ArrayList<Equipment> equipmentList;
     private TextAdapter adapter;
 
     @Override
@@ -31,11 +31,11 @@ public class SearchActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        equipNameList = new ArrayList<String>();
+        equipmentList = new ArrayList<Equipment>();
 
         // 장비 이름 배열에 값들 추가
         Intent intent = getIntent();
-        equipNameList = (ArrayList<String>) intent.getSerializableExtra("equipList");
+        equipmentList = (ArrayList<Equipment>) intent.getSerializableExtra("equipList");
 
         // 장비 목록 recyclerview에 추가
         initRecyclerView();
@@ -67,7 +67,7 @@ public class SearchActivity extends Activity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        adapter = new TextAdapter(equipNameList) ;
+        adapter = new TextAdapter(equipmentList) ;
         recyclerView.setAdapter(adapter) ;
 
         adapter.setOnItemClicklistener(new OnItemClickListener() {
@@ -80,7 +80,7 @@ public class SearchActivity extends Activity {
 
     //장비 선택 시 확인 다이얼로그
     private void confirmDialog(final int position) {
-        String equipment = equipNameList.get(position);
+        String equipment = equipmentList.get(position).getName();
 
         AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(SearchActivity.this);
         myAlertBuilder.setTitle("장비 확인");
@@ -90,7 +90,7 @@ public class SearchActivity extends Activity {
         myAlertBuilder.setPositiveButton("  예  ",new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog,int which){
                 Intent intent = new Intent();
-                intent.putExtra("equipment", position);
+                intent.putExtra("equipment", equipmentList.get(position));
                 setResult(0, intent);
                 Toast.makeText(SearchActivity.this, "아이템이 추가되었습니다.", Toast.LENGTH_SHORT).show();
                 finish();

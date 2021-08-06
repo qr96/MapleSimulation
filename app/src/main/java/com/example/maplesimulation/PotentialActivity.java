@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -192,9 +195,23 @@ public class PotentialActivity extends Activity {
         }, 600);
     }
 
+    //주문서들 클릭 방지
+    public void toggleButtonsEnable() {
+        LinearLayout panel = findViewById(R.id.buttonPanel);
+        for(int i=0; i<panel.getChildCount(); i++){
+            View child = panel.getChildAt(i);
+            if(child instanceof ViewGroup) {
+                ImageButton button = (ImageButton) ((ViewGroup) child).getChildAt(0);
+                if(button.isEnabled()) button.setEnabled(false);
+                else button.setEnabled(true);
+            }
+        }
+    }
+
     public void autoCube(String cube, View view) {
         CheckBox autoCheck = findViewById(R.id.auto);
         Spinner optionSpinner = findViewById(R.id.option);
+        toggleButtonsEnable();
 
         if(keepGoing){
             keepGoing = false;
@@ -219,6 +236,7 @@ public class PotentialActivity extends Activity {
                         handler.postDelayed(this, 200);  // 1 second delay
                     }
                     else{
+                        toggleButtonsEnable();
                         keepGoing = false;
                         view.getAnimation().cancel();
                         autoCheck.setEnabled(true);
