@@ -124,7 +124,7 @@
                 android:text="필요한 메소: 500,000"/>
             <Button
                 android:layout_width="200dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/ui_button_basic"
                 android:text="강화하기"

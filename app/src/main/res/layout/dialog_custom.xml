@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="340dp"
+    android:layout_height="wrap_content"
+    android:columnCount="2">
+    <TextView
+        android:id="@+id/customDialogMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_margin="30dp"
+        android:text="테스트 메시지 입니다.무야무야무야호무야호~"
+        android:lineSpacingExtra="3dp"
+        android:textSize="18sp"
+        android:textColor="#555555" />
+    <Button
+        android:id="@+id/customDialogNegative"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        android:text="아니요"
+        android:textSize="17sp"
+        android:background="@drawable/ui_button_dialog" />
+    <Button
+        android:id="@+id/customDialogPositive"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        android:text="예"
+        android:textSize="17sp"
+        android:background="@drawable/ui_button_dialog" />
+</GridLayout>
+
+
+

@@ -77,15 +77,11 @@ public class InvenActivity extends Activity {
     }
 
     public void removeItemDialog(int position) {
-        AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(InvenActivity.this);
-        myAlertBuilder.setMessage("장비를 삭제하시겠습니까?");
-
-        // 버튼 추가 (Ok 버튼과 Cancle 버튼 )
-        myAlertBuilder.setPositiveButton("  예  ",new DialogInterface.OnClickListener(){
-            public void onClick(DialogInterface dialog,int which){
-                int id = invenList.get(position).getId();
+        CustomDialog customDialog = new CustomDialog(this, new CustomDialogClickListener() {
+            @Override
+            public void onPositiveClick() {
                 invenList.remove(position);
-                equipment = invenList.get(invenList.size()-1);
+                if(invenList.size()>0) equipment = invenList.get(invenList.size()-1);
 
                 for(int i=position; i<invenList.size(); i++){
                     PreferenceManager.setEquipment(InvenActivity.this, "equip"+i, invenList.get(i));
@@ -94,14 +90,12 @@ public class InvenActivity extends Activity {
                 initGridView();
                 Toast.makeText(InvenActivity.this, "장비가 삭제되었습니다", Toast.LENGTH_SHORT).show();
             }
-        });
-        myAlertBuilder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-
+            public void onNegativeClick() {
             }
         });
-        myAlertBuilder.show();
+        customDialog.show();
+        customDialog.setMessage("장비를 삭제하시겠습니까?");
     }
 
     public void infoPopup(Context context, Equipment equipment) {

@@ -46,7 +46,7 @@ public class Noljang {
 
     public void upStat(){
         String key = "";
-        if(equipment.isArmor() || equipment.isAccessary()) {
+        if(equipment.isArmor() || equipment.isAccessary() || equipment.getType().equals("기계심장")) {
             key = equipment.getLevReq()+"방어구"+equipment.getStar();
             if(equipment.getStar()>12) key = equipment.getLevReq()+"방어구12"; //12성 이상부터 확률 동일
 

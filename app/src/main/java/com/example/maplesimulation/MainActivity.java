@@ -1,37 +1,20 @@
 package com.example.maplesimulation;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import android.Manifest;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.FullScreenContentCallback;
-import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.google.android.gms.ads.interstitial.InterstitialAd;
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public ArrayList<Equipment> equipmentList ; //장비 객체 배열
@@ -39,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Equipment equipment; //현재 장비
     public ArrayList<Equipment> invenList; //인벤토리 배열
     public final int INVENTORY_SIZE = 40;
-    int nowEquip;
+
 
     private AdView mAdView;
 
@@ -148,21 +131,18 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, 2);
     }
 
-
     //"장비를 추가해주세요" 다이얼로그
     public void nothingDialog() {
-        AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(MainActivity.this);
-        myAlertBuilder.setTitle("장비 확인");
-        myAlertBuilder.setMessage("장비 추가 후에 시도해주세요.");
-
-        // 버튼 추가 (Ok 버튼)
-        myAlertBuilder.setPositiveButton("Ok",new DialogInterface.OnClickListener(){
-            public void onClick(DialogInterface dialog,int which){
-                
+        CustomDialog customDialog = new CustomDialog(this, new CustomDialogClickListener() {
+            @Override
+            public void onPositiveClick() {
+            }
+            @Override
+            public void onNegativeClick() {
             }
         });
-
-        myAlertBuilder.show();
+        customDialog.show();
+        customDialog.setMessage("장비를 추가해 주세요");
     }
 
     //intent 받는 부분

@@ -315,29 +315,21 @@ public class ScrollActivity extends Activity {
 
     //리턴스크롤 다이얼로그
     private void returnScrollDialog() {
-
-        AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(this);
-        myAlertBuilder.setTitle("리턴 스크롤");
-        myAlertBuilder.setMessage("주문서 사용에 성공했습니다. 아이템의 옵션을 되돌리시겠습니까?\n"+recentChoas());
-        myAlertBuilder.setCancelable(false);
-
-        // 버튼 추가
-        myAlertBuilder.setPositiveButton("    예    ",new DialogInterface.OnClickListener(){
+        CustomDialog customDialog = new CustomDialog(this, new CustomDialogClickListener() {
             @Override
-            public void onClick(DialogInterface dialog,int which){
+            public void onPositiveClick() {
                 scroll.useReturnScroll();
                 updateText();
                 setEquipName();
             }
-        });
-        myAlertBuilder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onNegativeClick() {
             }
         });
-
-
-        myAlertBuilder.show();
+        customDialog.setCancelable(false);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.show();
+        customDialog.setMessage("[리턴스크롤]\n주문서 사용에 성공했습니다. 아이템의 옵션을 되돌리시겠습니까?\n"+recentChoas());
     }
 
     //혼돈의 주문서로 증가한 능력치 문자열 반환
