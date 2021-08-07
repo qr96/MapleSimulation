@@ -3,4 +3,7 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="myTheme">#CCF1FDFD</color>
+    <color name="myStateBar">#CC6BA3A3</color>
+    <color name="myTitleBackground">#F7FFFF</color>
 </resources>

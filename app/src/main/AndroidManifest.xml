@@ -21,10 +21,10 @@
         <activity android:name=".FlameActivity"/>
         <activity android:name=".StarforceActivity"/>
         <activity android:name=".InvenActivity"/>
+        <activity android:name=".InfoActivity"/>
+        <activity android:name=".InfoActivityForInven"/>
 
         <activity android:name=".SelectBasicScollPopup" android:theme="@style/Theme.AppCompat.Light.Dialog"/>
-        <activity android:name=".EquipmentPopup" android:theme="@style/Theme.AppCompat.Light.Dialog"/>
-        <activity android:name=".EquipmentPopup2" android:theme="@style/Theme.AppCompat.Light.Dialog"/>
         <activity android:name=".UsedPopup" android:theme="@style/Theme.AppCompat.Light.Dialog"/>
 
         <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->

@@ -21,6 +21,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="50dp">
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,12 +30,6 @@
             android:gravity="center"
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="아이템을 강화합니다."
-                android:textSize="20sp"/>
             <ImageView
                 android:id="@+id/equipment_image"
                 android:layout_width="70dp"
@@ -278,6 +273,31 @@
             android:layout_gravity="center"
             android:scaleType="fitCenter"/>
     </FrameLayout>
-
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/ui_empty_inven"
+        android:alpha="0.8"
+        tools:ignore="MissingConstraints">
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="&lt;"
+            android:onClick="goBack"
+            android:fontFamily="@font/nexon_low_bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="아이템을 강화합니다."
+            android:textSize="18sp">
+        </TextView>
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:text="\?"
+            android:onClick="goHelp"
+            android:fontFamily="@font/nexon_low_bold"/>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

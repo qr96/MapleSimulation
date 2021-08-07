@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -27,8 +26,6 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
-
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -127,7 +124,7 @@ public class StarforceActivity extends Activity {
     }
 
     public void infoPopup(View view){
-        Intent intent = new Intent(this, EquipmentPopup.class);
+        Intent intent = new Intent(this, InfoActivity.class);
         intent.putExtra("equipment", equipment);
         startActivityForResult(intent, 1);
     }
@@ -299,6 +296,17 @@ public class StarforceActivity extends Activity {
         sparkle.startAnimation(anim);
         anim.setAnimationListener(listener);
 
+    }
+
+    public void goHelp(View view) {
+        CustomNotice notice = new CustomNotice(this);
+        notice.show();
+        notice.setTitle("도움말");
+        notice.setContent("이곳에서 스타포스 강화를 할 수 있습니다. \n1. 상단에는 현재 강화중인 장비가 표시됩니다.\n" +
+                "2. 중앙에는 확률과 상승되는 능력치간 표시 됩니다.\n" +
+                "3. 스타캐치 체크 시, 성공 확률이 5% 증가하며 파괴 방지 체크 시, 필요 메소가 2배 증가합니다.\n" +
+                "4. \"강화하기\"를 누르면 강화가 시작됩니다.\n" +
+                "5. 장비를 클릭하면 장비의 세부적인 내용을 볼 수 있습니다.");
     }
 
     //전면 광고 시작

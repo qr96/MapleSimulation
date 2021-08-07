@@ -1,8 +1,6 @@
 package com.example.maplesimulation;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -11,7 +9,6 @@ import android.text.Html;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,7 +74,7 @@ public class ScrollActivity extends Activity {
     }
 
     public void infoPopup(View view){
-        Intent intent = new Intent(this, EquipmentPopup.class);
+        Intent intent = new Intent(this, InfoActivity.class);
         intent.putExtra("equipment", equipment);
         startActivityForResult(intent, 1);
     }
@@ -105,6 +102,7 @@ public class ScrollActivity extends Activity {
         int result = -2;
         int possibility = 0;
         String justat = "none";
+        if(selected_button_id == -1) return;
         
         //주문의 흔적
         if(selected_button_id == R.id.scroll_button_0) {
@@ -226,11 +224,11 @@ public class ScrollActivity extends Activity {
             }
 
         }
-        else if(selected_button_id == R.id.scroll_button_5) {
+        else if(selected_button_id == R.id.scroll_button_5) { //영환불
             flame.useEternalFlame();
             result = 1;
         }
-        else if(selected_button_id == R.id.scroll_button_6) {
+        else if(selected_button_id == R.id.scroll_button_6) { //강환불
             flame.usePowerfulFlame();
             result = 1;
         }
@@ -443,17 +441,27 @@ public class ScrollActivity extends Activity {
             intent.putExtra("scroll", 4);
             startActivityForResult(intent, 0);
         }
-        else if(view.getId() == R.id.scroll_button_5){
-            //영환불
+        else if(view.getId() == R.id.scroll_button_5){//영환불
+            if(equipment.getType().equals("반지") || equipment.getType().equals("기계심장") ||
+                    equipment.getType().equals("보조무기")) {
+                Toast.makeText(this, "사용할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
+                selected_button_id = -1;
+                return;
+            }
             selected_check_id = R.id.scroll_check_5;
         }
-        else if(view.getId() == R.id.scroll_button_6){
-            //강환불
+        else if(view.getId() == R.id.scroll_button_6){//강환불
+            if(equipment.getType().equals("반지") || equipment.getType().equals("기계심장") ||
+                    equipment.getType().equals("보조무기")) {
+                Toast.makeText(this, "사용할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
+                selected_button_id = -1;
+                return;
+            }
             selected_check_id = R.id.scroll_check_6;
         }
         else if(view.getId() == R.id.scroll_button_7) {
             //놀장
-            if(equipment.getName().contains("타일런트") || equipment.getLevReq()>160 || equipment.isStarforce){
+            if(equipment.getName().contains("타일런트") || equipment.getLevReq()>150 || equipment.isStarforce){
                 Toast.makeText(this, "사용할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
                 selected_button_id = -1;
                 return;
@@ -482,6 +490,16 @@ public class ScrollActivity extends Activity {
         selected_button_id = view.getId();
         ImageView new_select = (ImageView)findViewById(selected_check_id);
         new_select.setVisibility(View.VISIBLE);
+    }
+
+    public void goHelp(View view) {
+        CustomNotice notice = new CustomNotice(this);
+        notice.show();
+        notice.setTitle("도움말");
+        notice.setContent("이곳에서 주문서 강화를 할 수 있습니다. \n1. 상단에는 현재 강화중인 장비가 표시됩니다.\n" +
+                "2. 중앙에는 장비의 스텟이 표시 됩니다.\n" +
+                "3. 하단에서 원하는 주문서를 선택 후, \"강화하기\"를 누르면 강화가 시작됩니다.\n" +
+                "4. 장비를 클릭하면 장비의 세부적인 내용을 볼 수 있습니다.");
     }
 
     //주문서 세부사항 선택 후, 데이터 받는 부분

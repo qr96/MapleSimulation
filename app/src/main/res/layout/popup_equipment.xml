@@ -1,159 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="350dp"
-    android:layout_height="640dp"
-    android:background="#FFFFFF">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
     <LinearLayout
-        android:id="@+id/equipInfo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/star"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="★★★★★ ★★★★★ ★★★★★\n★★★★★ ★★★★★"
-            android:textAlignment="center"
-            android:textColor="#FFC107" />
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="몽환의 벨트"
-            android:textAlignment="center"
-            android:textSize="21sp"
-            android:textColor="#555555"/>
-        <TextView
-            android:id="@+id/grade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="(레전드리 아이템)"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="#555555"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="10dp"
-            android:background="#cccc"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageView
-                android:id="@+id/thumnail"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:padding="15dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:src="@drawable/mongbel" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/attack"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="공격력 증가량"
-                    android:textSize="17sp"
-                    android:textAlignment="textEnd"
-                    android:textColor="#555555"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="-  "
-                    android:textSize="30sp"
-                    android:textAlignment="textEnd"/>
-                <TextView
-                    android:id="@+id/reqlev"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="bottom"
-                    android:text="REQ LEV : -"
-                    android:textSize="15sp"/>
-            </LinearLayout>
-
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="10dp"
-            android:background="#cccc"/>
-        <TextView
-            android:id="@+id/info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="장비 분류 : 벨트\nSTR: +14\nDEX: +14"
-            android:lineSpacingExtra="5dp"
-            android:textSize="17sp"
-            android:textColor="#555555"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="10dp"
-            android:background="#cccc"/>
-        <TextView
-            android:id="@+id/potential1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="R 잠재옵션\n잠재능력을 설정해주세요.\n\n"
-            android:lineSpacingExtra="5dp"
-            android:textSize="17sp"
-            android:textColor="#555555"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="10dp"
-            android:background="#cccc"/>
-        <TextView
-            android:id="@+id/potential2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="R 에디셔널 잠재옵션\n에디셔널 잠재능력을 설정해주세요.\n\n"
-            android:lineSpacingExtra="5dp"
-            android:textSize="17sp"
-            android:textColor="#555555"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="10dp"
-            android:background="#cccc"/>
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:gravity="bottom|center"
+        tools:ignore="MissingConstraints">
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/enhance"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/ui_button_basic"
-                android:fontFamily="@font/nexon_low"
-                android:onClick="goMain"
-                android:text="강화"
-                android:visibility="gone"/>
-            <Button
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/ui_button_basic"
-                android:fontFamily="@font/nexon_low"
-                android:onClick="usedPopup"
-                android:text="영수증"/>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="15dp"/>
-
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            tools:ignore="MissingConstraints">
+        </com.google.android.gms.ads.AdView>
     </LinearLayout>
-</ScrollView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:background="#FFFFFF">
+        <LinearLayout
+            android:id="@+id/equipInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+            <TextView
+                android:id="@+id/star"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="★★★★★ ★★★★★ ★★★★★\n★★★★★ ★★★★★"
+                android:textAlignment="center"
+                android:textColor="#FFC107" />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="몽환의 벨트"
+                android:textAlignment="center"
+                android:textSize="21sp"
+                android:textColor="#555555"/>
+            <TextView
+                android:id="@+id/grade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(레전드리 아이템)"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textColor="#555555"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="10dp"
+                android:background="#cccc"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/thumnail"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:padding="15dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/ui_empty_item"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/mongbel" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/attack"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="공격력 증가량"
+                        android:textSize="17sp"
+                        android:textAlignment="textEnd"
+                        android:textColor="#555555"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-  "
+                        android:textSize="30sp"
+                        android:textAlignment="textEnd"/>
+                    <TextView
+                        android:id="@+id/reqlev"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom"
+                        android:text="REQ LEV : -"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="10dp"
+                android:background="#cccc"/>
+            <TextView
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="장비 분류 : 벨트\nSTR: +14\nDEX: +14"
+                android:lineSpacingExtra="5dp"
+                android:textSize="17sp"
+                android:textColor="#555555"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="10dp"
+                android:background="#cccc"/>
+            <TextView
+                android:id="@+id/potential1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="R 잠재옵션\n잠재능력을 설정해주세요.\n\n"
+                android:lineSpacingExtra="5dp"
+                android:textSize="17sp"
+                android:textColor="#555555"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="10dp"
+                android:background="#cccc"/>
+            <TextView
+                android:id="@+id/potential2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="R 에디셔널 잠재옵션\n에디셔널 잠재능력을 설정해주세요.\n\n"
+                android:lineSpacingExtra="5dp"
+                android:textSize="17sp"
+                android:textColor="#555555"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="10dp"
+                android:background="#cccc"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/enhance"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/ui_button_basic"
+                    android:onClick="goMain"
+                    android:text="강화"
+                    android:visibility="gone"
+                    tools:ignore="OnClick" />
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/ui_button_basic"
+                    android:onClick="usedPopup"
+                    android:text="영수증"
+                    tools:ignore="OnClick" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/ui_empty_inven"
+        android:alpha="0.7"
+        android:gravity="right"
+        tools:ignore="MissingConstraints">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="close"
+            android:text="X"
+            tools:ignore="OnClick" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

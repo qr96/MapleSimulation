@@ -26,7 +26,6 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class PotentialActivity extends Activity {
     public int selected_button_id = -1; //선택된 아이템의 id
@@ -149,7 +148,7 @@ public class PotentialActivity extends Activity {
     }
 
     public void infoPopup(View view){
-        Intent intent = new Intent(this, EquipmentPopup.class);
+        Intent intent = new Intent(this, InfoActivity.class);
         intent.putExtra("equipment", equipment);
         startActivityForResult(intent, 1);
     }
@@ -420,7 +419,16 @@ public class PotentialActivity extends Activity {
         selected_button_id = view.getId();
         ImageView new_select = (ImageView)findViewById(selected_check_id);
         new_select.setVisibility(View.VISIBLE);
+    }
 
+    public void goHelp(View view) {
+        CustomNotice notice = new CustomNotice(this);
+        notice.show();
+        notice.setTitle("도움말");
+        notice.setContent("이곳에서 잠재능력을 재설정 할 수 있습니다. \n1. 상단에는 현재 강화중인 장비가 표시됩니다.\n" +
+                "2. 중앙에는 장비의 잠재능력이 표시 됩니다.\n" +
+                "3. 하단에서 원하는 큐브를 선택 후, \"강화하기\"를 누르면 잠재능력의 재설정이 시작됩니다.\n" +
+                "4. 장비를 클릭하면 장비의 세부적인 내용을 볼 수 있습니다.");
     }
 
     @Override

@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         initInvenList();
 
         now = -1; //현재 선택된 장비 없음
-
     }
 
     //인벤토리 배열 초기화, DB에서 읽어올 예정
@@ -47,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void infoPopup(View view) {
-        if(inventory.get(now) == null) return;
-        Intent intent = new Intent(this, EquipmentPopup.class);
+        if(now == -1) return;
+        Intent intent = new Intent(this, InfoActivity.class);
         intent.putExtra("equipment", inventory.get(now));
         startActivity(intent);
     }
@@ -89,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goPotential(View view) {
-        if(inventory.get(now) == null) {
+        //장비 미선택 시
+        if(now == -1) {
             nothingDialog();
             return;
         }
@@ -104,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goStarforce(View view) {
-        if(inventory.get(now) == null) {
+        //장비 미선택 시
+        if(now == -1) {
             nothingDialog();
             return;
         }
@@ -114,7 +115,8 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         Intent intent = new Intent(this, StarforceActivity.class);
-        intent.putExtra("equipment", inventory.get(now));
+        intent.putExtra("inventory", inventory);
+        intent.putExtra("now", now);
         startActivityForResult(intent, 1);
     }
 

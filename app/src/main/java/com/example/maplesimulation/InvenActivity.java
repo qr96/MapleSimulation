@@ -59,7 +59,7 @@ public class InvenActivity extends Activity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position<inventory.size()) infoPopup(view.getContext(), inventory.get(position));
+                if(position<inventory.size()) infoPopup(view.getContext(), position);
             }
         });
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -91,9 +91,10 @@ public class InvenActivity extends Activity {
         customDialog.setMessage("장비를 삭제하시겠습니까?");
     }
 
-    public void infoPopup(Context context, Equipment equipment) {
-        Intent intent = new Intent(context, EquipmentPopup2.class);
-        intent.putExtra("equipment", equipment);
+    public void infoPopup(Context context, int position) {
+        Intent intent = new Intent(context, InfoActivityForInven.class);
+        intent.putExtra("equipment", inventory.get(position));
+        intent.putExtra("now", position);
         startActivityForResult(intent, 0);
     }
 
@@ -103,6 +104,7 @@ public class InvenActivity extends Activity {
         switch(requestCode){
             case 0: //강화를 눌렀다는 것
                 if(data!=null) {
+                    now = (int) data.getSerializableExtra("now");
                     onBackPressed();
                 }
                 break;
