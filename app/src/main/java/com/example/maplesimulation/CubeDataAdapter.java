@@ -95,6 +95,8 @@ public class CubeDataAdapter {
             cubeTableList.add(cubeTable);
             cubeTableList.add(cubeTable("레드큐브테이블"));
             cubeTableList.add(cubeTable("에디큐브테이블"));
+            cubeTableList.add(cubeTable("명장의큐브테이블"));
+            cubeTableList.add(cubeTable("장인의큐브테이블"));
 
             return cubeTableList;
 
@@ -106,7 +108,6 @@ public class CubeDataAdapter {
     }
 
     public CubeTable cubeTable(String table_name) {
-        //에디셔널 큐브
         CubeTable cubeTable = new CubeTable();
 
         String sql = "SELECT * FROM " + table_name;

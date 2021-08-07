@@ -47,6 +47,8 @@ public class Equipment implements Cloneable, Serializable {
     public int used_blackcube;
     public int used_redcube;
     public int used_addicube;
+    public int used_myungjangcube;
+    public int used_jangincube;
     public int used_strangeAddicube;
     public int used_meso;
     public int used_destroy;
@@ -158,7 +160,9 @@ public class Equipment implements Cloneable, Serializable {
         used_powerful =0 ;
         used_blackcube= 0;
         used_redcube = 0;
-        used_addicube= 0;
+        used_addicube = 0;
+        used_myungjangcube = 0;
+        used_jangincube = 0;
         used_strangeAddicube = 0;
         used_meso = 0;
         used_noljang = 0;

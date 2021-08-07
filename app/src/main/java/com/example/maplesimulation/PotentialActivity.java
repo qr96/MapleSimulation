@@ -39,10 +39,12 @@ public class PotentialActivity extends Activity {
     private Equipment equipment; //현재 강화중인 장비
     private int now;
 
-    public Cube blackCube;
-    public Cube redCube;
-    public Cube addiCube;
-    public Cube strangeAddiCube;
+    private Cube blackCube;
+    private Cube redCube;
+    private Cube addiCube;
+    private Cube myungjangCube;
+    private Cube janginCube;
+    private Cube strangeAddiCube;
 
     private AdView mAdView;
 
@@ -102,20 +104,17 @@ public class PotentialActivity extends Activity {
         blackCube = new Cube(equipment, (CubeTable) cubeTableList.get(0), "블랙큐브");
         redCube = new Cube(equipment, (CubeTable) cubeTableList.get(1), "레드큐브");
         addiCube = new Cube(equipment, (CubeTable) cubeTableList.get(2), "에디셔널큐브");
+        myungjangCube = new Cube(equipment, (CubeTable) cubeTableList.get(3), "명장의큐브");
+        janginCube = new Cube(equipment, (CubeTable) cubeTableList.get(4), "장인의큐브");
         strangeAddiCube = new Cube(equipment, (CubeTable) cubeTableList.get(2), "수상한에디셔널큐브");
     }
 
     public void initSpinner() {
         Spinner event_spinner = (Spinner) findViewById(R.id.option);
         ArrayAdapter<CharSequence> adapter;
-        if(equipment.isWeapon()){
-            adapter = ArrayAdapter.createFromResource(this,
-                    R.array.weapon_potential_list, android.R.layout.simple_spinner_item);
-        }
-        else {
-            adapter = ArrayAdapter.createFromResource(this,
-                    R.array.armor_potential_list, android.R.layout.simple_spinner_item);
-        }
+
+        adapter = ArrayAdapter.createFromResource(this,
+                R.array.potential_list, android.R.layout.simple_spinner_item);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         event_spinner.setAdapter(adapter);
@@ -171,33 +170,30 @@ public class PotentialActivity extends Activity {
         String cube = "";
 
         if(selected_button_id == R.id.button0){ //블랙큐브
-            //오토모드
-            if(autoCheck.isChecked()) {
-                autoCube("black", view);
-                return;
-            }
             cube = "블랙큐브";
         }
         else if(selected_button_id == R.id.button1){ //레드큐브
-            //오토모드
-            if(autoCheck.isChecked()) {
-                autoCube("red", view);
-                return;
-            }
             cube = "레드큐브";
         }
         else if(selected_button_id == R.id.button2){ //에디셔널큐브
-            //오토모드
-            if(autoCheck.isChecked()) {
-                autoCube("에디셔널큐브", view);
-                return;
-            }
             cube = "에디셔널큐브";
         }
+        else if(selected_button_id == R.id.button3){ //명장의큐브
+            cube = "명장의큐브";
+        }
+        else if(selected_button_id == R.id.button4){ //장인의큐브
+            cube = "장인의큐브";
+        }
         else if(selected_button_id == R.id.button5){ //수에큐
-            cube = "수상한에디셔널큐브"; //에디셔널 큐브와 테이블이 같음.
+            cube = "수상한에디셔널큐브";
         }
         else return;
+
+        //오토모드
+        if(autoCheck.isChecked()) {
+            autoCube(cube, view);
+            return;
+        }
 
         view.setEnabled(false);
         usingCube(cube);
@@ -287,43 +283,33 @@ public class PotentialActivity extends Activity {
         for(int i=0; i<3; i++){
             System.out.println(option[i]);
             if(option[i].length()<3) return true;
-            String tmp = option[i].substring(0, 3);
-            if(tmp.equals("공격력")) attk++;
-            else if(tmp.equals("마력")) magic++;
+            String tmp = option[i];
+            if(tmp.contains("공격력")) attk++;
+            else if(tmp.contains("마력")) magic++;
             else if(tmp.contains("STR")) str++;
             else if(tmp.contains("DEX")) dex++;
             else if(tmp.contains("INT")) intel++;
             else if(tmp.contains("LUK")) luk++;
-            else if(tmp.equals("올스텟")) {str++; dex++; intel++; luk++;}
+            else if(tmp.contains("올스텟")) {str++; dex++; intel++; luk++;}
         }
 
-        if(equipment.isWeapon()){
-            if(autoOption==0 && attk==3){
-                return false;
-            }
-            else if(autoOption==1 && magic==3){
-                return false;
-            }
-            else if(autoOption==2 && attk>=2){
-                return false;
-            }
-            else if(autoOption==3 && magic>=2){
-                return false;
-            }
+        if(autoOption==0 && str==3){
+            return false;
         }
-        else {
-            if(autoOption==0 && str==3){
-                return false;
-            }
-            else if(autoOption==1 && dex==3){
-                return false;
-            }
-            else if(autoOption==2 && intel>=3){
-                return false;
-            }
-            else if(autoOption==3 && luk>=3){
-                return false;
-            }
+        else if(autoOption==1 && dex==3){
+            return false;
+        }
+        else if(autoOption==2 && intel>=3){
+            return false;
+        }
+        else if(autoOption==3 && luk>=3){
+            return false;
+        }
+        else if(autoOption==0 && attk==3){
+            return false;
+        }
+        else if(autoOption==1 && magic==3){
+            return false;
         }
 
         return true;
@@ -338,6 +324,12 @@ public class PotentialActivity extends Activity {
         }
         else if(name.equals("에디셔널큐브")) {
             addiCube.useAddiCube();
+        }
+        else if(name.equals("명장의큐브")) {
+            myungjangCube.useCube();
+        }
+        else if(name.equals("장인의큐브")) {
+            janginCube.useCube();
         }
         else if(name.equals("수상한에디셔널큐브")) {
             strangeAddiCube.useAddiCube();
@@ -372,14 +364,13 @@ public class PotentialActivity extends Activity {
             }
         };
 
-        Animation anim = new AlphaAnimation(0.0f, 0.6f);
+        Animation anim = new AlphaAnimation(0.0f, 0.4f);
         anim.setDuration(400);
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(1);
 
         sparkle.startAnimation(anim);
         anim.setAnimationListener(listener);
-
     }
     
     //DB 읽어서 List에 추가
@@ -426,6 +417,10 @@ public class PotentialActivity extends Activity {
             selected_check_id = R.id.check3;
         }
         else if(view.getId() == R.id.button4){
+            if(equipment.getPotentialGrade1().equals("레전드리")){
+                Toast.makeText(this, "유니크 등급까지만 사용할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                return;
+            }
             selected_check_id = R.id.check4;
         }
         else if(view.getId() == R.id.button5){

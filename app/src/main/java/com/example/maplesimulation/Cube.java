@@ -1,7 +1,5 @@
 package com.example.maplesimulation;
 
-import android.widget.Switch;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,6 +34,12 @@ public class Cube {
         else if(cubeType.equals("에디셔널큐브")) {
             upgradePossibility = new double[]{4.7619, 1.9608, 0.4975};
         }
+        else if(cubeType.equals("명장의큐브")) {
+            upgradePossibility = new double[]{7.9994, 1.6959, 0.1996};
+        }
+        else if(cubeType.equals("장인의큐브")) {
+            upgradePossibility = new double[]{4.7619, 1.1858, 0.0};
+        }
         else if(cubeType.equals("수상한에디셔널큐브")) {
             upgradePossibility = new double[]{0.0, 0.0, 0.0};
         }
@@ -47,6 +51,8 @@ public class Cube {
     public void useCube() {
         if(cubeType.equals("레드큐브")) equipment.used_redcube++;
         else if(cubeType.equals("블랙큐브")) equipment.used_blackcube++;
+        else if(cubeType.equals("명장의큐브")) equipment.used_myungjangcube++;
+        else if(cubeType.equals("장인의큐브")) equipment.used_jangincube++;
         else return;;
 
         String[] option;
