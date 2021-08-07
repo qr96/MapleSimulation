@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/selectTitle"
             android:text="Notice"
             android:textSize="20sp"
             android:textColor="#fff"
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ListView
-            android:id="@+id/scroll_listview"
+            android:id="@+id/selectListview"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:layout_margin="10dp"

@@ -448,6 +448,10 @@ public class ScrollActivity extends Activity {
                 selected_button_id = -1;
                 return;
             }
+            CustomNotice customNotice = new CustomNotice(this);
+            customNotice.show();
+            customNotice.setTitle("영원한 환생의 불꽃");
+            customNotice.setContent("최고 수준까지 추가옵션을 부여합니다.");
             selected_check_id = R.id.scroll_check_5;
         }
         else if(view.getId() == R.id.scroll_button_6){//강환불
@@ -457,6 +461,10 @@ public class ScrollActivity extends Activity {
                 selected_button_id = -1;
                 return;
             }
+            CustomNotice customNotice = new CustomNotice(this);
+            customNotice.show();
+            customNotice.setTitle("강력한 환생의 불꽃");
+            customNotice.setContent("높은 수준까지 추가옵션을 부여합니다.");
             selected_check_id = R.id.scroll_check_6;
         }
         else if(view.getId() == R.id.scroll_button_7) {
@@ -466,18 +474,10 @@ public class ScrollActivity extends Activity {
                 selected_button_id = -1;
                 return;
             }
-
-            CustomDialog customDialog = new CustomDialog(view.getContext(), new CustomDialogClickListener() {
-                @Override
-                public void onPositiveClick() {
-                }
-                @Override
-                public void onNegativeClick() {
-                    return;
-                }
-            });
-            customDialog.show();
-            customDialog.setMessage("놀라운 장비강화 주문서입니다. 사용 시 스타포스 강화가 불가능하며 최대 15성으로 제한됩니다.\n" +
+            CustomNotice customNotice = new CustomNotice(this);
+            customNotice.show();
+            customNotice.setTitle("놀라운 장비강화 주문서");
+            customNotice.setContent("놀라운 장비강화 주문서입니다. 사용 시 스타포스 강화가 불가능하며 최대 15성으로 제한됩니다.\n" +
                     "[성공확률]\n" +
                     "1성:60% 2성:55% 3성:50% 4성:40% 5성:30% 6성:20% 7성:19% 8성:18% 9성:17% 10성:16% 11성:14% 12성:12% 13성 이상10%");
 
@@ -520,6 +520,4 @@ public class ScrollActivity extends Activity {
                 break;
         }
     }
-
 }
-

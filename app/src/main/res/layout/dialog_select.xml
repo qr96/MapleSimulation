@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:background="#FFFFFF"
+    android:gravity="center"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/selectTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="제목 부분"
+        android:fontFamily="@font/nexon_low"
+        android:textSize="20sp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cccc"/>
+    <ListView
+        android:id="@+id/selectListview"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+    <Button
+        android:id="@+id/selectClose"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/ui_button_dialog"
+        android:onClick="goBack"
+        android:text="확인"/>
+</LinearLayout>

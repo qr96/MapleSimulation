@@ -4,8 +4,7 @@
     android:id="@+id/TxtMemoListType"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp"
-    android:orientation="vertical"
+    android:padding="10dp"
     android:textColor="#5C5C5C"
     android:textSize="22sp"
     android:fontFamily="@font/nexon_low">

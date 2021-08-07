@@ -1,11 +1,14 @@
 package com.example.maplesimulation;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -28,11 +31,10 @@ public class SelectBasicScollPopup extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //타이틀바 없애기
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.popup_select);
 
-        txtText = (TextView)findViewById(R.id.title);
+        setContentView(R.layout.dialog_select);
+
+        txtText = (TextView)findViewById(R.id.selectTitle);
         txtText.setText("주문서를 선택하세요.");
 
         Intent intent = getIntent();
@@ -75,7 +77,7 @@ public class SelectBasicScollPopup extends Activity {
                     "놀라운 긍정의 혼돈 주문서 100% (리턴 스크롤)", "놀라운 긍정의 혼돈 주문서 주문서 60% (리턴 스크롤)"};
         }
 
-        ListView listView = findViewById(R.id.scroll_listview);
+        ListView listView = findViewById(R.id.selectListview);
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_popup_select, scrollTable);
         listView.setAdapter(adapter);
 
@@ -99,7 +101,9 @@ public class SelectBasicScollPopup extends Activity {
             public void onNegativeClick() {
             }
         });
+        customDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         customDialog.show();
+
         if(scrollType == 0) {
             customDialog.setMessage("장비를 강화하는 주문의 흔적입니다.\n사용하시겠습니까?");
         }
@@ -123,5 +127,4 @@ public class SelectBasicScollPopup extends Activity {
     public void mOnClose(View v){
         finish();
     }
-
 }
