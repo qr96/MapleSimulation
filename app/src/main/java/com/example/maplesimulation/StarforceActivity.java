@@ -298,6 +298,10 @@ public class StarforceActivity extends Activity {
 
     }
 
+    public void goBack(View view) {
+        onBackPressed();
+    }
+
     public void goHelp(View view) {
         CustomNotice notice = new CustomNotice(this);
         notice.show();

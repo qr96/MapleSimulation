@@ -123,6 +123,20 @@ public class InvenActivity extends Activity {
         mAdView.loadAd(adRequest);
     }
 
+    public void goHelp(View view) {
+        CustomNotice notice = new CustomNotice(this);
+        notice.show();
+        notice.setTitle("도움말");
+        notice.setContent("이곳에서 저장된 장비들을 볼 수 있습니다.\n" +
+                "1. 장비 클릭 후 하단의 강화하기 버튼을 누르면 강화할 수 있습니다.\n" +
+                "2. 장비를 길게 누르면 장비가 삭제 됩니다.\n" +
+                "3. 장비 상세보기 하단의 영수증을 클릭하면 사용된 아이템 내역을 볼 수 있습니다.");
+    }
+
+    public void goBack(View view) {
+        onBackPressed();
+    }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();

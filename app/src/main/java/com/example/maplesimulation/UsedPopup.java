@@ -57,6 +57,8 @@ public class UsedPopup extends Activity {
             usedList = usedList + "레드 큐브 : " + equipment.used_redcube + "\n";
         if(equipment.used_addicube > 0)
             usedList = usedList + "에디셔널 큐브 : " + equipment.used_addicube + "\n";
+        if(equipment.used_strangeAddicube > 0)
+            usedList = usedList + "수상한 에디셔널 큐브 : " + equipment.used_strangeAddicube + "\n";
 
         if(equipment.used_destroy > 0)
             usedList = usedList + "파괴된 횟수 : " + equipment.used_destroy + "\n";

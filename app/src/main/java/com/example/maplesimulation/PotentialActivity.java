@@ -11,12 +11,14 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -40,6 +42,7 @@ public class PotentialActivity extends Activity {
     public Cube blackCube;
     public Cube redCube;
     public Cube addiCube;
+    public Cube strangeAddiCube;
 
     private AdView mAdView;
 
@@ -96,9 +99,10 @@ public class PotentialActivity extends Activity {
     }
 
     public void initCube() {
-        blackCube = new Cube(equipment, (CubeTable) cubeTableList.get(0));
-        redCube = new Cube(equipment, (CubeTable) cubeTableList.get(1));
-        addiCube = new Cube(equipment, (CubeTable) cubeTableList.get(2));
+        blackCube = new Cube(equipment, (CubeTable) cubeTableList.get(0), "블랙큐브");
+        redCube = new Cube(equipment, (CubeTable) cubeTableList.get(1), "레드큐브");
+        addiCube = new Cube(equipment, (CubeTable) cubeTableList.get(2), "에디셔널큐브");
+        strangeAddiCube = new Cube(equipment, (CubeTable) cubeTableList.get(2), "수상한에디셔널큐브");
     }
 
     public void initSpinner() {
@@ -166,29 +170,32 @@ public class PotentialActivity extends Activity {
         CheckBox autoCheck = findViewById(R.id.auto);
         String cube = "";
 
-        if(selected_button_id == R.id.button0){
+        if(selected_button_id == R.id.button0){ //블랙큐브
             //오토모드
             if(autoCheck.isChecked()) {
                 autoCube("black", view);
                 return;
             }
-            cube = "black";
+            cube = "블랙큐브";
         }
-        else if(selected_button_id == R.id.button1){
+        else if(selected_button_id == R.id.button1){ //레드큐브
             //오토모드
             if(autoCheck.isChecked()) {
                 autoCube("red", view);
                 return;
             }
-            cube = "red";
+            cube = "레드큐브";
         }
-        else if(selected_button_id == R.id.button2){
+        else if(selected_button_id == R.id.button2){ //에디셔널큐브
             //오토모드
             if(autoCheck.isChecked()) {
-                autoCube("additional", view);
+                autoCube("에디셔널큐브", view);
                 return;
             }
-            cube = "additional";
+            cube = "에디셔널큐브";
+        }
+        else if(selected_button_id == R.id.button5){ //수에큐
+            cube = "수상한에디셔널큐브"; //에디셔널 큐브와 테이블이 같음.
         }
         else return;
 
@@ -214,11 +221,15 @@ public class PotentialActivity extends Activity {
                 else button.setEnabled(true);
             }
         }
+        Button backButton = findViewById(R.id.back);
+        if(backButton.isEnabled()) backButton.setEnabled(false);
+        else backButton.setEnabled(true);
     }
 
     public void autoCube(String cube, View view) {
         CheckBox autoCheck = findViewById(R.id.auto);
         Spinner optionSpinner = findViewById(R.id.option);
+        Button enhance = findViewById(R.id.enhance);
         toggleButtonsEnable();
 
         if(keepGoing){
@@ -226,12 +237,14 @@ public class PotentialActivity extends Activity {
             if(view.getAnimation() != null) view.getAnimation().cancel();
             autoCheck.setEnabled(true);
             optionSpinner.setEnabled(true);
+            enhance.setText("사용하기");
         }
         else{
             keepGoing = true;
             autoCheck.setEnabled(false);
             optionSpinner.setEnabled(false);
             view.startAnimation(autoAnim);
+            enhance.setText("멈추기");
         }
 
         Handler handler = new Handler();
@@ -277,10 +290,10 @@ public class PotentialActivity extends Activity {
             String tmp = option[i].substring(0, 3);
             if(tmp.equals("공격력")) attk++;
             else if(tmp.equals("마력")) magic++;
-            else if(tmp.equals("STR") || option[i].equals("캐릭터 기준 10레벨 당 STR : +2") || option[i].equals("캐릭터 기준 10레벨 당 STR : +1")) str++;
-            else if(tmp.equals("DEX") || option[i].equals("캐릭터 기준 10레벨 당 DEX : +2") || option[i].equals("캐릭터 기준 10레벨 당 DEX : +1")) dex++;
-            else if(tmp.equals("INT") || option[i].equals("캐릭터 기준 10레벨 당 INT : +2") || option[i].equals("캐릭터 기준 10레벨 당 INT : +1")) intel++;
-            else if(tmp.equals("LUK") || option[i].equals("캐릭터 기준 10레벨 당 LUK : +2") || option[i].equals("캐릭터 기준 10레벨 당 LUK : +1")) luk++;
+            else if(tmp.contains("STR")) str++;
+            else if(tmp.contains("DEX")) dex++;
+            else if(tmp.contains("INT")) intel++;
+            else if(tmp.contains("LUK")) luk++;
             else if(tmp.equals("올스텟")) {str++; dex++; intel++; luk++;}
         }
 
@@ -317,14 +330,17 @@ public class PotentialActivity extends Activity {
     }
 
     public void usingCube(String name) {
-        if(name.equals("black")) {
-            blackCube.useBlackCube();
+        if(name.equals("블랙큐브")) {
+            blackCube.useCube();
         }
-        else if(name.equals("red")) {
-            redCube.useRedCube();
+        else if(name.equals("레드큐브")) {
+            redCube.useCube();
         }
-        else if(name.equals("additional")) {
+        else if(name.equals("에디셔널큐브")) {
             addiCube.useAddiCube();
+        }
+        else if(name.equals("수상한에디셔널큐브")) {
+            strangeAddiCube.useAddiCube();
         }
         else {
             return;
@@ -412,6 +428,13 @@ public class PotentialActivity extends Activity {
         else if(view.getId() == R.id.button4){
             selected_check_id = R.id.check4;
         }
+        else if(view.getId() == R.id.button5){
+            if(!equipment.getPotentialGrade2().equals("레어")){
+                Toast.makeText(this, "레어 등급에만 사용할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            selected_check_id = R.id.check5;
+        }
         else{
             return;
         }
@@ -428,7 +451,13 @@ public class PotentialActivity extends Activity {
         notice.setContent("이곳에서 잠재능력을 재설정 할 수 있습니다. \n1. 상단에는 현재 강화중인 장비가 표시됩니다.\n" +
                 "2. 중앙에는 장비의 잠재능력이 표시 됩니다.\n" +
                 "3. 하단에서 원하는 큐브를 선택 후, \"강화하기\"를 누르면 잠재능력의 재설정이 시작됩니다.\n" +
+                "4. AUTO 체크 시 특정 옵션이 나올때까지 큐브가 사용됩니다. (이미 조건을 만족하는 경우 AUTO모드가 작동되지 않습니다." +
+                                                                    " AUTO 모드를 해제하여 큐브를 돌린 후 시작해야 합니다.)\n" +
                 "4. 장비를 클릭하면 장비의 세부적인 내용을 볼 수 있습니다.");
+    }
+
+    public void goBack(View view) {
+        onBackPressed();
     }
 
     @Override
@@ -441,4 +470,3 @@ public class PotentialActivity extends Activity {
         super.onBackPressed();
     }
 }
-

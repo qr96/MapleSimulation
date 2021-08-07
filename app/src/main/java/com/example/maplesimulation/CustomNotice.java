@@ -5,7 +5,9 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,6 +49,12 @@ public class CustomNotice extends Dialog {
     }
 
     public void setContent(String text) {
+        if(text.length()>220) {
+            ScrollView scrollView = findViewById(R.id.noticeScrollview);
+            ViewGroup.LayoutParams params = scrollView.getLayoutParams();
+            params.height = 1300;
+            scrollView.setLayoutParams(params);
+        }
         content.setText(text);
     }
 }

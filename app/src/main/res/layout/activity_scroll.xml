@@ -264,7 +264,7 @@
                 android:layout_height="50dp"
                 android:background="@drawable/ui_button_basic"
                 android:onClick="runEnhance"
-                android:text="강화하기"/>
+                android:text="사용하기"/>
         </LinearLayout>
         <ImageView
             android:id="@+id/resultEffect"

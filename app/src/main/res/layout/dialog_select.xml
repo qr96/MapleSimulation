@@ -29,5 +29,5 @@
         android:layout_gravity="bottom"
         android:background="@drawable/ui_button_dialog"
         android:onClick="goBack"
-        android:text="확인"/>
+        android:text="취소"/>
 </LinearLayout>

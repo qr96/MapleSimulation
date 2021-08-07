@@ -43,6 +43,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:text="&lt;"
+            android:onClick="goBack"
             android:fontFamily="@font/nexon_low_bold"/>
         <TextView
             android:layout_width="wrap_content"
@@ -56,6 +57,7 @@
             android:layout_height="60dp"
             android:layout_gravity="right"
             android:text="\?"
+            android:onClick="goHelp"
             android:fontFamily="@font/nexon_low_bold"/>
     </FrameLayout>
 

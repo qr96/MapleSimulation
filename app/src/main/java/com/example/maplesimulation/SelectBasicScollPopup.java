@@ -124,7 +124,7 @@ public class SelectBasicScollPopup extends Activity {
     }
 
     //확인 버튼 클릭
-    public void mOnClose(View v){
-        finish();
+    public void goBack(View view){
+        onBackPressed();
     }
 }

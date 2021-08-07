@@ -19,16 +19,16 @@
         android:layout_height="1dp"
         android:background="#cccc"/>
     <ScrollView
+        android:id="@+id/noticeScrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:maxHeight="200dp"
         android:background="#FFFFFF">
         <TextView
             android:id="@+id/popupContent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:lineSpacingExtra="5dp"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="7dp"
             android:textSize="18sp"
             android:fontFamily="@font/nexon_low"
             android:text="내용 입력 부분 입니다."/>
