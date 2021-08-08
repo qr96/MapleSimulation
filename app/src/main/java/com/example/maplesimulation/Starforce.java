@@ -120,9 +120,10 @@ public class Starforce {
         return result;
     }
 
-    //현재 장비 강화에 필요한 메소  (레벨제한, 강화단계)
-    public int howMuch(int reqlv, int step) {
+    //현재 장비 강화에 필요한 메소  (레벨제한, 현재 스타포스)
+    public int howMuch(int reqlv, int star) {
         int money = 0;
+        int step = star + 1;
 
         if(step <= 9) {
             money = 1000+(int)Math.round((Math.pow(reqlv, 3)*(step)/25)/100.0)*100;

@@ -50,8 +50,6 @@ public class GridListAdapter extends BaseAdapter {
             imageView.setImageResource(imageRID);
         }
 
-
-
         return convertView;
     }
 

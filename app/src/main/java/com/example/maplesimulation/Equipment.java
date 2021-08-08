@@ -50,7 +50,7 @@ public class Equipment implements Cloneable, Serializable {
     public int used_myungjangcube;
     public int used_jangincube;
     public int used_strangeAddicube;
-    public int used_meso;
+    public long used_meso;
     public int used_destroy;
 
     public int tmpMaxStar;

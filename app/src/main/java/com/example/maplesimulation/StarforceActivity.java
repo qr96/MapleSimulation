@@ -224,7 +224,7 @@ public class StarforceActivity extends Activity {
         TextView needMoney = findViewById(R.id.needmoney);
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         String money = "필요한 메소: "
-                +decimalFormat.format(starforce.howMuch(equipment.getLevReq(), equipment.getStar()+1));
+                +decimalFormat.format(starforce.howMuch(equipment.getLevReq(), equipment.getStar()));
         needMoney.setText(money);
 
         //파괴방지 버튼 비활성화
