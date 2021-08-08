@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<Equipment> inventory; //인벤토리 배열
     public int now; //현재 강화중인 장비의 인덱스
 
+    private int INVENSIZE = 20; //인벤토리 크기
+
     private AdView mAdView;
 
     @Override
@@ -37,7 +39,19 @@ public class MainActivity extends AppCompatActivity {
         //인벤토리 배열 초기화
         initInvenList();
 
+        //인벤토리 크기 초기화
+        initINVENSIZE();
+
         now = -1; //현재 선택된 장비 없음
+    }
+
+    //인벤토리 크기 초기화
+    public void initINVENSIZE() {
+        INVENSIZE = PreferenceManager.getInt(this, "INVENSIZE");
+        if(INVENSIZE == -1) { //최초 실행인 경우
+            INVENSIZE = 32;
+            PreferenceManager.setInt(this, "INVENSIZE", 20);
+        }
     }
 
     //인벤토리 배열 초기화, DB에서 읽어올 예정
@@ -65,6 +79,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goSearch(View view) {
+        if(INVENSIZE==inventory.size()){
+            CustomNotice customNotice = new CustomNotice(MainActivity.this);
+            customNotice.show();
+            customNotice.setContent("인벤토리가 부족합니다.\n 장비를 삭제하거나 인벤토리를 확장해주세요.");
+            return;
+        }
         Intent intent = new Intent(this, SearchActivity.class);
         intent.putExtra("equipList", this.equipmentList);
         startActivityForResult(intent, 0);
@@ -129,16 +149,9 @@ public class MainActivity extends AppCompatActivity {
 
     //"장비를 추가해주세요" 다이얼로그
     public void nothingDialog() {
-        CustomDialog customDialog = new CustomDialog(this, new CustomDialogClickListener() {
-            @Override
-            public void onPositiveClick() {
-            }
-            @Override
-            public void onNegativeClick() {
-            }
-        });
-        customDialog.show();
-        customDialog.setMessage("장비를 추가해 주세요");
+        CustomNotice customNotice = new CustomNotice(MainActivity.this);
+        customNotice.show();
+        customNotice.setContent("장비 추가 후 시도해주세요!");
     }
 
     //intent 받는 부분

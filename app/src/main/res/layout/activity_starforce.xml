@@ -149,6 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="스타포스를 부여합니다."
+            android:onClick="goRewardAd"
             android:textSize="18sp">
         </TextView>
         <Button

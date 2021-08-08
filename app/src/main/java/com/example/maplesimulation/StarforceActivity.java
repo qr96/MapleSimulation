@@ -18,14 +18,20 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -36,7 +42,7 @@ public class StarforceActivity extends Activity {
     private int now;
 
     private AdView mAdView;
-    private InterstitialAd mInterstitialAd;
+    private RewardedAd mRewardedAd;
 
     public AnimationDrawable resultAnimation;
     public Starforce starforce;
@@ -66,67 +72,49 @@ public class StarforceActivity extends Activity {
         setThumnail();
         updateText();
         initAd();
-        initFullAd();
     }
 
-    //광고 초기화
-    public void initAd(){
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+    public void goRewardAd(View view) {
+        String message = "";
+
+        if(equipment.getName().contains("타일런트")) message = "광고를 보고 장비를 10성으로 만드시겠습니까?";
+        else if(equipment.getMaxStar() >= 20) message = "광고를 보고 장비를 20성으로 만드시겠습니까?";
+        else return;
+        
+        CustomDialog customDialog = new CustomDialog(this, new CustomDialogClickListener() {
             @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            public void onPositiveClick() {
+                if (mRewardedAd != null) {
+                    Activity activityContext = StarforceActivity.this;
+                    mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
+                        @Override
+                        public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                            if (equipment.getName().contains("타일런트")) {
+                                for(int i=0; i<10; i++) starforce.success();
+                            }
+                            else {
+                                for(int i=0; i<20; i++) starforce.success();
+                            }
+                            updateText();
+                            PreferenceManager.setInventory(StarforceActivity.this, inventory);
+
+                            CustomNotice customNotice = new CustomNotice(activityContext);
+                            customNotice.show();
+                            customNotice.setContent("감사합니다. 스타포스가 적용되었습니다.");
+                        }
+                    });
+                } else {
+                    CustomNotice customNotice = new CustomNotice(StarforceActivity.this);
+                    customNotice.show();
+                    customNotice.setContent("광고가 아직 준비되지 않았습니다ㅠㅠ\n 다음에 다시 시도해주세요.");
+                }
+            }
+            @Override
+            public void onNegativeClick() {
             }
         });
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-    }
-
-    //슈페리얼 장비용 초기화
-    public void initForSuperior() {
-        Spinner event_spinner = (Spinner) findViewById(R.id.event_spinner);
-        event_spinner.setEnabled(false);
-
-        CheckBox checkBox = findViewById(R.id.preventdestroy);
-        checkBox.setEnabled(false);
-    }
-
-    //스피너 초기화 (이벤트, MVP 설정)
-    public void initSpinner() {
-        Spinner event_spinner = (Spinner) findViewById(R.id.event_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.event_list, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        event_spinner.setAdapter(adapter);
-        event_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                starforce.event = events[position];
-                updateText();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
-
-    //체크박스 초기화
-    public void initCheckBox() {
-        CheckBox prevent = findViewById(R.id.preventdestroy);
-        prevent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                starforce.prevent = prevent.isChecked();
-                updateText();
-            }
-        });
-    }
-
-    public void infoPopup(View view){
-        Intent intent = new Intent(this, InfoActivity.class);
-        intent.putExtra("equipment", equipment);
-        startActivityForResult(intent, 1);
+        customDialog.show();
+        customDialog.setMessage(message);
     }
 
     public void doStarforce(View view) {
@@ -155,7 +143,6 @@ public class StarforceActivity extends Activity {
             @Override
             public void run() {
                 view.setEnabled(true);
-                if(equipment.isFullAd()) startFullAd();
             }
         }, 600);
     }
@@ -310,33 +297,101 @@ public class StarforceActivity extends Activity {
                 "2. 중앙에는 확률과 상승되는 능력치간 표시 됩니다.\n" +
                 "3. 스타캐치 체크 시, 성공 확률이 5% 증가하며 파괴 방지 체크 시, 필요 메소가 2배 증가합니다.\n" +
                 "4. \"강화하기\"를 누르면 강화가 시작됩니다.\n" +
-                "5. 장비를 클릭하면 장비의 세부적인 내용을 볼 수 있습니다.");
+                "5. 장비를 클릭하면 장비의 세부적인 내용을 볼 수 있습니다.\n" +
+                "6. 상단의 제목을 누르고 광고를 보면 높은 스타포스가 부여됩니다.");
     }
 
-    //전면 광고 시작
-    public void startFullAd() {
-        if (mInterstitialAd != null) {
-            mInterstitialAd.show(this);
-        } else {
-            Log.d("TAG", "The interstitial ad wasn't ready yet.");
-        }
-    }
-
-    //전면 광고 초기화
-    public void initFullAd() {
+    //광고 초기화
+    public void initAd(){
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
-        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
-                new InterstitialAdLoadCallback() {
-                    @Override
-                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                        mInterstitialAd = interstitialAd;
-                    }
-
+        //보상형 광고 초기화
+        RewardedAd.load(this, "ca-app-pub-3940256099942544/5224354917",
+                adRequest, new RewardedAdLoadCallback() {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        mInterstitialAd = null;
+                        // Handle the error.
+                        mRewardedAd = null;
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                        mRewardedAd = rewardedAd;
+
+                        mRewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                            @Override
+                            public void onAdShowedFullScreenContent() {
+                                // Called when ad is shown.
+                            }
+
+                            @Override
+                            public void onAdFailedToShowFullScreenContent(AdError adError) {
+                                // Called when ad fails to show.
+                            }
+
+                            @Override
+                            public void onAdDismissedFullScreenContent() {
+                                // Called when ad is dismissed.
+                                // Set the ad reference to null so you don't show the ad a second time.
+                                mRewardedAd = null;
+                            }
+                        });
                     }
                 });
+    }
+
+    //슈페리얼 장비용 초기화
+    public void initForSuperior() {
+        Spinner event_spinner = (Spinner) findViewById(R.id.event_spinner);
+        event_spinner.setEnabled(false);
+
+        CheckBox checkBox = findViewById(R.id.preventdestroy);
+        checkBox.setEnabled(false);
+    }
+
+    //스피너 초기화 (이벤트, MVP 설정)
+    public void initSpinner() {
+        Spinner event_spinner = (Spinner) findViewById(R.id.event_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.event_list, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        event_spinner.setAdapter(adapter);
+        event_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                starforce.event = events[position];
+                updateText();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    //체크박스 초기화
+    public void initCheckBox() {
+        CheckBox prevent = findViewById(R.id.preventdestroy);
+        prevent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                starforce.prevent = prevent.isChecked();
+                updateText();
+            }
+        });
+    }
+
+    public void infoPopup(View view){
+        Intent intent = new Intent(this, InfoActivity.class);
+        intent.putExtra("equipment", equipment);
+        startActivityForResult(intent, 1);
     }
 }

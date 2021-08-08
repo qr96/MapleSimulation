@@ -33,6 +33,8 @@ public class CustomNotice extends Dialog {
         content = findViewById(R.id.popupContent);
         button = findViewById(R.id.popupClose);
 
+        title.setVisibility(View.GONE);
+
         Typeface face = ResourcesCompat.getFont(context, R.font.nexon_low);
         //textView.setTypeface(face);
 
@@ -45,6 +47,7 @@ public class CustomNotice extends Dialog {
     }
 
     public void setTitle(String text) {
+        title.setVisibility(View.VISIBLE);
         title.setText(text);
     }
 

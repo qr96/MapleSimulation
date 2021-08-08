@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="인벤토리"
+            android:onClick="goRewardAd"
             android:textSize="22sp">
         </TextView>
         <Button
