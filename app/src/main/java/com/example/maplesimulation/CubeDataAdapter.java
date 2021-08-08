@@ -60,39 +60,13 @@ public class CubeDataAdapter {
         mDbHelper.close();
     }
 
+    //큐브 테이블 리스트 반환
     public List getTableData()  {
         try {
 
             List cubeTableList = new ArrayList();
 
-            CubeTable cubeTable = new CubeTable();
-
-            String sql = "SELECT * FROM " + TABLE_NAME;
-            String key = "";
-
-            Cursor mCur = mDb.rawQuery(sql, null);
-            List list;
-
-            if(mCur!=null) {
-                while(mCur.moveToNext()) {
-                    key = mCur.getString(2) + mCur.getString(1) + mCur.getString(3);
-                    if(cubeTable.optionTable.containsKey(key)) cubeTable.optionTable.get(key).add(mCur.getString(4));
-                    else {
-                        list = new ArrayList();
-                        list.add(mCur.getString(4));
-                        cubeTable.optionTable.put(key, list);
-                    }
-                    if(cubeTable.percentTable.containsKey(key))
-                        cubeTable.percentTable.get(key).add(convert(mCur.getString(5)));
-                    else {
-                        list = new ArrayList();
-                        list.add(convert(mCur.getString(5)));
-                        cubeTable.percentTable.put(key, list);
-                    }
-                }
-            }
-
-            cubeTableList.add(cubeTable);
+            cubeTableList.add(cubeTable("블랙큐브테이블"));
             cubeTableList.add(cubeTable("레드큐브테이블"));
             cubeTableList.add(cubeTable("에디큐브테이블"));
             cubeTableList.add(cubeTable("명장의큐브테이블"));
@@ -107,6 +81,7 @@ public class CubeDataAdapter {
         }
     }
 
+    //지정된 테이블 이름 반환
     public CubeTable cubeTable(String table_name) {
         CubeTable cubeTable = new CubeTable();
 

@@ -29,7 +29,8 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 import java.util.ArrayList;
 import java.util.List;
 
-public class PotentialActivity extends Activity {
+public class
+PotentialActivity extends Activity {
     public int selected_button_id = -1; //선택된 아이템의 id
     public int selected_check_id = -1; //선택된 아이템의 체크 id
 
@@ -234,6 +235,7 @@ public class PotentialActivity extends Activity {
             autoCheck.setEnabled(true);
             optionSpinner.setEnabled(true);
             enhance.setText("사용하기");
+            return;
         }
         else{
             keepGoing = true;
@@ -256,6 +258,7 @@ public class PotentialActivity extends Activity {
                         toggleButtonsEnable();
                         keepGoing = false;
                         view.getAnimation().cancel();
+                        enhance.setText("사용하기");
                         autoCheck.setEnabled(true);
                         optionSpinner.setEnabled(true);
                     }
@@ -275,7 +278,7 @@ public class PotentialActivity extends Activity {
         int intel = 0;
         int luk = 0;
 
-        if(cube.equals("additional")) option = equipment.getPotential2();
+        if(cube.equals("에디셔널큐브") || cube.equals("수상한에디셔널큐브")) option = equipment.getPotential2();
         else option = equipment.getPotential1();
 
         if(option==null || option.length<3) return true;
@@ -290,7 +293,7 @@ public class PotentialActivity extends Activity {
             else if(tmp.contains("DEX")) dex++;
             else if(tmp.contains("INT")) intel++;
             else if(tmp.contains("LUK")) luk++;
-            else if(tmp.contains("올스텟")) {str++; dex++; intel++; luk++;}
+            else if(tmp.contains("올스탯")) {str++; dex++; intel++; luk++;}
         }
 
         if(autoOption==0 && str==3){

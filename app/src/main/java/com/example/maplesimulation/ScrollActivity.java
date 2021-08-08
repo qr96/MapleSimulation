@@ -443,7 +443,7 @@ public class ScrollActivity extends Activity {
         }
         else if(view.getId() == R.id.scroll_button_5){//영환불
             if(equipment.getType().equals("반지") || equipment.getType().equals("기계심장") ||
-                    equipment.getType().equals("보조무기")) {
+                    equipment.getType().equals("보조무기") || equipment.getType().equals("어깨장식")) {
                 Toast.makeText(this, "사용할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
                 selected_button_id = -1;
                 return;
@@ -456,7 +456,7 @@ public class ScrollActivity extends Activity {
         }
         else if(view.getId() == R.id.scroll_button_6){//강환불
             if(equipment.getType().equals("반지") || equipment.getType().equals("기계심장") ||
-                    equipment.getType().equals("보조무기")) {
+                    equipment.getType().equals("보조무기") || equipment.getType().equals("어깨장식")) {
                 Toast.makeText(this, "사용할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
                 selected_button_id = -1;
                 return;
