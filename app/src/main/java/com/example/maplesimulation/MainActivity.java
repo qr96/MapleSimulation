@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<Equipment> inventory; //인벤토리 배열
     public int now; //현재 강화중인 장비의 인덱스
 
-    private int INVENSIZE = 20; //인벤토리 크기
+    private int INVENSIZE = 32; //인벤토리 크기
 
     private AdView mAdView;
 
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         INVENSIZE = PreferenceManager.getInt(this, "INVENSIZE");
         if(INVENSIZE == -1) { //최초 실행인 경우
             INVENSIZE = 32;
-            PreferenceManager.setInt(this, "INVENSIZE", 20);
+            PreferenceManager.setInt(this, "INVENSIZE", INVENSIZE);
         }
     }
 

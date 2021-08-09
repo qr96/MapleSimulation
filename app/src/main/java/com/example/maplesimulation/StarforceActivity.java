@@ -84,7 +84,7 @@ public class StarforceActivity extends Activity {
         else {
             message = "광고 보상이 없는 아이템 입니다. 그래도 광고를 보시겠습니까? (다음 서비스에 큰 도움이 됩니다!)";
         }
-        
+
         CustomDialog customDialog = new CustomDialog(this, new CustomDialogClickListener() {
             @Override
             public void onPositiveClick() {
@@ -309,6 +309,7 @@ public class StarforceActivity extends Activity {
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
+
             }
         });
         mAdView = findViewById(R.id.adView);
@@ -316,7 +317,7 @@ public class StarforceActivity extends Activity {
         mAdView.loadAd(adRequest);
 
         //보상형 광고 초기화
-        RewardedAd.load(this, "ca-app-pub-3940256099942544/5224354917",
+        RewardedAd.load(this, getResources().getString(R.string.admob_reward),
                 adRequest, new RewardedAdLoadCallback() {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {

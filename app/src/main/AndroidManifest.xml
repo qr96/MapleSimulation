@@ -21,7 +21,6 @@
         <activity android:name=".PotentialActivity" />
         <activity android:name=".SearchActivity"/>
         <activity android:name=".ScrollActivity"/>
-        <activity android:name=".FlameActivity"/>
         <activity android:name=".StarforceActivity"/>
         <activity android:name=".InvenActivity"/>
         <activity android:name=".InfoActivity"/>
@@ -33,6 +32,6 @@
         <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:value="@string/admob_meni"/>
     </application>
 </manifest>

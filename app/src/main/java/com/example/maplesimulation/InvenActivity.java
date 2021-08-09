@@ -168,7 +168,7 @@ public class InvenActivity extends Activity {
         mAdView.loadAd(adRequest);
 
         //보상형 광고 초기화
-        RewardedAd.load(this, "ca-app-pub-3940256099942544/5224354917",
+        RewardedAd.load(this, getResources().getString(R.string.admob_reward),
                 adRequest, new RewardedAdLoadCallback() {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
