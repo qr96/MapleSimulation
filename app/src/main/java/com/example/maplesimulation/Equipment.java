@@ -53,6 +53,7 @@ public class Equipment implements Cloneable, Serializable {
     public int used_strangeAddicube;
     public long used_meso;
     public int used_destroy;
+    public int used_magical;
 
     public int tmpMaxStar;
     public boolean isNoljang; //놀장 인지 여부
@@ -168,6 +169,7 @@ public class Equipment implements Cloneable, Serializable {
         used_strangeAddicube = 0;
         used_meso = 0;
         used_noljang = 0;
+        used_magical = 0;
         used_destroy = 0;
     }
 

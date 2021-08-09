@@ -77,6 +77,10 @@ public class SelectBasicScollPopup extends Activity {
             scrollTable = new String[]{"놀라운 긍정의 혼돈 주문서 100%", "놀라운 긍정의 혼돈 주문서 주문서 60%",
                     "놀라운 긍정의 혼돈 주문서 100% (리턴 스크롤)", "놀라운 긍정의 혼돈 주문서 주문서 60% (리턴 스크롤)"};
         }
+        else if(scrollType == 8) {
+            scrollTable = new String[]{"매지컬 공격력 주문서 100%", "매지컬 공격력 주문서 100%(리턴 스크롤)",
+                    "매지컬 마력 주문서 100%", "매지컬 마력 주문서 100%(리턴 스크롤)"};
+        }
 
         ListView listView = findViewById(R.id.selectListview);
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_popup_select, scrollTable);
@@ -122,6 +126,12 @@ public class SelectBasicScollPopup extends Activity {
             customDialog.setMessage("장비의 현재 옵션을 하락시키지 않고 더 좋게 재조정 하는 주문서 입니다.\n" +
                     "[확률]\n+6(5.93%) +4(4.94%) +3(13.87%) +2(23.87%) +1(33.01%) +0(18.38)\n" +
                     "사용하시겠습니까?");
+        }
+        else if(scrollType == 8) {
+            if(position<2) customDialog.setMessage("공격력 향상 옵션을 추가합니다.\n" +
+                    "[확률]\n올스텟+3 공격력+11(10%) 공격력+10(40%) 공격력+9(50%)");
+            else customDialog.setMessage("마력 향상 옵션을 추가합니다.\n" +
+                    "[확률]\n올스텟+3 마력+11(10%) 마력+10(40%) 마력+9(50%)");
         }
     }
 

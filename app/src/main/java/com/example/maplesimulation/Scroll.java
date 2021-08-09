@@ -131,6 +131,29 @@ public class Scroll {
         equip.recoverySuccess();
     }
 
+    //매지컬 주문서 (무기) 사용, type=0:공, 1:마력
+    public int useMagicalScroll(int type) {
+        if(equip.isFinishEnchant()) return -1; //업그레이드 가능횟수가 없는 경우
+        equip.used_magical++;
+        recentChaos = new ArrayList<Integer>();
+        equip.successScroll();
+        double table[] = {50.0, 40.0, 10.0};
+
+        for(int i=0; i<4; i++){ //올스텟
+            equip.addEnhanceStat(i, 3);
+            recentChaos.add(3);
+        }
+        for(int i=4; i<12; i++){ //올스텟
+            recentChaos.add(0);
+        }
+        int random = tableRandom(table);
+        equip.addEnhanceStat(8+type, 9+random);
+        recentChaos.set(8+type, 9+random);
+
+        return 1;
+    }
+
+
     /*------------------ 주흔작 -----------------*/
     /*------- 강화 실행 함수 ------*/
     //방어구 강화 120~200제   [-1:남은 횟수X, 0:실패 1:성공]

@@ -81,7 +81,9 @@ public class StarforceActivity extends Activity {
             message = "광고를 보고 장비를 10성으로 만드시겠습니까?";
         else if(equipment.getMaxStar() >= 20 && equipment.getStar()<20)
             message = "광고를 보고 장비를 20성으로 만드시겠습니까?";
-        else return;
+        else {
+            message = "광고 보상이 없는 아이템 입니다. 그래도 광고를 보시겠습니까? (다음 서비스에 큰 도움이 됩니다!)";
+        }
         
         CustomDialog customDialog = new CustomDialog(this, new CustomDialogClickListener() {
             @Override
@@ -91,10 +93,10 @@ public class StarforceActivity extends Activity {
                     mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
                         @Override
                         public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-                            if (equipment.getName().contains("타일런트")) {
+                            if (equipment.getName().contains("타일런트") && equipment.getStar()<10) {
                                 while(equipment.getStar()<10) starforce.success();
                             }
-                            else {
+                            else if (equipment.getMaxStar() >= 20 && equipment.getStar()<20){
                                 while(equipment.getStar()<20) starforce.success();
                             }
                             updateText();

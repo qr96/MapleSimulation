@@ -197,7 +197,7 @@ public class Starforce {
         else if(star < 15) {
             stats[0] = 3;
         }
-        else {
+        else if(star < 22){
             if(equipment.getLevReq() == 130 || equipment.getLevReq() == 135) {
                 stats[0] = 7;
             }

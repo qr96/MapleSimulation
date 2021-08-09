@@ -238,13 +238,19 @@ public class ScrollActivity extends Activity {
             flame.usePowerfulFlame();
             result = 1;
         }
-        else if(selected_button_id == R.id.scroll_button_7) {
+        else if(selected_button_id == R.id.scroll_button_7) { //놀장강
             if(equipment.getLevReq()>150 || equipment.isStarforce || equipment.getStar()==15){
                 Toast.makeText(this, "주문서를 사용할 수 없는 아이템 입니다", Toast.LENGTH_SHORT).show();
                 return;
             }
             result = noljang.useNoljang();
             if(result == 0) Toast.makeText(this, "프로텍트 실드가 사용되었습니다", Toast.LENGTH_SHORT).show();
+        }
+        else if(selected_button_id == R.id.scroll_button_8) { //매지컬
+            result = scroll.useMagicalScroll(selected_detail_id/2);
+            if(selected_detail_id%2 == 1) { //리턴스크롤
+                returnScrollDialog();
+            }
         }
 
         if(result==1) successEffect();
@@ -488,6 +494,22 @@ public class ScrollActivity extends Activity {
                     "1성:60% 2성:55% 3성:50% 4성:40% 5성:30% 6성:20% 7성:19% 8성:18% 9성:17% 10성:16% 11성:14% 12성:12% 13성 이상10%");
 
             selected_check_id = R.id.scroll_check_7;
+        }
+        else if(view.getId() == R.id.scroll_button_8) {
+            //매지컬 무기 주문서
+            if(equipment.isWeapon() || equipment.getType().equals("기계심장")){
+                selected_check_id = R.id.scroll_check_8;
+
+                //주문서의 세부 옵션 선택 팝업
+                Intent intent = new Intent(this, SelectBasicScollPopup.class);
+                intent.putExtra("scroll", 8);
+                startActivityForResult(intent, 0);
+            }
+            else {
+                Toast.makeText(this, "아직 무기와 기계심장만 가능합니다.", Toast.LENGTH_SHORT).show();
+                selected_button_id = -1;
+                return;
+            }
         }
         else{
             return;
