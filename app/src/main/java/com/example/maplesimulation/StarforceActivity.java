@@ -77,8 +77,10 @@ public class StarforceActivity extends Activity {
     public void goRewardAd(View view) {
         String message = "";
 
-        if(equipment.getName().contains("타일런트")) message = "광고를 보고 장비를 10성으로 만드시겠습니까?";
-        else if(equipment.getMaxStar() >= 20) message = "광고를 보고 장비를 20성으로 만드시겠습니까?";
+        if(equipment.getName().contains("타일런트") && equipment.getStar()<10)
+            message = "광고를 보고 장비를 10성으로 만드시겠습니까?";
+        else if(equipment.getMaxStar() >= 20 && equipment.getStar()<20)
+            message = "광고를 보고 장비를 20성으로 만드시겠습니까?";
         else return;
         
         CustomDialog customDialog = new CustomDialog(this, new CustomDialogClickListener() {
@@ -90,10 +92,10 @@ public class StarforceActivity extends Activity {
                         @Override
                         public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
                             if (equipment.getName().contains("타일런트")) {
-                                for(int i=0; i<10; i++) starforce.success();
+                                while(equipment.getStar()<10) starforce.success();
                             }
                             else {
-                                for(int i=0; i<20; i++) starforce.success();
+                                while(equipment.getStar()<20) starforce.success();
                             }
                             updateText();
                             PreferenceManager.setInventory(StarforceActivity.this, inventory);
@@ -293,12 +295,11 @@ public class StarforceActivity extends Activity {
         CustomNotice notice = new CustomNotice(this);
         notice.show();
         notice.setTitle("도움말");
-        notice.setContent("이곳에서 스타포스 강화를 할 수 있습니다. \n1. 상단에는 현재 강화중인 장비가 표시됩니다.\n" +
-                "2. 중앙에는 확률과 상승되는 능력치간 표시 됩니다.\n" +
-                "3. 스타캐치 체크 시, 성공 확률이 5% 증가하며 파괴 방지 체크 시, 필요 메소가 2배 증가합니다.\n" +
-                "4. \"강화하기\"를 누르면 강화가 시작됩니다.\n" +
-                "5. 장비를 클릭하면 장비의 세부적인 내용을 볼 수 있습니다.\n" +
-                "6. 상단의 제목을 누르고 광고를 보면 높은 스타포스가 부여됩니다.");
+        notice.setContent("이곳에서 스타포스 강화를 할 수 있습니다.\n" +
+                "1. 상단에는 현재 강화중인 장비가 표시됩니다.\n" +
+                "2. 스타캐치 체크 시, 성공 확률이 5% 증가합니다.\n" +
+                "3. 파괴 방지 체크 시, 파괴가 되지 않고 필요 메소가 2배 증가합니다.\n"+
+                "4. 상단의 선물상자를 누르고 광고를 보면 높은 스타포스가 부여됩니다.");
     }
 
     //광고 초기화

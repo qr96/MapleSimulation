@@ -190,7 +190,7 @@ public class Starforce {
     public int[] increment(int star) {
         int stats[] = {0, 0, 0}; //주스텟, 공격력, 마력
 
-        //주스텟 상승, 무기 방어구, 장신구 동일
+        //주스텟 상승, (무기, 방어구, 장신구)
         if(star < 5) {
             stats[0] = 2;
         }
@@ -198,10 +198,10 @@ public class Starforce {
             stats[0] = 3;
         }
         else {
-            if(equipment.getLevReq() == 130) {
+            if(equipment.getLevReq() == 130 || equipment.getLevReq() == 135) {
                 stats[0] = 7;
             }
-            else if(equipment.getLevReq() == 140) {
+            else if(equipment.getLevReq() == 140 || equipment.getLevReq() == 145) {
                 stats[0] = 9;
             }
             else if(equipment.getLevReq() == 150) {
@@ -215,14 +215,15 @@ public class Starforce {
             }
         }
 
-        //15성 이하 공격력 상승 방어구, 무기 다름
+        //15성 이하 공격력 상승 (무기, 장갑)
         if(star < 15) { //0->1 ~ 14->15
+            //변동값 적용
             if(equipment.isWeapon()) {
-                if((int)equipment.getStats().get(9) > 0) { //법사 직업
-                    stats[2] = (int)equipment.getStats().get(9)/50+1;
+                if((int)equipment.getStats().get(9) > 0) { //마력 직업군 (공격력 직업군은 마력이 0)
+                    stats[2]+=((int)equipment.getStats().get(9)+81+(int)equipment.getStarStat().get(9))/50+1;
                 }
-                else{ //공격력 직업
-                    stats[1] = (int)equipment.getStats().get(8)/50+1;
+                else {
+                    stats[1]+=((int)equipment.getStats().get(8)+81+(int)equipment.getStarStat().get(8))/50+1;
                 }
 
             }
@@ -234,7 +235,7 @@ public class Starforce {
                 }
             }
         }
-        else { //15성 이상
+        else { //15성 이상, 공,마 증가
             int levReq = equipment.getLevReq();
             int step = star + 1;
 
@@ -257,11 +258,40 @@ public class Starforce {
 
     public void initStarStatTable(){
         starStatTable = new HashMap<>();
+
         starStatTable.put("130방어구16", 7);
         starStatTable.put("130방어구17", 8);
         starStatTable.put("130방어구18", 9);
         starStatTable.put("130방어구19", 10);
         starStatTable.put("130방어구20", 11);
+
+        starStatTable.put("135방어구16", 7);
+        starStatTable.put("135방어구17", 8);
+        starStatTable.put("135방어구18", 9);
+        starStatTable.put("135방어구19", 10);
+        starStatTable.put("135방어구20", 11);
+
+        starStatTable.put("140방어구16", 8);
+        starStatTable.put("140방어구17", 9);
+        starStatTable.put("140방어구18", 10);
+        starStatTable.put("140방어구19", 11);
+        starStatTable.put("140방어구20", 12);
+        starStatTable.put("140방어구21", 13);
+        starStatTable.put("140방어구22", 15);
+        starStatTable.put("140방어구23", 17);
+        starStatTable.put("140방어구24", 19);
+        starStatTable.put("140방어구25", 21);
+
+        starStatTable.put("145방어구16", 8);
+        starStatTable.put("145방어구17", 9);
+        starStatTable.put("145방어구18", 10);
+        starStatTable.put("145방어구19", 11);
+        starStatTable.put("145방어구20", 12);
+        starStatTable.put("145방어구21", 13);
+        starStatTable.put("145방어구22", 15);
+        starStatTable.put("145방어구23", 17);
+        starStatTable.put("145방어구24", 19);
+        starStatTable.put("145방어구25", 21);
 
         starStatTable.put("150방어구16", 9);
         starStatTable.put("150방어구17", 10);

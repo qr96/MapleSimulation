@@ -201,6 +201,12 @@ public class ScrollActivity extends Activity {
             else if(selected_detail_id == 2) {
                 result = scroll.useInnocent((30));
             }
+            else if(selected_detail_id == 3) {
+                result = scroll.useArkInnocent(100);
+            }
+            else if(selected_detail_id == 4) {
+                result = scroll.useArkInnocent(30);
+            }
         }
         //혼돈의 주문서
         else if(selected_button_id == R.id.scroll_button_4) {

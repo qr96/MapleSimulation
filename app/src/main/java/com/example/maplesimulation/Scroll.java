@@ -80,6 +80,18 @@ public class Scroll {
         return 0; //실패
     }
 
+    public int useArkInnocent(int possibility) {
+        if(equip.getNowUp() == 0 && equip.getFailUp()==0 && equip.getGoldHammer()==0) {
+            return -1;
+        }
+        equip.used_arkinnocent++;
+        if(isSuccess(possibility) == true) {
+            equip.useArkInnocent();
+            return 1; //성공
+        }
+        return 0; //실패
+    }
+
     //놀라운 긍정의 혼돈 주문서
     public int useAwesomeChaos(int possible) {
         if(equip.isFinishEnchant()) return -1; //업그레이드 가능횟수가 없는 경우
@@ -126,7 +138,7 @@ public class Scroll {
         if(equip.isFinishEnchant()) return -1; //업그레이드 가능횟수가 없는 경우
 
         //강화 성공 시
-        if(isSuccess(possibility)) {
+        if(isSuccess(possibility+15)) {
             equip.successScroll();
             armorScroll2(possibility, justat);
             return 1;
@@ -139,7 +151,7 @@ public class Scroll {
     public int doAccessaryScroll1(int possibility, String justat) {
         if(equip.isFinishEnchant()) return -1;
         //강화 성공 시
-        if(isSuccess(possibility)) {
+        if(isSuccess(possibility+15)) {
             equip.successScroll();
             accessoryScroll1(possibility, justat);
             return 1;
@@ -152,7 +164,7 @@ public class Scroll {
     public int doAccessaryScroll2(int possibility, String justat) {
         if(equip.isFinishEnchant()) return -1;
         //강화 성공 시
-        if(isSuccess(possibility)) {
+        if(isSuccess(possibility+15)) {
             equip.successScroll();
             accessoryScroll2(possibility, justat);
             return 1;
@@ -165,7 +177,7 @@ public class Scroll {
     public int doWeaponScroll2(int possibility, String justat) {
         if(equip.isFinishEnchant()) return -1;
         //강화 성공 시
-        if(isSuccess(possibility)) {
+        if(isSuccess(possibility+15)) {
             equip.successScroll();
             weaponScroll2(possibility, justat);
             return 1;
@@ -178,7 +190,7 @@ public class Scroll {
     public int doGloveScroll2(int possibility, String justat) {
         if(equip.isFinishEnchant()) return -1;
         //강화 성공 시
-        if(isSuccess(possibility)) {
+        if(isSuccess(possibility+15)) {
             equip.successScroll();
             gloveScroll(possibility, justat);
             return 1;

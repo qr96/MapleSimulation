@@ -25,6 +25,7 @@ public class UsedPopup extends Activity {
         this.equipment = (Equipment) intent.getSerializableExtra("equipment");
 
         updateUsed();
+
     }
 
     public void updateUsed(){
@@ -38,6 +39,8 @@ public class UsedPopup extends Activity {
             usedList = usedList + "황금 망치 : " + equipment.used_goldhammer + "\n";
         if(equipment.used_innocent > 0)
             usedList = usedList + "이노센트 주문서 : " + equipment.used_innocent + "\n";
+        if(equipment.used_arkinnocent > 0)
+            usedList = usedList + "아크 이노센트 주문서 : " + equipment.used_arkinnocent + "\n";
         if(equipment.used_chaos > 0)
             usedList = usedList + "혼돈의 주문서 : " + equipment.used_chaos + "\n";
 

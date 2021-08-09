@@ -148,10 +148,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="스타포스를 부여합니다."
-            android:onClick="goRewardAd"
+            android:text="스타포스"
             android:textSize="18sp">
         </TextView>
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="50dp"
+            android:onClick="goRewardAd"
+            android:text="🎁"/>
         <Button
             android:layout_width="50dp"
             android:layout_height="50dp"

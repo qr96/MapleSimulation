@@ -39,6 +39,7 @@ public class Equipment implements Cloneable, Serializable {
     public int used_goldhammer;
     public int used_returnscroll;
     public int used_innocent;
+    public int used_arkinnocent;
     public int used_chaos;
     public int used_eternal;
     public int used_powerful;
@@ -155,6 +156,7 @@ public class Equipment implements Cloneable, Serializable {
         used_goldhammer = 0;
         used_returnscroll = 0;
         used_innocent = 0;
+        used_arkinnocent = 0;
         used_chaos = 0;
         used_eternal =0 ;
         used_powerful =0 ;
@@ -219,6 +221,19 @@ public class Equipment implements Cloneable, Serializable {
         failUp=0;
         initEnhance();
         initStarStat();
+    }
+
+    //아크 이노센트 주문서 사용
+    public void useArkInnocent() {
+        if(goldHammer>0) maxUp--;
+        if(isNoljang) {
+            maxStar = tmpMaxStar;
+            isNoljang = false;
+        }
+        nowUp=0;
+        goldHammer=0;
+        failUp=0;
+        initEnhance();
     }
 
     //추가옵션이 몇 급인지 반환
