@@ -51,7 +51,7 @@ PotentialActivity extends Activity {
 
     Animation autoAnim;
 
-    //auto모드 계속 돌릴지 여부
+    //auto모드로 버튼 눌렸는지 여부
     boolean keepGoing = false;
     
     //auto모드, 원하는 옵션 번호
@@ -229,7 +229,7 @@ PotentialActivity extends Activity {
         Button enhance = findViewById(R.id.enhance);
         toggleButtonsEnable();
 
-        if(keepGoing){
+        if(keepGoing){ //AUTO가 동작중인 경우
             keepGoing = false;
             if(view.getAnimation() != null) view.getAnimation().cancel();
             autoCheck.setEnabled(true);
@@ -237,7 +237,20 @@ PotentialActivity extends Activity {
             enhance.setText("사용하기");
             return;
         }
-        else{
+        else{ //AUTO가 동작중이지 않은 경우
+            if(!isAutoKeep(cube)) {//이미 조건에 맞는 경우
+                CustomDialog customDialog = new CustomDialog(this, new CustomDialogClickListener() {
+                    @Override
+                    public void onPositiveClick() {
+                        usingCube(cube);
+                    }
+                    @Override
+                    public void onNegativeClick() {
+                    }
+                });
+                customDialog.show();
+                customDialog.setMessage("이미 조건에 맞는 옵션입니다. 그래도 돌리시겠습니까?");
+            }
             keepGoing = true;
             autoCheck.setEnabled(false);
             optionSpinner.setEnabled(false);
@@ -268,7 +281,7 @@ PotentialActivity extends Activity {
         handler.post(runnable);
     }
 
-    //자동모드 계속할지 여부
+    //계속 진행할지 여부 반환 (3줄 유효옵이면 false)
     public boolean isAutoKeep(String cube) {
         String option[];
         int attk = 0;
