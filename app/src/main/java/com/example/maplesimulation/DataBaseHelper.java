@@ -22,7 +22,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private SQLiteDatabase mDataBase;
     private final Context mContext;
 
-    private static final int DATABASE_VERSION = 0; //db 버전, db 수정사항 있을 때마다 업그레이드
+    private static final int DATABASE_VERSION = 1; //db 버전, db 수정사항 있을 때마다 업그레이드
 
     public DataBaseHelper(Context context)
     {
