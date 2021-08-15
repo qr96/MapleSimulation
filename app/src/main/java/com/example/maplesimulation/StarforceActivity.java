@@ -124,6 +124,8 @@ public class StarforceActivity extends Activity {
     public void doStarforce(View view) {
         view.setEnabled(false);
 
+        if(equipment.getMaxStar() == equipment.getStar()) return;
+
         CheckBox starcatch = findViewById(R.id.starcatch);
         CheckBox prevent = findViewById(R.id.preventdestroy);
 
@@ -187,10 +189,21 @@ public class StarforceActivity extends Activity {
         double success = starforce.table_success[equipment.getStar()];
         double destroy = starforce.table_destroyed[equipment.getStar()];
         double fail = 100.0 - success - destroy;
-        int stats[] = starforce.increment(equipment.getStar());
+        int stats[];
         String equipInfo = "";
 
         TextView textView = findViewById(R.id.info);
+        TextView needMoney = findViewById(R.id.needmoney);
+
+        if(equipment.getStar()==equipment.getMaxStar()) { //이미 스타포스가 완료된 경우
+            textView.setText("스타포스가 모두 완료된 장비 입니다!");
+            needMoney.setText("필요한 메소: -");
+            return;
+        }
+
+        //스타포스 정보 표시 부분
+        stats = starforce.increment(equipment.getStar());
+
         if(starforce.canDouble()) equipInfo = equipment.getStar()+"성 > "+(equipment.getStar()+2)+"성\n\n";
         else equipInfo = equipment.getStar()+"성 > "+(equipment.getStar()+1)+"성\n\n";
         if(starforce.isChanceTime()){
@@ -212,7 +225,7 @@ public class StarforceActivity extends Activity {
 
         textView.setText(equipInfo);
 
-        TextView needMoney = findViewById(R.id.needmoney);
+        //필요한 메소 정보 부분
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         String money = "필요한 메소: "
                 +decimalFormat.format(starforce.howMuch(equipment.getLevReq(), equipment.getStar()));
