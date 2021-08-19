@@ -20,11 +20,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +59,12 @@ PotentialActivity extends Activity {
     private Cube strangeAddiCube;
 
     private AdView mAdView;
+    private RewardedAd mRewardedAd;
 
     Animation autoAnim;
+
+    //미라클 타임 적용 여부
+    private boolean miracle = false;
 
     //auto모드로 버튼 눌렸는지 여부
     boolean keepGoing = false;
@@ -92,6 +107,40 @@ PotentialActivity extends Activity {
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        //보상형 광고 초기화
+        RewardedAd.load(this, getResources().getString(R.string.admob_reward),
+                adRequest, new RewardedAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error.
+                        mRewardedAd = null;
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                        mRewardedAd = rewardedAd;
+
+                        mRewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                            @Override
+                            public void onAdShowedFullScreenContent() {
+                                // Called when ad is shown.
+                            }
+
+                            @Override
+                            public void onAdFailedToShowFullScreenContent(AdError adError) {
+                                // Called when ad fails to show.
+                            }
+
+                            @Override
+                            public void onAdDismissedFullScreenContent() {
+                                // Called when ad is dismissed.
+                                // Set the ad reference to null so you don't show the ad a second time.
+                                mRewardedAd = null;
+                            }
+                        });
+                    }
+                });
     }
 
     public void initAutoAni() {
@@ -132,6 +181,46 @@ PotentialActivity extends Activity {
         });
     }
 
+    public void goRewardAd(View view) {
+
+        CustomDialog customDialog = new CustomDialog(this, new CustomDialogClickListener() {
+            @Override
+            public void onPositiveClick() {
+                if (mRewardedAd != null) {
+                    Activity activityContext = PotentialActivity.this;
+                    mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
+                        @Override
+                        public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                            //미라클타임 활성화
+                            blackCube.setMiracle();
+                            redCube.setMiracle();
+                            addiCube.setMiracle();
+                            myungjangCube.setMiracle();
+                            janginCube.setMiracle();
+                            strangeAddiCube.setMiracle();
+
+                            TextView textView = findViewById(R.id.potentialTitle);
+                            textView.setText("잠재능력(미라클타임)");
+
+                            CustomNotice customNotice = new CustomNotice(activityContext);
+                            customNotice.show();
+                            customNotice.setContent("감사합니다. 미라클 타임이 적용되었습니다.");
+                        }
+                    });
+                } else {
+                    CustomNotice customNotice = new CustomNotice(PotentialActivity.this);
+                    customNotice.show();
+                    customNotice.setContent("광고가 아직 준비되지 않았습니다ㅠㅠ\n 다음에 다시 시도해주세요.");
+                }
+            }
+            @Override
+            public void onNegativeClick() {
+            }
+        });
+        customDialog.show();
+        customDialog.setMessage("광고를 보고 미라클 타임을 켜시겠습니까?\n(등급업 확률 2배)");
+    }
+
     //맨 위의 썸네일 설정
     public void setThumnail() {
         if(equipment == null) return;
@@ -161,7 +250,9 @@ PotentialActivity extends Activity {
         if(equipment == null) return;
 
         TextView textView = findViewById(R.id.info);
-        String equipInfo = EquipmentInfo.potential(equipment);
+        String equipInfo = "";
+
+        equipInfo = equipInfo + EquipmentInfo.potential(equipment);
 
         textView.setText(Html.fromHtml(equipInfo));
     }
@@ -463,7 +554,8 @@ PotentialActivity extends Activity {
                 "1. 하단에서 원하는 큐브를 선택 후, \"강화하기\"를 누르면 잠재능력의 재설정이 시작됩니다.\n" +
                 "2. AUTO 체크 시 특정 옵션이 나올때까지 큐브가 사용됩니다. " +
                 "3. 이미 조건을 만족하는 경우 AUTO모드가 작동되지 않습니다." +
-                "(AUTO 모드를 해제하여 큐브를 돌린 후 시작하면 됩니다.)\n");
+                "(AUTO 모드를 해제하여 큐브를 돌린 후 시작하면 됩니다.)\n" +
+                "4. 선물상자를 누르면 미라클 타임이 적용됩니다.");
     }
 
     public void goBack(View view) {

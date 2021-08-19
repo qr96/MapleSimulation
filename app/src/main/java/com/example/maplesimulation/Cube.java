@@ -87,6 +87,13 @@ public class Cube {
         this.equipment.setPotential1(option);
     }
 
+    //미라클 타임 적용
+    public void setMiracle() {
+        for(int i=0; i<upgradePossibility.length; i++){
+            upgradePossibility[i] = upgradePossibility[i]*2.0;
+        }
+    }
+
     public void useAddiCube() {
         if(cubeType.equals("에디셔널큐브")) equipment.used_addicube++;
         else if(cubeType.equals("수상한에디셔널큐브")) equipment.used_strangeAddicube++;

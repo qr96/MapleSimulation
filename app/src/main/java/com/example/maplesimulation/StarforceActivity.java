@@ -32,6 +32,8 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd;
+import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -42,7 +44,7 @@ public class StarforceActivity extends Activity {
     private int now;
 
     private AdView mAdView;
-    private RewardedAd mRewardedAd;
+    private RewardedInterstitialAd rewardedInterstitialAd;
 
     public AnimationDrawable resultAnimation;
     public Starforce starforce;
@@ -88,9 +90,9 @@ public class StarforceActivity extends Activity {
         CustomDialog customDialog = new CustomDialog(this, new CustomDialogClickListener() {
             @Override
             public void onPositiveClick() {
-                if (mRewardedAd != null) {
+                if (rewardedInterstitialAd != null) {
                     Activity activityContext = StarforceActivity.this;
-                    mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
+                    rewardedInterstitialAd.show(activityContext, new OnUserEarnedRewardListener() {
                         @Override
                         public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
                             if (equipment.getName().contains("타일런트") && equipment.getStar()<10) {
@@ -330,36 +332,30 @@ public class StarforceActivity extends Activity {
         mAdView.loadAd(adRequest);
 
         //보상형 광고 초기화
-        RewardedAd.load(this, getResources().getString(R.string.admob_reward),
-                adRequest, new RewardedAdLoadCallback() {
+        RewardedInterstitialAd.load(this, getResources().getString(R.string.admob_reward_full),
+                new AdRequest.Builder().build(),  new RewardedInterstitialAdLoadCallback() {
                     @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        // Handle the error.
-                        mRewardedAd = null;
-                    }
-
-                    @Override
-                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
-                        mRewardedAd = rewardedAd;
-
-                        mRewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                            @Override
-                            public void onAdShowedFullScreenContent() {
-                                // Called when ad is shown.
-                            }
-
+                    public void onAdLoaded(RewardedInterstitialAd ad) {
+                        rewardedInterstitialAd = ad;
+                        rewardedInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                            /** Called when the ad failed to show full screen content. */
                             @Override
                             public void onAdFailedToShowFullScreenContent(AdError adError) {
-                                // Called when ad fails to show.
                             }
 
+                            /** Called when ad showed the full screen content. */
+                            @Override
+                            public void onAdShowedFullScreenContent() {
+                            }
+
+                            /** Called when full screen content is dismissed. */
                             @Override
                             public void onAdDismissedFullScreenContent() {
-                                // Called when ad is dismissed.
-                                // Set the ad reference to null so you don't show the ad a second time.
-                                mRewardedAd = null;
                             }
                         });
+                    }
+                    @Override
+                    public void onAdFailedToLoad(LoadAdError loadAdError) {
                     }
                 });
     }
