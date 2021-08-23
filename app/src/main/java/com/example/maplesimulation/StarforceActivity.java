@@ -79,10 +79,10 @@ public class StarforceActivity extends Activity {
     public void goRewardAd(View view) {
         String message = "";
 
-        if(equipment.getName().contains("타일런트") && equipment.getStar()<10)
-            message = "광고를 보고 장비를 10성으로 만드시겠습니까?";
-        else if(equipment.getMaxStar() >= 20 && equipment.getStar()<20)
-            message = "광고를 보고 장비를 20성으로 만드시겠습니까?";
+        if(equipment.getName().contains("타일런트") && equipment.getStar()<12)
+            message = "광고를 보고 장비를 12성으로 만드시겠습니까?";
+        else if(equipment.getMaxStar() >= 22 && equipment.getStar()<22)
+            message = "광고를 보고 장비를 22성으로 만드시겠습니까?";
         else {
             message = "광고 보상이 없는 아이템 입니다. 그래도 광고를 보시겠습니까? (다음 서비스에 큰 도움이 됩니다!)";
         }
@@ -95,12 +95,7 @@ public class StarforceActivity extends Activity {
                     rewardedInterstitialAd.show(activityContext, new OnUserEarnedRewardListener() {
                         @Override
                         public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-                            if (equipment.getName().contains("타일런트") && equipment.getStar()<10) {
-                                while(equipment.getStar()<10) starforce.success();
-                            }
-                            else if (equipment.getMaxStar() >= 20 && equipment.getStar()<20){
-                                while(equipment.getStar()<20) starforce.success();
-                            }
+                            doReward();
                             updateText();
                             PreferenceManager.setInventory(StarforceActivity.this, inventory);
 
@@ -110,9 +105,13 @@ public class StarforceActivity extends Activity {
                         }
                     });
                 } else {
+                    doReward();
+                    updateText();
+                    PreferenceManager.setInventory(StarforceActivity.this, inventory);
+
                     CustomNotice customNotice = new CustomNotice(StarforceActivity.this);
                     customNotice.show();
-                    customNotice.setContent("광고가 아직 준비되지 않았습니다ㅠㅠ\n 다음에 다시 시도해주세요.");
+                    customNotice.setContent("광고가 아직 준비되지 않았습니다.\n앱 이용에 감사드립니다.\n(스타포스가 적용됩니다.)");
                 }
             }
             @Override
@@ -121,6 +120,16 @@ public class StarforceActivity extends Activity {
         });
         customDialog.show();
         customDialog.setMessage(message);
+    }
+
+    //보상으로 스타포스 강화
+    public void doReward() {
+        if (equipment.getName().contains("타일런트") && equipment.getStar()<12) {
+            while(equipment.getStar()<12) starforce.success();
+        }
+        else if (equipment.getMaxStar() >= 22 && equipment.getStar()<22){
+            while(equipment.getStar()<22) starforce.success();
+        }
     }
 
     public void doStarforce(View view) {
