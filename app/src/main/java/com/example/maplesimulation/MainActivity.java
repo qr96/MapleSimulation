@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             nothingDialog();
             return;
         }
-        if(inventory.get(now).getType().equals("뱃지")){
+        if(inventory.get(now).getType().equals("뱃지") || inventory.get(now).getType().equals("포켓아이템")){
             Toast.makeText(this, "잠재능력 재설정이 불가능한 장비입니다.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         if(inventory.get(now).isNoljang || inventory.get(now).getType().equals("뱃지") ||
-                inventory.get(now).getType().equals("엠블렘")){
+                inventory.get(now).getType().equals("엠블렘") || inventory.get(now).getType().equals("포켓아이템")){
             Toast.makeText(this, "스타포스를 할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
             return;
         }

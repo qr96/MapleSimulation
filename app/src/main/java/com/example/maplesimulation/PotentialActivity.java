@@ -109,7 +109,7 @@ PotentialActivity extends Activity {
         mAdView.loadAd(adRequest);
 
         //보상형 광고 초기화
-        RewardedAd.load(this, getResources().getString(R.string.admob_reward),
+        RewardedAd.load(this, getResources().getString(R.string.potential_reward),
                 adRequest, new RewardedAdLoadCallback() {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {

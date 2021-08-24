@@ -398,6 +398,12 @@ public class ScrollActivity extends Activity {
 
         //선택한 번호의 아이템에 체크 표시
         if(view.getId() == R.id.scroll_button_0){//주문의 흔적
+            if(equipment.getType().equals("포켓아이템")) {
+                Toast.makeText(this, "사용할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
+                selected_button_id = -1;
+                return;
+            }
+            
             selected_check_id = R.id.scroll_check_0;
 
             //주문서의 세부 옵션 선택 팝업
@@ -421,6 +427,12 @@ public class ScrollActivity extends Activity {
             startActivityForResult(intent, 0);
         }
         else if(view.getId() == R.id.scroll_button_1){//순백의 주문서
+            if(equipment.getType().equals("포켓아이템")) {
+                Toast.makeText(this, "사용할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
+                selected_button_id = -1;
+                return;
+            }
+
             selected_check_id = R.id.scroll_check_1;
 
             //주문서의 세부 옵션 선택 팝업
@@ -430,6 +442,12 @@ public class ScrollActivity extends Activity {
 
         }
         else if(view.getId() == R.id.scroll_button_2){//황금 망치
+            if(equipment.getType().equals("포켓아이템")) {
+                Toast.makeText(this, "사용할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
+                selected_button_id = -1;
+                return;
+            }
+
             selected_check_id = R.id.scroll_check_2;
 
             //주문서의 세부 옵션 선택 팝업
@@ -438,6 +456,12 @@ public class ScrollActivity extends Activity {
             startActivityForResult(intent, 0);
         }
         else if(view.getId() == R.id.scroll_button_3){//이노센트 주문서
+            if(equipment.getType().equals("포켓아이템")) {
+                Toast.makeText(this, "사용할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
+                selected_button_id = -1;
+                return;
+            }
+
             selected_check_id = R.id.scroll_check_3;
 
             //주문서의 세부 옵션 선택 팝업
@@ -446,6 +470,12 @@ public class ScrollActivity extends Activity {
             startActivityForResult(intent, 0);
         }
         else if(view.getId() == R.id.scroll_button_4){//혼돈의 주문서
+            if(equipment.getType().equals("포켓아이템")) {
+                Toast.makeText(this, "사용할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
+                selected_button_id = -1;
+                return;
+            }
+            
             selected_check_id = R.id.scroll_check_4;
 
             //주문서의 세부 옵션 선택 팝업

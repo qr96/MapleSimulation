@@ -44,7 +44,7 @@ public class StarforceActivity extends Activity {
     private int now;
 
     private AdView mAdView;
-    private RewardedInterstitialAd rewardedInterstitialAd;
+    private RewardedAd mRewardedAd;
 
     public AnimationDrawable resultAnimation;
     public Starforce starforce;
@@ -84,15 +84,17 @@ public class StarforceActivity extends Activity {
         else if(equipment.getMaxStar() >= 22 && equipment.getStar()<22)
             message = "광고를 보고 장비를 22성으로 만드시겠습니까?";
         else {
-            message = "광고 보상이 없는 아이템 입니다. 그래도 광고를 보시겠습니까? (다음 서비스에 큰 도움이 됩니다!)";
+            message = "광고 보상이 없는 아이템 입니다. 그래도 광고를 보시겠습니까?\n (다음 서비스에 큰 도움이 됩니다!)";
         }
 
         CustomDialog customDialog = new CustomDialog(this, new CustomDialogClickListener() {
             @Override
             public void onPositiveClick() {
-                if (rewardedInterstitialAd != null) {
+                if (mRewardedAd != null) {
+
+
                     Activity activityContext = StarforceActivity.this;
-                    rewardedInterstitialAd.show(activityContext, new OnUserEarnedRewardListener() {
+                    mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
                         @Override
                         public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
                             doReward();
@@ -111,7 +113,7 @@ public class StarforceActivity extends Activity {
 
                     CustomNotice customNotice = new CustomNotice(StarforceActivity.this);
                     customNotice.show();
-                    customNotice.setContent("광고가 아직 준비되지 않았습니다.\n앱 이용에 감사드립니다.\n(스타포스가 적용됩니다.)");
+                    customNotice.setContent("광고가 아직 준비되지 않아 자동으로 스타포스가 적용됩니다.(앱 이용에 감사드립니다!)");
                 }
             }
             @Override
@@ -341,30 +343,36 @@ public class StarforceActivity extends Activity {
         mAdView.loadAd(adRequest);
 
         //보상형 광고 초기화
-        RewardedInterstitialAd.load(this, getResources().getString(R.string.admob_reward_full),
-                new AdRequest.Builder().build(),  new RewardedInterstitialAdLoadCallback() {
+        RewardedAd.load(this, getResources().getString(R.string.potential_reward),
+                adRequest, new RewardedAdLoadCallback() {
                     @Override
-                    public void onAdLoaded(RewardedInterstitialAd ad) {
-                        rewardedInterstitialAd = ad;
-                        rewardedInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                            /** Called when the ad failed to show full screen content. */
-                            @Override
-                            public void onAdFailedToShowFullScreenContent(AdError adError) {
-                            }
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error.
+                        mRewardedAd = null;
+                    }
 
-                            /** Called when ad showed the full screen content. */
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                        mRewardedAd = rewardedAd;
+
+                        mRewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                             @Override
                             public void onAdShowedFullScreenContent() {
+                                // Called when ad is shown.
                             }
 
-                            /** Called when full screen content is dismissed. */
+                            @Override
+                            public void onAdFailedToShowFullScreenContent(AdError adError) {
+                                // Called when ad fails to show.
+                            }
+
                             @Override
                             public void onAdDismissedFullScreenContent() {
+                                // Called when ad is dismissed.
+                                // Set the ad reference to null so you don't show the ad a second time.
+                                mRewardedAd = null;
                             }
                         });
-                    }
-                    @Override
-                    public void onAdFailedToLoad(LoadAdError loadAdError) {
                     }
                 });
     }
