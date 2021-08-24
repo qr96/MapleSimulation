@@ -113,7 +113,7 @@ public class StarforceActivity extends Activity {
 
                     CustomNotice customNotice = new CustomNotice(StarforceActivity.this);
                     customNotice.show();
-                    customNotice.setContent("광고가 아직 준비되지 않아 자동으로 스타포스가 적용됩니다.(앱 이용에 감사드립니다!)");
+                    customNotice.setContent("광고가 아직 준비되지 않아 자동으로 스타포스가 적용됩니다.\n(앱 이용에 너무너무 감사드립니다!)");
                 }
             }
             @Override

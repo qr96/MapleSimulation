@@ -500,12 +500,11 @@ PotentialActivity extends Activity {
         //이전에 선택된 항목의 체크 제거
         ImageView prev_select = (ImageView)findViewById(selected_check_id);
         if(prev_select != null) prev_select.setVisibility(View.INVISIBLE);
+        selected_button_id = -1;
+        selected_check_id = -1;
 
         //이미 선택된 버튼 클릭한 경우
         if(selected_button_id == view.getId()) {
-            selected_button_id = -1;
-            selected_check_id = -1;
-
             return;
         }
 

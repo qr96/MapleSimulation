@@ -475,7 +475,7 @@ public class ScrollActivity extends Activity {
                 selected_button_id = -1;
                 return;
             }
-            
+
             selected_check_id = R.id.scroll_check_4;
 
             //주문서의 세부 옵션 선택 팝업
