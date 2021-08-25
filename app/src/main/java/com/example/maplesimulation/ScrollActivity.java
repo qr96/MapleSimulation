@@ -232,11 +232,11 @@ public class ScrollActivity extends Activity {
         }
         else if(selected_button_id == R.id.scroll_button_5) { //영환불
             flame.useEternalFlame();
-            result = 1;
+            result = 2;
         }
         else if(selected_button_id == R.id.scroll_button_6) { //강환불
             flame.usePowerfulFlame();
-            result = 1;
+            result = 2;
         }
         else if(selected_button_id == R.id.scroll_button_7) { //놀장강
             if(equipment.getLevReq()>150 || equipment.isStarforce || equipment.getStar()==15){
@@ -255,6 +255,7 @@ public class ScrollActivity extends Activity {
 
         if(result==1) successEffect();
         else if(result==0) failEffect();
+        else if(result==2); //환생의 불꽃 사용 시 이펙트 없음
         else return;
 
         sparkleEffect();
