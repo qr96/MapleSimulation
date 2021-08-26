@@ -563,6 +563,7 @@ PotentialActivity extends Activity {
 
     @Override
     public void onBackPressed() {
+        keepGoing = false;
         Intent intent = new Intent();
         intent.putExtra("inventory", inventory);
         intent.putExtra("now", now);
