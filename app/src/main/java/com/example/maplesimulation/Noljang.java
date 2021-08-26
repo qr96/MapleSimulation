@@ -17,6 +17,10 @@ public class Noljang {
         if(equipment.isStarforce || equipment.getStar()==equipment.getMaxStar()) return -1; //이미 스타포스 작이 되어있는 경우
         int star = equipment.getStar();
 
+        if(equipment.tmpMaxStar == 0) {
+            equipment.tmpMaxStar = equipment.getMaxStar();
+        }
+
         if(equipment.getMaxStar()>15){
             equipment.tmpMaxStar = equipment.getMaxStar();
             equipment.setMaxStar(15);

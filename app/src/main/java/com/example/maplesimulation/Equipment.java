@@ -83,6 +83,7 @@ public class Equipment implements Cloneable, Serializable {
         maxStar = 0;
         star = 0;
         goldHammer = 0;
+        tmpMaxStar = 0;
         isNoljang = false;
         isStarforce = false;
     }
@@ -228,10 +229,6 @@ public class Equipment implements Cloneable, Serializable {
     //아크 이노센트 주문서 사용
     public void useArkInnocent() {
         if(goldHammer>0) maxUp--;
-        if(isNoljang) {
-            maxStar = tmpMaxStar;
-            isNoljang = false;
-        }
         nowUp=0;
         goldHammer=0;
         failUp=0;

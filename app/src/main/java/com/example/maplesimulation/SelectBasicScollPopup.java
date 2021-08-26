@@ -107,7 +107,7 @@ public class SelectBasicScollPopup extends Activity {
             }
         });
         customDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        customDialog.setCancelable(false);
+        customDialog.setCanceledOnTouchOutside(false);
         customDialog.show();
 
         if(scrollType == 0) {
