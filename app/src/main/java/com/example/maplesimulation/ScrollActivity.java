@@ -389,11 +389,11 @@ public class ScrollActivity extends Activity {
         ImageView prev_select = (ImageView)findViewById(selected_check_id);
         if(prev_select != null) prev_select.setVisibility(View.INVISIBLE);
 
+        selected_button_id = -1;
+        selected_check_id = -1;
+
         //이미 선택된 버튼 클릭한 경우
         if(selected_button_id == view.getId()) {
-            selected_button_id = -1;
-            selected_check_id = -1;
-
             return;
         }
 
@@ -538,7 +538,6 @@ public class ScrollActivity extends Activity {
             }
             else {
                 Toast.makeText(this, "아직 무기와 기계심장만 가능합니다.", Toast.LENGTH_SHORT).show();
-                selected_button_id = -1;
                 return;
             }
         }
