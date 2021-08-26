@@ -492,6 +492,7 @@ public class ScrollActivity extends Activity {
                 return;
             }
             CustomNotice customNotice = new CustomNotice(this);
+            customNotice.setCanceledOnTouchOutside(false);
             customNotice.show();
             customNotice.setTitle("영원한 환생의 불꽃");
             customNotice.setContent("최고 수준까지 추가옵션을 부여합니다.");
@@ -505,6 +506,7 @@ public class ScrollActivity extends Activity {
                 return;
             }
             CustomNotice customNotice = new CustomNotice(this);
+            customNotice.setCanceledOnTouchOutside(false);
             customNotice.show();
             customNotice.setTitle("강력한 환생의 불꽃");
             customNotice.setContent("높은 수준까지 추가옵션을 부여합니다.");
@@ -518,6 +520,7 @@ public class ScrollActivity extends Activity {
                 return;
             }
             CustomNotice customNotice = new CustomNotice(this);
+            customNotice.setCanceledOnTouchOutside(false);
             customNotice.show();
             customNotice.setTitle("놀라운 장비강화 주문서");
             customNotice.setContent("놀라운 장비강화 주문서입니다. 사용 시 스타포스 강화가 불가능하며 최대 15성으로 제한됩니다.\n" +

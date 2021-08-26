@@ -84,6 +84,7 @@ public class SearchActivity extends Activity {
             public void onNegativeClick() {
             }
         });
+        customDialog.setCancelable(false);
         customDialog.show();
         customDialog.setMessage(equipment+"를 추가하시겠습니까?");
     }

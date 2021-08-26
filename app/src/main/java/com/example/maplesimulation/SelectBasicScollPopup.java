@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
 public class SelectBasicScollPopup extends Activity {
     TextView txtText;
     String scrollTable[];
@@ -33,6 +32,7 @@ public class SelectBasicScollPopup extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.dialog_select);
+        this.setFinishOnTouchOutside(false);
 
         txtText = (TextView)findViewById(R.id.selectTitle);
         txtText.setText("주문서를 선택하세요.");
@@ -107,6 +107,7 @@ public class SelectBasicScollPopup extends Activity {
             }
         });
         customDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        customDialog.setCancelable(false);
         customDialog.show();
 
         if(scrollType == 0) {
