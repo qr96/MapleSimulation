@@ -143,13 +143,13 @@ public class FlameTable implements Serializable {
         weaponTable.put("건160", new int[] {23, 33, 46, 60, 77});
         weaponTable.put("에너지소드160", new int[] {24, 34, 47, 62, 79});
         weaponTable.put("너클160", new int[] {24, 34, 47, 62, 79});
-        weaponTable.put("건틀렛 리볼버160", new int[] {24, 34, 47, 62, 79});
+        weaponTable.put("건틀렛리볼버160", new int[] {24, 34, 47, 62, 79});
         weaponTable.put("소울슈터160", new int[] {24, 34, 47, 62, 79});
         weaponTable.put("폴암160", new int[] {28, 51, 56, 74, 95});
-        weaponTable.put("에인션트 보우160", new int[] {29, 43, 59, 77, 99});
+        weaponTable.put("에인션트보우160", new int[] {29, 43, 59, 77, 99});
         weaponTable.put("부채160", new int[] {29, 43, 59, 77, 99});
         weaponTable.put("활160", new int[] {29, 43, 59, 77, 99});
-        weaponTable.put("브레스 슈터160", new int[] {29, 43, 59, 77, 99});
+        weaponTable.put("브레스슈터160", new int[] {29, 43, 59, 77, 99});
         weaponTable.put("듀얼보우건160", new int[] {29, 43, 59, 77, 99});
         weaponTable.put("단검160", new int[] {29, 43, 59, 77, 99});
         weaponTable.put("블레이드160", new int[] {0, 0, 0, 0, 0});
@@ -172,13 +172,13 @@ public class FlameTable implements Serializable {
         weaponTable.put("건200", new int[] {39, 58, 79, 104, 133});
         weaponTable.put("에너지소드200", new int[] {40, 59, 81, 106, 136});
         weaponTable.put("너클200", new int[] {40, 59, 81, 106, 136});
-        weaponTable.put("건틀렛 리볼버200", new int[] {40, 59, 81, 106, 136});
+        weaponTable.put("건틀렛리볼버200", new int[] {40, 59, 81, 106, 136});
         weaponTable.put("소울슈터200", new int[] {40, 59, 81, 106, 136});
         weaponTable.put("폴암200", new int[] {48, 70, 96, 127, 163});
-        weaponTable.put("에인션트 보우200", new int[] {50, 73, 101, 133, 170});
+        weaponTable.put("에인션트보우200", new int[] {50, 73, 101, 133, 170});
         weaponTable.put("부채200", new int[] {50, 73, 101, 133, 170});
         weaponTable.put("활200", new int[] {50, 73, 101, 133, 170});
-        weaponTable.put("브레스 슈터200", new int[] {50, 73, 101, 133, 170});
+        weaponTable.put("브레스슈터200", new int[] {50, 73, 101, 133, 170});
         weaponTable.put("듀얼보우건200", new int[] {50, 73, 101, 133, 170});
         weaponTable.put("단검200", new int[] {50, 73, 101, 133, 170});
         weaponTable.put("블레이드200", new int[] {0, 0, 0, 0, 0});
@@ -200,7 +200,7 @@ public class FlameTable implements Serializable {
         weaponTable.put("완드200", new int[] {63, 92, 126, 167, 214});
         weaponTable.put("샤이닝로드200", new int[] {63, 92, 126, 167, 214});
         weaponTable.put("ESP리미터200", new int[] {63, 92, 126, 167, 214});
-        weaponTable.put("매직 건틀렛200", new int[] {63, 92, 126, 167, 214});
+        weaponTable.put("매직건틀렛200", new int[] {63, 92, 126, 167, 214});
         weaponTable.put("스태프200", new int[] {64, 94, 129, 170, 218});
 
         //제네 무기
