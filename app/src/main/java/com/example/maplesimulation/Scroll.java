@@ -10,7 +10,10 @@ public class Scroll {
 
     //Constructor
     public Scroll(Equipment equipment){
+
         this.equip = equipment;
+        recentChaos = new ArrayList<Integer>();
+
     }
 
     //정해진 확률에 따른 성공 여부
@@ -96,7 +99,7 @@ public class Scroll {
     public int useAwesomeChaos(int possible) {
         if(equip.isFinishEnchant()) return -1; //업그레이드 가능횟수가 없는 경우
         equip.used_chaos++;
-        recentChaos = new ArrayList<Integer>();
+        recentChaos.clear();
 
         //주문서 사용 성공
         if(isSuccess(possible)){
