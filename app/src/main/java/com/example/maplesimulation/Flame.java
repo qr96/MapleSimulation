@@ -171,11 +171,11 @@ public class Flame {
         }
         else if(selected == 16) { //보스 데미지
             tmp = Objects.requireNonNull(flameTable.bossdmg_table.get(levReq))[grade];
-            equipment.setAdditionStat(19, tmp);
+            equipment.setAdditionStat(13, tmp);
         }
         else if(selected == 17) { //데미지
             tmp = Objects.requireNonNull(flameTable.allstat_table.get(levReq))[grade];
-            equipment.setAdditionStat(20, tmp);
+            equipment.setAdditionStat(14, tmp);
         }
         else if(selected == 18) { //올스텟
             tmp = Objects.requireNonNull(flameTable.allstat_table.get(levReq))[grade];
