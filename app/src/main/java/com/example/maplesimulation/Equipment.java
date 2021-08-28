@@ -102,9 +102,11 @@ public class Equipment implements Cloneable, Serializable {
         enhance.set(index, tmp);
     }
 
-    //추옵 값 설정
-    public void setAdditionStat(int index, int num) {
-        additional.set(index, num);
+    //추옵 값 증가
+    public void addAdditionStat(int index, int num) {
+        int tmp = additional.get(index);
+        tmp = tmp + num;
+        additional.set(index, tmp);
     }
 
     //강화 한번 성공

@@ -53,7 +53,7 @@ public class Flame {
         equipment.used_powerful++;
         int grade = -1; //추가 옵션의 등급
         int selected[]; // 선택된 추가옵션들
-        double table[] = {20, 30, 36, 14, 0}; //강환불 추옵 등급 확률 테이블
+        double table[] = {20.0, 30.0, 36.0, 14.0, 0.0}; //강환불 추옵 등급 확률 테이블
 
         selected = selectN(19, 4); //강환불은 4개의 추옵 상승
 
@@ -75,9 +75,9 @@ public class Flame {
         equipment.used_eternal++;
         int grade = -1; //추가 옵션의 등급
         int selected[]; // 선택된 추가옵션들
-        double table[] = {0, 29, 45, 25, 1}; //강환불 추옵 등급 확률 테이블
+        double table[] = {0.0, 29.0, 45.0, 25.0, 1.0}; //영환불 추옵 등급 확률 테이블
 
-        selected = selectN(19, 4); //강환불은 4개의 추옵 상승
+        selected = selectN(19, 4); //영환불은 4개의 추옵 상승
 
         equipment.initAdditional(); //추옵 초기화
 
@@ -97,38 +97,38 @@ public class Flame {
         int tmp = 0;
         int levReq = equipment.getLevReq();
 
-        if(selected < 4) { //주스텟
+        if(selected <= 3) { //주스텟
             tmp = Objects.requireNonNull(flameTable.justat_table.get(levReq))[grade];
-            equipment.setAdditionStat(selected, tmp);
+            equipment.addAdditionStat(selected, tmp);
         }
-        else if(selected < 10) { //복합스텟
+        else if(selected <= 9) { //복합스텟
             int mixstats[][] = {{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 3}, {2, 3}}; //복합스텟 조합들
             int stat1 = mixstats[selected-4][0];
             int stat2 = mixstats[selected-4][1];
             tmp = Objects.requireNonNull(flameTable.mixstat_table.get(levReq))[grade];
-            equipment.setAdditionStat(stat1, tmp);
+            equipment.addAdditionStat(stat1, tmp);
             tmp = Objects.requireNonNull(flameTable.mixstat_table.get(levReq))[grade];
-            equipment.setAdditionStat(stat2, tmp);
+            equipment.addAdditionStat(stat2, tmp);
         }
-        else if(selected < 12) { //HP, MP
+        else if(selected <= 11) { //HP, MP, 10, 11
             tmp = Objects.requireNonNull(flameTable.hpmp_table.get(levReq))[grade];
-            equipment.setAdditionStat(selected-6, tmp);
+            equipment.addAdditionStat(selected-6, tmp); //4, 5
         }
         else if(selected == 12) { //착용 레벨 감소
             tmp = Objects.requireNonNull(flameTable.levdown_table.get(levReq))[grade];
-            equipment.setAdditionStat(6, tmp);
+            equipment.addAdditionStat(6, tmp);
         }
         else if(selected == 13) { //방어력
             tmp = Objects.requireNonNull(flameTable.justat_table.get(levReq))[grade];
-            equipment.setAdditionStat(7, tmp);
+            equipment.addAdditionStat(7, tmp);
         }
         else if(selected < 18) { //공격력, 마력, 이동속도, 점프력
             tmp = Objects.requireNonNull(flameTable.allstat_table.get(levReq))[grade];
-            equipment.setAdditionStat(selected-6, tmp);
+            equipment.addAdditionStat(selected-6, tmp);
         }
         else if(selected == 18) { //올스텟
             tmp = Objects.requireNonNull(flameTable.allstat_table.get(levReq))[grade];
-            equipment.setAdditionStat(12, tmp);
+            equipment.addAdditionStat(12, tmp);
         }
 
     }
@@ -141,45 +141,45 @@ public class Flame {
 
         if(selected < 4) { //주스텟
             tmp = Objects.requireNonNull(flameTable.justat_table.get(levReq))[grade];
-            equipment.setAdditionStat(selected, tmp);
+            equipment.addAdditionStat(selected, tmp);
         }
         else if(selected < 10) { //복합스텟
             int mixstats[][] = {{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 3}, {2, 3}}; //복합스텟 조합들
             int stat1 = mixstats[selected-4][0];
             int stat2 = mixstats[selected-4][1];
             tmp = Objects.requireNonNull(flameTable.mixstat_table.get(levReq))[grade];
-            equipment.setAdditionStat(stat1, tmp);
+            equipment.addAdditionStat(stat1, tmp);
             tmp = Objects.requireNonNull(flameTable.mixstat_table.get(levReq))[grade];
-            equipment.setAdditionStat(stat2, tmp);
+            equipment.addAdditionStat(stat2, tmp);
         }
         else if(selected < 12) { //HP, MP
             tmp = Objects.requireNonNull(flameTable.hpmp_table.get(levReq))[grade];
-            equipment.setAdditionStat(selected-6, tmp);
+            equipment.addAdditionStat(selected-6, tmp);
         }
         else if(selected == 12) { //착용 레벨 감소
             tmp = Objects.requireNonNull(flameTable.levdown_table.get(levReq))[grade];
-            equipment.setAdditionStat(6, tmp);
+            equipment.addAdditionStat(6, tmp);
         }
         else if(selected == 13) { //방어력
             tmp = Objects.requireNonNull(flameTable.justat_table.get(levReq))[grade];
-            equipment.setAdditionStat(7, tmp);
+            equipment.addAdditionStat(7, tmp);
         }
         else if(selected < 16) { //공격력, 마력
             if(equipment.getName().contains("제네시스")) tmp = flameTable.weaponTable.get(type+"제네시스")[grade];
             else tmp = flameTable.weaponTable.get(type+levReq)[grade];
-            equipment.setAdditionStat(selected-6, tmp);
+            equipment.addAdditionStat(selected-6, tmp);
         }
         else if(selected == 16) { //보스 데미지
             tmp = Objects.requireNonNull(flameTable.bossdmg_table.get(levReq))[grade];
-            equipment.setAdditionStat(13, tmp);
+            equipment.addAdditionStat(13, tmp);
         }
         else if(selected == 17) { //데미지
             tmp = Objects.requireNonNull(flameTable.allstat_table.get(levReq))[grade];
-            equipment.setAdditionStat(14, tmp);
+            equipment.addAdditionStat(14, tmp);
         }
         else if(selected == 18) { //올스텟
             tmp = Objects.requireNonNull(flameTable.allstat_table.get(levReq))[grade];
-            equipment.setAdditionStat(12, tmp);
+            equipment.addAdditionStat(12, tmp);
         }
     }
 }
