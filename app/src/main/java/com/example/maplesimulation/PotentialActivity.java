@@ -371,7 +371,7 @@ PotentialActivity extends Activity {
         CheckBox autoCheck = findViewById(R.id.auto);
         Spinner optionSpinner = findViewById(R.id.option);
         Button enhance = findViewById(R.id.enhance);
-        
+
         toggleButtonsEnable();
         keepGoing = false;
         view.getAnimation().cancel();

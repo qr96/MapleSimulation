@@ -1,5 +1,7 @@
 package com.example.maplesimulation;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -155,7 +157,7 @@ public class Cube {
     //테이블 확률대로 반환
     public int tableRandom(List table) {
         // 번호 생성
-        double ran = Math.random() * 100;
+        double ran = Math.random() * 100.0;
         double w = 0;
 
         for (int i = 0; i < table.size(); i++) {
@@ -175,6 +177,10 @@ public class Cube {
         System.out.println("percent table : "+cubeTable.percentTable.get(key));
         if(table == null) return "Error : " + key;
         int random = tableRandom(table);
+        if(random < 0) {
+            Log.e("cube", "OutOfBoundsException");
+            return "에러 발생";
+        }
         return (String) cubeTable.optionTable.get(key).get(random);
     }
 }
