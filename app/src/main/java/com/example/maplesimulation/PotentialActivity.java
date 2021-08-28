@@ -359,17 +359,25 @@ PotentialActivity extends Activity {
                         handler.postDelayed(this, 200);  // 1 second delay
                     }
                     else{
-                        toggleButtonsEnable();
-                        keepGoing = false;
-                        view.getAnimation().cancel();
-                        enhance.setText("사용하기");
-                        autoCheck.setEnabled(true);
-                        optionSpinner.setEnabled(true);
+                        stopAuto(view);
                     }
                 }
             }
         };
         handler.post(runnable);
+    }
+
+    public void stopAuto(View view) {
+        CheckBox autoCheck = findViewById(R.id.auto);
+        Spinner optionSpinner = findViewById(R.id.option);
+        Button enhance = findViewById(R.id.enhance);
+        
+        toggleButtonsEnable();
+        keepGoing = false;
+        view.getAnimation().cancel();
+        enhance.setText("사용하기");
+        autoCheck.setEnabled(true);
+        optionSpinner.setEnabled(true);
     }
 
     //계속 진행할지 여부 반환 (3줄 유효옵이면 false)
