@@ -152,7 +152,6 @@ public class FlameTable implements Serializable {
         weaponTable.put("브레스슈터160", new int[] {29, 43, 59, 77, 99});
         weaponTable.put("듀얼보우건160", new int[] {29, 43, 59, 77, 99});
         weaponTable.put("단검160", new int[] {29, 43, 59, 77, 99});
-        weaponTable.put("블레이드160", new int[] {0, 0, 0, 0, 0});
         weaponTable.put("체인160", new int[] {29, 43, 59, 77, 99});
         weaponTable.put("한손검160", new int[] {30, 44, 60, 79, 101});
         weaponTable.put("한손도끼160", new int[] {30, 44, 60, 79, 101});
@@ -166,42 +165,47 @@ public class FlameTable implements Serializable {
         weaponTable.put("두손둔기160", new int[] {31, 46, 63, 82, 106});
         weaponTable.put("데스페라도160", new int[] {31, 46, 63, 82, 106});
         weaponTable.put("핸드캐논160", new int[] {32, 47, 64, 84, 108});
+        weaponTable.put("완드160", new int[] {37, 54, 73, 97, 124});
+        weaponTable.put("샤이닝로드160", new int[] {37, 54, 73, 97, 124});
+        weaponTable.put("ESP리미터160", new int[] {37, 54, 73, 97, 124});
+        weaponTable.put("매직건틀렛160", new int[] {37, 54, 73, 97, 124});
+        weaponTable.put("스태프160", new int[] {37, 54, 73, 97, 124});
+
 
         //200제 무기들
         weaponTable.put("아대200", new int[] {27, 40, 55, 72, 92});
         weaponTable.put("건200", new int[] {39, 58, 79, 104, 133});
-        weaponTable.put("에너지소드200", new int[] {40, 59, 81, 106, 136});
         weaponTable.put("너클200", new int[] {40, 59, 81, 106, 136});
-        weaponTable.put("건틀렛리볼버200", new int[] {40, 59, 81, 106, 136});
         weaponTable.put("소울슈터200", new int[] {40, 59, 81, 106, 136});
+        weaponTable.put("에너지소드200", new int[] {40, 59, 81, 106, 136});
+        weaponTable.put("건틀렛리볼버200", new int[] {40, 59, 81, 106, 136});
         weaponTable.put("폴암200", new int[] {48, 70, 96, 127, 163});
-        weaponTable.put("에인션트보우200", new int[] {50, 73, 101, 133, 170});
-        weaponTable.put("부채200", new int[] {50, 73, 101, 133, 170});
         weaponTable.put("활200", new int[] {50, 73, 101, 133, 170});
-        weaponTable.put("브레스슈터200", new int[] {50, 73, 101, 133, 170});
         weaponTable.put("듀얼보우건200", new int[] {50, 73, 101, 133, 170});
-        weaponTable.put("단검200", new int[] {50, 73, 101, 133, 170});
-        weaponTable.put("블레이드200", new int[] {0, 0, 0, 0, 0});
+        weaponTable.put("에인션트보우200", new int[] {50, 73, 101, 133, 170});
         weaponTable.put("체인200", new int[] {50, 73, 101, 133, 170});
+        weaponTable.put("단검200", new int[] {50, 73, 101, 133, 170});
+        weaponTable.put("부채200", new int[] {50, 73, 101, 133, 170});
         weaponTable.put("한손검200", new int[] {51, 75, 103, 136, 175});
         weaponTable.put("한손도끼200", new int[] {51, 75, 103, 136, 175});
         weaponTable.put("한손둔기200", new int[] {51, 75, 103, 136, 175});
-        weaponTable.put("케인200", new int[] {51, 75, 103, 136, 175});
         weaponTable.put("석궁200", new int[] {51, 75, 103, 136, 175});
-        weaponTable.put("대검200", new int[] {18, 40, 65, 95, 131});
+        weaponTable.put("케인200", new int[] {51, 75, 103, 136, 175});
         weaponTable.put("태도200", new int[] {18, 40, 65, 95, 131});
-        weaponTable.put("튜너200", new int[] {54, 78, 108, 142, 182});
-        weaponTable.put("창200", new int[] {54, 78, 108, 142, 182});
         weaponTable.put("두손검200", new int[] {54, 78, 108, 142, 182});
+        weaponTable.put("데스페라도200", new int[] {54, 78, 108, 142, 182});
+        weaponTable.put("튜너200", new int[] {54, 78, 108, 142, 182});
         weaponTable.put("두손도끼200", new int[] {54, 78, 108, 142, 182});
         weaponTable.put("두손둔기200", new int[] {54, 78, 108, 142, 182});
-        weaponTable.put("데스페라도200", new int[] {54, 78, 108, 142, 182});
+        weaponTable.put("창200", new int[] {54, 78, 108, 142, 182});
+        weaponTable.put("대검200", new int[] {18, 40, 65, 95, 131});
         weaponTable.put("핸드캐논200", new int[] {55, 80, 110, 145, 186});
         weaponTable.put("완드200", new int[] {63, 92, 126, 167, 214});
         weaponTable.put("샤이닝로드200", new int[] {63, 92, 126, 167, 214});
         weaponTable.put("ESP리미터200", new int[] {63, 92, 126, 167, 214});
         weaponTable.put("매직건틀렛200", new int[] {63, 92, 126, 167, 214});
         weaponTable.put("스태프200", new int[] {64, 94, 129, 170, 218});
+        weaponTable.put("브레스슈터200", new int[] {50, 73, 101, 133, 170});
 
         //제네 무기
         weaponTable.put("아대제네시스", new int[] {31, 46, 63, 83, 106});
@@ -217,7 +221,6 @@ public class FlameTable implements Serializable {
         weaponTable.put("브레스슈터제네시스", new int[] {58, 84, 116, 153, 196});
         weaponTable.put("듀얼보우건제네시스", new int[] {58, 84, 116, 153, 196});
         weaponTable.put("단검제네시스", new int[] {58, 84, 116, 153, 196});
-        weaponTable.put("블레이드제네시스", new int[] {0, 0, 0, 0, 0});
         weaponTable.put("체인제네시스", new int[] {58, 84, 116, 153, 196});
         weaponTable.put("한손검제네시스", new int[] {59, 87, 119, 157, 201});
         weaponTable.put("한손도끼제네시스", new int[] {59, 87, 119, 157, 201});

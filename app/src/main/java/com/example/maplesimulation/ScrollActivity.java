@@ -499,7 +499,8 @@ public class ScrollActivity extends Activity {
             customNotice.setTitle("영원한 환생의 불꽃");
 
             if(equipment.getType().equals("반지") || equipment.getType().equals("기계심장") ||
-                    equipment.getType().equals("보조무기") || equipment.getType().equals("어깨장식")) {
+                    equipment.getType().equals("보조무기") || equipment.getType().equals("어깨장식") ||
+                    equipment.getType().equals("블레이드")) {
                 customNotice.setContent("사용 불가능한 장비입니다.");
                 return;
             }
@@ -514,7 +515,8 @@ public class ScrollActivity extends Activity {
             customNotice.setTitle("강력한 환생의 불꽃");
 
             if(equipment.getType().equals("반지") || equipment.getType().equals("기계심장") ||
-                    equipment.getType().equals("보조무기") || equipment.getType().equals("어깨장식")) {
+                    equipment.getType().equals("보조무기") || equipment.getType().equals("어깨장식") ||
+                    equipment.getType().equals("블레이드")) {
                 customNotice.setContent("사용할 수 없는 장비입니다.");
                 return;
             }
