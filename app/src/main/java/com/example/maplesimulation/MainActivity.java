@@ -30,9 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //DB 초기화
-        initLoadDB();
-
         //광고 초기화
         initAd();
 
@@ -85,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
             customNotice.setContent("인벤토리가 부족합니다.\n 장비를 삭제하거나 인벤토리를 확장해주세요.");
             return;
         }
+
         Intent intent = new Intent(this, SearchActivity.class);
-        intent.putExtra("equipList", this.equipmentList);
         startActivityForResult(intent, 0);
     }
 
@@ -96,8 +93,11 @@ public class MainActivity extends AppCompatActivity {
             nothingDialog();
             return;
         }
-        if(inventory.get(now).getType().equals("엠블렘") || inventory.get(now).getType().equals("뱃지")){
-            Toast.makeText(this, "주문서 사용이 불가능한 장비입니다.", Toast.LENGTH_SHORT).show();
+        if(inventory.get(now).getType().equals("엠블렘") || inventory.get(now).getType().equals("뱃지")
+                || inventory.get(now).getType().equals("보조무기")){
+            CustomNotice customNotice = new CustomNotice(MainActivity.this);
+            customNotice.show();
+            customNotice.setContent("주문서 사용이 불가능한 장비입니다.");
             return;
         }
 
@@ -114,7 +114,9 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         if(inventory.get(now).getType().equals("뱃지") || inventory.get(now).getType().equals("포켓아이템")){
-            Toast.makeText(this, "잠재능력 재설정이 불가능한 장비입니다.", Toast.LENGTH_SHORT).show();
+            CustomNotice customNotice = new CustomNotice(MainActivity.this);
+            customNotice.show();
+            customNotice.setContent("잠재능력 재설정이 불가능한 장비입니다.");
             return;
         }
         Intent intent = new Intent(this, PotentialActivity.class);
@@ -130,8 +132,11 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         if(inventory.get(now).isNoljang || inventory.get(now).getType().equals("뱃지") ||
-                inventory.get(now).getType().equals("엠블렘") || inventory.get(now).getType().equals("포켓아이템")){
-            Toast.makeText(this, "스타포스를 할 수 없는 장비입니다.", Toast.LENGTH_SHORT).show();
+                inventory.get(now).getType().equals("엠블렘") || inventory.get(now).getType().equals("포켓아이템")
+                || inventory.get(now).getType().equals("보조무기")){
+            CustomNotice customNotice = new CustomNotice(MainActivity.this);
+            customNotice.show();
+            customNotice.setContent("스타포스를 할 수 없는 장비입니다.");
             return;
         }
         Intent intent = new Intent(this, StarforceActivity.class);
@@ -150,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
     //"장비를 추가해주세요" 다이얼로그
     public void nothingDialog() {
         CustomNotice customNotice = new CustomNotice(MainActivity.this);
+        customNotice.setCanceledOnTouchOutside(false);
         customNotice.show();
         customNotice.setContent("장비 추가 후 시도해주세요!");
     }
@@ -207,19 +213,5 @@ public class MainActivity extends AppCompatActivity {
         imageView.setImageResource(lid);
         textView.setText(inventory.get(now).getName());
 
-    }
-
-    //DB 읽어서 List에 추가
-    private void initLoadDB() {
-        DataAdapter mDbHelper = new DataAdapter(getApplicationContext());
-        mDbHelper.createDatabase();
-        mDbHelper.open();
-
-        // db에 있는 값들을 model을 적용해서 넣는다.
-        equipmentList = mDbHelper.getTableData();
-        System.out.println("init DB");
-
-        // db 닫기
-        mDbHelper.close();
     }
 }

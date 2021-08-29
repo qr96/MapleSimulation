@@ -22,9 +22,8 @@ public class SearchActivity extends Activity {
 
         equipmentList = new ArrayList<Equipment>();
 
-        // 장비 이름 배열에 값들 추가
-        Intent intent = getIntent();
-        equipmentList = (ArrayList<Equipment>) intent.getSerializableExtra("equipList");
+        //DB 초기화
+        initLoadDB();
 
         // 장비 목록 recyclerview에 추가
         initRecyclerView();
@@ -87,5 +86,19 @@ public class SearchActivity extends Activity {
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.show();
         customDialog.setMessage(equipment+"를 추가하시겠습니까?");
+    }
+
+    //DB 읽어서 List에 추가
+    private void initLoadDB() {
+        DataAdapter mDbHelper = new DataAdapter(getApplicationContext());
+        mDbHelper.createDatabase();
+        mDbHelper.open();
+
+        // db에 있는 값들을 model을 적용해서 넣는다.
+        equipmentList = mDbHelper.getTableData();
+        System.out.println("init DB");
+
+        // db 닫기
+        mDbHelper.close();
     }
 }
