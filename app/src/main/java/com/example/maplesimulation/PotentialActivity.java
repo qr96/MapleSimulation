@@ -90,7 +90,7 @@ PotentialActivity extends Activity {
 
         initAutoAni();
         initCube();
-        initSpinner();
+        //initSpinner();
 
         //광고 초기화
         initAd();
@@ -159,6 +159,7 @@ PotentialActivity extends Activity {
         strangeAddiCube = new Cube(equipment, (CubeTable) cubeTableList.get(2), "수상한에디셔널큐브");
     }
 
+    /*
     public void initSpinner() {
         Spinner event_spinner = (Spinner) findViewById(R.id.option);
         ArrayAdapter<CharSequence> adapter;
@@ -179,7 +180,7 @@ PotentialActivity extends Activity {
 
             }
         });
-    }
+    }*/
 
     public void goRewardAd(View view) {
 
@@ -314,9 +315,14 @@ PotentialActivity extends Activity {
         else backButton.setEnabled(true);
     }
 
+    public void goSelect(View view) {
+        Intent intent = new Intent(this, SelectCubeAutoPopup.class);
+        startActivityForResult(intent, 0);
+    }
+
     public void autoCube(String cube, View view) {
         CheckBox autoCheck = findViewById(R.id.auto);
-        Spinner optionSpinner = findViewById(R.id.option);
+        //Spinner optionSpinner = findViewById(R.id.option);
         Button enhance = findViewById(R.id.enhance);
         toggleButtonsEnable();
 
@@ -324,7 +330,7 @@ PotentialActivity extends Activity {
             keepGoing = false;
             if(view.getAnimation() != null) view.getAnimation().cancel();
             autoCheck.setEnabled(true);
-            optionSpinner.setEnabled(true);
+            //optionSpinner.setEnabled(true);
             enhance.setText("사용하기");
             return;
         }
@@ -344,7 +350,7 @@ PotentialActivity extends Activity {
             }
             keepGoing = true;
             autoCheck.setEnabled(false);
-            optionSpinner.setEnabled(false);
+            //optionSpinner.setEnabled(false);
             view.startAnimation(autoAnim);
             enhance.setText("멈추기");
         }
@@ -369,7 +375,7 @@ PotentialActivity extends Activity {
 
     public void stopAuto(View view) {
         CheckBox autoCheck = findViewById(R.id.auto);
-        Spinner optionSpinner = findViewById(R.id.option);
+        //Spinner optionSpinner = findViewById(R.id.option);
         Button enhance = findViewById(R.id.enhance);
         Animation animation = view.getAnimation();
 
@@ -379,7 +385,7 @@ PotentialActivity extends Activity {
         animation.cancel();
         enhance.setText("사용하기");
         autoCheck.setEnabled(true);
-        optionSpinner.setEnabled(true);
+        //optionSpinner.setEnabled(true);
     }
 
     //계속 진행할지 여부 반환 (3줄 유효옵이면 false)
@@ -422,10 +428,10 @@ PotentialActivity extends Activity {
         else if(autoOption==3 && luk>=3){
             return false;
         }
-        else if(autoOption==0 && attk==3){
+        else if(autoOption==4 && attk==3){
             return false;
         }
-        else if(autoOption==1 && magic==3){
+        else if(autoOption==5 && magic==3){
             return false;
         }
 

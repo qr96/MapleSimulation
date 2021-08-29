@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,7 +45,7 @@ implements OnItemClickListener, Filterable {
             super(itemView) ;
 
             // 뷰 객체에 대한 참조. (hold strong reference)
-            textView = itemView.findViewById(R.id.recyclerText) ;;
+            textView = itemView.findViewById(R.id.recyclerText) ;
 
             // 이벤트리스너 추가
             itemView.setOnClickListener(new View.OnClickListener() {

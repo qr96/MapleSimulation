@@ -229,11 +229,22 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="AUTO"/>
+                <TextView
+                    android:id="@+id/autoOption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="6dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:text="옵션 설정"
+                    android:onClick="goSelect"
+                    android:textSize="16sp"/>
+                <!--
                 <Spinner
                     android:id="@+id/option"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="10dp"/> -->
             </LinearLayout>
             <Button
                 android:id="@+id/enhance"

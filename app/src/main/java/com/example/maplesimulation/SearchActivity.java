@@ -85,7 +85,7 @@ public class SearchActivity extends Activity {
         });
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.show();
-        customDialog.setMessage(equipment+"를 추가하시겠습니까?");
+        customDialog.setMessage(equipment+"을(를) 추가하시겠습니까?");
     }
 
     //DB 읽어서 List에 추가
