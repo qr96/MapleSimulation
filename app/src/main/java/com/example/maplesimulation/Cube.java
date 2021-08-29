@@ -179,7 +179,7 @@ public class Cube {
         int random = tableRandom(table);
         if(random < 0) {
             Log.e("cube", "OutOfBoundsException");
-            return "에러 발생";
+            return "에러 발생, 개발자에게 알려주세용";
         }
         return (String) cubeTable.optionTable.get(key).get(random);
     }

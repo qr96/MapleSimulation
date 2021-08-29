@@ -371,10 +371,12 @@ PotentialActivity extends Activity {
         CheckBox autoCheck = findViewById(R.id.auto);
         Spinner optionSpinner = findViewById(R.id.option);
         Button enhance = findViewById(R.id.enhance);
+        Animation animation = view.getAnimation();
 
         toggleButtonsEnable();
         keepGoing = false;
-        view.getAnimation().cancel();
+        if(animation == null) return;
+        animation.cancel();
         enhance.setText("사용하기");
         autoCheck.setEnabled(true);
         optionSpinner.setEnabled(true);

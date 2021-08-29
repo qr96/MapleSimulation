@@ -194,6 +194,13 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        if(now <0 || now>inventory.size()){
+            CustomNotice customNotice = new CustomNotice(MainActivity.this);
+            customNotice.show();
+            customNotice.setContent("썸네일 오류가 발생했습니다!\n개발자에게 얘기해주시면 더 빠르게 오류가 수정됩니다\nerr code:"+now);
+            return;
+        }
+
         int lid = this.getResources()
                 .getIdentifier(inventory.get(now).getImage(), "drawable", this.getPackageName());
 

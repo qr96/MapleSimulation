@@ -62,9 +62,8 @@ public class Flame {
         for(int i=0; i<selected.length; i++){
             grade = tableRandom(table);
 
-            //방어구, 장신구인 경우
-            if(equipment.isArmor() || equipment.isAccessary()) flameToArmor(selected[i], grade);
-            else flameToWeapon(selected[i], grade);
+            if(equipment.isWeapon()) flameToWeapon(selected[i], grade);
+            else flameToArmor(selected[i], grade);
         }
 
         return 0;
@@ -84,9 +83,8 @@ public class Flame {
         for(int i=0; i<selected.length; i++){
             grade = tableRandom(table);
 
-            //방어구, 장신구인 경우
-            if(equipment.isArmor() || equipment.isAccessary()) flameToArmor(selected[i], grade);
-            else flameToWeapon(selected[i], grade);
+            if(equipment.isWeapon()) flameToWeapon(selected[i], grade);
+            else flameToArmor(selected[i], grade);
         }
 
         return 0;
