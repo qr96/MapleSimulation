@@ -420,7 +420,7 @@ PotentialActivity extends Activity {
             else if(tmp.contains("올스탯")) {str++; dex++; intel++; luk++;}
             else if(tmp.contains("보스 몬스터")) bossdmg++;
             else if(tmp.contains("몬스터 방어율")) ignore++;
-
+            else if(tmp.contains("크리티컬 데미지")) cridmg++;
         }
 
         if(autoOption==0 && str==3){
@@ -439,6 +439,24 @@ PotentialActivity extends Activity {
             return false;
         }
         else if(autoOption==5 && magic==3){
+            return false;
+        }
+        else if(autoOption==6 && bossdmg==2 && attk==1) { //보보공
+            return false;
+        }
+        else if(autoOption==7 && bossdmg==2 && magic==1) { //보보마
+            return false;
+        }
+        else if(autoOption==8 && bossdmg==2 && ignore==1) { //보보방
+            return false;
+        }
+        else if(autoOption==9 && bossdmg==1 && attk==2) { //보공공
+            return false;
+        }
+        else if(autoOption==10 && bossdmg==1 && magic==2) { //보마마
+            return false;
+        }
+        else if(autoOption==11 && cridmg==3) { //크크크(크뎀)
             return false;
         }
 
