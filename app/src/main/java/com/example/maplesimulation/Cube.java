@@ -11,6 +11,7 @@ public class Cube {
     CubeTable cubeTable;
     String cubeType;
     double[] upgradePossibility;
+    boolean isMiracle;
 
     //큐브 같은 테이블 쓰는 조합들
     ArrayList<String> subWeapon = new ArrayList<>(Arrays.asList("포스실드", "소울링", "방패")); //보조무기
@@ -49,6 +50,8 @@ public class Cube {
         else {
             upgradePossibility = new double[]{0.0, 0.0, 0.0};
         }
+
+        this.isMiracle = false;
     }
 
     public void useCube() {
@@ -91,6 +94,8 @@ public class Cube {
 
     //미라클 타임 적용
     public void setMiracle() {
+        if(isMiracle == true) return;
+        isMiracle = true;
         for(int i=0; i<upgradePossibility.length; i++){
             upgradePossibility[i] = upgradePossibility[i]*2.0;
         }
@@ -128,6 +133,7 @@ public class Cube {
     }
 
     String[] mustTwo = {"몬스터 방어율 무시", "보스 몬스터", "아이템 드롭률", "피격 시"}; //최대 두개만 설정되는 옵션들
+    String[] mustOne = {"쓸만한", "피격 후 무적시간 증가"}; //최대 한개만 설정되는 옵션들
 
     //[장비 종류, 잠재 종류]
     private String[] determine(String type, String grade){
@@ -136,6 +142,16 @@ public class Cube {
         option[0] = select(grade+type+"1");
         option[1] = select(grade+type+"2");
         option[2] = select(grade+type+"3");
+
+        for(String must : mustOne) {
+            if(option[0].contains(must)) { //1번째에 must1 옵션 있는 경우
+                while(option[1].contains(must));
+                while(option[2].contains(must));
+            }
+            else if(option[1].contains((must))) {//2번째에 must1 옵션 있는 경우
+                while (option[2].contains(must));
+            }
+        }
 
         for(String must : mustTwo) {
             if(option[0].contains(must) && option[1].contains(must)) { //1,2번에 must2 옵션 있는 경우
