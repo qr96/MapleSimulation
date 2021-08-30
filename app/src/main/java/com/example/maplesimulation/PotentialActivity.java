@@ -297,7 +297,7 @@ PotentialActivity extends Activity {
             public void run() {
                 view.setEnabled(true);
             }
-        }, 600);
+        }, 400);
     }
 
     //큐브들 오토 중 클릭 방지
@@ -457,6 +457,9 @@ PotentialActivity extends Activity {
             return false;
         }
         else if(autoOption==11 && cridmg==3) { //크크크(크뎀)
+            return false;
+        }
+        else if(autoOption==12 && cridmg>=2) { //크뎀 2줄
             return false;
         }
 
@@ -628,7 +631,7 @@ PotentialActivity extends Activity {
     public void setOptionText() {
         TextView textView = findViewById(R.id.autoOption);
         String optionTable[] = new String[]{"STR 3줄", "DEX 3줄", "INT 3줄", "LUK 3줄",
-                "공격력 3줄", "마력 3줄", "보보공", "보보마", "보보방", "보공공", "보마마", "크크크(크뎀)"};
+                "공격력 3줄", "마력 3줄", "보보공", "보보마", "보보방", "보공공", "보마마", "크크크(크뎀)", "크뎀 2줄"};
 
         textView.setText(optionTable[this.autoOption]+" ⚙️");
     }

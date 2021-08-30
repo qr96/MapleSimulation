@@ -118,6 +118,8 @@ public class EquipmentInfo {
         info = info + "잠재옵션</font><br>";
 
         for(int i=0; i<potential1.length; i++){
+            potential1[i] = potential1[i].replace("<", "&lt");
+            potential1[i] = potential1[i].replace(">", "&gt");
             info = info + potential1[i] + "<br>";
         }
         info = info + "<br>";
