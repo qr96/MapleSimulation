@@ -122,7 +122,7 @@ public class InvenActivity extends Activity {
             @Override
             public void onPositiveClick() {
                 inventory.remove(position);
-                if(position == now) now = -1; //현재 강화중인 아이템 삭제한 경우
+                if(position <= now) now--; //현재 강화중인 장비보다 앞의 장비를 제거한 경우
                 PreferenceManager.setInventory(InvenActivity.this, inventory);
                 initGridView();
                 Toast.makeText(InvenActivity.this, "장비가 삭제되었습니다", Toast.LENGTH_SHORT).show();

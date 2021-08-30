@@ -139,7 +139,8 @@ public class EquipmentInfo {
         }
         info = info + "에디셔널 잠재옵션</font><br>";
         for(int i=0; i<potential2.length; i++){
-            info = info + potential2[i] + "<br>";
+            info = info + potential2[i];
+            if(i+1<potential1.length) info = info + "<br>";
         }
 
         return info;
@@ -195,7 +196,7 @@ public class EquipmentInfo {
             default:
                 break;
         }
-        info = info + "잠재옵션</font><br>";
+        info = info + "에디셔널 잠재옵션</font><br>";
 
         for(int i=0; i<potential.length; i++){
             info = info + potential[i];

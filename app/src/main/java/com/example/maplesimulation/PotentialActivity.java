@@ -70,7 +70,7 @@ PotentialActivity extends Activity {
     boolean keepGoing = false;
     
     //auto모드, 원하는 옵션 번호
-    int autoOption;
+    int autoOption = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +87,7 @@ PotentialActivity extends Activity {
 
         updateText();
         setThumnail();
+        setOptionText();
 
         initAutoAni();
         initCube();
@@ -362,7 +363,7 @@ PotentialActivity extends Activity {
                 if(keepGoing) {
                     if(isAutoKeep(cube)){
                         usingCube(cube);
-                        handler.postDelayed(this, 200);  // 1 second delay
+                        handler.postDelayed(this, 200);  // 0.2 second delay
                     }
                     else{
                         stopAuto(view);
@@ -388,15 +389,18 @@ PotentialActivity extends Activity {
         //optionSpinner.setEnabled(true);
     }
 
-    //계속 진행할지 여부 반환 (3줄 유효옵이면 false)
+    //계속 진행할지 여부 반환 (조건에 맞는 옵션인지 판별
     public boolean isAutoKeep(String cube) {
         String option[];
-        int attk = 0;
-        int magic = 0;
+        int attk = 0; //공격력
+        int magic = 0; //마력
         int str = 0;
         int dex = 0;
         int intel = 0;
         int luk = 0;
+        int ignore = 0; //방무
+        int bossdmg = 0; //보공
+        int cridmg = 0; //크뎀
 
         if(cube.equals("에디셔널큐브") || cube.equals("수상한에디셔널큐브")) option = equipment.getPotential2();
         else option = equipment.getPotential1();
@@ -414,6 +418,9 @@ PotentialActivity extends Activity {
             else if(tmp.contains("INT")) intel++;
             else if(tmp.contains("LUK")) luk++;
             else if(tmp.contains("올스탯")) {str++; dex++; intel++; luk++;}
+            else if(tmp.contains("보스 몬스터")) bossdmg++;
+            else if(tmp.contains("몬스터 방어율")) ignore++;
+
         }
 
         if(autoOption==0 && str==3){
@@ -528,7 +535,6 @@ PotentialActivity extends Activity {
         if(view.getId() == R.id.button0){
             selected_check_id = R.id.check0;
         }
-
         else if(view.getId() == R.id.button1){
             selected_check_id = R.id.check1;
         }
@@ -587,4 +593,27 @@ PotentialActivity extends Activity {
         finish();
         super.onBackPressed();
     }
+
+    //intent 받는 부분
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode){
+            case 0:
+                if(data!=null) {
+                    this.autoOption = data.getIntExtra("option", 0);
+                    setOptionText();
+                }
+                break;
+        }
+    }
+
+    public void setOptionText() {
+        TextView textView = findViewById(R.id.autoOption);
+        String optionTable[] = new String[]{"STR 3줄", "DEX 3줄", "INT 3줄", "LUK 3줄",
+                "공격력 3줄", "마력 3줄", "보보공", "보보마", "보보방", "보공공", "보마마", "크크크(크뎀)"};
+
+        textView.setText(optionTable[this.autoOption]+" ⚙️");
+    }
 }
+
+

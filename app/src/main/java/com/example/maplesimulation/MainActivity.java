@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goStarforce(View view) {
         //장비 미선택 시
-        if(now == -1) {
+        if(now == -1 || inventory.size() == 0) {
             nothingDialog();
             return;
         }

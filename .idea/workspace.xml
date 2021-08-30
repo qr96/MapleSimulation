@@ -20,26 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4a0412e-d4ba-439e-955a-a224d8a43432" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/SelectCubeAutoPopup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.aab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/EquipmentInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/EquipmentInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/InvenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/InvenActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/PotentialActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/PotentialActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/SearchActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/SearchActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/TextAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/TextAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/SelectCubeAutoPopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/SelectCubeAutoPopup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ui_empty_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ui_empty_item.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_potential.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_potential.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/popup_select.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/popup_select.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,22 +266,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="763" y="89" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1628772383094" />
-    <state width="1525" height="336" key="GridCell.Tab.0.bottom" timestamp="1630248537377">
+    <state width="1364" height="336" key="GridCell.Tab.0.bottom" timestamp="1630324166777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1525" height="336" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630248537377" />
-    <state width="1525" height="336" key="GridCell.Tab.0.center" timestamp="1630248537377">
+    <state width="1364" height="336" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630324166777" />
+    <state width="1364" height="336" key="GridCell.Tab.0.center" timestamp="1630324166777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1525" height="336" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630248537377" />
-    <state width="1525" height="336" key="GridCell.Tab.0.left" timestamp="1630248537377">
+    <state width="1364" height="336" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630324166777" />
+    <state width="1364" height="336" key="GridCell.Tab.0.left" timestamp="1630324166776">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1525" height="336" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630248537377" />
-    <state width="1525" height="336" key="GridCell.Tab.0.right" timestamp="1630248537377">
+    <state width="1364" height="336" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630324166776" />
+    <state width="1364" height="336" key="GridCell.Tab.0.right" timestamp="1630324166777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1525" height="336" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630248537377" />
+    <state width="1364" height="336" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630324166777" />
     <state width="1679" height="494" key="GridCell.Tab.1.bottom" timestamp="1630227673367">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

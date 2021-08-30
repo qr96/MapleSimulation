@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class SelectCubeAutoPopup extends Activity {
     TextView txtText;
-    String table[];
+    String optionTable[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,17 +24,18 @@ public class SelectCubeAutoPopup extends Activity {
         txtText = findViewById(R.id.selectTitle);
         txtText.setText("목표 옵션을 선택하세요.");
 
-        table = new String[]{"STR 3줄", "DEX 3줄", "INT 3줄", "LUK 3줄", 
-                "공격력 3줄", "마력 3줄", "보보공", "보보마", "보보방", "보공공", "보마마"};
+        optionTable = new String[]{"STR 3줄", "DEX 3줄", "INT 3줄", "LUK 3줄",
+                "공격력 3줄", "마력 3줄", "보보공", "보보마", "보보방", "보공공", "보마마", "크크크(크뎀)"};
 
         ListView listView = findViewById(R.id.selectListview);
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_popup_select, table);
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_popup_select, optionTable);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Intent intent = getIntent();
                 intent.putExtra("option", position);
+                setResult(0, intent);
                 finish();
             }
         });
