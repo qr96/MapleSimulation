@@ -118,8 +118,8 @@ public class EquipmentInfo {
         info = info + "잠재옵션</font><br>";
 
         for(int i=0; i<potential1.length; i++){
-            potential1[i] = potential1[i].replace("<", "&lt");
-            potential1[i] = potential1[i].replace(">", "&gt");
+            potential1[i] = potential1[i].replace("<", "&lt;");
+            potential1[i] = potential1[i].replace(">", "&gt;");
             info = info + potential1[i] + "<br>";
         }
         info = info + "<br>";
@@ -141,6 +141,8 @@ public class EquipmentInfo {
         }
         info = info + "에디셔널 잠재옵션</font><br>";
         for(int i=0; i<potential2.length; i++){
+            potential2[i] = potential2[i].replace("<", "&lt;");
+            potential2[i] = potential2[i].replace(">", "&gt;");
             info = info + potential2[i];
             if(i+1<potential1.length) info = info + "<br>";
         }
@@ -171,6 +173,8 @@ public class EquipmentInfo {
         info = info + "잠재옵션</font><br>";
 
         for(int i=0; i<potential1.length; i++){
+            potential1[i] = potential1[i].replace("<", "&lt;");
+            potential1[i] = potential1[i].replace(">", "&gt;");
             info = info + potential1[i];
             if(i+1<potential1.length) info = info + "<br>";
         }
@@ -201,6 +205,8 @@ public class EquipmentInfo {
         info = info + "에디셔널 잠재옵션</font><br>";
 
         for(int i=0; i<potential.length; i++){
+            potential[i] = potential[i].replace("<", "&lt;");
+            potential[i] = potential[i].replace(">", "&gt;");
             info = info + potential[i];
             if(i+1<potential.length) info = info + "<br>";
         }
