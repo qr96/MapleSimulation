@@ -363,7 +363,7 @@ PotentialActivity extends Activity {
                 if(keepGoing) {
                     if(isAutoKeep(cube)){
                         usingCube(cube);
-                        handler.postDelayed(this, 200);  // 0.2 second delay
+                        handler.postDelayed(this, 10);  // 0.2 second delay
                     }
                     else{
                         stopAuto(view);
@@ -631,7 +631,8 @@ PotentialActivity extends Activity {
     public void setOptionText() {
         TextView textView = findViewById(R.id.autoOption);
         String optionTable[] = new String[]{"STR 3줄", "DEX 3줄", "INT 3줄", "LUK 3줄",
-                "공격력 3줄", "마력 3줄", "보보공", "보보마", "보보방", "보공공", "보마마", "크크크(크뎀)", "크뎀 2줄"};
+                "공격력 3줄", "마력 3줄", "보보공", "보보마", "보보방", "보공공", "보마마",
+                "크크크(크뎀)", "크뎀 2줄"};
 
         textView.setText(optionTable[this.autoOption]+" ⚙️");
     }

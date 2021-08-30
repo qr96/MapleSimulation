@@ -20,8 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4a0412e-d4ba-439e-955a-a224d8a43432" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.aab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/Cube.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/Cube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/PotentialActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/PotentialActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/SelectCubeAutoPopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/SelectCubeAutoPopup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/popup_equipment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/popup_equipment.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,38 +265,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="763" y="89" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1628772383094" />
-    <state width="1364" height="494" key="GridCell.Tab.0.bottom" timestamp="1630337256841">
+    <state width="1364" height="247" key="GridCell.Tab.0.bottom" timestamp="1630340403253">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1364" height="494" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630337256841" />
-    <state width="1364" height="494" key="GridCell.Tab.0.center" timestamp="1630337256841">
+    <state width="1364" height="247" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630340403253" />
+    <state width="1364" height="247" key="GridCell.Tab.0.center" timestamp="1630340403253">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1364" height="494" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630337256841" />
-    <state width="1364" height="494" key="GridCell.Tab.0.left" timestamp="1630337256841">
+    <state width="1364" height="247" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630340403253" />
+    <state width="1364" height="247" key="GridCell.Tab.0.left" timestamp="1630340403253">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1364" height="494" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630337256841" />
-    <state width="1364" height="494" key="GridCell.Tab.0.right" timestamp="1630337256841">
+    <state width="1364" height="247" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630340403253" />
+    <state width="1364" height="247" key="GridCell.Tab.0.right" timestamp="1630340403253">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1364" height="494" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630337256841" />
-    <state width="1364" height="494" key="GridCell.Tab.1.bottom" timestamp="1630337256841">
+    <state width="1364" height="247" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630340403253" />
+    <state width="1364" height="247" key="GridCell.Tab.1.bottom" timestamp="1630340403254">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1364" height="494" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630337256841" />
-    <state width="1364" height="494" key="GridCell.Tab.1.center" timestamp="1630337256841">
+    <state width="1364" height="247" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630340403254" />
+    <state width="1364" height="247" key="GridCell.Tab.1.center" timestamp="1630340403253">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1364" height="494" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630337256841" />
-    <state width="1364" height="494" key="GridCell.Tab.1.left" timestamp="1630337256841">
+    <state width="1364" height="247" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630340403253" />
+    <state width="1364" height="247" key="GridCell.Tab.1.left" timestamp="1630340403253">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1364" height="494" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630337256841" />
-    <state width="1364" height="494" key="GridCell.Tab.1.right" timestamp="1630337256841">
+    <state width="1364" height="247" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630340403253" />
+    <state width="1364" height="247" key="GridCell.Tab.1.right" timestamp="1630340403253">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1364" height="494" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630337256841" />
+    <state width="1364" height="247" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630340403253" />
     <state x="191" y="166" key="SettingsEditor" timestamp="1627367820987">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

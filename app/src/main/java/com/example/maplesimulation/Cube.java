@@ -145,11 +145,11 @@ public class Cube {
 
         for(String must : mustOne) {
             if(option[0].contains(must)) { //1번째에 must1 옵션 있는 경우
-                while(option[1].contains(must));
-                while(option[2].contains(must));
+                while(option[1].contains(must)) option[1] = select(grade+type+"2");
+                while(option[2].contains(must)) option[2] = select(grade+type+"3");
             }
             else if(option[1].contains((must))) {//2번째에 must1 옵션 있는 경우
-                while (option[2].contains(must));
+                while (option[2].contains(must)) option[2] = select(grade+type+"3");
             }
         }
 
