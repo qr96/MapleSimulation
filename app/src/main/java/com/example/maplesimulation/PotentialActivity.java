@@ -398,6 +398,7 @@ PotentialActivity extends Activity {
         int dex = 0;
         int intel = 0;
         int luk = 0;
+        int allstat = 0;
         int ignore = 0; //방무
         int bossdmg = 0; //보공
         int cridmg = 0; //크뎀
@@ -417,7 +418,7 @@ PotentialActivity extends Activity {
             else if(tmp.contains("DEX")) dex++;
             else if(tmp.contains("INT")) intel++;
             else if(tmp.contains("LUK")) luk++;
-            else if(tmp.contains("올스탯")) {str++; dex++; intel++; luk++;}
+            else if(tmp.contains("올스탯")) {str++; dex++; intel++; luk++; allstat++;}
             else if(tmp.contains("보스 몬스터")) bossdmg++;
             else if(tmp.contains("몬스터 방어율")) ignore++;
             else if(tmp.contains("크리티컬 데미지")) cridmg++;
@@ -435,31 +436,34 @@ PotentialActivity extends Activity {
         else if(autoOption==3 && luk>=3){
             return false;
         }
-        else if(autoOption==4 && attk==3){
+        else if(autoOption==4 && allstat==3){
             return false;
         }
-        else if(autoOption==5 && magic==3){
+        else if(autoOption==5 && attk==3){
             return false;
         }
-        else if(autoOption==6 && bossdmg==2 && attk==1) { //보보공
+        else if(autoOption==6 && magic==3){
             return false;
         }
-        else if(autoOption==7 && bossdmg==2 && magic==1) { //보보마
+        else if(autoOption==7 && bossdmg==2 && attk==1) { //보보공
             return false;
         }
-        else if(autoOption==8 && bossdmg==2 && ignore==1) { //보보방
+        else if(autoOption==8 && bossdmg==2 && magic==1) { //보보마
             return false;
         }
-        else if(autoOption==9 && bossdmg==1 && attk==2) { //보공공
+        else if(autoOption==9 && bossdmg==2 && ignore==1) { //보보방
             return false;
         }
-        else if(autoOption==10 && bossdmg==1 && magic==2) { //보마마
+        else if(autoOption==10 && bossdmg==1 && attk==2) { //보공공
             return false;
         }
-        else if(autoOption==11 && cridmg==3) { //크크크(크뎀)
+        else if(autoOption==11 && bossdmg==1 && magic==2) { //보마마
             return false;
         }
-        else if(autoOption==12 && cridmg>=2) { //크뎀 2줄
+        else if(autoOption==12 && cridmg==3) { //크크크(크뎀)
+            return false;
+        }
+        else if(autoOption==13 && cridmg>=2) { //크뎀 2줄
             return false;
         }
 
@@ -630,7 +634,7 @@ PotentialActivity extends Activity {
 
     public void setOptionText() {
         TextView textView = findViewById(R.id.autoOption);
-        String optionTable[] = new String[]{"STR 3줄", "DEX 3줄", "INT 3줄", "LUK 3줄",
+        String optionTable[] = new String[]{"STR 3줄", "DEX 3줄", "INT 3줄", "LUK 3줄", "올스텟 3줄",
                 "공격력 3줄", "마력 3줄", "보보공", "보보마", "보보방", "보공공", "보마마",
                 "크크크(크뎀)", "크뎀 2줄"};
 

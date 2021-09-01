@@ -24,7 +24,7 @@ public class SelectCubeAutoPopup extends Activity {
         txtText = findViewById(R.id.selectTitle);
         txtText.setText("목표 옵션을 선택하세요.");
 
-        optionTable = new String[]{"STR 3줄", "DEX 3줄", "INT 3줄", "LUK 3줄",
+        optionTable = new String[]{"STR 3줄", "DEX 3줄", "INT 3줄", "LUK 3줄", "올스텟 3줄",
                 "공격력 3줄", "마력 3줄", "보보공", "보보마", "보보방", "보공공", "보마마",
                 "크크크(크뎀)", "크뎀 2줄"};
 
