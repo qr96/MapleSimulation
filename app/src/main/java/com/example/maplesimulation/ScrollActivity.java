@@ -247,8 +247,11 @@ public class ScrollActivity extends Activity {
             result = 2;
         }
         else if(selected_button_id == R.id.scroll_button_7) { //놀장강
-            if(equipment.getLevReq()>150 || equipment.isStarforce || equipment.getStar()==15){
-                Toast.makeText(this, "주문서를 사용할 수 없는 아이템 입니다", Toast.LENGTH_SHORT).show();
+            if(equipment.getLevReq()>150 || equipment.isStarforce || equipment.getStar()==equipment.getMaxStar()){
+                CustomNotice notice = new CustomNotice(this);
+                notice.show();
+                notice.setTitle("안내");
+                notice.setContent("사용이 불가능한 장비입니다.");
                 return;
             }
             result = noljang.useNoljang();

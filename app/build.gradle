@@ -8,8 +8,8 @@ android {
         applicationId "com.qr96.maplesimulation"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 11
-        versionName "1.0.10"
+        versionCode 13
+        versionName "1.0.12"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
