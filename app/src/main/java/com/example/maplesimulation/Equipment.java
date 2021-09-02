@@ -221,6 +221,7 @@ public class Equipment implements Cloneable, Serializable {
             maxStar = tmpMaxStar;
             isNoljang = false;
         }
+        isStarforce = false;
         nowUp=0;
         goldHammer=0;
         failUp=0;

@@ -51,6 +51,7 @@ public class EquipmentInfo {
                 + "<br>(복구 가능 횟수 : " + equipment.getFailUp() + ")";
 
         if(equipment.getGoldHammer() == 1) equipInfo = equipInfo + "<br>황금망치 제련 적용";
+        if(equipment.isNoljang == true) equipInfo = equipInfo + "<br>놀라운 장비강화 주문서 적용";
 
         return equipInfo;
     }
