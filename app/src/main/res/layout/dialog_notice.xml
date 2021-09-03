@@ -13,7 +13,7 @@
         android:layout_margin="10dp"
         android:text="제목 부분"
         android:fontFamily="@font/nexon_low"
-        android:textSize="20sp"/>
+        android:textSize="18sp"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="7dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:fontFamily="@font/nexon_low"
             android:text="내용 입력 부분 입니다."/>
     </ScrollView>
