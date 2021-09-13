@@ -280,8 +280,6 @@ public class ScrollActivity extends Activity {
             public void run() {
                 view.setEnabled(true);
             }
-
-
         }, 600);
     }
 
@@ -351,6 +349,7 @@ public class ScrollActivity extends Activity {
                 scroll.useReturnScroll();
                 updateText();
                 setEquipName();
+                PreferenceManager.setInventory(ScrollActivity.this, inventory);
             }
             @Override
             public void onNegativeClick() {
