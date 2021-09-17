@@ -38,7 +38,6 @@ public class ScrollActivity extends Activity {
 
     private AdView mAdView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

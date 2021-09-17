@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">메이플 시뮬레이터</string>
+    <string name="stat_info_lists">스탯 공격력 \n
+        HP \n
+        MP \n
+        STR \n
+        DEX \n
+        INT \n
+        LUK \n
+        데미지\n
+        보스 데미지\n
+        최종 데미지\n"</string>
 </resources>

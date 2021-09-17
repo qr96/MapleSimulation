@@ -94,5 +94,14 @@
             android:text="인벤토리"
             android:onClick="goInven"
             tools:ignore="MissingConstraints" />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ui_button_basic"
+            android:layout_margin="5dp"
+            android:text="장비 장착"
+            android:onClick="goEquip"
+            tools:ignore="MissingConstraints" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

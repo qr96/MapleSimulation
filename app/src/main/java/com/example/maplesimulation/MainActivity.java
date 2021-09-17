@@ -152,6 +152,11 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void goEquip(View view) {
+        Intent intent = new Intent(this, EquipActivity.class);
+        startActivity(intent);
+    }
+
     //"장비를 추가해주세요" 다이얼로그
     public void nothingDialog() {
         CustomNotice customNotice = new CustomNotice(MainActivity.this);
