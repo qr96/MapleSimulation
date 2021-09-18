@@ -3,291 +3,314 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom|center"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent">
         <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             ads:adSize="BANNER"
             ads:adUnitId="@string/admob_banner"
             tools:ignore="MissingConstraints">
         </com.google.android.gms.ads.AdView>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="50dp"
-        android:orientation="vertical"
-        tools:ignore="MissingConstraints">
-        <GridLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginTop="10dp"
-            android:columnCount="5"
-            android:rowCount="6"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="250dp"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints">
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top|center"
+                    android:orientation="horizontal"
+                    android:paddingTop="60dp"
+                    android:layout_marginTop="10dp"
+                    android:columnCount="5"
+                    android:rowCount="6"
+                    tools:ignore="MissingConstraints">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup"/>
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup"/>
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"/>
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                </GridLayout>
+                <GridLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:layout_margin="10dp"
+                    android:columnCount="2">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="직업 : 초보자"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="레벨 : 250"/>
+                </GridLayout>
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:background="@drawable/ui_button_basic"
+                    android:text="능력치 확인"
+                    android:layout_margin="5dp"
+                    tools:ignore="MissingConstraints" />
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:background="@drawable/ui_button_basic"
+                    android:text="장비 장착"
+                    android:layout_margin="5dp"
+                    tools:ignore="MissingConstraints" />
+            </LinearLayout>
+        </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginBottom="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/ui_empty_inven"
+            android:orientation="vertical"
             tools:ignore="MissingConstraints">
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup"/>
-            <TextView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"/>
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup"/>
-            <TextView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"/>
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <TextView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"/>
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <TextView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"/>
-            <TextView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"/>
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/ui_empty_item"
-                android:scaleType="fitCenter"
-                android:onClick="infoPopup" />
-        </GridLayout>
-        <GridLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|bottom"
-            android:layout_margin="10dp"
-            android:columnCount="2">
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="직업 : 초보자"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="레벨 : 250"/>
-        </GridLayout>
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|bottom"
-            android:background="@drawable/ui_button_basic"
-            android:text="능력치 확인"
-            android:layout_margin="5dp"
-            tools:ignore="MissingConstraints" />
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|bottom"
-            android:background="@drawable/ui_button_basic"
-            android:text="장비 장착"
-            android:layout_margin="5dp"
-            tools:ignore="MissingConstraints" />
-    </LinearLayout>
+                android:layout_gravity="right"
+                android:text="X" />
+            <GridView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </RelativeLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -315,5 +338,4 @@
             android:onClick="goHelp"
             android:fontFamily="@font/nexon_low_bold"/>
     </FrameLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
