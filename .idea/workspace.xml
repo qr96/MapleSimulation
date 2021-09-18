@@ -21,14 +21,17 @@
   <component name="ChangeListManager">
     <list default="true" id="b4a0412e-d4ba-439e-955a-a224d8a43432" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/EquipActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/maplesimulation/EquipActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_equip.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_equip.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_inven.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_inven.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_inven.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_inven.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@LMG710N0832e6ec]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\이규한\.android\avd\Pixel_2_API_29.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -253,22 +256,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="763" y="89" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1628772383094" />
-    <state width="1877" height="461" key="GridCell.Tab.0.bottom" timestamp="1631882319337">
+    <state width="1443" height="279" key="GridCell.Tab.0.bottom" timestamp="1631962396582">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="461" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1631882319337" />
-    <state width="1877" height="461" key="GridCell.Tab.0.center" timestamp="1631882319336">
+    <state width="1443" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1631962396582" />
+    <state width="1443" height="279" key="GridCell.Tab.0.center" timestamp="1631962396582">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="461" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1631882319336" />
-    <state width="1877" height="461" key="GridCell.Tab.0.left" timestamp="1631882319336">
+    <state width="1443" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1631962396582" />
+    <state width="1443" height="279" key="GridCell.Tab.0.left" timestamp="1631962396581">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="461" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1631882319336" />
-    <state width="1877" height="461" key="GridCell.Tab.0.right" timestamp="1631882319336">
+    <state width="1443" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1631962396581" />
+    <state width="1443" height="279" key="GridCell.Tab.0.right" timestamp="1631962396582">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="461" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1631882319336" />
+    <state width="1443" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1631962396582" />
     <state width="1364" height="247" key="GridCell.Tab.1.bottom" timestamp="1630340403254">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

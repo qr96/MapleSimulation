@@ -30,7 +30,10 @@
             android:paddingTop="60dp"
             android:clipToPadding="false"
             android:verticalSpacing="10dp"
-            android:numColumns="4"
+            android:horizontalSpacing="10dp"
+            android:numColumns="auto_fit"
+            android:columnWidth="80dp"
+            android:stretchMode="columnWidth"
             android:listSelector="@android:color/transparent"/>
     </LinearLayout>
     <FrameLayout

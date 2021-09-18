@@ -24,7 +24,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="250dp"
+                android:paddingBottom="300dp"
                 android:orientation="vertical"
                 tools:ignore="MissingConstraints">
                 <GridLayout
@@ -38,6 +38,7 @@
                     android:rowCount="6"
                     tools:ignore="MissingConstraints">
                     <ImageView
+                        android:id="@+id/ring1"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -50,6 +51,7 @@
                         android:layout_height="70dp"
                         android:layout_margin="5dp"/>
                     <ImageView
+                        android:id="@+id/hat"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -62,6 +64,7 @@
                         android:layout_height="70dp"
                         android:layout_margin="5dp"/>
                     <ImageView
+                        android:id="@+id/emblem"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -70,6 +73,7 @@
                         android:scaleType="fitCenter"
                         android:onClick="infoPopup" />
                     <ImageView
+                        android:id="@+id/ring2"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -78,6 +82,7 @@
                         android:scaleType="fitCenter"
                         android:onClick="infoPopup" />
                     <ImageView
+                        android:id="@+id/pendent1"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -86,138 +91,7 @@
                         android:scaleType="fitCenter"
                         android:onClick="infoPopup" />
                     <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <TextView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"/>
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
+                        android:id="@+id/face"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -229,11 +103,160 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"/>
+                    <ImageView
+                        android:id="@+id/badge"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/ring3"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/pendent2"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/eye"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/earing"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/medal"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/ring4"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/weapon"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/shirt"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/shoulder"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/subweapon"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/pocket"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/belt"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/pants"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/glove"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <ImageView
+                        android:id="@+id/cape"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/ui_empty_item"
+                        android:scaleType="fitCenter"
+                        android:onClick="infoPopup" />
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"/>
                     <TextView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"/>
                     <ImageView
+                        android:id="@+id/shoes"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -242,6 +265,7 @@
                         android:scaleType="fitCenter"
                         android:onClick="infoPopup" />
                     <ImageView
+                        android:id="@+id/android"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -250,6 +274,7 @@
                         android:scaleType="fitCenter"
                         android:onClick="infoPopup" />
                     <ImageView
+                        android:id="@+id/heart"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -295,7 +320,7 @@
         </ScrollView>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="280dp"
             android:layout_marginBottom="50dp"
             android:layout_alignParentBottom="true"
             android:background="@drawable/ui_empty_inven"
@@ -305,10 +330,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:text="X" />
+                android:text="X"/>
             <GridView
+                android:id="@+id/inven_gridview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:verticalSpacing="5dp"
+                android:horizontalSpacing="5dp"
+                android:numColumns="auto_fit"
+                android:columnWidth="70dp"
+                android:stretchMode="columnWidth"
+                android:gravity="center"
+                android:listSelector="@android:color/transparent"/>
         </LinearLayout>
     </RelativeLayout>
     <FrameLayout
