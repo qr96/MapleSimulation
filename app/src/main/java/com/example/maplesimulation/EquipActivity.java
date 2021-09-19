@@ -1,6 +1,7 @@
 package com.example.maplesimulation;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -76,6 +77,11 @@ public class EquipActivity extends Activity {
         });
 
         gridView.setAdapter(adapter);
+    }
+
+    public void goStatInfo(View view) {
+        Intent intent = new Intent(this, StatInfoActivity.class);
+        startActivity(intent);
     }
 
     public void equip(int position) {

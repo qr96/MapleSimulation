@@ -27,6 +27,7 @@
         <activity android:name=".InfoActivity"/>
         <activity android:name=".InfoActivityForInven"/>
         <activity android:name=".EquipActivity"/>
+        <activity android:name=".StatInfoActivity"/>
 
         <activity android:name=".SelectBasicScollPopup" android:theme="@style/Theme.AppCompat.Light.Dialog"/>
         <activity android:name=".SelectCubeAutoPopup" android:theme="@style/Theme.AppCompat.Light.Dialog"/>
