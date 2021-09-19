@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -91,7 +92,7 @@ public class EquipActivity extends Activity {
                     equipped.set(0, inventory.get(position));
                     break;
                 case "펜던트":
-                    imageView = findViewById(R.id.pendent2);
+                    imageView = findViewById(R.id.pendant2);
                     equipped.set(5, inventory.get(position));
                     break;
                 case "귀고리":
@@ -193,16 +194,16 @@ public class EquipActivity extends Activity {
         LinearLayout linearLayout = findViewById(R.id.inventory_popup);
         linearLayout.setVisibility(View.VISIBLE);
 
-        LinearLayout linearLayout1 = findViewById(R.id.equip_linear);
-        linearLayout1.setPadding(0, 0, 0, 300);
+        View view1 = findViewById(R.id.equipped_blank);
+        view1.setVisibility(View.VISIBLE);
     }
 
     public void closeInventory(View view) {
         LinearLayout linearLayout = findViewById(R.id.inventory_popup);
         linearLayout.setVisibility(View.INVISIBLE);
 
-        LinearLayout linearLayout1 = findViewById(R.id.equip_linear);
-        linearLayout1.setPadding(0, 0, 0, 30);
+        View view1 = findViewById(R.id.equipped_blank);
+        view1.setVisibility(View.GONE);
     }
 
     //광고 초기화

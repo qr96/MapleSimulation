@@ -22,10 +22,9 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="50dp">
             <LinearLayout
-                android:id="@+id/equip_linear"
+                android:id="@+id/equipped_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="300dp"
                 android:orientation="vertical"
                 tools:ignore="MissingConstraints">
                 <GridLayout
@@ -38,216 +37,438 @@
                     android:columnCount="5"
                     android:rowCount="6"
                     tools:ignore="MissingConstraints">
-                    <ImageView
-                        android:id="@+id/ring1"
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup"/>
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="RING"/>
+                        <ImageView
+                            android:id="@+id/ring1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
                     <TextView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"/>
-                    <ImageView
-                        android:id="@+id/hat"
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup"/>
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="HAT"/>
+                        <ImageView
+                            android:id="@+id/hat"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
                     <TextView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"/>
-                    <ImageView
-                        android:id="@+id/emblem"
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/ring2"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="EMBLEM"/>
+                        <ImageView
+                            android:id="@+id/emblem"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+
+
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/pendent1"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="RING"/>
+                        <ImageView
+                            android:id="@+id/ring2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/face"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="PENDANT"/>
+                        <ImageView
+                            android:id="@+id/pendant1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="FORE\nHEAD"/>
+                        <ImageView
+                            android:id="@+id/face"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
                     <TextView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"/>
-                    <ImageView
-                        android:id="@+id/badge"
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/ring3"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="BADGE"/>
+                        <ImageView
+                            android:id="@+id/badge"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/pendent2"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="RING"/>
+                        <ImageView
+                            android:id="@+id/ring3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/eye"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="PENDANT"/>
+                        <ImageView
+                            android:id="@+id/pendant2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/earing"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="EYE\nACC"/>
+                        <ImageView
+                            android:id="@+id/eye"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/medal"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="EAR\nACC"/>
+                        <ImageView
+                            android:id="@+id/earing"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/ring4"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="MEDAL"/>
+                        <ImageView
+                            android:id="@+id/medal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/weapon"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="RING"/>
+                        <ImageView
+                            android:id="@+id/ring4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/shirt"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="WEAPON"/>
+                        <ImageView
+                            android:id="@+id/weapon"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/shoulder"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="CLOTHES"/>
+                        <ImageView
+                            android:id="@+id/shirt"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/subweapon"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="9sp"
+                            android:text="SHOULDER"/>
+                        <ImageView
+                            android:id="@+id/shoulder"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/pocket"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="SUB\nWEAPON"/>
+                        <ImageView
+                            android:id="@+id/subweapon"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/belt"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="POCKET"/>
+                        <ImageView
+                            android:id="@+id/pocket"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/pants"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="BELT"/>
+                        <ImageView
+                            android:id="@+id/belt"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/glove"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="PANTS"/>
+                        <ImageView
+                            android:id="@+id/pants"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/cape"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="GLOVES"/>
+                        <ImageView
+                            android:id="@+id/glove"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="CAPE"/>
+                        <ImageView
+                            android:id="@+id/cape"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
                     <TextView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -256,33 +477,64 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"/>
-                    <ImageView
-                        android:id="@+id/shoes"
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/android"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="SHOES"/>
+                        <ImageView
+                            android:id="@+id/shoes"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
-                    <ImageView
-                        android:id="@+id/heart"
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="ANDROID"/>
+                        <ImageView
+                            android:id="@+id/android"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+                    <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
-                        android:padding="10dp"
-                        android:background="@drawable/ui_empty_item"
-                        android:scaleType="fitCenter"
-                        android:onClick="infoPopup" />
+                        android:background="@drawable/ui_empty_item">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="10sp"
+                            android:text="HEART"/>
+                        <ImageView
+                            android:id="@+id/heart"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:onClick="infoPopup" />
+                    </FrameLayout>
+
                 </GridLayout>
                 <GridLayout
                     android:layout_width="wrap_content"
@@ -318,6 +570,10 @@
                     android:layout_margin="5dp"
                     android:onClick="openInventory"
                     tools:ignore="MissingConstraints" />
+                <View
+                    android:id="@+id/equipped_blank"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"/>
             </LinearLayout>
         </ScrollView>
         <LinearLayout
