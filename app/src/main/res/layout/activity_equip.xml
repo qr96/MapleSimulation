@@ -22,6 +22,7 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="50dp">
             <LinearLayout
+                android:id="@+id/equip_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="300dp"
@@ -315,10 +316,12 @@
                     android:background="@drawable/ui_button_basic"
                     android:text="장비 장착"
                     android:layout_margin="5dp"
+                    android:onClick="openInventory"
                     tools:ignore="MissingConstraints" />
             </LinearLayout>
         </ScrollView>
         <LinearLayout
+            android:id="@+id/inventory_popup"
             android:layout_width="match_parent"
             android:layout_height="280dp"
             android:layout_marginBottom="50dp"
@@ -330,6 +333,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
+                android:onClick="closeInventory"
                 android:text="X"/>
             <GridView
                 android:id="@+id/inven_gridview"

@@ -1,13 +1,12 @@
 package com.example.maplesimulation;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -39,6 +38,11 @@ public class EquipActivity extends Activity {
 
         INVENSIZE = PreferenceManager.getInt(this, "INVENSIZE");
         inventory = PreferenceManager.getInventory(this, "inventory");
+        equipped = new ArrayList<Equipment>();
+
+        for(int i=0;i<25;i++) {
+            equipped.add(new Equipment());
+        }
 
         initGridView();
     }
@@ -75,65 +79,84 @@ public class EquipActivity extends Activity {
 
     public void equip(int position) {
         ImageView imageView = findViewById(R.id.ring1);
-
+        
         if (inventory.get(position).isWeapon()) {
             imageView = findViewById(R.id.weapon);
+            equipped.set(7, inventory.get(position));
         }
         else {
             switch (inventory.get(position).getType()) {
                 case "반지":
                     imageView = findViewById(R.id.ring1);
+                    equipped.set(0, inventory.get(position));
                     break;
                 case "펜던트":
                     imageView = findViewById(R.id.pendent2);
+                    equipped.set(5, inventory.get(position));
                     break;
                 case "귀고리":
                     imageView = findViewById(R.id.earing);
+                    equipped.set(15, inventory.get(position));
                     break;
                 case "벨트":
                     imageView = findViewById(R.id.belt);
+                    equipped.set(8, inventory.get(position));
                     break;
                 case "모자":
                     imageView = findViewById(R.id.hat);
+                    equipped.set(9, inventory.get(position));
                     break;
                 case "상의":
                     imageView = findViewById(R.id.shirt);
+                    equipped.set(12, inventory.get(position));
                     break;
                 case "하의":
                     imageView = findViewById(R.id.pants);
+                    equipped.set(13, inventory.get(position));
                     break;
                 case "한벌옷":
                     imageView = findViewById(R.id.shirt);
+                    equipped.set(12, inventory.get(position));
                     break;
                 case "장갑":
                     imageView = findViewById(R.id.glove);
+                    equipped.add(17, inventory.get(position));
                     break;
                 case "신발":
                     imageView = findViewById(R.id.shoes);
+                    equipped.set(14, inventory.get(position));
                     break;
                 case "망토":
                     imageView = findViewById(R.id.cape);
+                    equipped.set(23, inventory.get(position));
                     break;
                 case "어깨장식":
                     imageView = findViewById(R.id.shoulder);
+                    equipped.set(16, inventory.get(position));
                     break;
                 case "얼굴장식":
                     imageView = findViewById(R.id.face);
+                    equipped.set(10, inventory.get(position));
                     break;
                 case "눈장식":
                     imageView = findViewById(R.id.eye);
+                    equipped.set(11, inventory.get(position));
                     break;
                 case "포켓아이템":
                     imageView = findViewById(R.id.pocket);
+                    equipped.set(4, inventory.get(position));
                     break;
                 case "엠블렘":
                     imageView = findViewById(R.id.emblem);
+                    equipped.set(19, inventory.get(position));
                     break;
                 case "보조무기":
                     imageView = findViewById(R.id.subweapon);
+                    equipped.set(22, inventory.get(position));
                     break;
                 case "기계심장":
                     imageView = findViewById(R.id.heart);
+                    equipped.set(24, inventory.get(position));
                     break;
                 default:
                     break;
@@ -153,6 +176,8 @@ public class EquipActivity extends Activity {
             @Override
             public void onPositiveClick() {
                 equip(position);
+                inventory.remove(position);
+                initGridView();
             }
 
             @Override
@@ -162,6 +187,22 @@ public class EquipActivity extends Activity {
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.show();
         customDialog.setMessage(inventoryForGrid.get(position).getName() + "을(를) 장착하시겠습니까?");
+    }
+
+    public void openInventory(View view) {
+        LinearLayout linearLayout = findViewById(R.id.inventory_popup);
+        linearLayout.setVisibility(View.VISIBLE);
+
+        LinearLayout linearLayout1 = findViewById(R.id.equip_linear);
+        linearLayout1.setPadding(0, 0, 0, 300);
+    }
+
+    public void closeInventory(View view) {
+        LinearLayout linearLayout = findViewById(R.id.inventory_popup);
+        linearLayout.setVisibility(View.INVISIBLE);
+
+        LinearLayout linearLayout1 = findViewById(R.id.equip_linear);
+        linearLayout1.setPadding(0, 0, 0, 30);
     }
 
     //광고 초기화
