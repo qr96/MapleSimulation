@@ -1,5 +1,6 @@
 package com.example.maplesimulation;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -81,6 +82,7 @@ public class EquipActivity extends Activity {
 
     public void goStatInfo(View view) {
         Intent intent = new Intent(this, StatInfoActivity.class);
+        intent.putExtra("equipped", equipped);
         startActivity(intent);
     }
 
@@ -94,16 +96,46 @@ public class EquipActivity extends Activity {
         else {
             switch (inventory.get(position).getType()) {
                 case "반지":
-                    imageView = findViewById(R.id.ring1);
-                    equipped.set(0, inventory.get(position));
+                    if(equipped.get(0).getName().equals("잘못된 이름")) {
+                        equipped.set(0, inventory.get(position));
+                        imageView = findViewById(R.id.ring1);
+                    }
+                    else if(equipped.get(1).getName().equals("잘못된 이름")) {
+                        equipped.set(1, inventory.get(position));
+                        imageView = findViewById(R.id.ring2);
+                    }
+                    else if(equipped.get(2).getName().equals("잘못된 이름")) {
+                        equipped.set(2, inventory.get(position));
+                        imageView = findViewById(R.id.ring3);
+                    }
+                    else if(equipped.get(3).getName().equals("잘못된 이름")){
+                        equipped.set(3, inventory.get(position));
+                        imageView = findViewById(R.id.ring4);
+                    }
+                    else {
+                        inventory.add(equipped.get(3));
+                        equipped.set(3, inventory.get(position));
+                        imageView = findViewById(R.id.ring4);
+                    }
+                    break;
+                case "포켓아이템":
+                    imageView = findViewById(R.id.pocket);
+                    equipped.set(4, inventory.get(position));
                     break;
                 case "펜던트":
-                    imageView = findViewById(R.id.pendant2);
-                    equipped.set(5, inventory.get(position));
-                    break;
-                case "귀고리":
-                    imageView = findViewById(R.id.earing);
-                    equipped.set(15, inventory.get(position));
+                    if(equipped.get(5).getName().equals("잘못된 이름")) {
+                        equipped.set(5, inventory.get(position));
+                        imageView = findViewById(R.id.pendant1);
+                    }
+                    else if(equipped.get(6).getName().equals("잘못된 이름")) {
+                        equipped.set(6, inventory.get(position));
+                        imageView = findViewById(R.id.pendant2);
+                    }
+                    else {
+                        inventory.add(equipped.get(6));
+                        equipped.set(6, inventory.get(position));
+                        imageView = findViewById(R.id.pendant2);
+                    }
                     break;
                 case "벨트":
                     imageView = findViewById(R.id.belt);
@@ -113,34 +145,6 @@ public class EquipActivity extends Activity {
                     imageView = findViewById(R.id.hat);
                     equipped.set(9, inventory.get(position));
                     break;
-                case "상의":
-                    imageView = findViewById(R.id.shirt);
-                    equipped.set(12, inventory.get(position));
-                    break;
-                case "하의":
-                    imageView = findViewById(R.id.pants);
-                    equipped.set(13, inventory.get(position));
-                    break;
-                case "한벌옷":
-                    imageView = findViewById(R.id.shirt);
-                    equipped.set(12, inventory.get(position));
-                    break;
-                case "장갑":
-                    imageView = findViewById(R.id.glove);
-                    equipped.add(17, inventory.get(position));
-                    break;
-                case "신발":
-                    imageView = findViewById(R.id.shoes);
-                    equipped.set(14, inventory.get(position));
-                    break;
-                case "망토":
-                    imageView = findViewById(R.id.cape);
-                    equipped.set(23, inventory.get(position));
-                    break;
-                case "어깨장식":
-                    imageView = findViewById(R.id.shoulder);
-                    equipped.set(16, inventory.get(position));
-                    break;
                 case "얼굴장식":
                     imageView = findViewById(R.id.face);
                     equipped.set(10, inventory.get(position));
@@ -149,17 +153,57 @@ public class EquipActivity extends Activity {
                     imageView = findViewById(R.id.eye);
                     equipped.set(11, inventory.get(position));
                     break;
-                case "포켓아이템":
-                    imageView = findViewById(R.id.pocket);
-                    equipped.set(4, inventory.get(position));
+                case "상의":
+                    imageView = findViewById(R.id.shirt);
+                    equipped.set(12, inventory.get(position));
+                    break;
+                case "한벌옷":
+                    imageView = findViewById(R.id.shirt);
+                    equipped.set(12, inventory.get(position));
+                    break;
+                case "하의":
+                    imageView = findViewById(R.id.pants);
+                    equipped.set(13, inventory.get(position));
+                    break;
+                case "신발":
+                    imageView = findViewById(R.id.shoes);
+                    equipped.set(14, inventory.get(position));
+                    break;
+                case "귀고리":
+                    imageView = findViewById(R.id.earing);
+                    equipped.set(15, inventory.get(position));
+                    break;
+                case "어깨장식":
+                    imageView = findViewById(R.id.shoulder);
+                    equipped.set(16, inventory.get(position));
+                    break;
+                case "장갑":
+                    imageView = findViewById(R.id.glove);
+                    equipped.add(17, inventory.get(position));
+                    break;
+                case "안드로이드":
+                    imageView = findViewById(R.id.android);
+                    equipped.add(18, inventory.get(position));
                     break;
                 case "엠블렘":
                     imageView = findViewById(R.id.emblem);
                     equipped.set(19, inventory.get(position));
                     break;
+                case "뱃지":
+                    imageView = findViewById(R.id.badge);
+                    equipped.set(20, inventory.get(position));
+                    break;
+                case "훈장":
+                    imageView = findViewById(R.id.medal);
+                    equipped.add(21, inventory.get(position));
+                    break;
                 case "보조무기":
                     imageView = findViewById(R.id.subweapon);
                     equipped.set(22, inventory.get(position));
+                    break;
+                case "망토":
+                    imageView = findViewById(R.id.cape);
+                    equipped.set(23, inventory.get(position));
                     break;
                 case "기계심장":
                     imageView = findViewById(R.id.heart);
@@ -225,8 +269,92 @@ public class EquipActivity extends Activity {
         mAdView.loadAd(adRequest);
     }
 
+    @SuppressLint("NonConstantResourceId")
     public void infoPopup(View view) {
-
+        int now = 0;
+        switch (view.getId()) {
+            case R.id.ring1:
+                now = 0;
+                break;
+            case R.id.ring2:
+                now = 1;
+                break;
+            case R.id.ring3:
+                now = 2;
+                break;
+            case R.id.ring4:
+                now = 3;
+                break;
+            case R.id.pocket:
+                now = 4;
+                break;
+            case R.id.pendant1:
+                now = 5;
+                break;
+            case R.id.pendant2:
+                now = 6;
+                break;
+            case R.id.weapon:
+                now = 7;
+                break;
+            case R.id.belt:
+                now = 8;
+                break;
+            case R.id.hat:
+                now = 9;
+                break;
+            case R.id.face:
+                now = 10;
+                break;
+            case R.id.eye:
+                now = 11;
+                break;
+            case R.id.shirt:
+                now = 12;
+                break;
+            case R.id.pants:
+                now = 13;
+                break;
+            case R.id.shoes:
+                now = 14;
+                break;
+            case R.id.earing:
+                now = 15;
+                break;
+            case R.id.shoulder:
+                now = 16;
+                break;
+            case R.id.glove:
+                now = 17;
+                break;
+            case R.id.android:
+                now = 18;
+                break;
+            case R.id.emblem:
+                now = 19;
+                break;
+            case R.id.badge:
+                now = 20;
+                break;
+            case R.id.medal:
+                now = 21;
+                break;
+            case R.id.subweapon:
+                now = 22;
+                break;
+            case R.id.cape:
+                now = 23;
+                break;
+            case R.id.heart:
+                now = 24;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + view.getId());
+        }
+        if(equipped.isEmpty() || equipped.get(now).getName().equals("잘못된 이름")) return;
+        Intent intent = new Intent(this, InfoActivity.class);
+        intent.putExtra("equipment", equipped.get(now));
+        startActivity(intent);
     }
 
     public void goBack(View view) {

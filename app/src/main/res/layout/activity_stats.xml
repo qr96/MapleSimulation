@@ -61,6 +61,7 @@
                     android:textSize="17sp"
                     android:textColor="#555555"/>
                 <TextView
+                    android:id="@+id/stat_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
