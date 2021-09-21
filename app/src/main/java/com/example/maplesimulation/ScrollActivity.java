@@ -228,7 +228,7 @@ public class ScrollActivity extends Activity {
             //100% 리턴 스크롤 적용
             else  if(selected_detail_id == 2) {
                 result = scroll.useAwesomeChaos(100);
-                returnScrollDialog();
+                if(result == 1) returnScrollDialog();
             }
             //70% 리턴 스크롤 적용
             else if(selected_detail_id == 3) {
@@ -259,7 +259,7 @@ public class ScrollActivity extends Activity {
         else if(selected_button_id == R.id.scroll_button_8) { //매지컬
             result = scroll.useMagicalScroll(selected_detail_id/2);
             if(selected_detail_id%2 == 1) { //리턴스크롤
-                returnScrollDialog();
+                if(result == 1) returnScrollDialog();
             }
         }
 
