@@ -102,7 +102,6 @@
             android:layout_margin="5dp"
             android:text="장비 장착"
             android:onClick="goEquip"
-            android:visibility="gone"
             tools:ignore="MissingConstraints" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

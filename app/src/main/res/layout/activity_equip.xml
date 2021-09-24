@@ -541,7 +541,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:gravity="center"
-                    android:text="직업:초보자 레벨:250  ⚙"/>
+                    android:text="직업:초보자 ⚙️"/>
                 <Button
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
