@@ -233,7 +233,8 @@ public class StarforceActivity extends Activity {
         }
         equipInfo = equipInfo+"주스텟: +"+stats[0]+"\n"+
                 "공격력: +"+stats[1]+"\n"+
-                "마력: +"+stats[2]+"\n";
+                "마력: +"+stats[2]+"\n"+
+                "최대 HP: +"+stats[3]+"\n";
 
         textView.setText(equipInfo);
 

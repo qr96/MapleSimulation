@@ -2,7 +2,9 @@ package com.example.maplesimulation;
 
 import java.util.HashMap;
 
-public class Starforce {
+public class
+
+Starforce {
     Equipment equipment;
     int chanceStack; //찬스타임 스택
     public String event;
@@ -143,12 +145,14 @@ public class Starforce {
     }
 
     public void success() {
-        int list[] = increment(equipment.getStar()); //주스텟, 공격력, 마력
+        int list[] = increment(equipment.getStar()); //주스텟, 공격력, 마력, HP
         for(int i=0; i<4; i++){
             if((int)equipment.getStats().get(i) > 0) equipment.upgradeStarStat(i, list[0]);
         }
         if((int)equipment.getStats().get(8) > 0) equipment.upgradeStarStat(8, list[1]);
         if((int)equipment.getStats().get(9) > 0) equipment.upgradeStarStat(9, list[2]);
+
+        equipment.upgradeStarStat(4, list[3]);
 
         equipment.adStack++;
         equipment.upStar();
@@ -175,12 +179,15 @@ public class Starforce {
     public void failed() {
         if(canDown()){
             equipment.downStar();
-            int list[] = increment(equipment.getStar()); //주스텟, 공격력, 마력
+            int list[] = increment(equipment.getStar()); //주스텟, 공격력, 마력, HP
             for(int i=0; i<4; i++){
                 if((int)equipment.getStats().get(i) > 0) equipment.downStarStat(i, list[0]);
             }
             if((int)equipment.getStats().get(8) > 0) equipment.downStarStat(8, list[1]);
             if((int)equipment.getStats().get(9) > 0) equipment.downStarStat(9, list[2]);
+
+            equipment.downStarStat(4, list[3]);
+
             chanceStack++;
         }
         else chanceStack=0;
@@ -188,7 +195,7 @@ public class Starforce {
 
     //스타포스로 인해 증가할 수치 계산 [주스텟, 공격력, 마력] 반환
     public int[] increment(int star) {
-        int stats[] = {0, 0, 0}; //주스텟, 공격력, 마력
+        int stats[] = {0, 0, 0, 0}; //주스텟, 공격력, 마력, HP
 
         //주스텟 상승, (무기, 방어구, 장신구)
         if(star < 5) {
@@ -252,6 +259,23 @@ public class Starforce {
                 stats[1] = starStatTable.get(levReq+"방어구"+step);
             }
         }
+
+        if(star < 3) {
+            stats[3] = 5;
+        }
+        else if(star < 5) {
+            stats[3] = 10;
+        }
+        else if(star < 7) {
+            stats[3] = 15;
+        }
+        else if(star < 9) {
+            stats[3] = 20;
+        }
+        else if(star < 15) {
+            stats[3] = 25;
+        }
+
 
         return stats;
     }
