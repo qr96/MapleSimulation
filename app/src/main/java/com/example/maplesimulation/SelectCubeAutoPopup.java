@@ -26,7 +26,8 @@ public class SelectCubeAutoPopup extends Activity {
 
         optionTable = new String[]{"STR 3줄", "DEX 3줄", "INT 3줄", "LUK 3줄", "올스텟 3줄",
                 "공격력 3줄", "마력 3줄", "보보공", "보보마", "보보방", "보공공", "보마마",
-                "크크크(크뎀)", "크뎀 2줄"};
+                "크크크(크뎀)", "크뎀 2줄", "최대 HP 3줄", "드롭률 2줄", "메획 2줄", "메획 3줄", "드메",
+                "오토스틸 2줄", "오토스틸 3줄", "쿨감 2줄", "쿨감 3줄"};
 
         ListView listView = findViewById(R.id.selectListview);
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_popup_select, optionTable);

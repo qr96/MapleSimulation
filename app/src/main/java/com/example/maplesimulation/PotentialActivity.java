@@ -160,29 +160,6 @@ PotentialActivity extends Activity {
         strangeAddiCube = new Cube(equipment, (CubeTable) cubeTableList.get(2), "수상한에디셔널큐브");
     }
 
-    /*
-    public void initSpinner() {
-        Spinner event_spinner = (Spinner) findViewById(R.id.option);
-        ArrayAdapter<CharSequence> adapter;
-
-        adapter = ArrayAdapter.createFromResource(this,
-                R.array.potential_list, android.R.layout.simple_spinner_item);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        event_spinner.setAdapter(adapter);
-        event_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                autoOption = position;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }*/
-
     public void goRewardAd(View view) {
 
         CustomDialog customDialog = new CustomDialog(this, new CustomDialogClickListener() {
@@ -402,6 +379,11 @@ PotentialActivity extends Activity {
         int ignore = 0; //방무
         int bossdmg = 0; //보공
         int cridmg = 0; //크뎀
+        int maxHp = 0;//최대 HP
+        int drop = 0;//드롭률
+        int meso = 0;//메획
+        int autoSteal = 0; //오토스틸
+        int cooldown = 0;//쿨감
 
         if(cube.equals("에디셔널큐브") || cube.equals("수상한에디셔널큐브")) option = equipment.getPotential2();
         else option = equipment.getPotential1();
@@ -422,6 +404,11 @@ PotentialActivity extends Activity {
             else if(tmp.contains("보스 몬스터")) bossdmg++;
             else if(tmp.contains("몬스터 방어율")) ignore++;
             else if(tmp.contains("크리티컬 데미지")) cridmg++;
+            else if(tmp.contains("최대 HP")) maxHp++;
+            else if(tmp.contains("드롭률")) drop++;
+            else if(tmp.contains("메소")) meso++;
+            else if(tmp.contains("오토스틸")) autoSteal++;
+            else if(tmp.contains("재사용 대기시간")) cooldown++;
         }
 
         if(autoOption==0 && str==3){
@@ -466,7 +453,33 @@ PotentialActivity extends Activity {
         else if(autoOption==13 && cridmg>=2) { //크뎀 2줄
             return false;
         }
-
+        else if(autoOption==14 && maxHp==3) { //최대 hp 3줄
+            return false;
+        }
+        else if(autoOption==15 && drop>=2) { //드롭률 2줄
+            return false;
+        }
+        else if(autoOption==16 && meso>=2) { //메획 2줄
+            return false;
+        }
+        else if(autoOption==17 && meso==3) { //메획 3줄
+            return false;
+        }
+        else if(autoOption==18 && drop>0 && meso>0) { //드메
+            return false;
+        }
+        else if(autoOption==19 && autoSteal>=2) { //오토스틸 2줄
+            return false;
+        }
+        else if(autoOption==20 && autoSteal==3) { //오토스틸 3줄
+            return false;
+        }
+        else if(autoOption==21 && cooldown >= 2) { //쿨감 2줄
+            return false;
+        }
+        else if(autoOption==22 && cooldown == 3) { //쿨감 3줄
+            return false;
+        }
         return true;
     }
 
@@ -636,7 +649,8 @@ PotentialActivity extends Activity {
         TextView textView = findViewById(R.id.autoOption);
         String optionTable[] = new String[]{"STR 3줄", "DEX 3줄", "INT 3줄", "LUK 3줄", "올스텟 3줄",
                 "공격력 3줄", "마력 3줄", "보보공", "보보마", "보보방", "보공공", "보마마",
-                "크크크(크뎀)", "크뎀 2줄"};
+                "크크크(크뎀)", "크뎀 2줄", "최대 HP 3줄", "드롭률 2줄", "메획 2줄", "메획 3줄", "드메",
+                "오토스틸 2줄", "오토스틸 3줄", "쿨감 2줄", "쿨감 3줄"};
 
         textView.setText(optionTable[this.autoOption]+" ⚙️");
     }

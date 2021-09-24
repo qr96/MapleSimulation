@@ -6,6 +6,6 @@
     android:layout_height="wrap_content"
     android:padding="10dp"
     android:textColor="#5C5C5C"
-    android:textSize="18sp"
+    android:textSize="20sp"
     android:fontFamily="@font/nexon_low">
 </TextView>

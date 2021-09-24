@@ -92,7 +92,6 @@ public class StarforceActivity extends Activity {
             public void onPositiveClick() {
                 if (mRewardedAd != null) {
 
-
                     Activity activityContext = StarforceActivity.this;
                     mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
                         @Override

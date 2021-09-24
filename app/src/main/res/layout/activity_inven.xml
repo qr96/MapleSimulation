@@ -32,19 +32,19 @@
             android:verticalSpacing="10dp"
             android:horizontalSpacing="10dp"
             android:numColumns="auto_fit"
-            android:columnWidth="80dp"
+            android:columnWidth="75dp"
             android:stretchMode="columnWidth"
             android:listSelector="@android:color/transparent"/>
     </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="@drawable/ui_empty_inven"
         android:alpha="0.8"
         tools:ignore="MissingConstraints">
         <Button
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:text="&lt;"
             android:onClick="goBack"
             android:fontFamily="@font/nexon_low_bold"/>
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="인벤토리"
-            android:textSize="22sp">
+            android:textSize="18sp">
         </TextView>
         <Button
             android:layout_width="50dp"
