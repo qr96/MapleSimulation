@@ -13,12 +13,12 @@ import java.util.ArrayList;
 
 public class ChracterPageAdapter extends PagerAdapter {
     private Context mContext;
-    private ArrayList<Integer> imageList;
+    private ArrayList<Character> characterArrayList;
 
-    public ChracterPageAdapter(Context context, ArrayList<Integer> imageList)
+    public ChracterPageAdapter(Context context, ArrayList<Character> characterArrayList)
     {
         this.mContext = context;
-        this.imageList = imageList;
+        this.characterArrayList = characterArrayList;
     }
 
     @NonNull
@@ -27,8 +27,11 @@ public class ChracterPageAdapter extends PagerAdapter {
         LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.fragment_character_info, null);
 
-        TextView textView = view.findViewById(R.id.character_info);
-        textView.setText("1번");
+        TextView textView = view.findViewById(R.id.character_info_number);
+        textView.setText(position+1+"/"+getCount());
+
+        TextView textView1 = view.findViewById(R.id.character_info);
+        textView1.setText(characterArrayList.get(position).getInfo());
 
         container.addView(view);
 
@@ -36,8 +39,13 @@ public class ChracterPageAdapter extends PagerAdapter {
     }
 
     @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
+
+    @Override
     public int getCount() {
-        return imageList.size();
+        return characterArrayList.size();
     }
 
     @Override

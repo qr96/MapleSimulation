@@ -26,17 +26,16 @@ public class ChracterListActivity extends Activity {
     private AdView mAdView;
     private RewardedAd mRewardedAd;
 
-    private ArrayList<Integer> imageList;
-    private static final int DP = 24;
+    private ArrayList<Character> characterList;
+    private ChracterPageAdapter mChracterPageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character);
 
-        imageList = new ArrayList();
-
-
+        initData();
+        initViewpage();
 
         //광고 초기화
         initAd();
@@ -44,19 +43,22 @@ public class ChracterListActivity extends Activity {
     }
 
     public void initData() {
+        characterList = new ArrayList();
 
+        Character character = new Character("파래박", "패스파인더", 250);
+        Character character2 = new Character("난뒤로만가지", "호영", 250);
+        Character character3 = new Character("루델팡", "아델", 250);
+
+        characterList.add(character);
+        characterList.add(character2);
+        characterList.add(character3);
     }
 
     public void initViewpage() {
+        mChracterPageAdapter = new ChracterPageAdapter(this, characterList);
         ViewPager viewPager = findViewById(R.id.character_viewpager);
         viewPager.setClipToPadding(false);
-
-        float density = getResources().getDisplayMetrics().density;
-        int margin = (int) (DP * density);
-        viewPager.setPadding(margin, 0, margin, 0);
-        viewPager.setPageMargin(margin/2);
-
-        viewPager.setAdapter(new ChracterPageAdapter(this, imageList));
+        viewPager.setAdapter(mChracterPageAdapter);
     }
 
     public void goRewardAd(View view) {
@@ -68,13 +70,19 @@ public class ChracterListActivity extends Activity {
                     mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
                         @Override
                         public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                            Character character = new Character("이름없음", "초보자", 250);
+                            characterList.add(character);
+                            mChracterPageAdapter.notifyDataSetChanged();
 
+                            CustomNotice customNotice = new CustomNotice(ChracterListActivity.this);
+                            customNotice.show();
+                            customNotice.setContent("감사합니다. 캐릭터 슬롯이 확장되었습니다.");
                         }
                     });
                 } else {
                     CustomNotice customNotice = new CustomNotice(ChracterListActivity.this);
                     customNotice.show();
-                    customNotice.setContent("광고가 아직 준비되지 않았습니다ㅠㅠ\n 다음에 다시 시도해주세요.");
+                    customNotice.setContent("광고가 아직 준비되지 않았습니다...\n 다음에 다시 시도해주세요.");
                 }
             }
             @Override
@@ -82,7 +90,7 @@ public class ChracterListActivity extends Activity {
             }
         });
         customDialog.show();
-        customDialog.setMessage("광고를 보고 인벤토리를 확장하시겠습니까? (4칸 확장)");
+        customDialog.setMessage("광고를 보고 슬롯을 확장하시겠습니까?");
     }
 
     //광고 초기화
@@ -136,10 +144,10 @@ public class ChracterListActivity extends Activity {
         CustomNotice notice = new CustomNotice(this);
         notice.show();
         notice.setTitle("도움말");
-        notice.setContent("이곳에서 저장된 장비들을 볼 수 있습니다.\n" +
-                "1. 장비 클릭 후 하단의 강화하기 버튼을 누르면 강화할 수 있습니다.\n" +
-                "2. 장비를 길게 누르면 장비가 삭제 됩니다.\n" +
-                "3. 상단의 선물상자를 누르면 광고 시청 후 인벤토리를 확장할 수 있습니다.");
+        notice.setContent("이곳에서 캐릭터들을 볼 수 있습니다.\n" +
+                "1. 캐릭터를 선택하여 장비 장착 화면으로 이동 가능합니다.\n" +
+                "2. 슬라이드하면 다른 슬롯들도 확인 가능합니다.\n" +
+                "3. 상단의 선물상자를 누르면 광고 시청 후 슬롯을 확장할 수 있습니다.");
     }
 
     public void goBack(View view) {
