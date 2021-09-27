@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goEquip(View view) {
-        Intent intent = new Intent(this, EquipActivity.class);
+        Intent intent = new Intent(this, ChracterListActivity.class);
         startActivity(intent);
     }
 
