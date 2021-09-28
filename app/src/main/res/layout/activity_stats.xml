@@ -65,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="15,000,000 ~ 15,000,000\n60%\n320%"
+                    android:text="315,000,000 ~ 315,000,000\n60%\n320%"
                     android:lineSpacingExtra="5dp"
                     android:textSize="17sp"
                     android:textColor="#555555"/>

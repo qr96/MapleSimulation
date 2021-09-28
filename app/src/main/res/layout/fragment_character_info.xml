@@ -6,7 +6,7 @@
     android:gravity="center">
     <LinearLayout
         android:layout_width="300dp"
-        android:layout_height="400dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:elevation="10dp"
         android:background="@drawable/ui_character_info">
@@ -19,8 +19,9 @@
             android:layout_margin="10dp"
             android:layout_gravity="center"/>
         <ImageView
-            android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:id="@+id/job_thumnail"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:layout_margin="10dp"
             android:layout_gravity="center"/>
         <TextView
@@ -36,8 +37,9 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_gravity="bottom|center"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
             android:text="장비 장착"
+            android:onClick="goEquipped"
             android:background="@drawable/ui_button_basic"/>
     </LinearLayout>
 </LinearLayout>

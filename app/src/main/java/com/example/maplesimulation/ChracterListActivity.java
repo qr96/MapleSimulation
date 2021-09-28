@@ -1,6 +1,7 @@
 package com.example.maplesimulation;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -59,6 +60,11 @@ public class ChracterListActivity extends Activity {
         ViewPager viewPager = findViewById(R.id.character_viewpager);
         viewPager.setClipToPadding(false);
         viewPager.setAdapter(mChracterPageAdapter);
+    }
+
+    public void goEquipped(View view) {
+        Intent intent = new Intent(this, EquipActivity.class);
+        startActivityForResult(intent, 0);
     }
 
     public void goRewardAd(View view) {

@@ -6,6 +6,8 @@ public class Character {
     private String name;
     private String job;
     private int level;
+    private int[] stats;
+    private int[] skillStats;
     private ArrayList<Equipment> equipped;
 
     public Character() {
@@ -35,5 +37,13 @@ public class Character {
                 "직업 : " + this.job;
 
         return info;
+    }
+
+    public String getJob() {
+        return this.job;
+    }
+
+    public ArrayList<Equipment> getEquipped() {
+        return equipped;
     }
 }

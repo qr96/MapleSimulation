@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class StatManager {
     private ArrayList<Equipment> equipped;
 
-    private ArrayList<Integer> stats;//장비 종합 능력치들
+    private int[] stats;//장비 종합 능력치들
     // ["STR", "DEX", "INT", "LUK", "최대HP", "최대MP", "착용레벨감소",
     //  "방어력", "공격력", "마력", "이동속도", "점프력", "올스텟%",
     //  "보스데미지%", "데미지%", "최대HP%", "방어율무시%"]
@@ -29,12 +29,12 @@ public class StatManager {
     //계산 결과를 문자열로 반환
     public String makeString() {
         String result = "150,000 ~ 150,000\n"+
-                stats.get(4)+"\n"+
-                stats.get(5)+"\n"+
-                stats.get(0)+"\n"+
-                stats.get(1)+"\n"+
-                stats.get(2)+"\n"+
-                stats.get(3)+"\n";
+                stats[4]+"\n"+
+                stats[5]+"\n"+
+                stats[0]+"\n"+
+                stats[1]+"\n"+
+                stats[2]+"\n"+
+                stats[3]+"\n";
 
         return result;
     }
@@ -55,24 +55,21 @@ public class StatManager {
     }
 
     public void calculateEquipment(Equipment equipment) { //특정 장비 계산
-        if(equipment.getName().equals("잘못된 이름")) return;
+        if(equipment.getName().equals("잘못된 이름") || equipment.getName().equals("")) return;
 
-        int tmp = 0;
+        for(int i=0;i<equipment.getStats().size();i++) {
+            stats[i] += (int) equipment.getStats().get(i);
+        }
         for(int i=0;i<21;i++) {
-            tmp = stats.get(i);
-            tmp += (int) equipment.getStats().get(i);
-            tmp += (int) equipment.getStarStat().get(i);
-            tmp += (int) equipment.getAdditional().get(i);
-            tmp += (int) equipment.getEnhance().get(i);
-            stats.set(i, tmp);
+            stats[i] += (int) equipment.getStarStat().get(i);
+            stats[i] += (int) equipment.getAdditional().get(i);
+            stats[i] += (int) equipment.getEnhance().get(i);
         }
     }
 
     //능력치 0으로 초기화
     public void initStats() {
-        stats.clear();
-        for(int i=0;i<stats.size();i++) {
-            stats.add(0);
-        }
+        this.stats = new int[21];
     }
 }
+

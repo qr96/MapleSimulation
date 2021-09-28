@@ -40,8 +40,7 @@
                     <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/ui_empty_item">
+                        android:layout_margin="5dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -54,7 +53,8 @@
                             android:layout_height="match_parent"
                             android:padding="10dp"
                             android:scaleType="fitCenter"
-                            android:onClick="infoPopup" />
+                            android:onClick="infoPopup"
+                            android:background="@drawable/ui_empty_equip"/>
                     </FrameLayout>
                     <TextView
                         android:layout_width="70dp"
@@ -63,8 +63,7 @@
                     <FrameLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/ui_empty_item">
+                        android:layout_margin="5dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -77,7 +76,8 @@
                             android:layout_height="match_parent"
                             android:padding="10dp"
                             android:scaleType="fitCenter"
-                            android:onClick="infoPopup" />
+                            android:onClick="infoPopup"
+                            android:background="@drawable/ui_empty_equip"/>
                     </FrameLayout>
                     <TextView
                         android:layout_width="70dp"
@@ -536,12 +536,20 @@
                     </FrameLayout>
 
                 </GridLayout>
-                <TextView
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:gravity="center"
-                    android:text="직업:초보자 ⚙️"/>
+                    android:background="#cccc"/>
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:background="@drawable/ui_button_basic"
+                    android:text="캐릭터 설정"
+                    android:layout_margin="5dp"
+                    android:onClick="goStatSetting"
+                    tools:ignore="MissingConstraints" />
                 <Button
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"

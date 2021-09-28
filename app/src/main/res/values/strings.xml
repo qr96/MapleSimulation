@@ -2,13 +2,20 @@
     <string name="app_name">메이플 시뮬레이터</string>
     <string name="stat_info_lists">
         스탯 공격력\n
-        HP \n
-        MP \n
-        STR \n
-        DEX \n
-        INT \n
-        LUK \n
+        HP\n
+        MP\n
+        STR\n
+        DEX\n
+        INT\n
+        LUK\n
         데미지\n
         보스 데미지\n
-        최종 데미지\n"</string>
+        최종 데미지\n
+        방어율 무시\n
+        크리티컬확률\n
+        아이템 드롭률\n
+        메소 획득량\n
+        크리 데미지\n
+        아케인포스
+    </string>
 </resources>

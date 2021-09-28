@@ -86,6 +86,11 @@ public class EquipActivity extends Activity {
         startActivity(intent);
     }
 
+    public void goStatSetting(View view) {
+        Intent intent = new Intent(this, StatSettingActivity.class);
+        startActivity(intent);
+    }
+
     public void equip(int position) {
         ImageView imageView = findViewById(R.id.ring1);
         
@@ -230,7 +235,6 @@ public class EquipActivity extends Activity {
                 inventory.remove(position);
                 initGridView();
             }
-
             @Override
             public void onNegativeClick() {
             }

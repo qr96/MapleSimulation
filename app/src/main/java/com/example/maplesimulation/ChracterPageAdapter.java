@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,14 @@ public class ChracterPageAdapter extends PagerAdapter {
 
         TextView textView1 = view.findViewById(R.id.character_info);
         textView1.setText(characterArrayList.get(position).getInfo());
+
+        ImageView imageview = view.findViewById(R.id.job_thumnail);
+        int rid = R.drawable.job_newbie;
+        String job = characterArrayList.get(position).getJob();
+        if(job.equals("아델")) rid = R.drawable.job_adele;
+        else if(job.equals("호영")) rid = R.drawable.job_hoyoung;
+        else if(job.equals("패스파인더")) rid = R.drawable.job_pathfinder;
+        imageview.setImageResource(rid);
 
         container.addView(view);
 
