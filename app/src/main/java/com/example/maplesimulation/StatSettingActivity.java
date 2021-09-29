@@ -28,6 +28,11 @@ public class StatSettingActivity extends Activity {
         initAd();
     }
 
+    public void goInput(View view) {
+        Intent intent = new Intent(this, InputPopup.class);
+        startActivity(intent);
+    }
+
     public void close(View view) {
         onBackPressed();
     }
