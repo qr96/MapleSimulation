@@ -56,8 +56,11 @@
                 android:text="직업 : 초보자"
                 tools:ignore="OnClick" />
             <TextView
+                android:id="@+id/set_level"
                 style="@style/SettingInfoTextview"
-                android:text="레벨 : 250"/>
+                android:onClick="goSetLevel"
+                android:text="레벨 : 250"
+                tools:ignore="OnClick" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -65,9 +68,11 @@
                 android:background="#cccc"/>
             <TextView
                 style="@style/SettingInfoTextview"
+                android:onClick="goSetStat"
                 android:text="STR : 30,000"/>
             <TextView
                 style="@style/SettingInfoTextview"
+                android:onClick="goSetStat"
                 android:text="DEX : 30,000"/>
             <View
                 android:layout_width="match_parent"

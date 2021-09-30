@@ -103,5 +103,11 @@
             android:text="장비 장착"
             android:onClick="goEquip"
             tools:ignore="MissingConstraints" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="본 앱은 메이플스토리의 이미지를 사용하여 개발되었습니다."/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
