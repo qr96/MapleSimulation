@@ -48,6 +48,15 @@
                 android:layout_margin="10dp"
                 android:background="#cccc"/>
             <TextView
+                android:id="@+id/potential1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="  주요 정보"
+                android:lineSpacingExtra="5dp"
+                android:textSize="17sp"
+                android:textColor="#818181"/>
+            <TextView
                 style="@style/SettingInfoTextview"
                 android:text="이름 : 이름없음"/>
             <TextView
@@ -67,41 +76,88 @@
                 android:layout_margin="10dp"
                 android:background="#cccc"/>
             <TextView
-                style="@style/SettingInfoTextview"
-                android:onClick="goSetStat"
-                android:text="STR : 30,000"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="  주스탯"
+                android:lineSpacingExtra="5dp"
+                android:textSize="17sp"
+                android:textColor="#818181"/>
             <TextView
                 style="@style/SettingInfoTextview"
                 android:onClick="goSetStat"
-                android:text="DEX : 30,000"/>
+                android:text="STR : 30,000"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:onClick="goSetStat"
+                android:text="DEX : 30,000"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:onClick="goSetStat"
+                android:text="INT : 30,000"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:onClick="goSetStat"
+                android:text="LUK : 30,000"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:onClick="goSetStat"
+                android:text="HP : 30,000"
+                tools:ignore="OnClick" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_margin="10dp"
                 android:background="#cccc"/>
             <TextView
-                android:id="@+id/potential1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="심볼\n"
+                android:text="  아케인 심볼"
                 android:lineSpacingExtra="5dp"
                 android:textSize="17sp"
-                android:textColor="#555555"/>
+                android:textColor="#818181"/>
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="소멸의 여로 LV: 20"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="츄츄 아일랜드 LV: 20"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="레헬른 LV: 20"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="아르카나 LV: 20"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="모라스 LV: 20"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="에스페라 LV: 20"
+                tools:ignore="OnClick" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_margin="10dp"
                 android:background="#cccc"/>
             <TextView
-                android:id="@+id/potential2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="하이퍼 스탯\n"
+                android:text="  하이퍼 스탯"
                 android:lineSpacingExtra="5dp"
                 android:textSize="17sp"
-                android:textColor="#555555"/>
+                android:textColor="#818181"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

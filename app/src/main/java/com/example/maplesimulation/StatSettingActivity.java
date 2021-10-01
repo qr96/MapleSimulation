@@ -24,7 +24,6 @@ public class StatSettingActivity extends Activity {
 
         setContentView(R.layout.activity_setting_stat);
 
-
         //광고 초기화
         initAd();
     }
@@ -43,6 +42,36 @@ public class StatSettingActivity extends Activity {
     public void goSetStat(View view) {
         Intent intent = new Intent(this, SetNumberPopup.class);
         intent.putExtra("type", "stat");
+        startActivityForResult(intent, 0);
+    }
+
+    public void goSetSTR(View view) {
+        Intent intent = new Intent(this, SetNumberPopup.class);
+        intent.putExtra("type", "str");
+        startActivityForResult(intent, 0);
+    }
+
+    public void goSetDEX(View view) {
+        Intent intent = new Intent(this, SetNumberPopup.class);
+        intent.putExtra("type", "dex");
+        startActivityForResult(intent, 0);
+    }
+
+    public void goSetINT(View view) {
+        Intent intent = new Intent(this, SetNumberPopup.class);
+        intent.putExtra("type", "int");
+        startActivityForResult(intent, 0);
+    }
+
+    public void goSetLUK(View view) {
+        Intent intent = new Intent(this, SetNumberPopup.class);
+        intent.putExtra("type", "luk");
+        startActivityForResult(intent, 0);
+    }
+
+    public void goSetHP(View view) {
+        Intent intent = new Intent(this, SetNumberPopup.class);
+        intent.putExtra("type", "hp");
         startActivityForResult(intent, 0);
     }
 
