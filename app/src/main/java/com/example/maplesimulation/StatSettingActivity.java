@@ -17,12 +17,15 @@ import java.util.ArrayList;
 
 public class StatSettingActivity extends Activity {
     private AdView mAdView;
+    private Character character;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_setting_stat);
+
+        character = new Character();
 
         //광고 초기화
         initAd();

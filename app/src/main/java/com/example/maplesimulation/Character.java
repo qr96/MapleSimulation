@@ -14,6 +14,7 @@ public class Character {
         this.name = "이름 없음";
         this.job = "초보자";
         this.level = 250;
+        this.stats = new int[10];
     }
 
     public Character(String name, String job, int level) {
