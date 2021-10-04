@@ -47,4 +47,10 @@ public class Character {
     public ArrayList<Equipment> getEquipped() {
         return equipped;
     }
+
+    public int[] getStats() {
+        return stats;
+    }
+
+
 }
