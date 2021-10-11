@@ -121,6 +121,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:text="  하이퍼 스탯"
+                android:lineSpacingExtra="5dp"
+                android:textSize="17sp"
+                android:textColor="#818181"/>
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="STR : 20"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="DEX : 20"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="INT : 20"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="LUK : 20"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="HP : 20"
+                tools:ignore="OnClick" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="10dp"
+                android:background="#cccc"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="  아케인 심볼"
                 android:lineSpacingExtra="5dp"
                 android:textSize="17sp"
@@ -154,19 +187,7 @@
                 android:layout_height="1dp"
                 android:layout_margin="10dp"
                 android:background="#cccc"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="  하이퍼 스탯"
-                android:lineSpacingExtra="5dp"
-                android:textSize="17sp"
-                android:textColor="#818181"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_margin="10dp"
-                android:background="#cccc"/>
+
             <Button
                 android:layout_width="100dp"
                 android:layout_height="40dp"
