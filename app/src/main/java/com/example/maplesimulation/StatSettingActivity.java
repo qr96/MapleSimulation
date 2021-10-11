@@ -1,5 +1,6 @@
 package com.example.maplesimulation;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,10 +26,39 @@ public class StatSettingActivity extends Activity {
 
         setContentView(R.layout.activity_setting_stat);
 
-        character = new Character();
+        initCharater();
+        updateView();
 
         //광고 초기화
         initAd();
+    }
+
+    public void initCharater() {
+        character = new Character();
+        character.setName("이름없음");
+        character.setJob("초보자");
+        character.setLevel(250);
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void updateView() {
+        TextView nameText = findViewById(R.id.set_name);
+        TextView jobText = findViewById(R.id.set_job);
+        TextView levelText = findViewById(R.id.set_level);
+        TextView strText = findViewById(R.id.set_str);
+        TextView dexText = findViewById(R.id.set_dex);
+        TextView intText = findViewById(R.id.set_int);
+        TextView lukText = findViewById(R.id.set_luk);
+        TextView hpText = findViewById(R.id.set_hp);
+
+        nameText.setText("이름 : "+character.getName());
+        jobText.setText("직업 : "+character.getJob());
+        levelText.setText("레벨 : "+character.getLevel());
+        strText.setText("STR : "+character.getStats("str"));
+        dexText.setText("DEX : "+character.getStats("dex"));
+        intText.setText("INT : "+character.getStats("int"));
+        lukText.setText("LUK : "+character.getStats("luk"));
+        hpText.setText("HP : "+character.getStats("hp"));
     }
 
     public void goInput(View view) {
@@ -53,25 +83,21 @@ public class StatSettingActivity extends Activity {
         intent.putExtra("type", "str");
         startActivityForResult(intent, 0);
     }
-
     public void goSetDEX(View view) {
         Intent intent = new Intent(this, SetNumberPopup.class);
         intent.putExtra("type", "dex");
         startActivityForResult(intent, 0);
     }
-
     public void goSetINT(View view) {
         Intent intent = new Intent(this, SetNumberPopup.class);
         intent.putExtra("type", "int");
         startActivityForResult(intent, 0);
     }
-
     public void goSetLUK(View view) {
         Intent intent = new Intent(this, SetNumberPopup.class);
         intent.putExtra("type", "luk");
         startActivityForResult(intent, 0);
     }
-
     public void goSetHP(View view) {
         Intent intent = new Intent(this, SetNumberPopup.class);
         intent.putExtra("type", "hp");
@@ -88,12 +114,17 @@ public class StatSettingActivity extends Activity {
                     int number = data.getIntExtra("number", 0);
 
                     if(type.equals("level")) {
-                        TextView textView = findViewById(R.id.set_level);
-                        textView.setText("레벨 : "+number);
+                        character.setLevel(number);
                     }
-                    else if(type.equals("stat")) {
+                    else if(type.equals("str") ||
+                            type.equals("dex") ||
+                            type.equals("int") ||
+                            type.equals("luk") ||
+                            type.equals("hp")) {
+                        character.setStats(type, number);
+                    }
 
-                    }
+                    updateView();
 
                 }
                 else { //받은 데이터가 없는 경우

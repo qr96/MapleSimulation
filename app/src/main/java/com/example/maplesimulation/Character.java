@@ -6,7 +6,8 @@ public class Character {
     private String name;
     private String job;
     private int level;
-    private int[] stats;
+    private int[] stats; // str, dex, int, luk, hp
+    private int[] hyperStats; //str, dex, int, luk, hp, 크확, 크뎀, 방무, 데미지, 보뎀, 공/마
     private int[] skillStats;
     private ArrayList<Equipment> equipped;
 
@@ -31,6 +32,26 @@ public class Character {
         this.job = job;
     }
 
+    public void setLevel(int level) { this.level = level; }
+
+    public void setStats(String option, int n) {
+        if(option.equals("str")) {
+            stats[0] = n;
+        }
+        else if(option.equals("dex")) {
+            stats[1] = n;
+        }
+        else if(option.equals("int")) {
+            stats[2] = n;
+        }
+        else if(option.equals("luk")) {
+            stats[3] = n;
+        }
+        else if(option.equals("hp")) {
+            stats[4] = n;
+        }
+    }
+
     public String getInfo() {
         String info = "";
         info = "이름 : " + this.name + "\n" +
@@ -40,17 +61,35 @@ public class Character {
         return info;
     }
 
+    public String getName() { return this.name; }
+
     public String getJob() {
         return this.job;
     }
+
+    public int getLevel() { return this.level; }
 
     public ArrayList<Equipment> getEquipped() {
         return equipped;
     }
 
-    public int[] getStats() {
-        return stats;
+    public int getStats(String option) {
+        if(option.equals("str")) {
+            return stats[0];
+        }
+        else if(option.equals("dex")) {
+            return stats[1];
+        }
+        else if(option.equals("int")) {
+            return stats[2];
+        }
+        else if(option.equals("luk")) {
+            return stats[3];
+        }
+        else if(option.equals("hp")) {
+            return stats[4];
+        }
+
+        return 0;
     }
-
-
 }

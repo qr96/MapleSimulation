@@ -26,7 +26,6 @@
         android:layout_marginBottom="50dp"
         android:background="#FFFFFF">
         <LinearLayout
-            android:id="@+id/equipInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -35,7 +34,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"/>
             <TextView
-                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="세부 설정"
@@ -48,7 +46,6 @@
                 android:layout_margin="10dp"
                 android:background="#cccc"/>
             <TextView
-                android:id="@+id/potential1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -57,9 +54,11 @@
                 android:textSize="17sp"
                 android:textColor="#818181"/>
             <TextView
+                android:id="@+id/set_name"
                 style="@style/SettingInfoTextview"
                 android:text="이름 : 이름없음"/>
             <TextView
+                android:id="@+id/set_job"
                 style="@style/SettingInfoTextview"
                 android:onClick="goInput"
                 android:text="직업 : 초보자"
@@ -84,28 +83,33 @@
                 android:textSize="17sp"
                 android:textColor="#818181"/>
             <TextView
+                android:id="@+id/set_str"
                 style="@style/SettingInfoTextview"
-                android:onClick="goSetStat"
+                android:onClick="goSetSTR"
                 android:text="STR : 30,000"
                 tools:ignore="OnClick" />
             <TextView
+                android:id="@+id/set_dex"
                 style="@style/SettingInfoTextview"
-                android:onClick="goSetStat"
+                android:onClick="goSetDEX"
                 android:text="DEX : 30,000"
                 tools:ignore="OnClick" />
             <TextView
+                android:id="@+id/set_int"
                 style="@style/SettingInfoTextview"
-                android:onClick="goSetStat"
+                android:onClick="goSetINT"
                 android:text="INT : 30,000"
                 tools:ignore="OnClick" />
             <TextView
+                android:id="@+id/set_luk"
                 style="@style/SettingInfoTextview"
-                android:onClick="goSetStat"
+                android:onClick="goSetLUK"
                 android:text="LUK : 30,000"
                 tools:ignore="OnClick" />
             <TextView
+                android:id="@+id/set_hp"
                 style="@style/SettingInfoTextview"
-                android:onClick="goSetStat"
+                android:onClick="goSetHP"
                 android:text="HP : 30,000"
                 tools:ignore="OnClick" />
             <View
