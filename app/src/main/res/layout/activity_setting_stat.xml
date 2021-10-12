@@ -145,6 +145,18 @@
                 style="@style/SettingInfoTextview"
                 android:text="HP : 20"
                 tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="크리티컬 확률 : 20"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="크리티컬 데미지 : 20"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="보스 데미지 : 20"
+                tools:ignore="OnClick" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
