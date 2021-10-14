@@ -48,6 +48,32 @@ public class PreferenceManager {
         return inventory;
     }
 
+    public static void setCharacter(Context context, ArrayList<Character> characters) {
+        SharedPreferences prefs = getPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        Gson gson = new GsonBuilder().create();
+        Type arrayType = new TypeToken<ArrayList<Character>>() {}.getType();
+        String json = gson.toJson(characters, arrayType);
+
+        editor.putString("character", json);
+        editor.commit();
+    }
+
+    public static ArrayList<Character> getCharacter(Context context, String key) {
+        SharedPreferences prefs = getPreferences(context);
+        String value = prefs.getString(key, DEFAULT_VALUE_STRING);
+
+        Type arrayType = new TypeToken<ArrayList<Character>>() {}.getType();
+        Gson gson = new Gson();
+        ArrayList<Character> characters;
+
+        if(value == "") characters = new ArrayList<Character>();
+        else characters = gson.fromJson(value, arrayType);
+
+        return characters;
+    }
+
     /*
     public static void setEquipment(Context context, String key, Equipment equipment) {
         SharedPreferences prefs = getPreferences(context);

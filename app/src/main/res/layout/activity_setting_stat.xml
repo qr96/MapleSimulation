@@ -172,7 +172,7 @@
                 android:textColor="#818181"/>
             <TextView
                 style="@style/SettingInfoTextview"
-                android:text="소멸의 여로 LV: 20"
+                android:text="소멸의 여로 LV: 20 (+300)"
                 tools:ignore="OnClick" />
             <TextView
                 style="@style/SettingInfoTextview"
