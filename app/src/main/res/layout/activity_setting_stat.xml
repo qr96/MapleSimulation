@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="  주스탯"
+                android:text="  기본 스탯"
                 android:lineSpacingExtra="5dp"
                 android:textSize="17sp"
                 android:textColor="#818181"/>
@@ -193,15 +193,15 @@
                 android:textColor="#818181"/>
             <TextView
                 style="@style/SettingInfoTextview"
-                android:text="소멸의 여로 LV: 20 (+300)"
+                android:text="소멸의 여로 : 20LV (+300)"
                 tools:ignore="OnClick" />
             <TextView
                 style="@style/SettingInfoTextview"
-                android:text="츄츄 아일랜드 LV: 20"
+                android:text="츄츄 아일랜드 : 20LV (+300)"
                 tools:ignore="OnClick" />
             <TextView
                 style="@style/SettingInfoTextview"
-                android:text="레헬른 LV: 20"
+                android:text="레헬른 : 20LV (+300)"
                 tools:ignore="OnClick" />
             <TextView
                 style="@style/SettingInfoTextview"
@@ -228,6 +228,7 @@
                 android:background="@drawable/ui_button_basic"
                 android:layout_gravity="center"
                 android:text="적용"
+                android:onClick="apply"
                 tools:ignore="OnClick" />
             <View
                 android:layout_width="match_parent"

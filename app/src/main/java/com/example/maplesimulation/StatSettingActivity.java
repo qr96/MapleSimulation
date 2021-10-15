@@ -54,11 +54,11 @@ public class StatSettingActivity extends Activity {
         nameText.setText("이름 : "+character.getName());
         jobText.setText("직업 : "+character.getJob());
         levelText.setText("레벨 : "+character.getLevel());
-        strText.setText("STR : "+character.getStats("str"));
-        dexText.setText("DEX : "+character.getStats("dex"));
-        intText.setText("INT : "+character.getStats("int"));
-        lukText.setText("LUK : "+character.getStats("luk"));
-        hpText.setText("HP : "+character.getStats("hp"));
+        strText.setText("STR : "+character.getStats(character.STR));
+        dexText.setText("DEX : "+character.getStats(character.DEX));
+        intText.setText("INT : "+character.getStats(character.INT));
+        lukText.setText("LUK : "+character.getStats(character.LUK));
+        hpText.setText("HP : "+character.getStats(character.HP));
     }
 
     public void goInput(View view) {
@@ -113,16 +113,12 @@ public class StatSettingActivity extends Activity {
                     String type = data.getStringExtra("type");
                     int number = data.getIntExtra("number", 0);
 
-                    if(type.equals("level")) {
-                        character.setLevel(number);
-                    }
-                    else if(type.equals("str") ||
-                            type.equals("dex") ||
-                            type.equals("int") ||
-                            type.equals("luk") ||
-                            type.equals("hp")) {
-                        character.setStats(type, number);
-                    }
+                    if(type.equals("level")) character.setLevel(number);
+                    else if(type.equals("str")) character.setStats(character.STR, number);
+                    else if(type.equals("dex")) character.setStats(character.DEX, number);
+                    else if(type.equals("int")) character.setStats(character.INT, number);
+                    else if(type.equals("luk")) character.setStats(character.LUK, number);
+                    else if(type.equals("hp")) character.setStats(character.HP, number);
 
                     updateView();
 
@@ -136,6 +132,8 @@ public class StatSettingActivity extends Activity {
     public void close(View view) {
         onBackPressed();
     }
+
+    public void apply(View view) { onBackPressed(); }
 
     //광고 초기화
     public void initAd(){

@@ -33,38 +33,9 @@ public class SetNumberPopup extends Activity {
             numberPicker.setMinValue(1);
             numberPicker.setValue(250);
         }
-        else if(type.equals("stat")) {
+        else if(type.equals("str") || type.equals("dex") || type.equals("int") || type.equals("luk") ||
+                type.equals("hp")) {
             txtText.setText("스탯을 입력하세요.");
-            numberPicker.setMaxValue(1600);
-            numberPicker.setMinValue(1);
-            numberPicker.setValue(1268);
-        }
-        else if(type.equals("str")) {
-            txtText.setText("STR을 입력하세요.");
-            numberPicker.setMaxValue(1600);
-            numberPicker.setMinValue(1);
-            numberPicker.setValue(1268);
-        }
-        else if(type.equals("dex")) {
-            txtText.setText("DEX를 입력하세요.");
-            numberPicker.setMaxValue(1600);
-            numberPicker.setMinValue(1);
-            numberPicker.setValue(1268);
-        }
-        else if(type.equals("int")) {
-            txtText.setText("INT를 입력하세요.");
-            numberPicker.setMaxValue(1600);
-            numberPicker.setMinValue(1);
-            numberPicker.setValue(1268);
-        }
-        else if(type.equals("luk")) {
-            txtText.setText("LUK를 입력하세요.");
-            numberPicker.setMaxValue(1600);
-            numberPicker.setMinValue(1);
-            numberPicker.setValue(1268);
-        }
-        else if(type.equals("hp")) {
-            txtText.setText("HP를 입력하세요.");
             numberPicker.setMaxValue(1600);
             numberPicker.setMinValue(1);
             numberPicker.setValue(1268);
