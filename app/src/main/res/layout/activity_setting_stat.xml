@@ -121,13 +121,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:text="  스킬 스탯"
+                android:lineSpacingExtra="5dp"
+                android:textSize="17sp"
+                android:textColor="#818181"/>
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="STR : 20 (+200)"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
+                android:text="DEX : 20"
+                tools:ignore="OnClick" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="10dp"
+                android:background="#cccc"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="  하이퍼 스탯"
                 android:lineSpacingExtra="5dp"
                 android:textSize="17sp"
                 android:textColor="#818181"/>
             <TextView
                 style="@style/SettingInfoTextview"
-                android:text="STR : 20"
+                android:text="STR : 20 (+200)"
                 tools:ignore="OnClick" />
             <TextView
                 style="@style/SettingInfoTextview"
