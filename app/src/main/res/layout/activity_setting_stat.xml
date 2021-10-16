@@ -176,6 +176,10 @@
                 tools:ignore="OnClick" />
             <TextView
                 style="@style/SettingInfoTextview"
+                android:text="방어율 무시 : 20"
+                tools:ignore="OnClick" />
+            <TextView
+                style="@style/SettingInfoTextview"
                 android:text="보스 데미지 : 20"
                 tools:ignore="OnClick" />
             <View

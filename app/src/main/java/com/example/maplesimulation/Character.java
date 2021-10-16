@@ -10,24 +10,40 @@ public class Character {
     private int[] hyperStats; //str, dex, int, luk, hp, 크확, 크뎀, 방무, 데미지, 보뎀, 공, 마
     private int[] skillStats;
     private ArrayList<Equipment> equipped;
+
     public final int STR = 0;
     public final int DEX = 1;
     public final int INT = 2;
     public final int LUK = 3;
     public final int HP = 4;
     public final int CRIPOSS = 5;
+    public final int CRIDMG = 6;
+    public final int IGNORE = 7;
+    public final int DMG = 8;
+    public final int BOSSDMG = 9;
+    public final int ATTK = 10;
+    public final int MAGIC = 11;
 
     public Character() {
         this.name = "이름 없음";
         this.job = "초보자";
         this.level = 250;
         this.stats = new int[10];
+        this.hyperStats = new int[20];
+        this.skillStats = new int[20];
+        equipped = new ArrayList<Equipment>();
+        for(int i=0;i<25;i++) { equipped.add(new Equipment()); }
     }
 
     public Character(String name, String job, int level) {
         this.name = name;
         this.job = job;
         this.level = level;
+        this.stats = new int[10];
+        this.hyperStats = new int[20];
+        this.skillStats = new int[20];
+        equipped = new ArrayList<Equipment>();
+        for(int i=0;i<25;i++) { equipped.add(new Equipment()); }
     }
 
     public void setName(String name) {
@@ -44,13 +60,8 @@ public class Character {
         stats[option] = n;
     }
 
-    public String getInfo() {
-        String info = "";
-        info = "이름 : " + this.name + "\n" +
-                "레벨 : " + this.level + "\n" +
-                "직업 : " + this.job;
-
-        return info;
+    public void setEquipped(int idx, Equipment equipment) {
+        equipped.set(idx, equipment);
     }
 
     public String getName() { return this.name; }

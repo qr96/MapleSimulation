@@ -26,6 +26,7 @@ public class EquipActivity extends Activity {
     private ArrayList<Equipment> inventory;
     private ArrayList<Equipment> inventoryForGrid;
     private ArrayList<Equipment> equipped;
+    private ArrayList<Character> characterList;
 
     private int INVENSIZE = 20; //인벤토리 크기
 
@@ -41,11 +42,11 @@ public class EquipActivity extends Activity {
 
         INVENSIZE = PreferenceManager.getInt(this, "INVENSIZE");
         inventory = PreferenceManager.getInventory(this, "inventory");
-        equipped = new ArrayList<Equipment>();
 
-        for(int i=0;i<25;i++) {
-            equipped.add(new Equipment());
-        }
+        //캐릭터 목록 테스트 부분
+        characterList = new ArrayList<Character>();
+        characterList.add(new Character());
+        equipped = characterList.get(0).getEquipped();
 
         initGridView();
     }

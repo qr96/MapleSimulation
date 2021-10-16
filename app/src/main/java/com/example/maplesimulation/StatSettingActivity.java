@@ -133,7 +133,10 @@ public class StatSettingActivity extends Activity {
         onBackPressed();
     }
 
-    public void apply(View view) { onBackPressed(); }
+    public void apply(View view) {
+
+        onBackPressed();
+    }
 
     //광고 초기화
     public void initAd(){

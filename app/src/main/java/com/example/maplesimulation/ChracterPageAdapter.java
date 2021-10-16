@@ -32,7 +32,10 @@ public class ChracterPageAdapter extends PagerAdapter {
         textView.setText(position+1+"/"+getCount());
 
         TextView textView1 = view.findViewById(R.id.character_info);
-        textView1.setText(characterArrayList.get(position).getInfo());
+        String info = "이름 : " + characterArrayList.get(position).getName() + "\n" +
+                "레벨 : " + characterArrayList.get(position).getLevel() + "\n" +
+                "직업 : " + characterArrayList.get(position).getJob();
+        textView1.setText(info);
 
         ImageView imageview = view.findViewById(R.id.job_thumnail);
         int rid = R.drawable.job_newbie;
