@@ -79,4 +79,6 @@ public class Character {
     public int getStats(final int option) {
         return stats[option];
     }
+
+    public int getHyperStats(final int option) { return hyperStats[option]; }
 }
