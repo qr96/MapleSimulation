@@ -12,6 +12,9 @@ public class SetNumberPopup extends Activity {
     private TextView txtText;
     private NumberPicker numberPicker;
     private String type;
+    private int min;
+    private int max;
+    private int now;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,9 @@ public class SetNumberPopup extends Activity {
 
         Intent intent = getIntent();
         type = intent.getStringExtra("type");
+        min = intent.getIntExtra("min", 0);
+        max = intent.getIntExtra("max", 1000);
+        now = intent.getIntExtra("now", 500);
 
         txtText = (TextView)findViewById(R.id.selectTitle);
         txtText.setText("숫자를 선택하세요.");
