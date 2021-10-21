@@ -82,24 +82,16 @@ public class StatSettingActivity extends Activity {
         goSetNumber("str", 1, 1600, character.getStats(character.STR));
     }
     public void goSetDEX(View view) {
-        Intent intent = new Intent(this, SetNumberPopup.class);
-        intent.putExtra("type", "dex");
-        startActivityForResult(intent, 0);
+        goSetNumber("dex", 1, 1600, character.getStats(character.DEX));
     }
     public void goSetINT(View view) {
-        Intent intent = new Intent(this, SetNumberPopup.class);
-        intent.putExtra("type", "int");
-        startActivityForResult(intent, 0);
+        goSetNumber("int", 1, 1600, character.getStats(character.INT));
     }
     public void goSetLUK(View view) {
-        Intent intent = new Intent(this, SetNumberPopup.class);
-        intent.putExtra("type", "luk");
-        startActivityForResult(intent, 0);
+        goSetNumber("luk", 1, 1600, character.getStats(character.LUK));
     }
     public void goSetHP(View view) {
-        Intent intent = new Intent(this, SetNumberPopup.class);
-        intent.putExtra("type", "hp");
-        startActivityForResult(intent, 0);
+        goSetNumber("hp", 1, 1600, character.getStats(character.HP));
     }
 
     public void goSetNumber(String type, int min, int max, int now) {
@@ -107,6 +99,7 @@ public class StatSettingActivity extends Activity {
         intent.putExtra("type", type);
         intent.putExtra("min", min);
         intent.putExtra("max", max);
+        intent.putExtra("now", now);
         startActivityForResult(intent, 0);
     }
 
