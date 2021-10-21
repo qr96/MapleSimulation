@@ -3,24 +3,21 @@ package com.example.maplesimulation;
 import java.util.ArrayList;
 
 public class StatManager {
-    private ArrayList<Equipment> equipped;
+    private Character character;
+    private ArrayList<Equipment> equipments;
 
     private int[] stats;//장비 종합 능력치들
     // ["STR", "DEX", "INT", "LUK", "최대HP", "최대MP", "착용레벨감소",
     //  "방어력", "공격력", "마력", "이동속도", "점프력", "올스텟%",
     //  "보스데미지%", "데미지%", "최대HP%", "방어율무시%"]
 
-    public StatManager() {
-
+    public StatManager(Character character) {
+        this.character = character;
+        this.equipments = character.getEquipped();
     }
 
-    public String getStats(ArrayList<Equipment> equipped) {
+    public String getResult() {
         String result = "";
-        this.equipped = equipped;
-
-        initStats();
-        calculate();
-
         result = makeString();
 
         return result;
@@ -28,30 +25,31 @@ public class StatManager {
 
     //계산 결과를 문자열로 반환
     public String makeString() {
-        String result = "150,000 ~ 150,000\n"+
-                stats[4]+"\n"+
-                stats[5]+"\n"+
-                stats[0]+"\n"+
-                stats[1]+"\n"+
-                stats[2]+"\n"+
-                stats[3]+"\n";
+        String result = "";
+
+        result += getSTR() + "\n";
 
         return result;
     }
 
-    public void calculate() {
-        calculateAllEquipment();
-        calculateJob();
-    }
-
-    public void calculateJob() { //직업별로 정해진 수치대로 계산
-
-    }
-
-    public void calculateAllEquipment() { //모든 장비에 대한 계산
-        for(int i=0;i<equipped.size();i++) {
-            calculateEquipment(equipped.get(i));
+    public String getSTR() {
+        String result = "";
+        int sum = 0;
+        int add = 0;
+        
+        for(int i=0; i<equipments.size(); i++) {
+            if(equipments.get(i).getName().equals("잘못된 이름")) continue;
+            add += (int) equipments.get(i).getStats().get(0);
+            add += (int) equipments.get(i).getStarStat().get(0);
+            add += (int) equipments.get(i).getEnhance().get(0);
+            add += (int) equipments.get(i).getAdditional().get(0);
         }
+
+        sum = character.getStats(character.STR) + add;
+
+        result = sum + " (" + character.getStats(character.STR) + "+" + add + ")";
+
+        return result;
     }
 
     public void calculateEquipment(Equipment equipment) { //특정 장비 계산

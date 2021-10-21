@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class StatInfoActivity extends Activity {
     private AdView mAdView;
-    private ArrayList<Equipment> equipped;
+    private Character character;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class StatInfoActivity extends Activity {
         setContentView(R.layout.activity_stats);
 
         Intent intent = getIntent();
-        equipped = (ArrayList<Equipment>) intent.getSerializableExtra("equipped");
+        character = (Character) intent.getSerializableExtra("character");
         initStatInfo();
 
         //광고 초기화
@@ -36,8 +36,8 @@ public class StatInfoActivity extends Activity {
         String stats = "";
         TextView textView = findViewById(R.id.stat_info);
 
-        StatManager statManager = new StatManager();
-        stats = statManager.getStats(equipped);
+        StatManager statManager = new StatManager(character);
+        stats = statManager.getResult();
 
         textView.setText(stats);
     }

@@ -1,8 +1,9 @@
 package com.example.maplesimulation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Character {
+public class Character implements Serializable {
     private String name;
     private String job;
     private int level;
@@ -81,4 +82,5 @@ public class Character {
     }
 
     public int getHyperStats(final int option) { return hyperStats[option]; }
+
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -17,16 +18,15 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class EquipActivity extends Activity {
-    public int selected_button_id = -1; //선택된 아이템의 id
-    public int selected_detail_id = -1; //선택된 아이템의 세부 옵션 id  ex) 70%, 30% 주문서
-
     private ArrayList<Equipment> inventory;
     private ArrayList<Equipment> inventoryForGrid;
     private ArrayList<Equipment> equipped;
     private ArrayList<Character> characterList;
+    private int now;
 
     private int INVENSIZE = 20; //인벤토리 크기
 
@@ -44,9 +44,10 @@ public class EquipActivity extends Activity {
         inventory = PreferenceManager.getInventory(this, "inventory");
 
         //캐릭터 목록 테스트 부분
+        now = 0;
         characterList = new ArrayList<Character>();
-        characterList.add(new Character());
-        equipped = characterList.get(0).getEquipped();
+        characterList.add(new Character("파래박", "패스파인더", 250));
+        equipped = characterList.get(now).getEquipped();
 
         initGridView();
     }
@@ -83,18 +84,35 @@ public class EquipActivity extends Activity {
 
     public void goStatInfo(View view) {
         Intent intent = new Intent(this, StatInfoActivity.class);
-        intent.putExtra("equipped", equipped);
+        intent.putExtra("character", characterList.get(now));
         startActivity(intent);
     }
 
     public void goStatSetting(View view) {
         Intent intent = new Intent(this, StatSettingActivity.class);
-        startActivity(intent);
+        intent.putExtra("character", characterList.get(now));
+        startActivityForResult(intent, 0);
+    }
+
+    //데이터 받는 부분
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode){
+            case 0:
+                if(data!=null) {
+                    Character character = (Character) data.getSerializableExtra("character");
+                    characterList.set(now, character);
+                    equipped = characterList.get(now).getEquipped();
+                }
+                else { //받은 데이터가 없는 경우
+                }
+                break;
+        }
     }
 
     public void equip(int position) {
         ImageView imageView = findViewById(R.id.ring1);
-        
+
         if (inventory.get(position).isWeapon()) {
             imageView = findViewById(R.id.weapon);
             equipped.set(7, inventory.get(position));
@@ -219,6 +237,8 @@ public class EquipActivity extends Activity {
                     break;
             }
         }
+
+
 
         int lid = this.getResources()
                 .getIdentifier(inventory.get(position).getImage(), "drawable", this.getPackageName());

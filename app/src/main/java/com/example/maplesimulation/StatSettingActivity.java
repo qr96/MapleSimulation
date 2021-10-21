@@ -26,7 +26,9 @@ public class StatSettingActivity extends Activity {
 
         setContentView(R.layout.activity_setting_stat);
 
-        initCharater();
+        Intent intent = getIntent();
+        character = (Character) intent.getSerializableExtra("character");
+        //initCharater();
         updateView();
 
         //광고 초기화
@@ -67,9 +69,7 @@ public class StatSettingActivity extends Activity {
     }
 
     public void goSetLevel(View view) {
-        Intent intent = new Intent(this, SetNumberPopup.class);
-        intent.putExtra("type", "level");
-        startActivityForResult(intent, 0);
+        goSetNumber("str", 1, 300, character.getLevel());
     }
 
     public void goSetStat(View view) {
@@ -133,7 +133,9 @@ public class StatSettingActivity extends Activity {
     }
 
     public void apply(View view) {
-
+        Intent intent = getIntent();
+        intent.putExtra("character", character);
+        setResult(0, intent);
         onBackPressed();
     }
 
