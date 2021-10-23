@@ -149,7 +149,7 @@ public class ScrollActivity extends Activity {
                     result = scroll.doAccessaryScroll1(possibility, justat);
                 }
             }
-            else if(equipment.isWeapon()){ //무기인 경우
+            else if(equipment.isWeapon() || equipment.getType().equals("블레이드")){ //무기인 경우
                 //힘,덱,인,럭  100, 70, 30, 15
                 if(selected_detail_id%4 == 0) possibility = 100;
                 else if(selected_detail_id%4 == 1) possibility = 70;

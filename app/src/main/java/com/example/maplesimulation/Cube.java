@@ -14,14 +14,14 @@ public class Cube {
     boolean isMiracle;
 
     //큐브 같은 테이블 쓰는 조합들
-    ArrayList<String> subWeapon = new ArrayList<>(Arrays.asList("포스실드", "소울링", "방패")); //보조무기
+    ArrayList<String> subWeapon = new ArrayList<>(Arrays.asList("포스실드", "소울링", "방패", "블레이드")); //보조무기
     ArrayList<String> armor2 = new ArrayList<>(Arrays.asList("망토", "벨트", "어깨장식")); //망토
     ArrayList<String> accessary = new ArrayList<>(Arrays.asList("얼굴장식", "눈장식", "귀고리", "반지", "펜던트")); //얼굴장식
     //상의, 한벌옷
     
     //에디셔널 큐브 같은 테이블 쓰는 부위들
     ArrayList<String> armorsForAddi = new ArrayList<>(Arrays.asList("한벌옷", "하의", "신발", "망토", "벨트", "어깨장식", "얼굴장식", "눈장식", "귀고리", "반지", "펜던트"));
-    ArrayList<String> subWeaponForAddi = new ArrayList<>(Arrays.asList("포스실드", "소울링", "방패"));
+    ArrayList<String> subWeaponForAddi = new ArrayList<>(Arrays.asList("포스실드", "소울링", "방패", "블레이드"));
 
     public Cube(Equipment equipment, CubeTable cubeTable, String cubeType){
         this.equipment = equipment;

@@ -27,29 +27,76 @@ public class StatManager {
     public String makeString() {
         String result = "";
 
-        result += getSTR() + "\n";
+        result = result + "1000~1000\n";
+        result = result + "1000\n";
+        result = result + "1000\n";
+        result = result + getStat("str") + " (" + character.getStats(character.STR)+"+"+getAddStat("str")+")\n";
+        result = result + getStat("dex") + " (" + character.getStats(character.DEX)+"+"+getAddStat("dex")+")\n";
+        result = result + getStat("int") + " (" + character.getStats(character.INT)+"+"+getAddStat("int")+")\n";
+        result = result + getStat("luk") + " (" + character.getStats(character.LUK)+"+"+getAddStat("luk")+")\n";
 
         return result;
     }
 
-    public String getSTR() {
-        String result = "";
+    public int getStat(String option) {
         int sum = 0;
+
+        if(option.equals("str")) sum = character.getStats(character.STR) + getAddStat(option);
+        else if(option.equals("dex")) sum = character.getStats(character.DEX) + getAddStat(option);
+        else if(option.equals("int")) sum = character.getStats(character.INT) + getAddStat(option);
+        else if(option.equals("luk")) sum = character.getStats(character.LUK) + getAddStat(option);
+        else if(option.equals("hp")) sum = character.getStats(character.HP) + getAddStat(option);
+        else if(option.equals("dmg")) sum = character.getStats(character.DMG) + getAddStat(option);
+
+        return sum;
+    }
+
+    public int getAddStat(String option) {
         int add = 0;
-        
-        for(int i=0; i<equipments.size(); i++) {
-            if(equipments.get(i).getName().equals("잘못된 이름")) continue;
-            add += (int) equipments.get(i).getStats().get(0);
-            add += (int) equipments.get(i).getStarStat().get(0);
-            add += (int) equipments.get(i).getEnhance().get(0);
-            add += (int) equipments.get(i).getAdditional().get(0);
+        int equipStat = 0;
+        int charStat = 0;
+
+        if(option.equals("str")) {
+            equipStat = 0;
+            charStat = 0;
+        }
+        else if(option.equals("dex")) {
+            equipStat = 1;
+            charStat = 1;
+        }
+        else if(option.equals("int")) {
+            equipStat = 2;
+            charStat = 2;
+        }
+        else if(option.equals("luk")) {
+            equipStat = 3;
+            charStat = 3;
+        }
+        else if(option.equals("hp")) {
+            equipStat = 4;
+            charStat = 4;
+        }
+        else if(option.equals("dmg")) {
+            equipStat = 14;
+            charStat = 8;
         }
 
-        sum = character.getStats(character.STR) + add;
+        //장비 스탯
+        for(int i=0; i<equipments.size(); i++) {
+            if(equipments.get(i).getName().equals("잘못된 이름")) continue;
+            add += (int) equipments.get(i).getStats().get(equipStat);
+            add += (int) equipments.get(i).getStarStat().get(equipStat);
+            add += (int) equipments.get(i).getEnhance().get(equipStat);
+            add += (int) equipments.get(i).getAdditional().get(equipStat);
+        }
 
-        result = sum + " (" + character.getStats(character.STR) + "+" + add + ")";
+        //하이퍼스탯
+        add += character.getHyperStats(charStat);
+        
+        //스킬 스탯
+        add += character.getSkillStats(charStat);
 
-        return result;
+        return add;
     }
 
     public void calculateEquipment(Equipment equipment) { //특정 장비 계산

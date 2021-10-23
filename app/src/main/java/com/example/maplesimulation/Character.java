@@ -34,6 +34,7 @@ public class Character implements Serializable {
         this.skillStats = new int[20];
         equipped = new ArrayList<Equipment>();
         for(int i=0;i<25;i++) { equipped.add(new Equipment()); }
+        for(int i=0;i<4;i++) stats[i] = 1000;
     }
 
     public Character(String name, String job, int level) {
@@ -45,6 +46,7 @@ public class Character implements Serializable {
         this.skillStats = new int[20];
         equipped = new ArrayList<Equipment>();
         for(int i=0;i<25;i++) { equipped.add(new Equipment()); }
+        for(int i=0;i<4;i++) stats[i] = 1000;
     }
 
     public void setName(String name) {
@@ -83,4 +85,5 @@ public class Character implements Serializable {
 
     public int getHyperStats(final int option) { return hyperStats[option]; }
 
+    public int getSkillStats(final int option) { return skillStats[option]; }
 }

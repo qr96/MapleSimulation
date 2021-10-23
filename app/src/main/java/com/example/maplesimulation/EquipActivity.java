@@ -233,6 +233,10 @@ public class EquipActivity extends Activity {
                     imageView = findViewById(R.id.heart);
                     equipped.set(24, inventory.get(position));
                     break;
+                case "블레이드":
+                    imageView = findViewById(R.id.subweapon);
+                    equipped.set(22, inventory.get(position));
+                    break;
                 default:
                     break;
             }
