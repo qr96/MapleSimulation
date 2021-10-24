@@ -1,6 +1,9 @@
 package com.example.maplesimulation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StatManager {
     private Character character;
@@ -36,6 +39,63 @@ public class StatManager {
         result = result + getStat("luk") + " (" + character.getStats(character.LUK)+"+"+getAddStat("luk")+")\n";
 
         return result;
+    }
+
+    //스공
+    public int getStatAtk() {
+        int result = 0;
+
+
+        return result;
+    }
+
+    //주스탯
+    public String getJustat(String job) {
+        String[] type1 = {"히어로", "팔라딘", "다크나이트", "소울마스터", "미하일", "아란", "블래스터",
+                "데몬슬레이어", "카이저", "제로", "아델", "하야토", "핑크빈"};
+        String[] type2 = {"보우마스터", "신궁", "패스파인더", "윈드브레이커", "메르세데스", "와일드헌터", "카인"};
+        String[] type3 = {"아크메이지(불,독)", "아크메이지(썬,콜)", "비숍", "플레임위자드", "에반",
+                "루미너스", "배틀메이지", "키네시스", "일리움", "라라", "칸나", "비스트테이머"};
+        String[] type4 = {"나이트로드", "섀도어", "듀얼블레이드", "나이트워커", "팬텀", "카데나", "호영"};
+
+        if(job.equals("데몬어벤져")) return "hp";
+        else if(Arrays.asList(type1).contains(job)) return "str";
+        else if(Arrays.asList(type2).contains(job)) return "dex";
+        else if(Arrays.asList(type3).contains(job)) return "int";
+        else if(Arrays.asList(type4).contains(job)) return "luk";
+        else return "str";
+    }
+
+    //직업상수
+    public double getJobConstant(String job) {
+        if(job.equals("제논")) return 0.875;
+        else if(job.equals("아크메이지(불,독)")) return 1.2;
+        else if(job.equals("아크메이지(썬,콜)")) return 1.2;
+        else if(job.equals("플레임위자드")) return 1.2;
+        else return 1.0;
+    }
+
+    //무기상수
+    public double getWeaponConstant(String weapon) {
+        String[] type1 = {"한손검", "한손도끼", "한손둔기", "스태프", "완드", "샤이닝로드", "ESP리미터", "매직건틀렛"}; //1.2
+        String[] type2 = {"단검", "블레이드", "케인", "데스페라도", "체인", "부채", "튜너", "브레스슈터", "활", "듀얼보우건", "에인션트보우"}; //1.3
+        String[] type3 = {"에너지소드", "건", "핸드캐논"}; //1.5
+        String[] type4 = {"소울슈터", "건틀렛리볼버", "너클"};//1.7
+        String[] type5 = {"두손검", "두손도끼", "두손둔기", "태도"}; //1.34
+        String[] type6 = {"창", "폴암 ", "대검"}; //1.49
+        String[] type7 = {"석궁"}; //1.35
+        String[] type8 = {"아대"}; //1.75
+
+        if(Arrays.asList(type1).contains(weapon)) return 1.2;
+        else if(Arrays.asList(type2).contains(weapon)) return 1.3;
+        else if(Arrays.asList(type3).contains(weapon)) return 1.5;
+        else if(Arrays.asList(type4).contains(weapon)) return 1.7;
+        else if(Arrays.asList(type5).contains(weapon)) return 1.34;
+        else if(Arrays.asList(type6).contains(weapon)) return 1.49;
+        else if(Arrays.asList(type7).contains(weapon)) return 1.35;
+        else if(Arrays.asList(type8).contains(weapon)) return 1.75;
+
+        return 1.0;
     }
 
     public int getStat(String option) {
