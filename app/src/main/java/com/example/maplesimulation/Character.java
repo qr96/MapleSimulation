@@ -8,7 +8,7 @@ public class Character implements Serializable {
     private String job;
     private int level;
     private int[] stats; // str, dex, int, luk, hp
-    private int[] hyperStats; //str, dex, int, luk, hp, 크확, 크뎀, 방무, 데미지, 보뎀, 공, 마
+    private int[] hyperStats; //str, dex, int, luk, hp, 크확, 크뎀, 방무, 데미지, 보스뎀, 공, 마, 최종뎀, 공퍼, 마퍼, 숙련도
     private int[] skillStats;
     private ArrayList<Equipment> equipped;
 
@@ -24,17 +24,20 @@ public class Character implements Serializable {
     public final int BOSSDMG = 9;
     public final int ATTK = 10;
     public final int MAGIC = 11;
+    public final int FDMG = 12;
+    public final int ATTKPER = 13;
+    public final int MAGICPER = 14;
 
     public Character() {
         this.name = "이름 없음";
         this.job = "초보자";
         this.level = 250;
-        this.stats = new int[10];
+        this.stats = new int[20];
         this.hyperStats = new int[20];
         this.skillStats = new int[20];
         equipped = new ArrayList<Equipment>();
         for(int i=0;i<25;i++) { equipped.add(new Equipment()); }
-        for(int i=0;i<4;i++) stats[i] = 1000;
+        for(int i=0;i<4;i++) stats[i] = 4;
     }
 
     public Character(String name, String job, int level) {
@@ -46,7 +49,7 @@ public class Character implements Serializable {
         this.skillStats = new int[20];
         equipped = new ArrayList<Equipment>();
         for(int i=0;i<25;i++) { equipped.add(new Equipment()); }
-        for(int i=0;i<4;i++) stats[i] = 1000;
+        for(int i=0;i<4;i++) stats[i] = 4;
     }
 
     public void setName(String name) {

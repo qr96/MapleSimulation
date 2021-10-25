@@ -30,23 +30,31 @@ public class StatManager {
     public String makeString() {
         String result = "";
 
-        result = result + "1000~1000\n";
-        result = result + "1000\n";
+        result = result + "1000~" + getStatAtk() + "\n";
         result = result + "1000\n";
         result = result + getStat("str") + " (" + character.getStats(character.STR)+"+"+getAddStat("str")+")\n";
         result = result + getStat("dex") + " (" + character.getStats(character.DEX)+"+"+getAddStat("dex")+")\n";
         result = result + getStat("int") + " (" + character.getStats(character.INT)+"+"+getAddStat("int")+")\n";
         result = result + getStat("luk") + " (" + character.getStats(character.LUK)+"+"+getAddStat("luk")+")\n";
+        result = result + getStat("attk") + "\n";
 
         return result;
     }
 
     //스공
     public int getStatAtk() {
-        int result = 0;
+        double result = 0;
+        String job = character.getJob();
+        String weapon = equipments.get(7).getType();
 
+        result = (getStat(getJustat(job))*4 + (double) getStat(getSubStat(job)) / 100) *
+                getStat(getAttkType(job)) *
+                ((double) (100 + getStat("dmg")) / 100) *
+                ((100+(double) getStat("fdmg"))/100) *
+                ((100+(double) getStat("attkper"))/100) *
+                getJobConstant(job) * getWeaponConstant(weapon);
 
-        return result;
+        return (int) result;
     }
 
     //주스탯
@@ -58,12 +66,25 @@ public class StatManager {
                 "루미너스", "배틀메이지", "키네시스", "일리움", "라라", "칸나", "비스트테이머"};
         String[] type4 = {"나이트로드", "섀도어", "듀얼블레이드", "나이트워커", "팬텀", "카데나", "호영"};
 
-        if(job.equals("데몬어벤져")) return "hp";
-        else if(Arrays.asList(type1).contains(job)) return "str";
+        if(Arrays.asList(type1).contains(job)) return "str";
         else if(Arrays.asList(type2).contains(job)) return "dex";
         else if(Arrays.asList(type3).contains(job)) return "int";
         else if(Arrays.asList(type4).contains(job)) return "luk";
         else return "str";
+    }
+    
+    //부스탯
+    public String getSubStat(String job) {
+        if(getJustat(job).equals("str")) return "dex";
+        else if(getJustat(job).equals("dex")) return "str";
+        else if(getJustat(job).equals("int")) return "luk";
+        else if(getJustat(job).equals("luk")) return "dex";
+        else return "dex";
+    }
+
+    public String getAttkType(String job) {
+        if(getJustat(job).equals("int")) return "magic";
+        else return "attk";
     }
 
     //직업상수
@@ -98,6 +119,7 @@ public class StatManager {
         return 1.0;
     }
 
+    //최종 스탯
     public int getStat(String option) {
         int sum = 0;
 
@@ -106,7 +128,10 @@ public class StatManager {
         else if(option.equals("int")) sum = character.getStats(character.INT) + getAddStat(option);
         else if(option.equals("luk")) sum = character.getStats(character.LUK) + getAddStat(option);
         else if(option.equals("hp")) sum = character.getStats(character.HP) + getAddStat(option);
-        else if(option.equals("dmg")) sum = character.getStats(character.DMG) + getAddStat(option);
+        else if(option.equals("dmg")) sum = getAddStat(option);
+        else if(option.equals("attk")) sum = getAddStat(option);
+        else if(option.equals("magic")) sum = getAddStat(option);
+
 
         return sum;
     }
@@ -140,14 +165,37 @@ public class StatManager {
             equipStat = 14;
             charStat = 8;
         }
+        else if(option.equals("attk")) {
+            equipStat = 8;
+            charStat = 10;
+        }
+        else if(option.equals("magic")) {
+            equipStat = 9;
+            charStat = 11;
+        }
+        else if(option.equals("fdmg")) { //최종뎀
+            equipStat = - 1;
+            charStat = 12;
+        }
+        else if(option.equals("attkper")) { //공격력퍼
+            equipStat = -1;
+            charStat = 13;
+        }
+        else if(option.equals("magicper")) { //마력퍼
+            equipStat = -1;
+            charStat = 14;
+        }
+
 
         //장비 스탯
-        for(int i=0; i<equipments.size(); i++) {
-            if(equipments.get(i).getName().equals("잘못된 이름")) continue;
-            add += (int) equipments.get(i).getStats().get(equipStat);
-            add += (int) equipments.get(i).getStarStat().get(equipStat);
-            add += (int) equipments.get(i).getEnhance().get(equipStat);
-            add += (int) equipments.get(i).getAdditional().get(equipStat);
+        if(equipStat != -1) {
+            for(int i=0; i<equipments.size(); i++) {
+                if(equipments.get(i).getName().equals("잘못된 이름")) continue;
+                add += (int) equipments.get(i).getStats().get(equipStat);
+                add += (int) equipments.get(i).getStarStat().get(equipStat);
+                add += (int) equipments.get(i).getEnhance().get(equipStat);
+                add += (int) equipments.get(i).getAdditional().get(equipStat);
+            }
         }
 
         //하이퍼스탯
