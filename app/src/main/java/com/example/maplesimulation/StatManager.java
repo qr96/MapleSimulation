@@ -136,6 +136,7 @@ public class StatManager {
         return sum;
     }
 
+    //스탯
     public int getAddStat(String option) {
         int add = 0;
         int equipStat = 0;
@@ -186,7 +187,6 @@ public class StatManager {
             charStat = 14;
         }
 
-
         //장비 스탯
         if(equipStat != -1) {
             for(int i=0; i<equipments.size(); i++) {
@@ -198,13 +198,66 @@ public class StatManager {
             }
         }
 
-        //하이퍼스탯
-        add += character.getHyperStats(charStat);
-        
         //스킬 스탯
         add += character.getSkillStats(charStat);
 
+        //스탯퍼 적용
+        add = add * (100+getStatPer(option))/100;
+
+        //여기부터 스탯퍼 적용 X
+
+        //하이퍼스탯
+        add += character.getHyperStats(charStat);
+
         return add;
+    }
+
+    //장비들 스탯퍼 추출
+    public int getStatPer(String option) {
+        int possibility = 0;
+        String[] potential1;
+        String[] potential2;
+
+        //잠재옵션 스탯퍼
+        for(int i=0; i<equipments.size(); i++) {
+            potential1 = equipments.get(i).getPotential1();
+            potential2 = equipments.get(i).getPotential2();
+            for(int j=0;j<3;j++) {
+                if(getCubeOptionType(potential1[j]).equals(option))
+                    possibility += getCubePossible(potential1[j]);
+                if(getCubeOptionType(potential2[j]).equals(option))
+                possibility += getCubePossible(potential2[j]);
+            }
+
+            //추가옵션 (올스탯퍼)
+            possibility += (int) equipments.get(i).getAdditional().get(12);
+        }
+
+        return possibility;
+    }
+
+    //큐브 옵션 판별
+    public String getCubeOptionType(String option) {
+        if(option.contains("STR")) return "str";
+        else if(option.contains("DEX")) return "dex";
+        else if(option.contains("INT")) return "int";
+        else if(option.contains("LUK")) return "luk";
+        else if(option.contains("HP")) return "hp";
+        else if(option.contains("공격력")) return "attk";
+        else if(option.contains("마력")) return "magic";
+        else return "err";
+    }
+
+    //잠재옵션에서 스탯퍼 추출
+    public int getCubePossible(String option) {
+        if(!option.contains("%")) return 0;
+        return Integer.parseInt(option.substring(option.indexOf("+"), option.indexOf("%")));
+    }
+
+    //잠재옵션에서 스탯 추출 {
+    public int getCubeStat(String option) {
+        if(option.contains("%")) return 0;
+        return Integer.parseInt(option.substring(option.indexOf("+")));
     }
 
     public void calculateEquipment(Equipment equipment) { //특정 장비 계산
