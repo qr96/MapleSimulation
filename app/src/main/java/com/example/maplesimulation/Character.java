@@ -32,9 +32,9 @@ public class Character implements Serializable {
         this.name = "이름 없음";
         this.job = "초보자";
         this.level = 250;
-        this.stats = new int[20];
-        this.hyperStats = new int[20];
-        this.skillStats = new int[20];
+        this.stats = new int[30];
+        this.hyperStats = new int[30];
+        this.skillStats = new int[30];
         equipped = new ArrayList<Equipment>();
         for(int i=0;i<25;i++) { equipped.add(new Equipment()); }
         for(int i=0;i<4;i++) stats[i] = 4;
@@ -44,9 +44,9 @@ public class Character implements Serializable {
         this.name = name;
         this.job = job;
         this.level = level;
-        this.stats = new int[10];
-        this.hyperStats = new int[20];
-        this.skillStats = new int[20];
+        this.stats = new int[30];
+        this.hyperStats = new int[30];
+        this.skillStats = new int[30];
         equipped = new ArrayList<Equipment>();
         for(int i=0;i<25;i++) { equipped.add(new Equipment()); }
         for(int i=0;i<4;i++) stats[i] = 4;

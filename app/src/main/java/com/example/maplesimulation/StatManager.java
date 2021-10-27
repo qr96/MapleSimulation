@@ -32,10 +32,10 @@ public class StatManager {
 
         result = result + "1000~" + getStatAtk() + "\n";
         result = result + "1000\n";
-        result = result + getStat("str") + " (" + character.getStats(character.STR)+"+"+getAddStat("str")+")\n";
-        result = result + getStat("dex") + " (" + character.getStats(character.DEX)+"+"+getAddStat("dex")+")\n";
-        result = result + getStat("int") + " (" + character.getStats(character.INT)+"+"+getAddStat("int")+")\n";
-        result = result + getStat("luk") + " (" + character.getStats(character.LUK)+"+"+getAddStat("luk")+")\n";
+        result = result + getStat("str") + " (" + character.getStats(character.STR)+"+"+getOnlyAddStat("str")+")\n";
+        result = result + getStat("dex") + " (" + character.getStats(character.DEX)+"+"+getOnlyAddStat("dex")+")\n";
+        result = result + getStat("int") + " (" + character.getStats(character.INT)+"+"+getOnlyAddStat("int")+")\n";
+        result = result + getStat("luk") + " (" + character.getStats(character.LUK)+"+"+getOnlyAddStat("luk")+")\n";
         result = result + getStat("attk") + "\n";
 
         return result;
@@ -123,17 +123,23 @@ public class StatManager {
     public int getStat(String option) {
         int sum = 0;
 
-        if(option.equals("str")) sum = character.getStats(character.STR) + getAddStat(option);
-        else if(option.equals("dex")) sum = character.getStats(character.DEX) + getAddStat(option);
-        else if(option.equals("int")) sum = character.getStats(character.INT) + getAddStat(option);
-        else if(option.equals("luk")) sum = character.getStats(character.LUK) + getAddStat(option);
-        else if(option.equals("hp")) sum = character.getStats(character.HP) + getAddStat(option);
-        else if(option.equals("dmg")) sum = getAddStat(option);
-        else if(option.equals("attk")) sum = getAddStat(option);
-        else if(option.equals("magic")) sum = getAddStat(option);
-
+        sum = getAddStat(option) + getAddStat2(option);
 
         return sum;
+    }
+
+    //직업 올린 능력치 제외
+    public int getOnlyAddStat(String option) {
+        int result = 0;
+
+        result = getStat(option);
+        if(option.equals("str")) result -= character.getStats(character.STR);
+        else if(option.equals("dex")) result -= character.getStats(character.DEX);
+        else if(option.equals("int")) result -= character.getStats(character.INT);
+        else if(option.equals("luk")) result -= character.getStats(character.LUK);
+        else if(option.equals("hp")) result -= character.getStats(character.HP);
+
+        return result;
     }
 
     //스탯
@@ -198,18 +204,34 @@ public class StatManager {
             }
         }
 
+        //주스탯
+        add += character.getStats(charStat);
+
         //스킬 스탯
         add += character.getSkillStats(charStat);
 
         //스탯퍼 적용
         add = add * (100+getStatPer(option))/100;
 
-        //여기부터 스탯퍼 적용 X
-
-        //하이퍼스탯
-        add += character.getHyperStats(charStat);
-
         return add;
+    }
+
+    //스탯퍼 적용 안되는 추가 스탯 (아케인, 하이퍼, 몬라, 어빌, 유니온)
+    public int getAddStat2(String option) {
+        int charStat = 0;
+        int result = 0;
+
+        if(option.equals("str")) charStat = 0;
+        else if(option.equals("dex")) charStat = 1;
+        else if(option.equals("int")) charStat = 2;
+        else if(option.equals("luk")) charStat = 3;
+        else if(option.equals("hp")) charStat = 4;
+        else return 0;
+
+        //하이퍼 스탯
+        result += character.getHyperStats(charStat);
+
+        return result;
     }
 
     //장비들 스탯퍼 추출
