@@ -143,7 +143,7 @@
                 tools:ignore="OnClick" />
             <TextView
                 style="@style/SettingInfoTextview"
-                android:text="DEX : 20"
+                android:text="HP : 20"
                 tools:ignore="OnClick" />
             <View
                 android:layout_width="match_parent"

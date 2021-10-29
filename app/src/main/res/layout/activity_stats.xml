@@ -70,7 +70,6 @@
                     android:textSize="17sp"
                     android:textColor="#555555"/>
             </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -80,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="뭐넣지"
+                android:text="장비 스탯퍼"
                 android:lineSpacingExtra="5dp"
                 android:textSize="17sp"
                 android:textColor="#555555"/>
