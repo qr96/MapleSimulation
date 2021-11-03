@@ -64,7 +64,7 @@ public class StatSettingActivity extends Activity {
     }
 
     public void goInput(View view) {
-        Intent intent = new Intent(this, InputPopup.class);
+        Intent intent = new Intent(this, SelectJobSetPopup.class);
         startActivity(intent);
     }
 
